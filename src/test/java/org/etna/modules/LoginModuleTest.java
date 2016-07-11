@@ -1,0 +1,299 @@
+package org.etna.modules;
+import org.testng.annotations.Test;
+import org.testng.annotations.Test;
+import org.etna.dataprovider.SearchData;
+import org.etna.maincontroller.MainController;
+import org.etna.maincontroller.PageFactoryInitializer;
+import org.etna.utils.ApplicationSetUpPropertyFile;
+import org.etna.utils.SearchDataPropertyFile;
+import org.testng.SkipException;
+import org.testng.annotations.Test;
+
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
+
+public class LoginModuleTest extends PageFactoryInitializer{
+
+	SearchDataPropertyFile data = new SearchDataPropertyFile();
+	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
+	
+	
+	  public void loginAsASuperUser() throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg();
+	  }
+	
+
+		public void login(String userName,String password) throws Exception
+		{
+		   homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUsernameRegression(userName)
+		  .enterPasswordRegression(password)
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg();
+		}
+		
+		
+	@Features("Login Module")
+	@Test(groups={"LoginModule","smoke","regression"})
+		public void TC_Login_001_TC_Login_002_TC_Login_024_TC_Login_025_TC_Login_026_TC_Login_027() throws Exception
+		{
+		   homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyLoginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg();
+		}
+	  
+
+	
+	  
+	  
+	@Features("Login Module")
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void TC_Login_001_AsASuperUser_PurchaseAgent_GeneralUser(String testCaseId,String userName,String password,String expectedMsg) throws Exception
+			{
+			   homePage()
+			  .clickLoginLink()
+			  .loginPopUp()
+			  .enterUsernameRegression(userName)
+			  .enterPasswordRegression(password)
+			  .clickOnLoginButton()
+			  .homePage()
+			  .verifyWelcomeMsg(expectedMsg);
+			}
+	
+
+	@Features("Login Module")
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	  public void TC_Login_004_TC_Login_005_TC_Login_006_TC_Login_007_ErrorScenarios(String testCaseId,String userName, String password,String expectedMsg) throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUsernameRegression(userName)
+		  .enterPasswordRegression(password)
+		  .clickOnLoginButton()
+		  .homePage()
+		  .assertForErrorMessages(expectedMsg);	
+	  }
+	  
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TS_Login_001_TC_Login_008_Verify_Tab_focus() throws Exception
+	  {
+		  
+		  throw new SkipException("having a bug.");
+		/*  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		 
+		  .clickOnLoginButton()
+		  .verifyTabFocus();*/
+		}
+
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_009_010_RememberPassword_UserNameAndPasswordRefill() throws Exception
+	  {
+		  
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .homePage()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyAutofillOfUserNameAndPassword();
+		}
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_011_AutofillLogin() throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .homePage()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg();
+		}
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_012_uncheckRememberMeWhenInAutoFillForm() throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .homePage()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyEmptyUserNameAndPasswordTextbox();
+		}
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_013_myProductGroupLoginPopupRememberMeClickUncheck() throws Exception
+	  {
+		  String searchText = data.getSearchText();
+		   homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .searchText(searchText)
+		  .clickOnSearch()
+		  .productListPage()
+		  .clickOnSpecificMyProductGroupButton(1)
+		  .loginPopUp()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyEmptyUserNameAndPasswordTextbox();
+		}
+	  
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_015_rememberMeAsALink() throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .clickOnRememberText()
+		  .verifyRememberMeCheckBoxSelected();
+		}
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_016_TC_Login_017_TC_Login_018_rememberMeCheckboxTest() throws Exception
+	  {
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .clickOnRemeberMe()
+		  .verifyRememberMeCheckBoxSelected()
+		  .clickOnRemeberMe()
+		  .verifyRememberMeCheckboxNotSelected();
+	}
+
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_014_myProductGroupLoginPopupRememberMeClickCheck() throws Exception
+	  {  
+		  String searchText = data.getSearchText();
+		  homePage()
+		  .searchText(searchText)
+		  .clickOnSearch()
+		  .productListPage()
+		  .clickOnSpecificMyProductGroupButton(1)
+		  .loginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnRememberMe()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .homePage()
+		  .waitForProfileDropdownLink()
+		  .logout()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyAutofillOfUserNameAndPassword();
+		}
+	  
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_021_loginVerifyOrderTopToBottom() throws Exception
+	  {
+		  throw new SkipException("This feature is having a bug.");
+		  
+		}
+	
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"},enabled=true)
+	  public void TC_Login_020_verifyForgotPasswordPage() throws Exception
+	  {
+		   homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .clickOnForgotPassword()
+		  .forgotPasswordPage()
+		  .verifyRetrievePasswordPage();
+		}
+	
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"})
+	  public void TC_Login_019_verifyRegisterPage() throws Exception
+	  {
+
+	 homePage()
+	 .clickLoginLink()
+	 .loginPopUp()
+	 .clickOnSignUp()
+	 .signUpPage()
+	 .verifyBreadCrump(data.getRegistrationBreadCrump())
+	 .verifyRegistrationPageName(data.getRegistrationBreadCrump())
+	 .verifyWhetherNewCommercialCustomerIsEnabledFirstAndNewRetailCustomerIsNotEnabledFirst();
+	  }
+}
