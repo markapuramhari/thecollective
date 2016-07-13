@@ -293,7 +293,7 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 		else
 		{
 		String emailIdSplit []  = emailId.split("@");
-		emailAddressTextbox.sendKeys(emailIdSplit[0]+"+"+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
+		emailAddressTextbox.sendKeys(emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
 		}
 		return this;
 	}

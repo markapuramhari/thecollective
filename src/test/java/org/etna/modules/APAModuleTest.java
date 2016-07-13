@@ -30,6 +30,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void verifyDisplayOfManageAddDisablePAafterSuperUserLogin() throws Exception{
 		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
 		.clickOnUserAccountDropdown()
 		.verifyAddManageDisablePANewPurchasingAgentIsDisplayedInUserAccountDropdown();	
@@ -41,7 +43,9 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	 public void verifyAddNewPA_afterSuperUserLogin_VerifyBreadcrumpOfAddNewPurchasingAgent() throws Exception{
 		
-		loginModule.loginAsASuperUser();
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnAddNewPurchasingAgent()
@@ -76,8 +80,10 @@ public class APAModuleTest extends PageFactoryInitializer {
 	public void addAndDeleteNewPurchasingAgent_GeneralUser_SuperUser_APA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
 		String emailIdSplit []  = emailId.split("@");
-		String email = emailIdSplit[0]+"+"+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
-		loginModule.loginAsASuperUser();
+		String email = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnAddNewPurchasingAgent()
@@ -116,6 +122,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void generalUserLoginCheckoutButtonNotDisplayedInCart() throws Exception{
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchTextForUPCLabelTest())
 		.clickOnSearch()
@@ -132,10 +140,12 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("These are a bunch of test cases that tests the error scenarios involved during Add New Purchasing Agent.")
-	@Test(groups={"regression"},dataProvider="searchv2",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void addNewPurchasingAgent_errorScenarios(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website,@Parameter("Error Message") String expectedErrorMsg) throws Exception
 	{
+		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser();
 		homePage()
 		.clickOnUserAccountDropdown()
@@ -165,6 +175,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	public void cancel_afterClickingOnDisableButton_ManagePurchaseAgent() throws Exception
 	{
 		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
 		String emailId = homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnManagePurchasingAgent()
@@ -183,6 +195,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_PA_087")
 	public void cancel_afterClickingOnDisableButton_DisablePurchaseAgent() throws Exception
 	{
+		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser();
 		String emailId = homePage()
 		.clickOnUserAccountDropdown()
@@ -203,6 +217,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	public void verify_Disable_Purchase_Agent_Page() throws Exception
 	{
 		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
 		homePage().clickOnUserAccountDropdown().clickOnDisablePurchasingAgent().verifyDisablePurchaseAgentPage();
 	}
 	
@@ -213,8 +229,10 @@ public class APAModuleTest extends PageFactoryInitializer {
 	public void verify_Disable_Purchase_Agent_In_Disable_Purchase_Agent_Page(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
 		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
 		String emailIdSplit []  = emailId.split("@");
-		String email = emailIdSplit[0]+"+"+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		String email = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
 
 		homePage()
 		.clickOnUserAccountDropdown()
@@ -250,9 +268,11 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies approval cart functionality which is verified by a super user.")
-	@Test(groups={"regression"},enabled=false)
+	@Test(groups={"regression"})
 	@TestCaseId("TC_PA_089")
 	public void verifyApprovalCartFunctionality_SuperUser() throws Exception{
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
 		homePage()
@@ -295,9 +315,11 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies approval cart functionality which is verified by a Authorizing purchase agent.")
-	@Test(groups={"regression"},enabled=false)
+	@Test(groups={"regression"})
 	@TestCaseId("TC_PA_090")
 	public void verifyApprovalCartFunctionality_APA() throws Exception {
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
 		homePage()
@@ -345,6 +367,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_PA_091")
 	public void verifyRejectCartFunctionality() throws Exception {
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchText())
 		.clickOnSearch()
@@ -375,9 +399,11 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies reject cart functionality")
-	@Test(enabled=false,groups={"regression"})
+	@Test(groups={"regression"})
 	@TestCaseId("TC_PA_092")
 	public void clickingOnUpdateSelectedItemsFunctionalityWithoutSelectingAnItem() throws Exception {
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchText())

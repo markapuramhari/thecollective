@@ -4,7 +4,9 @@ import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.Waiting;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -179,6 +181,45 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 	public LoginPopUpPageObjects clickOnForgotPassword() {
 		
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",forgotYourPassword);
+		return this;
+	}
+
+	public LoginPopUpPageObjects verifyDefaultTabFocus(String userNameId) {
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"), userNameId);
+		return this;
+	}
+
+	public LoginPopUpPageObjects verifyTabFocusTopToButtom(String userNameId,String passwordId,String forgotYourPasswordId,String rememberMeClassName, String loginButtonId) {
+		//String [] expectedTabOrder = {userNameId,passwordId,rememberMeClassName,forgotYourPasswordId,loginButtonId};
+		
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),userNameId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),passwordId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertTrue(driver.switchTo().activeElement().getText().trim().contains(rememberMeClassName),"Remember Me class name is not "+rememberMeClassName+" .It is "+driver.switchTo().activeElement().getText().trim());
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getText().trim(),forgotYourPasswordId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),loginButtonId);
+		return this;
+	}
+	
+	
+	public LoginPopUpPageObjects verifyTabFocusButtomToTop(String userNameHTMLId, String passwordHTMLId,
+			String forgotYourPasswordHTMLText, String rememberMeHTMLClassName, String loginButtonHTMLId) {
+		
+		String tabBehind = Keys.chord(Keys.SHIFT,Keys.TAB);
+		
+		verifyTabFocusTopToButtom(userNameHTMLId,passwordHTMLId,forgotYourPasswordHTMLText,rememberMeHTMLClassName,loginButtonHTMLId);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),loginButtonHTMLId);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getText().trim(),forgotYourPasswordHTMLText);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertTrue(driver.switchTo().activeElement().getText().trim().contains(rememberMeHTMLClassName),"Remember Me class name is not "+rememberMeHTMLClassName+" .It is "+driver.switchTo().activeElement().getAttribute("class"));
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),passwordHTMLId);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),userNameHTMLId);
 		return this;
 	}
 }

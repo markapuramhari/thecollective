@@ -1,14 +1,9 @@
 package org.etna.modules;
 import org.testng.annotations.Test;
-import org.testng.annotations.Test;
 import org.etna.dataprovider.SearchData;
-import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
-import org.testng.SkipException;
-import org.testng.annotations.Test;
-
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -100,13 +95,10 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  public void TS_Login_001_TC_Login_008_Verify_Tab_focus() throws Exception
 	  {
 		  
-		  throw new SkipException("having a bug.");
-		/*  homePage()
+		  homePage()
 		  .clickLoginLink()
 		  .loginPopUp()
-		 
-		  .clickOnLoginButton()
-		  .verifyTabFocus();*/
+		  .verifyDefaultTabFocus(data.getUserNameHTMLID());
 		}
 
 	@Features("Login Module")
@@ -263,15 +255,29 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		}
 	  
 	@Features("Login Module")
-	@Test(groups={"LoginModule","regression"},enabled=true)
-	  public void TC_Login_021_loginVerifyOrderTopToBottom() throws Exception
+	@Test(groups={"LoginModule","regression"})
+	  public void TC_Login_021_loginVerifyTabOrderTopToBottom() throws Exception
 	  {
-		  throw new SkipException("This feature is having a bug.");
 		  
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyTabFocusTopToButtom(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
 		}
 	
 	@Features("Login Module")
-	@Test(groups={"LoginModule","regression"},enabled=true)
+	@Test(groups={"LoginModule","regression"})
+	  public void TC_Login_021_loginVerifyTabOrderBottomToTop() throws Exception
+	  {
+		  
+		  homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyTabFocusButtomToTop(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
+		}
+	
+	@Features("Login Module")
+	@Test(groups={"LoginModule","regression"})
 	  public void TC_Login_020_verifyForgotPasswordPage() throws Exception
 	  {
 		   homePage()

@@ -18,32 +18,32 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	
 	@Features("Homepage Module")
 	@Test(groups={"HomePageModule","smoke","regression"})
-	  public void tc008_verifyHomePage() throws Exception
+	  public void tc008_verifyHomePageBeforeLogin() throws Exception
 	  {
-		  
 		homePage()
 		.verifyHomePage();
-		
 	  } 
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void tc009_verifyAllSectionOptionPages() throws Exception
+	@Test(enabled=false,groups={"HomePageModule","smoke","regression"})
+	  public void tc008_verifyHomePageAfterLogin() throws Exception
 	  {
-		throw new SkipException("Feature not completely implemented yet.");
-		
-			/*verification of breadcrumps all the sections and subsections irrespective of whether it is a parent or a child,
-	 	 	filter sections,page name,search box for filter */
-			/*	homePage()
-				.verifyAllSectionOptionPages();*/
-	  } 	
-		
+		homePage()
+		.clickLoginLink()
+		.enterUserName()
+		.enterPassword()
+		.clickOnLoginButton()
+		.homePage()
+		.verifyHomePageAfterLogin();
+	  } 
+
+
 	@Features("Homepage Module")
 	@Test(groups={"HomePageModule","regression"})
 	  public void tc010_verifyAllFooterSectionPages() throws Exception
 	  {
-		throw new SkipException("Feature not completely implemented yet.");
-		//verification of breadcrumps,pagename and etc. for the footer links
+		homePage()
+		.verifyFooterLinks(data.getExpectedFooterLinks().split(","));
 	  } 
 	
 	@Features("Homepage Module")
@@ -56,8 +56,6 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.clickOnSearch();
 		homePage()
 		.clickOnLogo()
-		.verifyCarousel()
-		.verifyFeaturedManufacturersSection();
+		.verifyHomePage();
 	  }
-	
 }

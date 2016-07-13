@@ -1,31 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Etna Automation Suite">
-	<listeners>
-        	<listener class-name="org.etna.maincontroller.MainController"/>
-        	<listener class-name="org.etna.utils.ReportGenerator"/>
-  	</listeners>
-  
-    <test name="regression">
-  	<groups>
-  		<run>
-  			<include name="regression"/>
-  		</run>
-  	</groups>
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Etna Automation Suite]">
+  <listeners>
+    <listener class-name="org.etna.maincontroller.MainController"/>
+    <listener class-name="org.etna.utils.ReportGenerator"/>
+  </listeners>
+
+  <test name="regression(failed)">
+    <groups>
+      <run>
+        <include name="regression"/>
+      </run>
+    </groups>
     <classes>
-      <class name="org.etna.modules.MyAccountDashboardModuleTest"/>
-      <class name="org.etna.modules.OrderFulFillmentModuleTest"/>
-      <class name="org.etna.modules.LoginModuleTest"/>
-      <class name="org.etna.modules.MyProductGroupModuleTest"/>
-      <class name="org.etna.modules.MyCartModuleTest"/>
-      <class name="org.etna.modules.SaveCartModuleTest"/>
-      <class name="org.etna.modules.ShopByBrandsModuleTest"/>
-      <class name="org.etna.modules.GeneralSearchModuleTest"/>
-      <class name="org.etna.modules.QuickOrderPadModuleTest"/>
-      <class name="org.etna.modules.CompareModuleTest"/>
-      <class name="org.etna.modules.PDPModuleTest"/>
-      <class name="org.etna.modules.RegistrationModuleTest"/>
-      <class name="org.etna.modules.CategoryModuleTest"/>
-      <class name="org.etna.modules.HomePageModuleTest"/>
+      <class name="org.etna.modules.APAModuleTest">
+        <methods>
+          <!-- <include name="verifyApprovalCartFunctionality_SuperUser"/> 
+           <include name="addNewPurchasingAgent_errorScenarios" invocation-numbers="10"/>
+          <include name="startRecording"/>
+          <include name="clickingOnUpdateSelectedItemsFunctionalityWithoutSelectingAnItem"/>
+          <include name="verifyApprovalCartFunctionality_APA"/>
+          <include name="callStopRecording"/>-->
+          <include name="generalUserLoginCheckoutButtonNotDisplayedInCart"/>
+         
+        </methods>
+      </class> <!-- org.etna.modules.APAModuleTest -->
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test> <!-- regression(failed) -->
+</suite> <!-- Failed suite [Etna Automation Suite] -->

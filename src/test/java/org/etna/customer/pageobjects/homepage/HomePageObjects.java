@@ -295,6 +295,37 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//ul[contains(@class,'myAccountMenu')]/descendant::a[contains(text(),'Approval Cart List')]")
 	private WebElement approveCartListLinkLocator;
 	
+	@FindAll(value={@FindBy(xpath="//div[contains(@class,'footerCol')]/descendant::a")})
+	private List<WebElement> footerLinksLocator;
+	
+	@FindBy(xpath="//a[text()='Home']")
+	private WebElement homeLinkLocator;
+	
+	@FindBy(xpath="//a[text()='Quick Order Pad']")
+	private WebElement quickOrderPadLinkLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'headerNavBar')]/descendant::a[text()='Divisions']")
+	private WebElement divisionsLinkLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'headerNavBar')]/descendant::a[text()='Locations']")
+	private WebElement locationsLinkLocator;
+	
+	@FindBy(xpath="//a[@title='View cart']")
+	private WebElement cartLinkLocator;
+	
+	@FindBy(xpath="//label[text()='Recent News']")
+	private WebElement recentNewsHeadingLocator;
+	
+	@FindBy(xpath="//div[@class='recentNews']")
+	private WebElement recentNewsSectionLocator;
+	
+	@FindBy(xpath="//label[text()='Upcoming Events']")
+	private WebElement eventsSectionLocator;
+
+	@FindBy(xpath="//div[contains(@class,'cimm_homeLeftMenu')]")
+	private WebElement leftMenuLocator;
+	
+	
 	public HomePageObjects errorScenarios(String expectedMsg) {
 		System.out.println(expectedMsg);
 		Assert.assertEquals(errorMsgLocator.getText().trim(), expectedMsg);
@@ -537,8 +568,16 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@Step("wait and verify display of user account dropdown link")
 	public HomePageObjects waitForProfileDropdownLink() {
+		try
+		{
 		Waiting.explicitWaitVisibilityOfElement(userAccountDropdown, 20);
-		Assert.assertTrue(userAccountDropdown.isDisplayed(), "user account dropdown is not displayed");;
+		Assert.assertTrue(userAccountDropdown.isDisplayed(), "user account dropdown is not displayed");
+		}
+		catch(StaleElementReferenceException e)
+		{
+			driver.navigate().refresh();
+			waitForProfileDropdownLink();
+		}
 		return this;
 	}
 
@@ -585,7 +624,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@Step("verify copy rights of Unilog")
 	public HomePageObjects verifyCopyRightsOfUnilog() {
-		Assert.assertEquals(copyRightsOfUnilog.getText().trim(),"© Unilog, Co. 2016 - All Right Reserved");
+		Assert.assertEquals(copyRightsOfUnilog.getText().trim(),data.getCopyRightsOfUnilogText());
 		return this;
 	}
 	
@@ -599,6 +638,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@Step("verify carousel")
 	public HomePageObjects verifyCarousel() throws Exception {
 		String [] expectedCarouselImages = data.getCarouselImages().split(",");
+		
 		for(int i=0;i<carouselImages.size();i++)
 		{
 		Assert.assertEquals(carouselImages.get(i).getAttribute("src").trim(),setUp.getURL()+expectedCarouselImages[i]);
@@ -630,10 +670,43 @@ public class HomePageObjects extends PageFactoryInitializer {
 		verifyFeaturedBrandsList();
 		verifyDisplayOfSearchTextboxButton();
 		verifyHeaderSection();
-		verifyFooterSectionLinksText();
+		verifyProductsLink();
+		verifyBrandsLink();
+		verifyCartLink();
+		verifyEventsSection();
+		verifyRecentNewsSection();
+		verifyLeftMenu();
 		return this;
 	}
 	
+	private void verifyLeftMenu() {
+		Assert.assertTrue(leftMenuLocator.isDisplayed(),"Left menu section is not displayed.");	
+	}
+
+	private void verifyRecentNewsSection() {
+		Assert.assertTrue(recentNewsSectionLocator.isDisplayed(),"Recent news section is not displayed.");
+		
+	}
+
+	private void verifyEventsSection() {
+		
+		Assert.assertTrue(eventsSectionLocator.isDisplayed(),"Events section is not displayed.");
+	}
+
+	private void verifyCartLink() {
+		Assert.assertTrue(cartLinkLocator.isDisplayed(),"Cart link is not displayed.");
+		
+	}
+
+	private void verifyBrandsLink() {
+		Assert.assertTrue(brandsLink.isDisplayed(),"Brands Link is not displayed.");
+		
+	}
+
+	private void verifyProductsLink() {
+		Assert.assertTrue(productsLink.isDisplayed(),"Products Link is not displayed.");
+	}
+
 	@Step("verify featurered brands list")
 	private HomePageObjects verifyFeaturedBrandsList() {
 		Assert.assertTrue(featuredBrandsList.isDisplayed(),"featured brands list is not displayed");
@@ -645,45 +718,45 @@ public class HomePageObjects extends PageFactoryInitializer {
 		Assert.assertTrue(featuredBrandsHeading.isDisplayed(),"featured brands heading is not displayed");
 		return this;
 	}
-
-	@Step("verify footer links")
-	public HomePageObjects verifyFooterSectionLinksText() {
-		String[] expectedFooterLinks = data.getFooterLinksText().split(",");
-		for(int i=0;i<footerSection.size();i++)
-		{
-		Assert.assertEquals(footerSection.get(i).getText().trim(),expectedFooterLinks[i].trim());
-		}
-		return this;
-		
-	}
 	
 	public HomePageObjects verifyHeaderSection() {
 		verifyDisplayOfLoginLink();
 		verifySignUpLink();
-		verifyDisplayOfServicesLink();
-		verifyDisplayOfIndustriesServedLink();
-		verifyDisplayOfEventsLink();
-		verifyDisplayOfAboutUsLink();
 		verifyDisplayOfContactUsLink();
+		verifyDisplayOfLocationsLink();
+		verifyDisplayOfDivisionsLink();
+		verifyDisplayOfQuickOrderPadLink();
+		verifyDisplayOfHomeLink();
 		return this;
 		
 	}
+
 	
-	private HomePageObjects verifyDisplayOfIndustriesServedLink() {
-		Assert.assertTrue(industriesServedLink.isDisplayed(),"industries served link is not displayed");
-		return this;
+	private void verifyDisplayOfHomeLink() {
+		
+		Assert.assertTrue(homeLinkLocator.isDisplayed(),"home link locator is not displayed.");
+	}
+
+	private void verifyDisplayOfQuickOrderPadLink() {
+		Assert.assertTrue(quickOrderPadLinkLocator.isDisplayed(),"quick order pad link locator is not displayed.");
+		
 		
 	}
-	
+
+	private void verifyDisplayOfDivisionsLink() {
+		Assert.assertTrue(divisionsLinkLocator.isDisplayed(),"quick order pad link locator is not displayed.");
+		
+	}
+
+	private void verifyDisplayOfLocationsLink() {
+		Assert.assertTrue(locationsLinkLocator.isDisplayed(),"quick order pad link locator is not displayed.");
+	}
+
 	private HomePageObjects verifyDisplayOfEventsLink() {
 		Assert.assertTrue(eventsLink.isDisplayed(),"events link is not displayed");
 		return this;
 	}
 	
-	private HomePageObjects verifyDisplayOfAboutUsLink() {
-		Assert.assertTrue(aboutUsLink.isDisplayed(),"about us link is not displayed");
-		return this;
-	}
 	
 	private HomePageObjects verifyDisplayOfContactUsLink() {
 		Assert.assertTrue(contactUsLink.isDisplayed(),"contact us link is not displayed");
@@ -1069,6 +1142,20 @@ return this;
 	public ApprovalCartListPageObjects clickOnApprovalCartList() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",approveCartListLinkLocator);
 		return approvalCartListPage();
+	}
+
+	public HomePageObjects verifyFooterLinks(String[] expectedFooterLinks) {
+		for(int i = 0 ; i<footerLinksLocator.size() ; i++)
+		{
+			Assert.assertEquals(footerLinksLocator.get(i).getText().trim(), expectedFooterLinks[i]);
+		}
+		return this;
+	}
+
+	public HomePageObjects verifyHomePageAfterLogin() throws Exception {
+		verifyHomePage();
+		
+		return this;
 	}
 
 }

@@ -304,6 +304,21 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String commercialUserRegistrationSuccessMsg = PropertyFileReader.propertiesReader(searchData, "commercialUserRegistrationSuccessMsg");
 	
+	private String userNameHTMLID = PropertyFileReader.propertiesReader(searchData, "userNameHTMLID");
+	
+	private String passwordHTMLId = PropertyFileReader.propertiesReader(searchData, "passwordHTMLId");
+	
+	private String rememberMeHTMLId = PropertyFileReader.propertiesReader(searchData, "rememberMeHTMLId");
+	
+	private String forgotYourPasswordHTMLText = PropertyFileReader.propertiesReader(searchData, "forgotYourPasswordHTMLText");
+	
+	private String loginButtonHTMLId = PropertyFileReader.propertiesReader(searchData, "loginButtonHTMLId");
+	
+	
+	private String expectedFooterLinks = PropertyFileReader.propertiesReader(searchData, "expectedFooterLinks");
+	
+	
+	
 	public String getCopyRightsOfUnilogText() {
 		return copyRightsOfUnilog;
 	}
@@ -1086,6 +1101,36 @@ public String getSearchBrandForCompare() {
 public String getCommercialUserRegistrationSuccessMsg() {
 	
 	return commercialUserRegistrationSuccessMsg;
+}
+
+public String getUserNameHTMLID() {
+	// TODO Auto-generated method stub
+	return userNameHTMLID;
+}
+
+public String getPasswordHTMLId() {
+	// TODO Auto-generated method stub
+	return passwordHTMLId;
+}
+
+public String getRememberMeHTMLId() {
+	// TODO Auto-generated method stub
+	return rememberMeHTMLId;
+}
+
+public String getLoginButtonHTMLId() {
+	// TODO Auto-generated method stub
+	return loginButtonHTMLId;
+}
+
+public String getForgotYourPasswordHTMLText() {
+	// TODO Auto-generated method stub
+	return forgotYourPasswordHTMLText;
+}
+
+public String getExpectedFooterLinks() {
+	// TODO Auto-generated method stub
+	return expectedFooterLinks;
 }
 
 }
