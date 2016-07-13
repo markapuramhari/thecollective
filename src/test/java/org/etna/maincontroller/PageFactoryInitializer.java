@@ -4,7 +4,12 @@ import org.etna.customer.pageobjects.approvalcartlist.ApprovedCartPageObjects;
 import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.checkout.CheckoutPageObjects;
 import org.etna.customer.pageobjects.compare.ComparePageObjects;
+import org.etna.customer.pageobjects.homepage.FireProtectionPageObjects;
+import org.etna.customer.pageobjects.homepage.HVACPageObjects;
 import org.etna.customer.pageobjects.homepage.HomePageObjects;
+import org.etna.customer.pageobjects.homepage.MunicipalPageObjects;
+import org.etna.customer.pageobjects.homepage.PlumbingDivisionPageObjects;
+import org.etna.customer.pageobjects.homepage.WaterworksPageObjects;
 import org.etna.customer.pageobjects.loginpopup.ForgotPasswordPageObjects;
 import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
 import org.etna.customer.pageobjects.maunfacturers.ShopByManufacturersPageObjects;
@@ -203,4 +208,35 @@ public class PageFactoryInitializer extends MainController{
 		ApprovedCartPageObjects approvedCartPage = PageFactory.initElements(driver,ApprovedCartPageObjects.class);
 		return approvedCartPage;
 	}
+	
+	public PlumbingDivisionPageObjects plumbingDivisionPage()
+	{
+		PlumbingDivisionPageObjects plumbingDivisionPage = PageFactory.initElements(driver,PlumbingDivisionPageObjects.class);
+		return plumbingDivisionPage;
+	}
+	
+	public WaterworksPageObjects waterworksPage()
+	{
+		WaterworksPageObjects waterworksPage = PageFactory.initElements(driver,WaterworksPageObjects.class);
+		return waterworksPage;
+	}
+	
+	public FireProtectionPageObjects fireProtectionPage()
+	{
+		FireProtectionPageObjects fireProtectionPage = PageFactory.initElements(driver,FireProtectionPageObjects.class);
+		return fireProtectionPage;
+	}
+	
+	public MunicipalPageObjects municipalPage()
+	{
+		MunicipalPageObjects municipalPage = PageFactory.initElements(driver,MunicipalPageObjects.class);
+		return municipalPage;
+	}
+	
+	public HVACPageObjects hvacPage()
+	{
+		HVACPageObjects hvacPage = PageFactory.initElements(driver,HVACPageObjects.class);
+		return hvacPage;
+	}
+	
 }

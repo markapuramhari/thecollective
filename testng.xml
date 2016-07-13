@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Etna Automation Suite]">
-  <listeners>
-    <listener class-name="org.etna.maincontroller.MainController"/>
-    <listener class-name="org.etna.utils.ReportGenerator"/>
-  </listeners>
-
-  <test name="regression(failed)">
-    <groups>
-      <run>
-        <include name="regression"/>
-      </run>
-    </groups>
+<suite name="Suite">
+  <test name="Test">
     <classes>
-      <class name="org.etna.modules.APAModuleTest">
-        <methods>
-          <!-- <include name="verifyApprovalCartFunctionality_SuperUser"/> 
-           <include name="addNewPurchasingAgent_errorScenarios" invocation-numbers="10"/>
-          <include name="startRecording"/>
-          <include name="clickingOnUpdateSelectedItemsFunctionalityWithoutSelectingAnItem"/>
-          <include name="verifyApprovalCartFunctionality_APA"/>
-          <include name="callStopRecording"/>-->
-          <include name="generalUserLoginCheckoutButtonNotDisplayedInCart"/>
-         
-        </methods>
-      </class> <!-- org.etna.modules.APAModuleTest -->
+      <class name="org.etna.modules.HomePageModuleTest"/>
     </classes>
-  </test> <!-- regression(failed) -->
-</suite> <!-- Failed suite [Etna Automation Suite] -->
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

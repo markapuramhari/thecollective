@@ -318,6 +318,30 @@ public class SearchDataPropertyFile extends MainController{
 	private String expectedFooterLinks = PropertyFileReader.propertiesReader(searchData, "expectedFooterLinks");
 	
 	
+	private String allDivisionsInHeader = PropertyFileReader.propertiesReader(searchData, "allDivisionsInHeader");
+	
+	
+	private String plumbingPageBreadcrumb = PropertyFileReader.propertiesReader(searchData, "plumbingPageBreadcrumb");
+	
+	private String plumbingPageContent = PropertyFileReader.propertiesReader(searchData, "plumbingPageContent");
+	
+	private String waterworksPageBreadcrumb = PropertyFileReader.propertiesReader(searchData, "waterworksPageBreadcrumb");
+	
+	private String waterworksPageContent = PropertyFileReader.propertiesReader(searchData, "waterworksPageContent");
+	
+	private String fireProtectionBreadcrumb = PropertyFileReader.propertiesReader(searchData, "fireProtectionBreadcrumb");
+	
+	private String fireProtectionContent = PropertyFileReader.propertiesReader(searchData, "fireProtectionContent");
+	
+	private String municipalBreadcrumb = PropertyFileReader.propertiesReader(searchData, "municipalBreadcrumb");
+
+	private String municipalContent = PropertyFileReader.propertiesReader(searchData, "municipalContent");
+	
+	private String hVACBreadcrumb = PropertyFileReader.propertiesReader(searchData, "hVACBreadcrumb");
+	
+	private String hVACContent = PropertyFileReader.propertiesReader(searchData, "hVACContent");
+	
+	
 	
 	public String getCopyRightsOfUnilogText() {
 		return copyRightsOfUnilog;
@@ -1131,6 +1155,61 @@ public String getForgotYourPasswordHTMLText() {
 public String getExpectedFooterLinks() {
 	// TODO Auto-generated method stub
 	return expectedFooterLinks;
+}
+
+public String getAllDivisionsInHeader() {
+	// TODO Auto-generated method stub
+	return allDivisionsInHeader;
+}
+
+public String getPlumbingPageBreadcrumb() {
+	// TODO Auto-generated method stub
+	return plumbingPageBreadcrumb;
+}
+
+public String getPlumbingPageContent() {
+	// TODO Auto-generated method stub
+	return plumbingPageContent;
+}
+
+public String getWaterworksPageBreadcrumb() {
+	// TODO Auto-generated method stub
+	return waterworksPageBreadcrumb;
+}
+
+public String getWaterworksPageContent() {
+	// TODO Auto-generated method stub
+	return waterworksPageContent;
+}
+
+public String getFireProtectionBreadcrumb() {
+	// TODO Auto-generated method stub
+	return fireProtectionBreadcrumb;
+}
+
+public String getFireProtectionContent() {
+	// TODO Auto-generated method stub
+	return fireProtectionContent;
+}
+
+public String getMunicipalBreadcrumb() {
+	// TODO Auto-generated method stub
+	return municipalBreadcrumb;
+}
+
+public String getMunicipalContent() {
+	// TODO Auto-generated method stub
+	return municipalContent;
+}
+
+public String getHVACBreadcrumb() {
+	// TODO Auto-generated method stub
+	return hVACBreadcrumb;
+}
+
+public String getHVACContent() {
+	// TODO Auto-generated method stub
+	return hVACContent;
 }
 
 }

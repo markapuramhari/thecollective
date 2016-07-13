@@ -325,6 +325,29 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//div[contains(@class,'cimm_homeLeftMenu')]")
 	private WebElement leftMenuLocator;
 	
+	@FindAll(value={@FindBy(xpath="//a[text()='Divisions']/ancestor::li/descendant::ul[contains(@class,'hideForDevices')]/li")})
+	private List<WebElement> divisionsOptionsLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Divisions']")
+	private WebElement divisionsLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Plumbing']")
+	private WebElement plumbingInFooterLocator;
+	
+	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Waterworks']")
+	private WebElement waterworksInFooterLocator;
+	
+	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Fire Protection']")
+	private WebElement fireProtectionLinkInFooterLocator;
+	
+	
+	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Municipal']")
+	private WebElement municipalLinkInFooterLocator;
+	
+	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='HVAC']")
+	private WebElement hvacLinkInFooterLocator;
+	
+	
 	
 	public HomePageObjects errorScenarios(String expectedMsg) {
 		System.out.println(expectedMsg);
@@ -1155,6 +1178,46 @@ return this;
 	public HomePageObjects verifyHomePageAfterLogin() throws Exception {
 		verifyHomePage();
 		
+		return this;
+	}
+
+	public HomePageObjects verifyDivisionsInHeader(String[] allDivisionsInHeader) {
+		
+		for(int i = 0 ; i< divisionsOptionsLocator.size() ; i++)
+		{
+			Assert.assertEquals(divisionsOptionsLocator.get(i).getText().trim(),allDivisionsInHeader[i]);
+		}
+		return this;
+	}
+
+	public PlumbingDivisionPageObjects clickOnPlumbingLinkInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",plumbingInFooterLocator);
+		return plumbingDivisionPage();
+	}
+
+	public WaterworksPageObjects clickOnWaterworksLinkInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",waterworksInFooterLocator);
+		return waterworksPage();
+		
+	}
+
+	public FireProtectionPageObjects clickOnFireProtectionInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",fireProtectionLinkInFooterLocator);
+		return fireProtectionPage();
+	}
+
+	public MunicipalPageObjects clickOnMunicipalLinkInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",municipalLinkInFooterLocator);
+		return municipalPage();
+	}
+
+	public HVACPageObjects clickOnHVACLinkInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",hvacLinkInFooterLocator);
+		return hvacPage();
+	}
+
+	public HomePageObjects hoverOverDivisionsLink() {
+		new Actions(driver).moveToElement(divisionsLocator).build().perform();
 		return this;
 	}
 
