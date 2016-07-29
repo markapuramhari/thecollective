@@ -1,13 +1,16 @@
 package org.etna.modules;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
+import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
+import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class HomePageModuleTest extends PageFactoryInitializer{
 
@@ -67,151 +70,67 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		homePage()
 		.hoverOverDivisionsLink()
 		.verifyDivisionsInHeader(data.getAllDivisionsInHeader().split(","));
-	  } 
-
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyPlumbingPageInFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnPlumbingLinkInFooter()
-		.verifyPlumbingPage(data.getPlumbingPageBreadcrumb(),data.getPlumbingPageContent());
-	  } 
-	
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyWaterWorksPageInFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnWaterworksLinkInFooter()
-		.verifyWaterworksPage(data.getWaterworksPageBreadcrumb(),data.getWaterworksPageContent());
+		
 	  } 
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyFireProtectionFooterLink() throws Exception
-	  {
+	@Test(groups={"HomePageModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void verifyContentsOfFooterLinks(String testCaseId,String specificFooterLink,String breadCrumb,String contentLocator,String expectedContent) throws Exception{
 		homePage()
-		.clickOnFireProtectionInFooter()
-		.verifyFireProtectionPage(data.getFireProtectionBreadcrumb(),data.getFireProtectionContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyMunicipalFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnMunicipalLinkInFooter()
-		.verifyMunicipalPage(data.getMunicipalBreadcrumb(),data.getMunicipalContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyHVACFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnHVACLinkInFooter()
-		.verifyHVACPage(data.getHVACBreadcrumb(),data.getHVACContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyAboutUsFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnAboutUsLinkInFooter()
-		.verifyAboutUsPage(data.getAboutUsBreadcrumb(),data.getAboutUsContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyCareersFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnCareersLinkInFooter()
-		.verifyCareersPage(data.getCareersBreadcrumb(),data.getCareersContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyEtnaMissionFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnEtnaMissionLinkInFooter()
-		.verifyCareersPage(data.getEtnaMissionBreadcrumb(),data.getEtnaMissionContent());
-	  } 
-	
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyQuickOrderPadFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnQuickOrderPadLinkInFooter()
-		.loginPopUp()
-		.verifyLoginPopUp();
-	  } 
-	
-
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyLocationsFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnLocationsLinkInFooter()
-		.verifyLocationsPage(data.getLocationsBreadcrumb(),data.getLocationsContent());
-	  } 
-
-	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verifyVendorsFooterLink() throws Exception
-	  {
-		homePage()
-		.clickOnVendorsLinkInFooter()
-		.verifyLocationsPage(data.getVendorsBreadcrumb(),data.getVendorsContent());
-	  } 
+		.clickOnSpecificFooterLink(specificFooterLink)
+		.productsPage()
+		.verifyBreadcrump(breadCrumb)
+		.verifyPagename(breadCrumb)
+		.homePage()
+		.verifyContent(specificFooterLink,contentLocator,expectedContent);
+	}
 	
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verify_Header_Divisions_Plumbing_Link() throws Exception
-	  {
+	@Test(groups={"HomePageModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void verifyContentsOfHeaderLinks(String testCaseId,String specificHeaderLink,String breadCrumb,String contentLocator,String expectedContent) throws Exception{
 		homePage()
-		.hoverOverDivisionsLink()
-		.clickOnPlumbingLinkInHeader()
-		.verifyPlumbingPage(data.getPlumbingPageBreadcrumb(), data.getPlumbingPageContent())
-	  } 
+		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader(specificHeaderLink)
+		.productsPage()
+		.verifyBreadcrump(breadCrumb)
+		.verifyPagename(breadCrumb)
+		.homePage()
+		.verifyContent(specificHeaderLink,contentLocator,expectedContent);
+	}
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verify_Header_Divisions_Waterworks_Link() throws Exception
-	  {
-		homePage()
-		.hoverOverDivisionsLink()
-		.clickOnWaterworksLinkInHeader()
-		.verifyWaterworksPage(data.getWaterworksPageBreadcrumb(),data.getWaterworksPageContent());
-	  } 
+	@Test(groups="regression")
+	public void quickOrderPadFooterLinkBeforeLogin(){
+		homePage().clickOnQuickOrderPadLinkInFooter().loginPopUp().verifyLoginPopUp();
+	}
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verify_Header_Divisions_FireProtection_Link() throws Exception
-	  {
-		homePage()
-		.hoverOverDivisionsLink()
-		.clickOnFireProtectionLinkInHeader()
-		.verifyFireProtectionPage(data.getFireProtectionBreadcrumb(),data.getFireProtectionContent());
-	  } 
-	
+	@Test(groups="regression")
+	public void quickOrderPadHeaderLink(){
+		homePage().clickOnQuickOrderPadLinkInHeader().loginPopUp().verifyLoginPopUp();
+	}
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"})
-	  public void verify_Header_Divisions_HAVC_Link() throws Exception
-	  {
-		homePage()
-		.hoverOverDivisionsLink()
-		.clickOnHAVCLinkInHeader()
-		.verifyHVACPage(data.getHVACBreadcrumb(),data.getHVACContent());
-	  } 
-	
+	@Test(groups="regression",dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void verifyContactUsPagePositiveScenarios(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String companyName,String country,String state,String city,String zipCode,String address,String questionsOrComments,String preferredMethodOfCommunication,String expectedSuccessMessage) throws InterruptedException{
+			homePage().clickOnContactUsLink().contactUsPage()
+			.selectAreaOfInterest(areaOfInterest)
+			.enterFirstName(firstName)
+			.enterLastName(lastName)
+			.enterPhoneNumber(phoneNumber)
+			.enterEmailAddress(emailAddress)
+			.enterCompanyName(companyName)
+			.selectCountry(country)
+			.selectState(state)
+			.enterCity(city)
+			.enterZipCode(zipCode)
+			.enterAddress(address)
+			.enterQuestionsOrComments(questionsOrComments)
+			.choosePreferredMethodOfCommunication(preferredMethodOfCommunication)
+			.clickOnSubmitRequest()
+			.verifySuccessCustomAlertMessage(expectedSuccessMessage);
+	}
 }

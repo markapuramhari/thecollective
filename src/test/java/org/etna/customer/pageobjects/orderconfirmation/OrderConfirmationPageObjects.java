@@ -51,7 +51,7 @@ public class OrderConfirmationPageObjects  extends PageFactoryInitializer{
 	private WebElement productNameLocator;
 	
 	@Step("verify order confirmation page.")
-	public OrderConfirmationPageObjects verifyOrderConfirmationPage(String productName,String[] orderInfoLabels, int purchaseOrder,String orderedBy,String shipVia) {
+	public OrderConfirmationPageObjects verifyOrderConfirmationPage(String productName,String[] orderInfoLabels, String purchaseOrder,String orderedBy,String shipVia) {
 		Waiting.explicitWaitVisibilityOfElement(orderConfirmationBreadcrumbLocator, 10);
 		Assert.assertTrue(orderConfirmationBreadcrumbLocator.isDisplayed(),"Order confirmation breadcrump is not displayed.");
 		Assert.assertTrue(orderConfirmationPageNameLocator.isDisplayed(),"Order confirmation page name is not displayed.");
@@ -63,10 +63,12 @@ public class OrderConfirmationPageObjects  extends PageFactoryInitializer{
 			
 		}
 		
-		Assert.assertEquals(poValueLocator.getText().trim(), Integer.toString(purchaseOrder));
+		Assert.assertEquals(poValueLocator.getText().trim(), purchaseOrder);
 		Assert.assertEquals(orderedDateLocator.getText().trim(),getDate());
 		Assert.assertEquals(orderedByLocator.getText().trim(), orderedBy);
-		Assert.assertEquals(shipViaLocator.getText().trim(), shipVia);
+		System.out.println(shipViaLocator.getText().toLowerCase().trim());
+		System.out.println(shipVia.toLowerCase());
+		Assert.assertTrue(shipVia.toLowerCase().trim().contains(shipViaLocator.getText().toLowerCase().trim()),"Expected : "+shipVia.toLowerCase()+" but found "+shipViaLocator.getText().toLowerCase().trim());
 		Assert.assertTrue(billingAddressLocator.isDisplayed(), "Billing address section is not displayed.");
 		Assert.assertTrue(shippingAddressLocator.isDisplayed(), "Shipping address section is not displayed.");
 		Assert.assertEquals(productNameLocator.getText().trim(), productName);

@@ -158,7 +158,6 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("safari"))
 		{
 			driver = new SafariDriver();
-			
 		}
 			
 		else
@@ -183,8 +182,6 @@ public void beforeSuite() throws Exception{
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Windows/IEDriverServer.exe");
 			driver=new InternetExplorerDriver();
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			  
 		}
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
@@ -228,8 +225,6 @@ public void run(IHookCallBack callBack, ITestResult testResult){
 	return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 
-
-
 @AfterMethod(alwaysRun=true)
 public void callStopRecording() throws Exception{
 	driver.manage().deleteAllCookies();
@@ -239,6 +234,10 @@ public void callStopRecording() throws Exception{
 		  this.screenRecorder.stop();
 		}	
 }
+
+
+
+
 
 
 @AfterSuite(alwaysRun=true)

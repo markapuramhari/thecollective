@@ -95,7 +95,6 @@ public class ComparePageObjects extends PageFactoryInitializer
 		return this;
 }
 
-
 	@Step("verify activation of similar properties")
 	public ComparePageObjects verifyActivationOfSimilarProperties() {
 		try {
@@ -206,12 +205,11 @@ public class ComparePageObjects extends PageFactoryInitializer
 	return this;
 	}
 
+	
+	
 	public ComparePageObjects verifyPartNumbers(String[] partNumbers) {
-		Waiting.explicitWaitVisibilityOfElements(partNumberValuesLocator, 10);
-		for(int i=0; i<partNumberValuesLocator.size() ;i++)
-		{
-			Assert.assertEquals(partNumberValuesLocator.get(i).getText().trim(), partNumbers[i]);
-		}
+		 Waiting.explicitWaitVisibilityOfElements(partNumberValuesLocator, 10);
+		Assert.assertTrue(assertPartNumbers(partNumbers),"Part Number that was there in list page is not coming in compare page.");
 		return this;
 	}
 
@@ -297,15 +295,26 @@ public class ComparePageObjects extends PageFactoryInitializer
 	}
 
 
-
+	public boolean assertPartNumbers(String[] partNumbers) {
+		  
+	    
+	    for(int i=0; i<partNumbers.length ;i++)
+	    {
+	     for(int j=0;j<partNumberValuesLocator.size();j++)
+	      if(partNumbers[i].equals(partNumberValuesLocator.get(j).getText().trim()))
+	       
+	       return true;
+	     break;
+	    }
+	  return false;
+	    
+	   }
+	
 	public ComparePageObjects verifyPartNumbers(String partNumbers1, String partNumbers2) {
 		
 		String[] partNumbers = {partNumbers1,partNumbers2};
 		Waiting.explicitWaitVisibilityOfElements(partNumberValuesLocator, 10);
-		for(int i=0; i<partNumberValuesLocator.size() ;i++)
-		{
-			Assert.assertEquals(partNumberValuesLocator.get(i).getText().trim(), partNumbers[i]);
-		}
+		Assert.assertTrue(assertPartNumbers(partNumbers),"Part Number that was there in list page is not coming in compare page.");
 		return this;
 		
 	}

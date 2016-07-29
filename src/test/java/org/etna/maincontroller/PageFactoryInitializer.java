@@ -4,12 +4,8 @@ import org.etna.customer.pageobjects.approvalcartlist.ApprovedCartPageObjects;
 import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.checkout.CheckoutPageObjects;
 import org.etna.customer.pageobjects.compare.ComparePageObjects;
-import org.etna.customer.pageobjects.homepage.FireProtectionPageObjects;
-import org.etna.customer.pageobjects.homepage.HVACPageObjects;
+import org.etna.customer.pageobjects.homepage.ContactUsPageObjects;
 import org.etna.customer.pageobjects.homepage.HomePageObjects;
-import org.etna.customer.pageobjects.homepage.MunicipalPageObjects;
-import org.etna.customer.pageobjects.homepage.PlumbingDivisionPageObjects;
-import org.etna.customer.pageobjects.homepage.WaterworksPageObjects;
 import org.etna.customer.pageobjects.loginpopup.ForgotPasswordPageObjects;
 import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
 import org.etna.customer.pageobjects.maunfacturers.ShopByManufacturersPageObjects;
@@ -18,6 +14,7 @@ import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
 import org.etna.customer.pageobjects.mycart.MyCartPageObjects;
 import org.etna.customer.pageobjects.orderconfirmation.OrderConfirmationPageObjects;
 import org.etna.customer.pageobjects.productdetails.ProductsDetailsPageObjects;
+import org.etna.customer.pageobjects.productdetails.SharePageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
 import org.etna.customer.pageobjects.productlist.ProductsListPageObjects;
 import org.etna.customer.pageobjects.products.ProductPageObjects;
@@ -208,35 +205,17 @@ public class PageFactoryInitializer extends MainController{
 		ApprovedCartPageObjects approvedCartPage = PageFactory.initElements(driver,ApprovedCartPageObjects.class);
 		return approvedCartPage;
 	}
+
 	
-	public PlumbingDivisionPageObjects plumbingDivisionPage()
+	public SharePageObjects sharePage()
 	{
-		PlumbingDivisionPageObjects plumbingDivisionPage = PageFactory.initElements(driver,PlumbingDivisionPageObjects.class);
-		return plumbingDivisionPage;
+		SharePageObjects sharePage = PageFactory.initElements(driver,SharePageObjects.class);
+		return sharePage;
 	}
 	
-	public WaterworksPageObjects waterworksPage()
+	public ContactUsPageObjects contactUsPage()
 	{
-		WaterworksPageObjects waterworksPage = PageFactory.initElements(driver,WaterworksPageObjects.class);
-		return waterworksPage;
+		ContactUsPageObjects contactUsPage = PageFactory.initElements(driver,ContactUsPageObjects.class);
+		return contactUsPage;
 	}
-	
-	public FireProtectionPageObjects fireProtectionPage()
-	{
-		FireProtectionPageObjects fireProtectionPage = PageFactory.initElements(driver,FireProtectionPageObjects.class);
-		return fireProtectionPage;
-	}
-	
-	public MunicipalPageObjects municipalPage()
-	{
-		MunicipalPageObjects municipalPage = PageFactory.initElements(driver,MunicipalPageObjects.class);
-		return municipalPage;
-	}
-	
-	public HVACPageObjects hvacPage()
-	{
-		HVACPageObjects hvacPage = PageFactory.initElements(driver,HVACPageObjects.class);
-		return hvacPage;
-	}
-	
 }

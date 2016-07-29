@@ -36,6 +36,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUpload() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		int addedToCartCount = homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -59,6 +61,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void copyPasteCSVFile() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 				int addedToCartCount = homePage()
 				.clickLoginLink()
 				.loginPopUp()
@@ -81,6 +85,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression",enabled=false)
 	public void copyPasteTabDelimitedFile() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		int addedToCartCount = homePage()
 				.clickLoginLink()
 				.loginPopUp()
@@ -105,6 +111,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void copyPasteEmptyValues() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 				homePage()
 				.clickLoginLink()
 				.loginPopUp()
@@ -122,9 +130,11 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups="regression",enabled = false)
+	@Test(groups="regression")
 	@Issues(value = { @Issue(value = "NEST-160") })
 	public void copyPasteImproperValues() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 				homePage()
 				.clickLoginLink()
 				.loginPopUp()
@@ -145,7 +155,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void fileUploadNoFileSelectedAtFirst() throws Exception{
-
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -165,7 +176,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUploadDifferentFormatTxt() throws Exception{
-		
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -186,7 +198,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUploadDifferentFormatImg() throws Exception{
-		
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -207,6 +220,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUploadCombine() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		int addedToCartCount = homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -239,6 +254,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUpload_Seperate() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		int addedToCartCount = homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -272,6 +289,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
 	public void cartFileUpload_Remove() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		int addedToCartCount = homePage()
 		.clickLoginLink()
 		.loginPopUp()
@@ -305,6 +324,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups={"speed entry","smoke","regression"})
 	public void speedEntrySmoke() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		data.setNumberOfRowsToEnter(2);
 		loginModule.loginAsASuperUser();
 		homePage()
@@ -320,6 +341,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups={"speed entry","regression"})
 	public void speedEntryCombine() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		data.setNumberOfRowsToEnter(2);
 		loginModule.loginAsASuperUser();
 		homePage()
@@ -337,6 +360,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups={"speed entry","regression"})
 	public void speedEntrySeperate() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		data.setNumberOfRowsToEnter(2);
 		loginModule.loginAsASuperUser();
 		homePage()
@@ -355,6 +380,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups={"speed entry","regression"})
 	public void speedEntryRemove() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		data.setNumberOfRowsToEnter(10);
 		loginModule.loginAsASuperUser();
 		homePage()
@@ -373,6 +400,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	@Features("Quick Order Pad Module")
 	@Test(groups={"speed entry","regression"})
 	public void speedEntryInvalidQuantity() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		data.setNumberOfRowsToEnter(2);
 		loginModule.loginAsASuperUser();
 		homePage()

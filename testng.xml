@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test name="Test">
+<suite name="ETNA Automation Suite">
+<listeners>
+    <listener class-name="org.etna.maincontroller.MainController"/>
+    <listener class-name="org.etna.utils.ReportGenerator"/>
+  </listeners>
+
+    <test name="Regression Testing">
+    <groups>
+      <run>
+        <include name="regression"/>
+      </run>
+    </groups>
     <classes>
-      <class name="org.etna.modules.HomePageModuleTest"/>
+      <class name="org.etna.modules.OrderFulFillmentModuleTest"/>
     </classes>
-  </test> <!-- Test -->
+  </test> <!-- Regression Testing -->
 </suite> <!-- Suite -->

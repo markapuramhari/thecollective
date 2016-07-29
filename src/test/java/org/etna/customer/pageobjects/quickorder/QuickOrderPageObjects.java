@@ -111,7 +111,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	}
 
 	public int getAddedToCartCount() {
-		Waiting.explicitWaitVisibilityOfElement(addedToCartCountInFileUploadLocator, 120);
+		Waiting.explicitWaitVisibilityOfElement(addedToCartCountInFileUploadLocator, 20);
 	 
 		return Integer.parseInt(addedToCartCountInFileUploadLocator.getText().replace("ADDED TO CART", "").replace(")", "").replace("(", "").replace(" ", "").trim());
 	}
@@ -171,14 +171,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public QuickOrderPageObjects enterPartNumbersOrUPC(String[] partNumberOrUPC) {
-		for(int i=0;i<partNumberOrUPC.length;i++)
-		{
-			
-		//	on hold. driver.executeScript("document.getElements")
-		}
-		return this;
-	}
+	
 
 	public boolean verifyAlertText(String expectedAlertMessage){
 		boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
@@ -242,7 +235,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	        {
 	        String [] partNumberUPC = partNumberOrUpc[i].split(":");
 	       TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
-	        TestUtility.enterDataInHandsOnTable(i+1,"PartNumber/UPC",partNumberUPC[0]);
+	        TestUtility.enterDataInHandsOnTable(i+1,"Keyword",partNumberUPC[0]);
 	        TestUtility.enterDataInHandsOnTable(i+1,"Quantity",partNumberUPC[1]); 
 	        }
 	        copyPasteTabLocator.click();
@@ -271,7 +264,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
         {
         String [] partNumberUPC = partNumberOrUpc[0].split(":");
        TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
-        TestUtility.enterDataInHandsOnTable(i+1,"PartNumber/UPC",partNumberUPC[0]);
+        TestUtility.enterDataInHandsOnTable(i+1,"Keyword",partNumberUPC[0]);
         TestUtility.enterDataInHandsOnTable(i+1,"Quantity",partNumberUPC[1]); 
         }
         copyPasteTabLocator.click();

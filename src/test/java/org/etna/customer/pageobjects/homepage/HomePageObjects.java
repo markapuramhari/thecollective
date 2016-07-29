@@ -23,6 +23,7 @@ import org.etna.utils.TestUtility;
 import org.etna.utils.Waiting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -334,18 +335,41 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Plumbing']")
 	private WebElement plumbingInFooterLocator;
 	
-	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Waterworks']")
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Waterworks']")
 	private WebElement waterworksInFooterLocator;
 	
-	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Fire Protection']")
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Fire Protection']")
 	private WebElement fireProtectionLinkInFooterLocator;
 	
 	
-	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Municipal']")
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Municipal']")
 	private WebElement municipalLinkInFooterLocator;
 	
-	@FindBy(xpath="	//ul[contains(@class,'hideForDevices')]/descendant::a[text()='HVAC']")
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='HVAC']")
 	private WebElement hvacLinkInFooterLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='About Us']")
+	private WebElement aboutUsLinkInFooterLocator;
+	
+	
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Careers']")
+	private WebElement careersLinkInFooterLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'hideForDevices')]/descendant::a[text()='Etna Mission']")
+	private WebElement etnaMissionLinkInFooterLocator;
+	
+	@FindBy(xpath="//div[contains(@class,'footer')]/descendant::a[contains(text(),'Quick Order Pad')]")
+	private WebElement quickOrderPadLinkInFooterLocator;
+	
+	@FindBy(xpath="//div[contains(@class,'header')]/descendant::ul[contains(@class,'headerNavBar')]/descendant::a[contains(text(),'Quick Order Pad')]")
+	private WebElement quickOrderPadLinkInHeaderLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'header')]/descendant::a[contains(text(),'Divisions')]")
+	private WebElement divisionsLinkInHeaderLocator;
+	
+	
+	@FindBy(xpath="//ul[contains(@class,'header')]/descendant::a[contains(text(),'Contact Us')]")
+	private WebElement contactUsInHeaderLocator;
 	
 	
 	
@@ -1084,7 +1108,7 @@ return this;
 	}
 	
 	
-	@Step("cverify use this address button locator")
+	@Step("verify use this address button locator")
 	public HomePageObjects verifyUseThisAddressButtonIsDisplayedAndIfDisplayedClickIt() throws Exception {
 		if(setUp.getBrowser().equalsIgnoreCase("safari")||setUp.getBrowser().equalsIgnoreCase("ie"))
 		{
@@ -1190,36 +1214,44 @@ return this;
 		return this;
 	}
 
-	public PlumbingDivisionPageObjects clickOnPlumbingLinkInFooter() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",plumbingInFooterLocator);
-		return plumbingDivisionPage();
-	}
 
-	public WaterworksPageObjects clickOnWaterworksLinkInFooter() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",waterworksInFooterLocator);
-		return waterworksPage();
-		
-	}
-
-	public FireProtectionPageObjects clickOnFireProtectionInFooter() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",fireProtectionLinkInFooterLocator);
-		return fireProtectionPage();
-	}
-
-	public MunicipalPageObjects clickOnMunicipalLinkInFooter() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",municipalLinkInFooterLocator);
-		return municipalPage();
-	}
-
-	public HVACPageObjects clickOnHVACLinkInFooter() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",hvacLinkInFooterLocator);
-		return hvacPage();
-	}
-
-	public HomePageObjects hoverOverDivisionsLink() {
-		new Actions(driver).moveToElement(divisionsLocator).build().perform();
+	public HomePageObjects clickOnQuickOrderPadLinkInFooter() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",quickOrderPadLinkInFooterLocator);
 		return this;
 	}
 
+	public HomePageObjects clickOnSpecificFooterLink(String specificFooterLink) {
+		driver.findElement(By.xpath("//ul[contains(@class,'hideForDevices')]/descendant::a[text()='"+specificFooterLink+"']")).click();
+		return this;
+	}
+
+	public HomePageObjects verifyContent(String specificFooterLink,String contentLocator,String expectedContent) throws Exception {
+		
+		Assert.assertEquals(driver.findElement(By.xpath(contentLocator)).getText().replace("\n", "").trim(),expectedContent);
+	
+		return this;
+	}
+
+	public HomePageObjects clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader(
+			String specificHeaderLink) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//ul[contains(@class,'headerNavBar')]/descendant::a[contains(text(),'"+specificHeaderLink+"')]")));
+		return this;
+	}
+
+	public HomePageObjects clickOnQuickOrderPadLinkInHeader() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",quickOrderPadLinkInHeaderLocator);
+		return this;
+	}
+
+	public ContactUsPageObjects clickOnContactUsLink() {
+		contactUsInHeaderLocator.click();
+		return contactUsPage();
+	}
+
+	public HomePageObjects hoverOverDivisionsLink() {
+	action.moveToElement(divisionsLinkInHeaderLocator).build().perform();
+		return this;
+	}
+	
 }
 	

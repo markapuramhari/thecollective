@@ -122,8 +122,8 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	
 	@Step("click on {0} group")
 	public MyProductGroupsPageObjects clickOnTheGroupCreated(String myProductGroupName) {
-		String productGroup = "//a[contains(text(),'"+myProductGroupName+"')]";
-		Waiting.explicitWaitVisibilityOfElement( driver.findElement(By.xpath(productGroup)), 20);
+		String productGroup = "//a[text()='"+myProductGroupName+"']";
+		Waiting.explicitWaitVisibilityOfElement(driver.findElement(By.xpath(productGroup)), 20);
 		WebElement myProductGroup = driver.findElement(By.xpath(productGroup));
 		myProductGroup.click();
 		return this;
@@ -173,6 +173,7 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	
 	@Step("verify whether alert text is {0}")
 	public MyProductGroupsPageObjects verifyAlertText(String expectedAlertText) throws Exception{
+	
 		Thread.sleep(1500);
 		Assert.assertTrue(assertAlertText(expectedAlertText),"Alert text is invalid.");
 		return this;

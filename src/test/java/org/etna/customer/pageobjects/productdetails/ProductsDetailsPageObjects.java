@@ -180,6 +180,10 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	@FindBy(xpath="//ul[@id='CustomerPartNoListDropDown']/descendant::input[@id='newCustomerPartNumber']")
 	private WebElement cpnTextboxLocator;
 	
+	@FindBy(xpath="//a[@title='Send this Page']")
+	private WebElement shareLocator;
+	
+	
 	@Step("verify whether the item name contains {0}")
 	public ProductsDetailsPageObjects verifyDisplayOfItemName(String searchText) {
 		String searchTextUpperCase =searchText.toUpperCase(); 
@@ -639,6 +643,12 @@ return this;
 
 	public String getPartNumber() {
 		return partNumberValueLocator.getText().trim();
+	}
+
+	public SharePageObjects clickOnShareLink() {
+		Waiting.explicitWaitVisibilityOfElement(By.xpath("//a[@title='Send this Page']"), 5);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",shareLocator);
+		return sharePage();
 	}	
 }
 

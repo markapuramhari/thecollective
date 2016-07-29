@@ -181,7 +181,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@Description("This is a test case which verifies adding product to an existing my product group in grid view.")
 	@TestCaseId("TC_ProductGroup_010")
 	@Test(groups={"regression"})
-	public void verifyAddingProductToExsistingMyProductGroup_GridView() throws Exception {
+	public void verifyAddingProductToExistingMyProductGroup_GridView() throws Exception {
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
 		loginModule.loginAsASuperUser(); 
@@ -297,14 +297,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies editing of group quantity and verifying changing of extension price.")
 		@TestCaseId("TC_ProductGroup_016")
-		@Test(enabled=false,groups={"regression"})
+		@Test(groups={"regression"})
 		public void verifyChangingOfExtensionPrice() throws Exception {
 			
 			data.setBulkOption("Update Selected Items");
-			
-			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
+			
+			loginModule.loginAsASuperUser(); 
+			homePage().logout();
+			loginModule.loginAsASuperUser(); 
+			
 			
 			
 			homePage()
@@ -338,13 +341,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies whether giving quantity 0 empties/removes the item from the cart.")
 		@TestCaseId("TC_ProductGroup_019")
-		@Test(enabled=false,groups={"regression"})
+		@Test( groups={"regression"})
 		public void quantityZeroBulkUpdate() throws Exception {
 			
 		data.setBulkOption("Update Selected Items");
 		
 		loginModule.loginAsASuperUser(); 
-		
+		homePage().logout();
+		loginModule.loginAsASuperUser(); 
 		
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
@@ -374,12 +378,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies adding item to cart from my product group.")
 		@TestCaseId("TC_ProductGroup_020")
-		@Test(enabled=false,groups={"regression"})
+		@Test( groups={"regression"})
 		public void addItemToCartFromMyProductGroup() throws Exception {
 			
 		data.setBulkOption("Add Selected Items to Cart");
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
+		loginModule.loginAsASuperUser(); 
+		homePage().logout();
 		loginModule.loginAsASuperUser(); 
 		homePage()
 		.searchText(searchText)
@@ -490,19 +496,22 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-			
-			String editGroupName = homePage()
+			String editGroupName = data.getMyProductGroupName()+RandomGenerator.generateCharacters();
+			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
 			.productListPage()
 			.clickOnSpecificMyProductGroupButton(1)
 			.enterGroupName(myProductGroupName)
 			.hitEnter()
-			.verifyMyProductCreationSuccessMsg(myProductGroupName)
-			.clickOnMyProductGroups()
+			.verifyMyProductCreationSuccessMsg(myProductGroupName);
+			driver.navigate().refresh();
+			productListPage().clickOnSpecificMyProductGroupButton(1)
+			.enterGroupName(editGroupName)
+			.hitEnter();
+			homePage()
+			.navigateToMyProductGroups()
 			.myProductGroupsPage()
-			.getSpecificGroupName(1);
-			myProductGroupsPage()
 			.clickOnTheGroupCreated(myProductGroupName)
 			.clickOnEditButton()
 			.enterEditGroupName(editGroupName)
@@ -639,16 +648,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies select all checkbox and update quantity using the update selected items checkbox.")
 		@TestCaseId("TC_ProductGroup_028")
-		@Test(enabled=false,groups={"regression"})
+		@Test( groups={"regression"})
 		public void verifyGroupNameSelectAllItemsAndUpdate() throws Exception {
 	
 			data.setBulkOption("Update Selected Items");
-			
-			loginModule.loginAsASuperUser(); 
-
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-
+			
+			loginModule.loginAsASuperUser(); 
+			homePage().logout();	
+			loginModule.loginAsASuperUser(); 
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -665,6 +674,9 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.enterGroupName(myProductGroupName)
 			.hitEnter()
 			.verifyMyProductCreationSuccessMsg(myProductGroupName)
+			.homePage()
+			.clickOnUserAccountDropdown()
+			.navigateToMyProductGroups()
 			.myProductGroupsPage()
 			.clickOnTheGroupCreated(myProductGroupName)
 			.verifyBreadCrump(myProductGroupName)

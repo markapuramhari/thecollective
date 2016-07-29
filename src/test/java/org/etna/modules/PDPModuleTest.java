@@ -102,9 +102,38 @@ public class PDPModuleTest extends PageFactoryInitializer {
 
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"})
-	  public void TC_PDP_009_TC_PDP_010_ShareFunctionalityTest(){
-	  	throw new SkipException("Feature not yet completely developed.");
+	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	  public void TC_PDP_009_TC_PDP_010_ShareFunctionalityTest(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject) throws Exception{
+	  	loginModule.loginAsASuperUser();
+	  	homePage()
+	  	.searchText(data.getSearchTextForMPNTest())
+	  	.clickOnSearch()
+	  	.productDetailsPage()
+	  	.clickOnShareLink()
+	  	.enterFriendName(friendName)
+	  	.enterFriendEmailAddress(friendEmailAddress)
+	  	.enterFromName(fromName)
+	  	.enterFromEmailAddress(fromEmailAddress)
+	  	.enterSubject(subject)
+	  	.clickOnSend();
+	  }
+	
+	@Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	  public void TC_PDP_009_TC_PDP_010_ShareFunctionalityTest_ErrorScenarios(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject,String errorMsg) throws Exception{
+	  	loginModule.loginAsASuperUser();
+	  	homePage()
+	  	.searchText(data.getSearchTextForMPNTest())
+	  	.clickOnSearch()
+	  	.productDetailsPage()
+	  	.clickOnShareLink()
+	  	.enterFriendName(friendName)
+	  	.enterFriendEmailAddress(friendEmailAddress)
+	  	.enterFromName(fromName)
+	  	.enterFromEmailAddress(fromEmailAddress)
+	  	.enterSubject(subject)
+	  	.clickOnSend()
+	  	.verifyErrorMessage(errorMsg);
 	  }
 
 
@@ -114,6 +143,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	
 	  	String searchText = data.getSearchTextForUPCLabelTest();
 	  	String customerPartNumber = data.getCustomerPartNumber();
+	  	loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(searchText)
@@ -134,7 +165,9 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  public void signedUser_cpnCreateProductDetailsPage_ErrorScenariosTest(String testCaseId,@Parameter("CPN")String customerPartNumber,@Parameter("Expected Alert Text") String expectedAlertMsg) throws Exception{
 	  	
 		String searchText = data.getSearchTextForAnotherItem();
-		loginModule.loginAsASuperUser();
+	 	loginModule.loginAsASuperUser();
+	  	homePage().logout();
+	  	loginModule.loginAsASuperUser();
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -153,6 +186,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  
 		String searchText = data.getSearchTextForAnotherItem();
 	  	String customerPartNumber = data.getCustomerPartNumber();
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(searchText)
@@ -178,6 +213,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	
 		String searchText = data.getSearchTextForAnotherItem();
 	  	String customerPartNumber = data.getCustomerPartNumber();
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(searchText)
@@ -203,6 +240,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	
 		String searchText = data.getSearchTextForAnotherItem();
 	  	String customerPartNumber = data.getCustomerPartNumber();
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(searchText)

@@ -121,7 +121,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Description("This is a test case which makes sure that for a general user the checkout button is not displayed.")
 	@Test(groups={"regression"})
 	public void generalUserLoginCheckoutButtonNotDisplayedInCart() throws Exception{
-		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		loginModule.loginAsASuperUser();
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
@@ -271,8 +271,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	@TestCaseId("TC_PA_089")
 	public void verifyApprovalCartFunctionality_SuperUser() throws Exception{
-		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
 		homePage()
@@ -298,8 +298,10 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.approvedCartPage()
 		.clickOnApproveCart();
 		checkoutPage()
+		.enterPhoneNumber(data.getPhoneNumber())
 		.clickOnNextButton()
 		.enterEmailId(data.getUserName())
+		.enterShippingPhoneNumber(data.getPhoneNumber())
 		.clickOnNextButton()
 		.selectOrderType(data.getOrderType())
 		.enterOrderedBy(data.getCompanyNameForRegistration())
@@ -310,12 +312,12 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.clickOnNextButton()
 		.verifyNameOfTheProductInItemDetailsTab(productName)
 		.clickOnSubmitOrderButton()
-		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),purchaseOrder,data.getCompanyNameForRegistration(),data.getShipVia());	
+		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),Integer.toString(purchaseOrder),data.getCompanyNameForRegistration(),data.getShipVia());	
 		}
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies approval cart functionality which is verified by a Authorizing purchase agent.")
-	@Test(groups={"regression"})
+	@Test(enabled=false,groups={"regression"})
 	@TestCaseId("TC_PA_090")
 	public void verifyApprovalCartFunctionality_APA() throws Exception {
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
@@ -357,7 +359,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.clickOnNextButton()
 		.verifyNameOfTheProductInItemDetailsTab(productName)
 		.clickOnSubmitOrderButton()
-		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),purchaseOrder,data.getCompanyNameForRegistration(),data.getShipVia());	
+		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),Integer.toString(purchaseOrder),data.getCompanyNameForRegistration(),data.getShipVia());	
 }
 	
 	
@@ -366,8 +368,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	@TestCaseId("TC_PA_091")
 	public void verifyRejectCartFunctionality() throws Exception {
-		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchText())
@@ -397,13 +399,13 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.verifyDeletionOfApprovalCart(cartToBeRejected);
 	}
 	
-	@Features("APA Module")
+	/*@Features("APA Module")
 	@Description("This is a test case which verifies reject cart functionality")
 	@Test(groups={"regression"})
-	@TestCaseId("TC_PA_092")
+	@TestCaseId("TC_APA_092")
 	public void clickingOnUpdateSelectedItemsFunctionalityWithoutSelectingAnItem() throws Exception {
-		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
+		homePage().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchText())
@@ -426,5 +428,5 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.clickOnUpdateSelectedItems()
 		.myProductGroupsPage()
 		.verifyAlertText(data.getAlertTextForClickingOnUpdateSelectedItemsWithoutSelectingAnyItem());
-	}
+	}*/
 }

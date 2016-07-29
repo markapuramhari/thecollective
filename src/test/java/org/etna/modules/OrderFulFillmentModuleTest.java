@@ -21,36 +21,60 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 
 	@Features("Order FullFillment Module")
 	@Description("This is test case which verifies order fullfillment flow completely.")
-	@Test(groups={"regression"})
-	@TestCaseId("TC_ORDERFULLFILLMENT_001")
-	public void orderFullFillmentFlow() throws Exception
+	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void orderFullFillmentFlow(String testCaseId,String emailId,String password,String searchText,String phoneNumber,String orderType,String shipVia,String companyName,String emailIdForConfirmation, String purchaseOrder,String shippingInstructions,String orderNote,String orderInfoLabels) throws Exception
 	{
-		loginModule.loginAsASuperUser();
-		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
+		loginModule.login(emailId, password);
+		homePage()
+		.logout();
+		loginModule.login(emailId, password);
 		String productName = homePage()
-		.searchText(data.getSearchTextForEnlargeImageTest())
+		.searchText(searchText)
 		.clickOnSearch()
 		.productDetailsPage().getProductName();
 		productDetailsPage()
 		.clickOnAddToCartButton().myCartPage()
 		.clickOnCheckoutInMyCartPopup()
 		.clickOnCheckoutInMyCartPage()
-		.enterPhoneNumber(data.getPhoneNumber())
+		.enterPhoneNumber(phoneNumber)
 		.clickOnNextButton()
-		.enterEmailId(data.getUserName())
-		.enterShippingPhoneNumber(data.getPhoneNumber())
+		.enterEmailId(emailIdForConfirmation)
+		.enterShippingPhoneNumber(phoneNumber)
 		.clickOnNextButton()
-		.selectOrderType(data.getOrderType())
-		.selectShipMethod(data.getShipVia())
-		.enterOrderedBy(data.getCompanyNameForRegistration())
-		.enterPurchaseOrderNumber(Integer.toString(purchaseOrder))
-		.enterShippingInstructions(data.getShippingInstructions())
-		.enterOrderNotes(data.getOrderNote())
+		.selectOrderType(orderType)
+		.selectShipMethod(shipVia)
+		.enterOrderedBy(companyName)
+		.enterPurchaseOrderNumber(purchaseOrder)
+		.enterShippingInstructions(shippingInstructions)
+		.enterOrderNotes(orderNote)
 		.clickOnNextButton()
 		.verifyNameOfTheProductInItemDetailsTab(productName)
 		.clickOnSubmitOrderButton()
-		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),purchaseOrder,data.getCompanyNameForRegistration(),data.getShipVia());	
+		.verifyOrderConfirmationPage(productName,orderInfoLabels.split(","),purchaseOrder,companyName,shipVia);	
 	}
+	
+	@Features("My Cart Module")
+	   @Test(alwaysRun=true,groups={"MyCartModule","regression"})
+	   public void TC_ShoppingCart_004_signedUser_ShoppingCartQuanitityUpdateWithZero() throws Exception
+	   {
+	  String searchText = data.getSearchTextForEnlargeImageTest();
+	     loginModule.loginAsASuperUser();
+	      myCartPage()
+	    .clearCart();
+	     Thread.sleep(1500);
+	     homePage()
+	   .searchText(searchText)
+	   .clickOnSearch()
+	    .productDetailsPage()
+	    .clickOnAddToCartButton()
+	   .myCartPage()
+	   .clickOnCheckoutInMyCartPopup()
+	    .enterQuantityInShoppingCart("0")
+	    .clickOnUpdateButton()
+	    .productListPage()
+	    .verifyAlertMessage(data.getInvalidNumberAlertText());
+	   }
 	
 	@Features("Order FullFillment Module")
 	@Description("This is test case which verifies message when email address in not provided in shipping details ")

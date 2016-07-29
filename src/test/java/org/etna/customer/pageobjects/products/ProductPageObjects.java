@@ -1,6 +1,7 @@
 package org.etna.customer.pageobjects.products;
 import java.util.List;
 
+import org.etna.customer.pageobjects.compare.ComparePageObjects;
 import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
@@ -64,6 +65,8 @@ public class ProductPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 
+	
+	
 	@Step("verify breadcrumbs to have {0}")
 	public ProductPageObjects verifyBreadcrump(String productsPageBreadCrump) {	
 		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim(), productsPageBreadCrump);

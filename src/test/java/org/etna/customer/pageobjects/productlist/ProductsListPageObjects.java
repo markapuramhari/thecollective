@@ -141,7 +141,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//td[@title='Compare']/descendant::input")})
 	private List<WebElement> compareCheckboxesUnderMoreChoicesLocator;
 	
-	@FindAll(value={@FindBy(xpath="//td[contains(@class,'details-control')]/span")})
+	@FindAll(value={@FindBy(xpath="//td[contains(@class,'details-control')]/descendant::span[not(contains(@class,'imgForSend'))]")})
 	private List<WebElement> itemIdsUnderMyChoicesLocator;
 	
 	@FindBy(xpath="//span[contains(@class,'compareControls')]/descendant::a[contains(@onclick,'clearCookie')]")
@@ -440,7 +440,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 
 
 	@Step("enter group name {0}")
-	public ProductsListPageObjects enterGroupName(String myProductGroupName) {
+	public ProductsListPageObjects enterGroupName(String myProductGroupName) throws Exception{
 		Waiting.explicitWaitVisibilityOfElement(myProductGroupTextbox, 6);
 		myProductGroupTextbox.sendKeys(myProductGroupName);
 		return this;
@@ -531,9 +531,9 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 
 
 	@Step("click on {0} Compare checkboxes under More Choices ")
-	public ProductsListPageObjects clickOnCompareCheckboxesUnderMoreChoices(int numeberOfCheckboxesToBeClicked) throws Exception {
+	public ProductsListPageObjects clickOnCompareCheckboxesUnderMoreChoices(int numberOfCheckboxesToBeClicked) throws Exception {
 		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-		for(int i = 0 ; i<=numeberOfCheckboxesToBeClicked-1 ; i++)
+		for(int i = 0 ; i<=numberOfCheckboxesToBeClicked-1 ; i++)
 		{
 			((JavascriptExecutor)driver).executeScript("arguments[0].click();",compareCheckboxesUnderMoreChoicesLocator.get(i));
 		}

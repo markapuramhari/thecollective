@@ -382,7 +382,8 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 		case "Super User":
 			driver.findElement(By.xpath("//div[@id='roleAssign_chosen']/div/ul/li[contains(text(),'Super User')]")).click();
 			break;	
-			
+		case "":
+			break;
 		default: throw new Exception("Option is not present.");	
 		}
 		return this;
