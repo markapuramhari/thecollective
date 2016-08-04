@@ -14,11 +14,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	LoginModuleTest loginModule = new LoginModuleTest();
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for part number.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatching",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keywords_exactMatching_PartNumber(String testCaseId,@Parameter("Search Keyword Part Number") String searchKeyword) throws Exception
+	public void keywords_exactMatching_PN(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Search Keyword Part Number") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -28,11 +28,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for manufacturer part number.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatching",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keywords_exactMatching_MPN(String testCaseId,@Parameter("Search Keyword MPN") String searchKeyword) throws Exception
+	public void keywords_exactMatching_MPN(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Search Keyword MPN") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -42,11 +42,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for UPC.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatching",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keywords_exactMatching_UPC(String testCaseId,@Parameter("Search Keyword UPC") String searchKeyword) throws Exception
+	public void keywords_exactMatching_UPC(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Search Keyword UPC") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -56,11 +56,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for brand name or MPN when given together.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatchingAbcOrXyz",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public synchronized void searchV2_Keyword_ExactMatching_BrandName_Or_MPN(String testCaseId,@Parameter("Brand Name Or MPN") String searchKeyword) throws Exception
+	public void keyword_ExactMatching_BNOrMPN(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Brand Name Or MPN") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -70,11 +70,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Part Number or Manufacturer Part Number.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatchingAbcOrXyz",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void searchV2_Keyword_ExactMatching_PartNumber_Or_MPN(String testCaseId,@Parameter("Part Number Or MPN") String searchKeyword) throws Exception
+	public void keyword_ExactMatch_PNOrMPN(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Part Number Or MPN") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -85,11 +85,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or Manufacturer Part Number.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatchingAbcOrXyz",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public synchronized void searchV2_Keyword_ExactMatching_BrandName_Or_PartNumber(String testCaseId,@Parameter("Brand Name Or Part Number") String searchKeyword) throws Exception
+	public void keyword_ExactMatch_BNOrPN(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Brand Name Or Part Number") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -99,11 +99,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatchingAbcOrXyz",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void searchV2_Keyword_ExactMatching_BrandName_Or_UPC(String testCaseId,@Parameter("Brand Name Or UPC") String searchKeyword) throws Exception
+	public void keyword_ExactMatch_BNOrUPC(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Brand Name Or UPC") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
@@ -113,11 +113,11 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(groups={"regression"},dataProvider="SearchV2KeywordExactMatchingAbcOrXyz",dataProviderClass=SearchData.class)
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void searchV2_Keyword_ExactMatching_PartNumber_Or_UPC(String testCaseId,@Parameter("Part Number Or UPC") String searchKeyword) throws Exception
+	public void keyword_ExactMatching_PartNumber_Or_UPC(String testCaseId,@Parameter("user name")String userName,@Parameter("password")String password,@Parameter("Part Number Or UPC") String searchKeyword) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		loginModule.login(userName,password);
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()

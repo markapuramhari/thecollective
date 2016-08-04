@@ -61,7 +61,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Features("Login Module")
 	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void TC_Login_001_AsASuperUser_PurchaseAgent_GeneralUser(String testCaseId,String userName,String password,String expectedMsg) throws Exception
+	public void loginAs_SU_PA_GU(String testCaseId,String userName,String password,String expectedMsg) throws Exception
 			{
 			   homePage()
 			  .clickLoginLink()
@@ -77,7 +77,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Features("Login Module")
 	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	  public void TC_Login_004_TC_Login_005_TC_Login_006_TC_Login_007_ErrorScenarios(String testCaseId,String userName, String password,String expectedMsg) throws Exception
+	  public void login_ErrorScenarios(String testCaseId,String userName, String password,String expectedMsg) throws Exception
 	  {
 		  homePage()
 		  .clickLoginLink()

@@ -401,7 +401,8 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("click on update button")
-	public MyCartPageObjects clickOnUpdateButton() {
+	public MyCartPageObjects clickOnUpdateButton() throws InterruptedException {
+		Thread.sleep(3000);
 		updateCartButton.click();
 		return this;
 	}

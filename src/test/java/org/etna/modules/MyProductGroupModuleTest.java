@@ -16,6 +16,7 @@ import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.RandomGenerator;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.TestUtility;
+import org.openqa.selenium.UnhandledAlertException;
 import org.testng.SkipException;
 
 public class MyProductGroupModuleTest extends PageFactoryInitializer {
@@ -341,9 +342,11 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies whether giving quantity 0 empties/removes the item from the cart.")
 		@TestCaseId("TC_ProductGroup_019")
-		@Test( groups={"regression"})
+		@Test(groups={"regression"})
 		public void quantityZeroBulkUpdate() throws Exception {
-			
+
+		try
+		{
 		data.setBulkOption("Update Selected Items");
 		
 		loginModule.loginAsASuperUser(); 
@@ -373,6 +376,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.selectBulkActionsDropdown(data.getBulkOption())
 		.verifyNoItemsInGroupMessage();
 		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled Alert");
+			
+		}
+		}
+		
 		
 		
 		@Features("My Product Group Module")

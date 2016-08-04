@@ -92,9 +92,18 @@ public class CheckoutPageObjects extends PageFactoryInitializer{
 		driver.findElement(By.xpath("//div[@id='orderType_chosen']/a")).click();
 		Thread.sleep(500);
 		List <WebElement> orderTypeOptions = driver.findElements(By.xpath("//ul[@class='chosen-results']/li"));
+		
+		switch(orderType)
+		{
+		case "Credit card Payment": driver.findElement(By.xpath("//div[@id='orderType_chosen']/descendant::li[contains(text(),'Credit card Payment')]")).click();
+			break;
+		case "Purchase Order": driver.findElement(By.xpath("//div[@id='orderType_chosen']/descendant::li[contains(text(),'Purchase Order')]")).click();
+			break;		
+	}
+		
 		for(WebElement orderTypeOption : orderTypeOptions)
 		{
-			if(orderTypeOption.getText().trim().equals(orderType))
+			if(orderTypeOption.getText().trim().equals(orderType.trim()))
 			{
 				orderTypeOption.click();
 				break;
@@ -123,11 +132,11 @@ public class CheckoutPageObjects extends PageFactoryInitializer{
 		Thread.sleep(2000);
 		switch(shipVia)
 		{
-		case "Etna Supply Truck": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='Etna Supply Truck']")).click();
+		case "OT OUR TRUCK": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='OT OUR TRUCK']")).click();
 			break;
-		case "Counter Pick Up": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='Counter Pick Up']")).click();
+		case "PICK UP": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='PICK UP']")).click();
 			break;
-		case "UPS 1 Day": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='UPS 1 Day']")).click();
+		case "UPS 1 DAY": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='UPS 1 DAY']")).click();
 			break;
 		case "UPS Ground": driver.findElement(By.xpath("//div[@id='shipVia_chosen']/descendant::li[text()='UPS Ground']")).click();
 			break;

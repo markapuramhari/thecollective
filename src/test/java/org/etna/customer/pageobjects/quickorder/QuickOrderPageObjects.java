@@ -144,16 +144,21 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	@Step("copy paste file whose file path is {0}")
 	public QuickOrderPageObjects copyPasteTxtFile(String relativeFilePath) throws Exception {
-
 		copyPasteSectionLocator.click();
-		String line = "";
-		File absolutePath = new File(relativeFilePath);
-		BufferedReader br = new BufferedReader(new FileReader(absolutePath.getAbsolutePath()));
-		while ((line = br.readLine()) != null) {
-			copyPasteSectionLocator.sendKeys(line);
-			copyPasteSectionLocator.sendKeys(Keys.TAB);
-			copyPasteSectionLocator.sendKeys(Keys.ENTER);
-	}
+		  String line = "";
+		  File absolutePath = new File(relativeFilePath);
+		  BufferedReader br = new BufferedReader(new FileReader(absolutePath.getAbsolutePath()));
+		  while ((line = br.readLine()) != null) {
+		   
+		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(line), null);
+		  Robot rb = new Robot();
+		  rb.keyPress(KeyEvent.VK_CONTROL);
+		  rb.keyPress(KeyEvent.VK_V);
+		  rb.keyRelease(KeyEvent.VK_V);
+		  rb.keyRelease(KeyEvent.VK_CONTROL);   
+		  rb.keyPress(KeyEvent.VK_ENTER);   
+		  rb.keyRelease(KeyEvent.VK_ENTER); 
+		  }
 		return this;
 }
 	

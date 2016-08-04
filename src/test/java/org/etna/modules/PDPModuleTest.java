@@ -141,7 +141,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","smoke","regression"})
 	  public void createAndDeleteCPNInProductDetailsPageTest() throws Exception{
 	  	
-	  	String searchText = data.getSearchTextForUPCLabelTest();
+	  	String searchText = data.getSearchTextForEnlargeImageTest();
 	  	String customerPartNumber = data.getCustomerPartNumber();
 	  	loginModule.loginAsASuperUser();
 	  	homePage().logout();
@@ -157,14 +157,14 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	.clickOnCheckbox(customerPartNumber)
 	  	.clickOnRemove()
 	  	.clickOnAddOrRemoveCustomerPartNumber()
-	  	.verifyDeletionOfCPN(customerPartNumber);	
+	  	.verifyDeletionOfCPN(customerPartNumber);
 	  	}
 
 	@Features("PDP Module")
 	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
 	  public void signedUser_cpnCreateProductDetailsPage_ErrorScenariosTest(String testCaseId,@Parameter("CPN")String customerPartNumber,@Parameter("Expected Alert Text") String expectedAlertMsg) throws Exception{
 	  	
-		String searchText = data.getSearchTextForAnotherItem();
+		String searchText = data.getSearchTextForEnlargeImageTest();
 	 	loginModule.loginAsASuperUser();
 	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
@@ -184,7 +184,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","regression"})
 	  public void cpn_clickAdd_ErrorScenarioTest() throws Exception{
 	  
-		String searchText = data.getSearchTextForAnotherItem();
+		String searchText = data.getSearchTextForEnlargeImageTest();
 	  	String customerPartNumber = data.getCustomerPartNumber();
 		loginModule.loginAsASuperUser();
 	  	homePage().logout();
@@ -211,7 +211,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","regression"})
 	  public void cpn_clickRemove_ErrorScenarioTest() throws Exception{
 	  	
-		String searchText = data.getSearchTextForAnotherItem();
+		String searchText = data.getSearchTextForEnlargeImageTest();
 	  	String customerPartNumber = data.getCustomerPartNumber();
 		loginModule.loginAsASuperUser();
 	  	homePage().logout();
@@ -238,7 +238,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","regression"})
 	  public void creating_Same_CPN_ErrorScenarioTest() throws Exception{
 	  	
-		String searchText = data.getSearchTextForAnotherItem();
+		String searchText = data.getSearchTextForEnlargeImageTest();
 	  	String customerPartNumber = data.getCustomerPartNumber();
 		loginModule.loginAsASuperUser();
 	  	homePage().logout();

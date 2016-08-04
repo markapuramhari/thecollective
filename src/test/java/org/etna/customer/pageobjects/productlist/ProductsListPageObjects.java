@@ -494,6 +494,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 
 	@Step("verify alert text is {0}")
 	public ProductsListPageObjects verifyAlertMessage(String expectedAlertMessageForBlankData) throws Exception{
+		Thread.sleep(3000);
 		Waiting.explicitWaitForAlert(5);
 		Assert.assertTrue(assertAlertMessage(expectedAlertMessageForBlankData));
 		return this;
@@ -622,6 +623,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		return this;
 	}	
 	
+
 	
 	
 	public boolean assertForBrandNameOrMPNInProductListPage(String searchKeyword)

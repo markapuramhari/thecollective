@@ -605,10 +605,11 @@ public class HomePageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("click on quick order pad link")
-	public MyAccountsPageObjects clickOnQuickOrderPadLink() {
+	public MyAccountsPageObjects clickOnQuickOrderPadLink() throws InterruptedException {
 		Waiting.explicitWaitVisibilityOfElement(quickOrderPadLink, 10);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();",quickOrderPadLink);
-		return new MyAccountsPageObjects();
+		Thread.sleep(6000);
+		return myAccountsPage();
 		
 	}
 
