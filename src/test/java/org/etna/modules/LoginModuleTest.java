@@ -11,7 +11,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-	LoginModuleTest loginModule = new LoginModuleTest();
+
 	
 	  public void loginAsASuperUser() throws Exception
 	  {
@@ -178,9 +178,9 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Test(groups={"LoginModule","regression"},enabled=true)
 	  public void TC_Login_013_myProductGroupLoginPopupRememberMeClickUncheck() throws Exception
 	  {
-		loginModule.loginAsASuperUser(); 
+		loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		   homePage()
 		  .clickLoginLink()
@@ -236,9 +236,9 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Test(groups={"LoginModule","regression"},enabled=true)
 	  public void TC_Login_014_myProductGroupLoginPopupRememberMeClickCheck() throws Exception
 	  {  
-		loginModule.loginAsASuperUser(); 
+		loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		  homePage()
 		  .searchText(searchText)
