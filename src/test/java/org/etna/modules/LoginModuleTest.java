@@ -11,7 +11,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-	
+	LoginModuleTest loginModule = new LoginModuleTest();
 	
 	  public void loginAsASuperUser() throws Exception
 	  {
@@ -59,7 +59,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  
 	  
 	@Features("Login Module")
-	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void loginAs_SU_PA_GU(String testCaseId,String userName,String password,String expectedMsg) throws Exception
 			{
@@ -75,7 +75,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	
 
 	@Features("Login Module")
-	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="excelSheetDataRead", dataProviderClass=SearchData.class)
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	  public void login_ErrorScenarios(String testCaseId,String userName, String password,String expectedMsg) throws Exception
 	  {
@@ -178,6 +178,9 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Test(groups={"LoginModule","regression"},enabled=true)
 	  public void TC_Login_013_myProductGroupLoginPopupRememberMeClickUncheck() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		   homePage()
 		  .clickLoginLink()
@@ -233,6 +236,9 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Test(groups={"LoginModule","regression"},enabled=true)
 	  public void TC_Login_014_myProductGroupLoginPopupRememberMeClickCheck() throws Exception
 	  {  
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		  homePage()
 		  .searchText(searchText)
@@ -283,7 +289,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		   homePage()
 		  .clickLoginLink()
 		  .loginPopUp()
-		  .clickOnForgotPassword()
+		  .clickOnForgotYourPassword()
 		  .forgotPasswordPage()
 		  .verifyRetrievePasswordPage();
 		}

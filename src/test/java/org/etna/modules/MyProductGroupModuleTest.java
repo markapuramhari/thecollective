@@ -1,23 +1,18 @@
 package org.etna.modules;
 
 import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import org.etna.dataprovider.SearchData;
-import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.RandomGenerator;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.TestUtility;
 import org.openqa.selenium.UnhandledAlertException;
-import org.testng.SkipException;
 
 public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	
@@ -45,6 +40,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void verifyCreationAndDeletionOfMyProductGroup_ProductListPage() throws Exception{
 		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
 		homePage()
@@ -70,6 +67,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void verifyClickingOnSuccessMessageOnGroupCreation_ProductListPage() throws Exception{
 		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
 		homePage()
@@ -93,6 +92,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_005")
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_GridView_ProductListPage() throws Exception {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
@@ -119,6 +120,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_errorMessage_BlankText() throws Exception {
 		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		homePage()
 		.searchText(searchText)
@@ -136,6 +139,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_008")
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_errorMessage_JustSpaces() throws Exception {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		homePage()
@@ -155,6 +160,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_010")
 	@Test(groups={"regression"})
 	public void verifyAddingProductToExsistingMyProductGroup_ListView() throws Exception {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
@@ -183,6 +190,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_010")
 	@Test(groups={"regression"})
 	public void verifyAddingProductToExistingMyProductGroup_GridView() throws Exception {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
 		loginModule.loginAsASuperUser(); 
@@ -216,7 +225,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@Test(groups={"regression"})
 	public void verifyMyProductGroupPage() throws Exception {
 		loginModule.loginAsASuperUser(); 
-		
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String myProductGroupNameThatWasClicked = 
 		homePage()
 		.navigateToMyProductGroups()
@@ -237,6 +247,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_014")
 	@Test(groups={"regression"})
 	public void myProductGroup_bulkAction_Delete() throws Exception{
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		data.setBulkOption("Delete Selected Items");
 		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
@@ -266,6 +278,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_015")
 	@Test(groups={"regression"})
 	public void myProductGroup_editGroupName_BlankText() throws Exception {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		data.setBulkOption("Update Selected Items");
 		loginModule.loginAsASuperUser(); 
 		String searchText = data.getSearchText();
@@ -393,7 +407,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		public void addItemToCartFromMyProductGroup() throws Exception {
 			
 		data.setBulkOption("Add Selected Items to Cart");
-		String searchText = data.getSearchText();
+		String searchText = data.getSearchTextForEnlargeImageTest();
 		String myProductGroupName = data.getMyProductGroupName();
 		loginModule.loginAsASuperUser(); 
 		homePage().logout();
@@ -401,8 +415,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
-		.productListPage()
-		.clickOnSpecificMyProductGroupButton(1)
+		.productDetailsPage()
+		.clickOnMyProductGroupButton()
 		.enterGroupName(myProductGroupName)
 		.hitEnter()
 		.verifyMyProductCreationSuccessMsg(myProductGroupName)
@@ -420,6 +434,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnTheSpecificCheckbox(1)
 		.selectBulkActionsDropdown(data.getBulkOption())
 		.myCartPage()
+		.clickOnCheckoutInMyCartPopup()
 		.verifyNameOfTheProductInMyCartPage(nameOfTheProductInProductGroup)
 		.verifyUpdateOfQuantityInShoppingCart(getQuantityInOfTheProductInMyProductGroup);
 		productGroupDeleteAndVerify(myProductGroupName);
@@ -432,7 +447,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_021")
 		@Test(groups={"regression"})
 		public void createProductGroup_LoginPopUp_Unsigned_ProductListPage() throws Exception {
-			
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();	
 		String searchText = data.getSearchText();
 		
 		homePage()
@@ -449,7 +465,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_022")
 		@Test(groups={"regression"})
 		public void createProductGroup_LoginPopUp_Unsigned_ProductDetailsPage() throws Exception {
-			
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		
 		homePage()
@@ -467,7 +484,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Test(groups={"regression"})
 		public void editGroupName() throws Exception {
 	
-			
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
@@ -503,7 +521,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_023")
 		@Test(groups={"regression"})
 		public void editGroupName_whenGroupNameIsAlreadyExisting() throws Exception {
-	
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
@@ -547,7 +566,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_024")
 		@Test(groups={"regression"})
 		public void editGroupName_noChangesYetClickingOnSave() throws Exception {
-	
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
@@ -585,7 +605,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_026")
 		@Test(groups={"regression"})
 		public void verifySortByInMyProductGroups() throws Exception {
-	
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
@@ -621,7 +642,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_027")
 		@Test(groups={"regression"})
 		public void verifyGroupNameCreation_Is_Limited_To_25_Characters() throws Exception {
-	
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			
 			String searchText = data.getSearchText();
@@ -663,7 +685,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		public void verifyGroupNameSelectAllItemsAndUpdate() throws Exception {
 	
 			data.setBulkOption("Update Selected Items");
-			String searchText = data.getSearchText();
+			String searchText = data.getSearchTextForEnlargeImageTest();
 			String myProductGroupName = data.getMyProductGroupName();
 			
 			loginModule.loginAsASuperUser(); 
@@ -672,8 +694,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
-			.productListPage()
-			.clickOnSpecificMyProductGroupButton(1)
+			.productDetailsPage()
+			.clickOnMyProductGroupButton()
 			.enterGroupName(myProductGroupName)
 			.hitEnter()
 			.verifyMyProductCreationSuccessMsg(myProductGroupName)
@@ -713,10 +735,11 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies the alert text when of every bulk option when no item is selected.")
 		@TestCaseId("TC_ProductGroup_029")
-		@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
-		public void verifyEveryBulkOptionAlertTextWhenNoItemIsSelected(String testcaseId,String bulkOption,String expectedAlertText) throws Exception {
-	
+		@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+		public void pG_bulkAlert_ItemNotChosen(String testcaseId,String bulkOption,String expectedAlertText) throws Exception {
 			
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
 			
 			

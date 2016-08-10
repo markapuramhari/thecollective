@@ -20,6 +20,9 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	@Test(groups={"PDPModule","regression"})
 	  public void TC_PDP_001_TC_PDP_003_TC_PDP_013_TC_PDP_014_unsignedUser_verifyProductDetailsPageTest() throws Exception
 	  {
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
+	  	loginModule.loginAsASuperUser();
 	  	String searchText = data.getSearchTextForGeneralSearch();
 	  	homePage()
 	  	.searchText(searchText)
@@ -48,6 +51,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	@Test(alwaysRun=true,groups={"smoke","regression"})
 	  public void TC_PD_002_TC_PD_004_signedUser_verifyProductDetailsPageTest() throws Exception
 	  {
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	String searchText = data.getSearchTextForGeneralSearch();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
@@ -80,6 +85,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	 @Test(groups={"PDPModule","regression"})
 	  public void TC_PDP_006_enlargeImageFunctionalityTest() throws Exception
 	  	{
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	String searchText = data.getSearchTextForEnlargeImageTest();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
@@ -102,8 +109,10 @@ public class PDPModuleTest extends PageFactoryInitializer {
 
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
-	  public void TC_PDP_009_TC_PDP_010_ShareFunctionalityTest(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject) throws Exception{
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  public void ShareFunctionality(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject) throws Exception{
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(data.getSearchTextForMPNTest())
@@ -119,8 +128,10 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  }
 	
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
-	  public void TC_PDP_009_TC_PDP_010_ShareFunctionalityTest_ErrorScenarios(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject,String errorMsg) throws Exception{
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  public void ShareFunctionality_ES(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject,String errorMsg) throws Exception{
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 	  	loginModule.loginAsASuperUser();
 	  	homePage()
 	  	.searchText(data.getSearchTextForMPNTest())
@@ -161,8 +172,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	}
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
-	  public void signedUser_cpnCreateProductDetailsPage_ErrorScenariosTest(String testCaseId,@Parameter("CPN")String customerPartNumber,@Parameter("Expected Alert Text") String expectedAlertMsg) throws Exception{
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  public void signedUser_cpnPDP_ES(String testCaseId,@Parameter("CPN")String customerPartNumber,@Parameter("Expected Alert Text") String expectedAlertMsg) throws Exception{
 	  	
 		String searchText = data.getSearchTextForEnlargeImageTest();
 	 	loginModule.loginAsASuperUser();
@@ -274,6 +285,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 			String searchText = data.getSearchTextForUPCLabelTest();
 			String myProductGroupName = data.getMyProductGroupName();
 			loginModule.loginAsASuperUser();
+		  	homePage().logout();
+		  	loginModule.loginAsASuperUser();
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -301,6 +314,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","smoke","regression"})
 	  public void tc005_ListViewGridView() throws Exception
 	  {
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 		  String searchText = data.getSearchText();
 		  homePage()
 		  .searchText(searchText)
@@ -315,6 +330,8 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Test(groups={"PDPModule","smoke","regression"})
 	  public void tc006_verifyProductListPage_ShowResultsPerPage() throws Exception
 	  {
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
 		  		String searchText = data.getSearchTextForProductListPage();
 		  		data.setShowItemsPerPage(24);
 		  		int showItemsPerPage = data.getShowItemsPerPage();
@@ -329,6 +346,5 @@ public class PDPModuleTest extends PageFactoryInitializer {
 				.verifyResultsPerPageDropdown()
 				.verifyShowItemsPerPage(showItemsPerPage);
 	  }
-	  
 }
 	

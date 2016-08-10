@@ -219,7 +219,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 		String expectedButtonsInMyCartForGeneralUser[] = data.getExpectedButtonsInMyCartForGeneralUser().split(",");
 		for(int i = 0; i < buttonsInMyCart.size() ; i++)
 		{
-		Assert.assertTrue(buttonsInMyCart.get(i).getText().trim().equalsIgnoreCase(expectedButtonsInMyCartForGeneralUser[i]),"Button actual is "+buttonsInMyCart.get(i).getText().trim()+"Button expected is : "+expectedButtonsInMyCartForGeneralUser[i] );
+		Assert.assertTrue(buttonsInMyCart.get(i).getText().trim().equalsIgnoreCase(expectedButtonsInMyCartForGeneralUser[i]),"Button from web app is "+buttonsInMyCart.get(i).getText().trim()+" .Button expected is : "+expectedButtonsInMyCartForGeneralUser[i] );
 		}
 		return this;
 	}
@@ -320,6 +320,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	}
 
 
+
 	@Step("enter quantity {0}")
 	public MyCartPageObjects enterQuantityInShoppingCart(String quantity) {
 		
@@ -358,9 +359,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	{
 		DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
 		String previous = oneDigit.format(previousPrice.doubleValue()*quantityValue);
-		//System.out.println(previous);
 		String after = oneDigit.format(afterPrice.doubleValue());
-		//System.out.println(after);
 		if(previous.equals(after))
 		{	
 			return true;

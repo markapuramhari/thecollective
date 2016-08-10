@@ -382,7 +382,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 	public LoginPopUpPageObjects clickLoginLink() {
 		Waiting.explicitWaitVisibilityOfElement(loginLinkLocator, 20);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",loginLinkLocator);
-		return new LoginPopUpPageObjects();
+		return loginPopUp();
 	}
 	
 	public boolean checkForUseThisAddress(){

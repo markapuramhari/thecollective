@@ -16,10 +16,10 @@ public class ForgotPasswordPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//span[contains(text(),'Forgot Password ?')]")
 	private WebElement forgotPasswordLink;
 	
-	@FindBy(id="username")
+	@FindBy(xpath="//input[@id='username']")
 	private WebElement userNameTextbox;
 	
-	@FindBy(id="emailAddress")
+	@FindBy(xpath="//input[@id='emailAddress']")
 	private WebElement emailAddressTextBox;
 	
 	@FindBy(id="submitBtn")
@@ -27,6 +27,9 @@ public class ForgotPasswordPageObjects extends PageFactoryInitializer {
 	
 	@FindBy(className="cimm_caption")
 	private WebElement forgotYourPasswordInstructions;
+	
+	@FindBy(id="errorMsgForgotPassord")
+	private WebElement errorMessageLocator;
 	
 	@Step("verify retrieve password page")
 	public ForgotPasswordPageObjects verifyRetrievePasswordPage() {
@@ -37,6 +40,32 @@ public class ForgotPasswordPageObjects extends PageFactoryInitializer {
 		Assert.assertTrue(getNewPasswordButton.isDisplayed(), "retrieve password button is not displayed");
 		Assert.assertEquals(getNewPasswordButton.getAttribute("value"),"Get New Password");
 		Assert.assertEquals(forgotYourPasswordInstructions.getText().trim(),data.getForgotYourPasswordInstructions());
+		return this;
+	}
+	
+	@Step("enter username as {0}")
+	public ForgotPasswordPageObjects enterUserName(String userName){
+		Waiting.explicitWaitVisibilityOfElement(userNameTextbox, 4);
+		userNameTextbox.click();
+		userNameTextbox.sendKeys(userName);
+		return this;
+	}
+	
+	@Step("enter email id as {0}")
+	public ForgotPasswordPageObjects enterEmailId(String emailId){
+		emailAddressTextBox.click();
+		emailAddressTextBox.sendKeys(emailId);
+		return this;
+	}
+	
+	@Step("click on get new password button")
+	public ForgotPasswordPageObjects clickOnGetNewPassword(){
+		getNewPasswordButton.click();
+		return this;
+	}
+
+	public ForgotPasswordPageObjects verifyErrorMessage(String expectedErrorMessage) {
+		Assert.assertEquals(errorMessageLocator.getText().replace("\n", "").trim(),expectedErrorMessage);	
 		return this;
 	}
 }

@@ -19,6 +19,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	@Features("My Cart Module")
 	@Test(alwaysRun=true,groups={"MyCartModule","smoke","regression"})
 	public void TC_MyCart_001() throws Exception{
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		String myCartBreadcrump = data.getMyCartBreadcrump();
 		loginModule.loginAsASuperUser();
@@ -47,6 +49,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	@Test(groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_012_saveCart_ClickOnCofirmationPopup() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		  		String searchText = data.getSearchTextForEnlargeImageTest();
 		  		String saveCartName = data.getSaveCartName();
 		  		loginModule.loginAsASuperUser();
@@ -84,6 +88,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	@Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_014_signedUser_ShoppingCartUpdateToolTip() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  	loginModule.loginAsASuperUser();
 		  	 myCartPage()
@@ -105,6 +111,9 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	@Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_015_updateLinkFunctionality() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+
 				String searchText = data.getSearchTextForEnlargeImageTest();
 		  		String quantity = data.getQuantityForShoppingCartPageVerification();
 		  		loginModule.loginAsASuperUser();
@@ -131,6 +140,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	@Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_016_emptyCartFunctionality() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 				String searchText = data.getSearchTextForEnlargeImageTest();
 		  		loginModule.loginAsASuperUser();
 				myCartPage()
@@ -156,6 +167,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_018_sortByDropdownListValues() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  loginModule.loginAsASuperUser();
 		  myCartPage()
@@ -175,6 +188,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","smoke","regression"})
 	  public void TC_ShoppingCart_002_TC_ShoppingCart_019_TC_ShoppingCart_020_TC_ShoppingCart_021_signedUserAddingItemToCart() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  String quantity = data.getQuantityForShoppingCartPageVerification();
 		  loginModule.loginAsASuperUser();
@@ -196,6 +211,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TS_ShoppingCart_001_TC_ShoppingCart_001_guestUserAddingItemToCart() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  String quantity = data.getQuantityForShoppingCartPageVerification();
 		  	myCartPage()
@@ -216,7 +233,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_003_signedUser_ShoppingCartQuanitityUpdateCartButton() throws Exception
 	  {
-
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
 			String searchText = data.getSearchTextForEnlargeImageTest();
 	  		String quantity = data.getQuantityForShoppingCartPageVerification();
 	  		loginModule.loginAsASuperUser();
@@ -243,6 +261,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(enabled=false,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_004_signedUser_ShoppingCartQuanitityUpdateWithZero() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  	loginModule.loginAsASuperUser();
 		  	 myCartPage()
@@ -264,6 +284,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_005_signedUser_ShoppingCartDeleteToolTip() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 			String searchText = data.getSearchTextForEnlargeImageTest();
 		  	loginModule.loginAsASuperUser();
 		  	 myCartPage()
@@ -285,6 +307,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_006_signedUser_DeleteLinkForDeletingTheItem() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		
 		  if(PropertyFileReader.propertiesReader(applicationSetUp, "browser").equalsIgnoreCase("safari"))
 		  {
@@ -322,6 +346,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_007_signedUser_CancellingOfDeletingTheItemThroughDeleteLink() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		  if(PropertyFileReader.propertiesReader(applicationSetUp, "browser").equalsIgnoreCase("safari"))
 		  {
 			  throw new SkipException("Code does not work in IE.Problem with IE driver server in handling alerts.Need to do this manually");
@@ -357,6 +383,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_008_signedUser_clickOnImageNavigateBackToPDP() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 			String searchText = data.getSearchTextForEnlargeImageTest();
 		  	loginModule.loginAsASuperUser();
 		  	 myCartPage()
@@ -380,6 +408,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_010_signedUser_verifyContinueShoppingButton() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 			String searchText = data.getSearchTextForEnlargeImageTest();
 		  	 String productsPageBreadCrump = data.getProductsPageBreadCrump();
 		  	loginModule.loginAsASuperUser();
@@ -404,6 +434,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  @Test(alwaysRun=true,groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_008_signedUser_clickOnProductName() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		  loginModule.loginAsASuperUser();
 		  	 myCartPage()

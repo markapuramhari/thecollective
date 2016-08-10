@@ -83,7 +83,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups="regression",enabled=false)
+	@Test(groups="regression")
 	public void copyPasteTabDelimitedFile() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -109,7 +109,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups="regression")
+	@Test(groups="regression",enabled=false)
 	public void copyPasteEmptyValues() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -130,7 +130,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups="regression")
+	@Test(groups="regression",enabled=false)
 	@Issues(value = { @Issue(value = "NEST-160") })
 	public void copyPasteImproperValues() throws Exception{
 		loginModule.loginAsASuperUser();
@@ -147,7 +147,9 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 				.clickOnQuickOrderPadLink()
 				.quickOrderPadPage()
 				.clickOnCopyPasteTab()
-				.copyPasteTxtFile(data.getTabDelimitedFilePath().trim())
+				.clickOnFileUploadTab()
+				.clickOnCopyPasteTab()
+				.copyPasteTxtFile(data.getTabDelimitedFilePathForImproperValues().trim())
 				.clickOnAddToCartButton()
 				.verifyAlertMessage(data.getCopyPasteInvalidFormatAlertMessage());			
 	}

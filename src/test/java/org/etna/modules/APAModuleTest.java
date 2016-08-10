@@ -75,9 +75,9 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("These are a bunch of test cases that tests the error scenarios involved during Add New Purchasing Agent.")
-	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void addAndDeleteNewPurchasingAgent_GeneralUser_SuperUser_APA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
+	public void addAndDeleteNewPA_GU_SU_APA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
 		String emailIdSplit []  = emailId.split("@");
 		String email = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
@@ -124,6 +124,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 		loginModule.loginAsASuperUser();
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()
 		.searchText(data.getSearchTextForUPCLabelTest())
 		.clickOnSearch()
@@ -140,9 +142,9 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("These are a bunch of test cases that tests the error scenarios involved during Add New Purchasing Agent.")
-	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void addNewPurchasingAgent_errorScenarios(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website,@Parameter("Error Message") String expectedErrorMsg) throws Exception
+	public void addNewPA_errorScenarios(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website,@Parameter("Error Message") String expectedErrorMsg) throws Exception
 	{
 		loginModule.loginAsASuperUser();
 		homePage().clickOnUserAccountDropdown().logout();
@@ -224,9 +226,9 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies disabling searching and disabling a purchase agent in purchase agent page.")
-	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("TC_PA_088")
-	public void verify_Disable_Purchase_Agent_In_Disable_Purchase_Agent_Page(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
+	public void verify_Disable_PADPA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
 		loginModule.loginAsASuperUser();
 		homePage().clickOnUserAccountDropdown().logout();
@@ -369,6 +371,8 @@ public class APAModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_PA_091")
 	public void verifyRejectCartFunctionality() throws Exception {
 		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage()

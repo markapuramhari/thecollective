@@ -151,19 +151,17 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		  while ((line = br.readLine()) != null) {
 		   
 		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(line), null);
-		  Robot rb = new Robot();
-		  rb.keyPress(KeyEvent.VK_CONTROL);
-		  rb.keyPress(KeyEvent.VK_V);
-		  rb.keyRelease(KeyEvent.VK_V);
-		  rb.keyRelease(KeyEvent.VK_CONTROL);   
-		  rb.keyPress(KeyEvent.VK_ENTER);   
-		  rb.keyRelease(KeyEvent.VK_ENTER); 
+		  
+		 copyPasteSectionLocator.sendKeys(Keys.CONTROL + "v");
+		 copyPasteSectionLocator.sendKeys(Keys.ENTER);
+	
 		  }
 		return this;
 }
 	
 	@Step("click on add to cart button")
 	public QuickOrderPageObjects clickOnAddToCartButton() {
+		Waiting.explicitWaitVisibilityOfElement(shoppingCartCountLocator, 30);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",addToCartButtonInCopyPasteSectionLocator);
 		return this;
 	}

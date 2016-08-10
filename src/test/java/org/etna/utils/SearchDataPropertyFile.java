@@ -322,6 +322,9 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String invalidNumberAlertText = PropertyFileReader.propertiesReader(searchData, "invalidNumberAlertText");
 	
+	private String tabDelimitedFilePathForImproperValues = PropertyFileReader.propertiesReader(searchData, "tabDelimitedFilePathForImproperValues");
+	
+	
 	
 	public String getCopyRightsOfUnilogText() {
 		return copyRightsOfUnilog;
@@ -1144,6 +1147,11 @@ public String getAllDivisionsInHeader() {
 
 public String getInvalidNumberAlertText() {
 	return invalidNumberAlertText;
+}
+
+public String getTabDelimitedFilePathForImproperValues() {
+	
+	return tabDelimitedFilePathForImproperValues;
 }
 
 }

@@ -70,10 +70,10 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 	}
 	
 	@Step("click on forgot your password link")
-	public LoginPopUpPageObjects clickOnForgotYourPassword(){
+	public ForgotPasswordPageObjects clickOnForgotYourPassword(){
 		Waiting.explicitWaitVisibilityOfElement(forgotYourPassword, 20);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",forgotYourPassword);
-		return this;
+		return forgotPasswordPage();
 	}
 	
 	@Step("click on login button")
@@ -177,12 +177,6 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	@Step("click on forgot password")
-	public LoginPopUpPageObjects clickOnForgotPassword() {
-		
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",forgotYourPassword);
-		return this;
-	}
 
 	public LoginPopUpPageObjects verifyDefaultTabFocus(String userNameId) {
 		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"), userNameId);

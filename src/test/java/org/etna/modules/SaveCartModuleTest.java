@@ -47,6 +47,8 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			String saveCartName = data.getSaveCartName();
 			String saveCartBreadcrump = data.getSaveCartBreadcrump();
 			loginModule.loginAsASuperUser();
+		  	homePage().logout();
+		  	loginModule.loginAsASuperUser();
 			myCartPage().clearCart();
 			String productName = homePage()
 					.searchText(searchText)
@@ -77,17 +79,16 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.verifyTitleAfterClickingOnTheCartCreated();
 			 saveCartDeleteAndVerify(saveCartName);
 			}
-	
-	
-	
+
 	@Features("Save Cart Module")
 	@Description("This is a test case which verifies the alert text when of every bulk option when no item is selected.")
 	@TestCaseId("{0}")
-	@Test(groups={"SaveCartModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
-	public void verifyEveryBulkOptionAlertTextWhenNoItemIsSelectedSaveCart(String testcaseId,@Parameter("Bulk Option")String bulkOption,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception {
+	@Test(groups={"SaveCartModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	public void SC_BulkAlert_ItemnotChosen(String testcaseId,@Parameter("Bulk Option")String bulkOption,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception {
 
-		
-		loginModule.loginAsASuperUser(); 
+		loginModule.loginAsASuperUser();
+	  	homePage().logout();
+	  	loginModule.loginAsASuperUser();
 		
 		String searchText = data.getSearchTextForMPNTest();
 		String saveCartName = data.getSaveCartName();

@@ -413,7 +413,7 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 
 	@Step("verify creation of add new purchasing agent")
 	public AddNewPurchasingAgentPageObjects verifyCreationOfAddNewPurchasingAgent(String emailId ,String firstName,String lastName) {
-		Waiting.explicitWaitVisibilityOfElement(nameValueLocator, 15);
+		Waiting.explicitWaitVisibilityOfElement(nameValueLocator, 60);
 		Assert.assertEquals(nameValueLocator.getText().trim(), firstName+" "+lastName);
 		Assert.assertTrue(addressValueLocator.isDisplayed(),"address is not displayed.");
 		//Assert.assertTrue(emailAddressValueLocator.isDisplayed(),"Email address is not displayed.");

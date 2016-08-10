@@ -74,7 +74,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  } 
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"HomePageModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void verifyContentsOfFooterLinks(String testCaseId,String specificFooterLink,String breadCrumb,String contentLocator,String expectedContent) throws Exception{
 		homePage()
@@ -88,7 +88,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	
 	
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"HomePageModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void verifyContentsOfHeaderLinks(String testCaseId,String specificHeaderLink,String breadCrumb,String contentLocator,String expectedContent) throws Exception{
 		homePage()
@@ -113,9 +113,9 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	}
 	
 	@Features("Homepage Module")
-	@Test(groups="regression",dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups="regression",dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void verifyContactUsPagePositiveScenarios(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String companyName,String country,String state,String city,String zipCode,String address,String questionsOrComments,String preferredMethodOfCommunication,String expectedSuccessMessage) throws InterruptedException{
+	public void verifyContactUsPositives(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String companyName,String country,String state,String city,String zipCode,String address,String questionsOrComments,String preferredMethodOfCommunication,String expectedSuccessMessage) throws InterruptedException{
 			homePage().clickOnContactUsLink().contactUsPage()
 			.selectAreaOfInterest(areaOfInterest)
 			.enterFirstName(firstName)

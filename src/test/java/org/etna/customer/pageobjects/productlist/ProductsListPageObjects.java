@@ -103,7 +103,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	
 	
-	@FindAll(value={@FindBy(xpath="//a[text()='Add To Cart']/ancestor::li/descendant::h4/a")})
+	@FindAll(value={@FindBy(xpath="//a[text()='Add To Cart']/ancestor::li/descendant::ul/descendant::h4/a")})
 	private List<WebElement> items;
 	
 /*	@FindAll(value={@FindBy(xpath="//a[contains(@id,'enableCart') and not(contains(@class,'disable'))]/ancestor::ul/preceding-sibling::ul/descendant::a")})
@@ -141,7 +141,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//td[@title='Compare']/descendant::input")})
 	private List<WebElement> compareCheckboxesUnderMoreChoicesLocator;
 	
-	@FindAll(value={@FindBy(xpath="//td[contains(@class,'details-control')]/descendant::span[not(contains(@class,'imgForSend'))]")})
+	@FindAll(value={@FindBy(xpath="//td[contains(@class,'details-control')]/descendant::span[not(contains(@class,'imgForSend')) and not(contains(@id,'quantityBreakPricingDetails'))]")})
 	private List<WebElement> itemIdsUnderMyChoicesLocator;
 	
 	@FindBy(xpath="//span[contains(@class,'compareControls')]/descendant::a[contains(@onclick,'clearCookie')]")
@@ -456,7 +456,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	@Step("verify My Product Group creation success message contains {0}")
 	public ProductsListPageObjects verifyMyProductCreationSuccessMsg(String myProductGroupName) {
-		Waiting.explicitWaitVisibilityOfElement(productGroupCreationMsg, 10);
+		Waiting.explicitWaitVisibilityOfElement(productGroupCreationMsg, 5);
 		Assert.assertEquals(productGroupCreationMsg.getText().trim(), items.get(0).getText().trim()+" Added To Group - "+myProductGroupName);
 		return this;
 	}

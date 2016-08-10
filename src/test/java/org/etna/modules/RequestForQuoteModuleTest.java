@@ -39,11 +39,11 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		.verifyRequestForQuotePage(setUp.getProductName(),expectedNumberOfTextboxesToDisplay);
 	}
 	
-	@Test(groups={"smoke","regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"smoke","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")
-	public void requestForQuotePage_PositiveFlow(String testCaseId,String description,String manufacturerPartNumber,String brandOrManufacturerName,String quantity,String shortDescription,String comments) throws Exception
+	public void rFQ_PositiveFlow(String testCaseId,String description,String manufacturerPartNumber,String brandOrManufacturerName,String quantity,String shortDescription,String comments) throws Exception
 	{
 		loginModule.loginAsASuperUser(); 
 		homePage()
@@ -61,11 +61,11 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		//verify clearing of all the fields
 	}
 	
-	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")
-	public void requestForQuotePage_FirstName_LastName_PhoneNumber_Email_errorScenarios(String testCaseId,String description,String firstName,String lastName,String phoneNumber,String emailId,String manufacturerPartNumber, String expectedErrorMsg) throws Exception
+	public void rFQ_FN_LN_PN_Email_ES(String testCaseId,String description,String firstName,String lastName,String phoneNumber,String emailId,String manufacturerPartNumber, String expectedErrorMsg) throws Exception
 	{
 		loginModule.loginAsASuperUser(); 
 		homePage()
@@ -80,11 +80,11 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		.verifyErrorMessage(expectedErrorMsg);
 	}
 	
-	@Test(groups={"regression"},dataProvider="excelSheetDataRead",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")
-	public void requestForQuotePage_quantityField_errorScenarios(String testCaseId,String description,String actualQuantity,String expectedQuantity) throws Exception
+	public void rFQ_quantityField_ES(String testCaseId,String description,String actualQuantity,String expectedQuantity) throws Exception
 	{
 		loginModule.loginAsASuperUser(); 
 		homePage()

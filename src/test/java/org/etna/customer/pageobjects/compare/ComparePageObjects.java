@@ -295,6 +295,7 @@ public class ComparePageObjects extends PageFactoryInitializer
 	}
 
 
+	@SuppressWarnings("unused")
 	public boolean assertPartNumbers(String[] partNumbers) {
 		  
 	    

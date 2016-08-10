@@ -17,6 +17,7 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	String shopByBrandBreadcrump = data.getShopByBrandsBreadcrump();
 	String shopByManufacturersBreadcrump = data.getShopByManufacturersBreadcrump();
+	LoginModuleTest loginModule = new LoginModuleTest();
 	
 	@Features("Compare Module")
 	@TestCaseId("TC_COMPARE_001")
@@ -24,7 +25,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the alert text when no items are selected and the compare link is clicked.")
 	  public void alert_Text_When_No_Item_Is_Selected() throws Exception
 	  {
-		  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -40,6 +43,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the alert text when one item is selected and the compare link is clicked.")
 	  public void alert_Text_When_One_Item_Is_Selected() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		
 		  		homePage()
 		  		.searchText(data.getSearchText())
@@ -58,6 +64,10 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the compare link text when two items are chosen.")
 	  public void verifyCompareLinkText() throws Exception
 	  {  		
+		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				 homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -76,6 +86,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the compare page when two items are selected.")
 	  public void compare_Two_Items() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				String partNumbers [] = homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -95,6 +108,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the alert text when more than five items are selected.")
 	  public void alertMessageWhenMoreThanFiveItemsAreSelectedForCompare() throws Exception 
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
   		.searchText(data.getCategoryWithPagination())
   		.clickOnSearch()
@@ -114,6 +130,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight similar,all the attributes that are similar should show up in green.")
 	  public void highlightSimilarButtonVerification() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		compare_Two_Items();
 		comparePage()
 		.clickOnHighLightSimilar()
@@ -128,6 +147,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight different,all the attributes that are different should show up in red.")
 	  public void highlightDifferentButtonVerification() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		compare_Two_Items();
 		comparePage()
 		.clickOnHighlightDifferent()
@@ -142,6 +164,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight off,all the attributes that were highlighted should show revert back.")
 	  public void highlightOffButtonVerification() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		compare_Two_Items();
 		String colourOfHighlightDifferentAttributes  = comparePage()
 		.clickOnHighlightDifferent()
@@ -159,6 +184,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that add to cart button is disabled for call for price items.")
 	  public void addToCartButtonCallForPriceDisable() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		compare_Two_Items();	
 		comparePage()
 		.verifyAddToCartbuttonIsDisabled();
@@ -170,6 +198,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies close/clear icon with compare link in Products list Page")
 	  public void verifyCompareLinkText_clear() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		 homePage()
 	  		.searchText(data.getSearchText())
 	  		.clickOnSearch()
@@ -191,6 +222,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies compare page.")
 	  public void verifyComparePage_ProductMode() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		 homePage()
 	  		.searchText(data.getSearchText())
 	  		.clickOnSearch()
@@ -210,6 +244,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies comparision of products that are from different category.")
 	  public void comparisionOfProductsWhichAreFromDifferentCategory() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 			String partNumbers1 = 	homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -237,7 +274,10 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Test(groups={"CompareModule","regression"})
 	@Description("This is a test case which verifies adding an item to cart from compare page.")
 	  public void addingAnItemToCartFromComparePage() throws Exception
-	  {  		
+	  {  	
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		LoginModuleTest login = new LoginModuleTest();
 		login.loginAsASuperUser();
 		homePage()
@@ -263,7 +303,10 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Test(groups={"CompareModule","regression"})
 	@Description("This is a test case which verifies the compare count text after deselecting the checkboxes.")
 	  public void verifyingOfCountAfterDeselectingTheCheckboxes() throws Exception
-	  {  		
+	  {  
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
   		.searchText(data.getSearchText())
   		.clickOnSearch()
@@ -282,6 +325,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the alert text when we are trying to remove an item when there are only two items while comparing.")
 	  public void verify_AlertText_Remove_WhenTwoItemsArePresent() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		compare_Two_Items();
 		comparePage()
 		.clickOnSpecficRemoveCheckbox(1)
@@ -297,6 +343,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the deleted of an item from compare page.")
 	  public void deletionOfAnItemFromComparePage() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		 	homePage()
 	  		.searchText(data.getCategoryWithPagination())
 	  		.clickOnSearch()
@@ -318,7 +367,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the display of compare page when one product is selected in list view and the other is selected in grid view.")
 	  public void verifyCompareItems_OneItemInListView_OneItemInGridView() throws Exception
 	  {  		
-		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String partNumbers1 = 	homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -348,7 +399,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the comparision of two products which have the same brand.")
 	  public void verifyCompare_SameBrand() throws Exception
 	  {  		
-		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String partNumbers [] = homePage()
 		  		.searchText(data.getSearchBrandForCompare())
 		  		.clickOnSearch()
@@ -369,7 +422,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies comparision of products from the same brand which are in different pages items display.")
 	  public void verifyCompare_Brands_DifferentPages() throws Exception
 	  {  		
-		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String partNumbers1 = 	homePage()
 		  		.searchText(data.getCategoryWithPagination())
 		  		.clickOnSearch()
@@ -401,7 +456,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking an image in the compare page, opens the details of the particular product.")
 	  public void verifyCompare_ClickingOnImage_NavigateToDetailsPage() throws Exception
 	  {  		
-		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		String productNameWhoseImageIsClicked = homePage()
 		  		.searchText(data.getSearchBrandForCompare())
 		  		.clickOnSearch()
@@ -422,6 +479,9 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies compare page having products in SKU mode.")
 	  public void verifyComparePage_SKUMode() throws Exception
 	  {  		
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
   		.searchText(data.getSearchBrand())
   		.clickOnSearch()

@@ -15,7 +15,7 @@
     	<compiler.version>1.8</compiler.version>
         <allure.version>1.5.0.RC2</allure.version>
         <aspectj.version>1.8.9</aspectj.version>
-        <version.selenium>2.53.0</version.selenium>
+        <version.selenium>2.53.1</version.selenium>
          <version.slf4j>1.7.7</version.slf4j>
     </properties>
 

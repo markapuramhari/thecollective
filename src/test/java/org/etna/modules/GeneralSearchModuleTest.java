@@ -12,13 +12,16 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class GeneralSearchModuleTest extends PageFactoryInitializer{
 
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
-	  
+	LoginModuleTest loginModule = new LoginModuleTest();
 	@Features("General Search Module")
 	@TestCaseId("TC_General Search_001")
 	@Description("This is a test case which verifies the placeholder and search button of the search field.")
 	@Test(groups={"GeneralSearchModule","regression"})
 	public void verifySearchPlaceHolderAndGoButton() throws Exception
 		  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 					
 			  		homePage()
 			  		.verifyPlaceHolderOfSearchTextbox(data.getExpectedSearchTexboxPlaceholder())
@@ -32,6 +35,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_Autocomplete_productCategory() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				String category = data.getProductCategory();
 				String partialSubCategory = category.substring(0,category.indexOf(" "));
 				verifyInvalidSearch();
@@ -47,6 +53,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_PartNumber() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
   		.searchText(data.getSearchTextForEnlargeImageTest())
   		.clickOnSearch()
@@ -60,6 +69,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_PartialPartNumber() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				String partNumber = data.getSearchTextForAnotherItem();
 				String partialPartNumber = partNumber.substring(0, 2);
 		  		homePage()
@@ -80,7 +92,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_MPN() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchTextForMPNTest())
 		  		.clickOnSearch()
@@ -95,7 +109,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_UPC() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchTextForUPCLabelTest())
 		  		.clickOnSearch()
@@ -111,7 +127,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyPDPNavigationOfSearchFunctionality_Keyword() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchTextKeyword())
 		  		.clickOnSearch()
@@ -129,6 +147,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyAlertMessageWhenGoButtonIsClickedWithoutProvidingSearchText() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				homePage()
 		  		.clickOnSearch()
 		  		.verifyAlertMessage(data.getAlertMessageWhenGoButtonIsClickedWithProvidingSearchText());
@@ -140,6 +161,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyInvalidSearch() throws Exception
 	  {
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 				homePage()
 		  		.searchText(data.getSearchTextForInvalidTestData())
 		  		.clickOnSearch()
@@ -153,7 +177,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	  public void verifySearchFunctionality_narrowSearch_partNumber() throws Exception
 	  
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -170,7 +196,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyPDPNavigationOfSearchFunctionality_narrowSearch_MPN() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -187,7 +215,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyPDPNavigationOfSearchFunctionality_narrowSearch_UPC() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchText())
 		  		.clickOnSearch()
@@ -204,7 +234,9 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","smoke","regression"})
 	  public void verifyPDPNavigationOfSearchFunctionality_ManufacturerName() throws Exception
 	  {
-				
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		  		homePage()
 		  		.searchText(data.getSearchTextForGeneralSearch())
 		  		.clickOnSearch()
