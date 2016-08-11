@@ -1,2 +1,2 @@
-cd E:/UnilogProjects/Etna
+cd E:/UnilogProjects/template
 mvn site

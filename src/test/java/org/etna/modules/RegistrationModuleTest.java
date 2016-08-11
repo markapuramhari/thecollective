@@ -92,7 +92,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	
 	@Features("Sign Up Module")
 	@Description("This is a test case which verifies error scenarios while registering for new commercial customer.")
-	@Test(enabled=true,groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void verifyNewCCUserRegistrationES(String testCaseId,@Parameter("First Name")String firstName,@Parameter("Last Name")String lastName,@Parameter("Company Name")String companyName,@Parameter("Email Address")String emailAddress,@Parameter("Password")String password,@Parameter("Confirm Password")String confirmPassword,@Parameter("Address1")String address1,@Parameter("Address2")String address2,@Parameter("City")String city,@Parameter("State")String state,@Parameter("Zip Code")String zipCode,@Parameter("Phone Number")String phoneNumber,@Parameter("Expected Error Message")String expectedErrorMsg) throws Exception
 	  {

@@ -79,6 +79,10 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 	@FindBy(xpath="//div[@id='retailRegistrationComplete']/descendant::p")
 	private WebElement retailUserSuccessMsgTextLocator;
 	
+	@FindBy(xpath="//div[@id='stateSelect_chosen']/descendant::a")
+	private WebElement stateDropdown;
+	
+	
 	@Step("verify new retail customer tab")
 	public RetailCustomerRegistrationPageObjects verifyNewRetailCustomerTab() throws Exception {
 		Thread.sleep(1500);
@@ -189,11 +193,18 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 		}
 		else
 		{
-		Select select = new Select(stateDropdownLocator);
-		select.selectByVisibleText(state);
+			stateDropdown.click();
+			Waiting.explicitWaitVisibilityOfElements(stateDrodpdownOptions, 3);
+			for(WebElement stateOption : stateDrodpdownOptions)
+			{
+				if(stateOption.getText().trim().equals(state))
+				{
+					stateOption.click();
+					break;
+				}
+		}
 		}
 		return this;
-		
 	}
 
 	@Step("click I Accept")

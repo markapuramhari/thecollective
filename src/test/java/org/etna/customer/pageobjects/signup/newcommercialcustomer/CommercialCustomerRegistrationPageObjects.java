@@ -1,9 +1,13 @@
 package org.etna.customer.pageobjects.signup.newcommercialcustomer;
+import java.util.List;
+
 import org.etna.customer.pageobjects.signup.retailuser.RetailCustomerRegistrationPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.RandomGenerator;
 import org.etna.utils.Waiting;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -69,6 +73,13 @@ public class CommercialCustomerRegistrationPageObjects extends PageFactoryInitia
 	
 	@FindBy(xpath="//div[@id='registrationComplete']")
 	private WebElement registrationSuccessMessageLocator;
+	
+	@FindBy(xpath="//div[@id='stateName1B_chosen']/descendant::a")
+	private WebElement stateDropdown;
+	
+	
+	@FindAll(value={@FindBy(xpath="//div[@id='stateName1B_chosen']/div/descendant::li")})
+	private List<WebElement> stateDrodpdownOptions;
 	
 	@Step("verify new commercial customer tab")
 	public CommercialCustomerRegistrationPageObjects verifyNewCommercialCustomerTab() throws Exception{
@@ -178,8 +189,19 @@ public class CommercialCustomerRegistrationPageObjects extends PageFactoryInitia
 		}
 		else
 		{
-		Select select = new Select(stateDropdownLocator);
-		select.selectByVisibleText(state);
+			
+			stateDropdown.click();
+		Waiting.explicitWaitVisibilityOfElements(stateDrodpdownOptions, 3);
+		for(WebElement stateOption : stateDrodpdownOptions)
+		{
+			if(stateOption.getText().trim().equals(state))
+			{
+				stateOption.click();
+				break;
+			}
+		}
+		/*Select select = new Select(stateDropdownLocator);
+		select.selectByVisibleText(state);*/
 		}
 		return this;
 		
