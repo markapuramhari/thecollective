@@ -170,12 +170,12 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//li[@id='upcNo']/b/following-sibling::span")
 	private WebElement upcValueInProductModeLocator;
 	
-	@FindBy(xpath="//b[contains(text(),'UPC')]/following-sibling::span")
-	private WebElement upcValueInSKUModeLocator;
+	@FindAll(value={@FindBy(xpath="//b[contains(text(),'UPC')]/following-sibling::span")})
+	private List<WebElement> upcValueInSKUModeLocator;
 	
 	
-	@FindBy(xpath="//span[contains(@id,'partNumber')]")
-	private WebElement partNumberValueInSKUModeLocator;
+	@FindAll(value={@FindBy(xpath="//span[contains(@id,'partNumber')]")})
+	private List<WebElement> partNumberValueInSKUModeLocator;
 	
 	@FindAll(value={@FindBy(xpath="//td[@class='tabelImage details-control']/span")})
 	private List<WebElement> partNumbersAboveLocators;
@@ -638,7 +638,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		for(int i = 0 ; i < listOfProductsLocator.size() ; i++)
 		{
 
-			if(listOfProductsLocator.get(i).getText().trim().contains(searchKeyword))
+			if(listOfProductsLocator.get(i).getText().toLowerCase().trim().contains(searchKeyword.toLowerCase().trim()))
 			{
 				return true;
 			}
@@ -666,16 +666,14 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 				}
 				
 			}
-			if(partNumberValueInSKUModeLocator.getText().trim().equals(searchKeyword))
+			for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
 			{
-				return true;
-			}	
-			else
+			if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
 				{
-				return false;
-				}
-		}	
-	
+				return true;
+				}	
+			}	
+			}
 	   }	
 		catch(NoSuchElementException e)
 		{
@@ -694,22 +692,28 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 					}
 					
 				}
-				if(partNumberValueInSKUModeLocator.getText().trim().equals(searchKeyword))
+				for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
 				{
-					return true;
-				}	
-				else
 					{
-					return false;
+					if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
+						{
+						return true;
+						}	
 					}
-			}	
+				}
+			 }
 			}
 			catch(NoSuchElementException e1)
 			{
-			if(partNumberValueInSKUModeLocator.getText().trim().equals(searchKeyword))
-			{
-				return true;
-			}
+				for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
+				{
+					{
+					if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
+						{
+						return true;
+						}	
+					}
+				}
 			}
 		}
 		return false;
@@ -758,14 +762,13 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 				
 			}
 			}
-			if(upcValueInSKUModeLocator.getText().trim().equals(searchKeyword))
+		for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
+		{
+			if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
 			{
 				return true;
 			}	
-			else
-				{
-				return false;
-				}
+		}
 	   }	
 		catch(NoSuchElementException e)
 		{
@@ -786,21 +789,23 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 					
 				}
 				}
-				if(upcValueInSKUModeLocator.getText().trim().equals(searchKeyword))
+			for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
+			{
+				if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
 				{
 					return true;
 				}	
-				else
-					{
-					return false;
-					}
+			}
 		   }	
 			catch(NoSuchElementException e1)
 			{
-			if(upcValueInSKUModeLocator.getText().trim().equals(searchKeyword))
-			{
-				return true;
-			}
+				for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
+				{
+					if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
+					{
+						return true;
+					}	
+				}
 			}
 		}
 		return false;
@@ -808,17 +813,20 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	}
 
 
-	public void verifyPartNumberOrUPCProductListPage(String searchKeyword) {
+	public void verifyPartNumberOrUPCProductListPage(String searchKeyword) throws Exception {
 		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertPartNumberWhenUPCOrMPNIsGiven(splitIntoTwo[0]),"Searched Part number is not displayed.");
+		Assert.assertTrue(assertForPartNumber(splitIntoTwo[0]),"Searched Part number is not displayed.");
+		Assert.assertTrue(assertForUPC(splitIntoTwo[1]),"Searched UPC is not displayed.");
+		
 		
 	}
 
 
-	private boolean assertPartNumberWhenUPCOrMPNIsGiven(String partNumber) {
+	private boolean assertForPartNumber(String partNumber) throws InterruptedException {
 		try
 		{
 			List <WebElement> partNumberValueInSKUModeLocators = driver.findElements(By.xpath("//span[contains(@id,'partNumber')]"));
+			
 			for(WebElement partNumberValueInSKUModeLocator : partNumberValueInSKUModeLocators)
 			{
 				if(partNumberValueInSKUModeLocator.getText().trim().equals(partNumber))
@@ -829,34 +837,107 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 			
 			if(moreChoicesButtonLocator.size()>=1)
 			{
+				
 				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
 				{
 					moreChoicesButtonLocator.get(i).click();
-					if(partNumbersAboveLocators.get(i).getText().trim().equals(partNumber))
+					Thread.sleep(1500);
+					for(int j = 0 ; j < partNumbersAboveLocators.size() ; j++)
+					{
+					if(partNumbersAboveLocators.get(j).getText().trim().equals(partNumber))
 					{
 						return true;
+					}
 					}
 				}
 			}
 			
 		}
-		catch(Exception e)
+		catch(NoSuchElementException e)
 		{
-				if(moreChoicesButtonLocator.size()>=1)
+			if(moreChoicesButtonLocator.size()>=1)
+			{
+				
+				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
 				{
-					for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
+					
+					moreChoicesButtonLocator.get(i).click();
+					Thread.sleep(1500);
+					for(int j = 0 ; j < partNumbersAboveLocators.size() ; j++)
 					{
-						moreChoicesButtonLocator.get(i).click();
-						if(partNumbersAboveLocators.get(i).getText().trim().equals(partNumber))
-						{
-							return true;
-						}
+					if(partNumbersAboveLocators.get(j).getText().trim().equals(partNumber))
+					{
+						return true;
+					}
 					}
 				}
+			}
 		}
 		
 		return false;
 	}
+	
+	private boolean assertForUPC(String upc) throws Exception {
+		try
+		{
+			List <WebElement> partNumberValueInSKUModeLocators = driver.findElements(By.xpath("//b[contains(text(),'UPC')]/following-sibling::span"));
+			for(WebElement partNumberValueInSKUModeLocator : partNumberValueInSKUModeLocators)
+			{
+				if(partNumberValueInSKUModeLocator.getText().trim().equals(upc))
+				{
+					return true;
+				}
+			}
+			
+			if(moreChoicesButtonLocator.size()>=1)
+			{
+				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
+				{
+					
+					moreChoicesButtonLocator.get(i).click();
+					Thread.sleep(2000);
+					for(int j = 0 ; j < moreChoicesProductModeImagesLocator.size() ; j++)
+					{
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(j));
+					Thread.sleep(1500);
+					if(upcValueInProductModeLocator.getText().trim().equals(upc))
+					{
+						return true;
+					}
+					}
+					
+				}
+			}
+			
+		}
+		catch(NoSuchElementException e)
+		{
+			if(moreChoicesButtonLocator.size()>=1)
+			{
+			for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
+			{
+			
+				moreChoicesButtonLocator.get(i).click();
+				Thread.sleep(2000);
+				for(int j = 0 ; j < moreChoicesProductModeImagesLocator.size() ; j++)
+				{
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(j));
+				Thread.sleep(1500);
+				if(upcValueInProductModeLocator.getText().trim().equals(upc))
+				{
+					return true;
+				}
+				}
+				
+			}
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
 
 
 	public ProductsListPageObjects clickOnShowResultsDropdown() {

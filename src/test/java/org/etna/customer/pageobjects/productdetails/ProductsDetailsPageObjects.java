@@ -183,6 +183,8 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	@FindBy(xpath="//a[@title='Send this Page']")
 	private WebElement shareLocator;
 	
+	@FindAll(value={@FindBy(xpath="//td[contains(@class,'tabelImage')]/descendant::span[not(contains(@id,'quantityBreakPricingDetails')) and not(contains(@class,'imgForSend'))]")})
+	private List<WebElement> partNumberUnderProductChoicesLocator;
 	
 	@Step("verify whether the item name contains {0}")
 	public ProductsDetailsPageObjects verifyDisplayOfItemName(String searchText) {
@@ -559,17 +561,72 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	}
 	
 	@Step("verify part number is {0}")
-	public ProductsDetailsPageObjects verifyPartNumberInProductDetailsPage(String searchTextForEnlargeImageTest) {
-	Assert.assertEquals(partNumberValueLocator.getText().trim(), searchTextForEnlargeImageTest);
+	public ProductsDetailsPageObjects verifyPartNumberInProductDetailsPage(String searchPartNumber) throws Exception {
+	try
+	{
+	Assert.assertEquals(partNumberValueLocator.getText().trim(), searchPartNumber);
+	}
+	catch(NoSuchElementException e)
+	{
+		
+			Assert.assertTrue(assertPartNumberUnderProductChoices(searchPartNumber),"Searched Part Number is not displayed in product details page");
+	}
 	return this;	
 	}
 
+	public boolean assertPartNumberUnderProductChoices(String searchPartNumber) throws Exception
+	{
+		
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement partNumberUnderProductChoiceLocator : partNumberUnderProductChoicesLocator)
+			{
+				Waiting.explicitWaitVisibilityOfElement(partNumberUnderProductChoiceLocator, 10);
+					if(partNumberUnderProductChoiceLocator.getText().trim().equals(searchPartNumber))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
+	}
+
 	@Step("verify mpn is {0}")
-	public ProductsDetailsPageObjects verifyManufacturerPartNumberInProductDetailsPage(String searchTextForMPNTest) {
-		Assert.assertEquals(mpnValueLocator.getText().trim(), searchTextForMPNTest);
+	public ProductsDetailsPageObjects verifyManufacturerPartNumberInProductDetailsPage(String searchTextForMPNTest) throws Exception {
+		Assert.assertTrue(itemTitleLocator.getText().trim().contains(searchTextForMPNTest),"Name of the product does not contain MPN "+searchTextForMPNTest);
+		try
+		{
+			Assert.assertEquals(mpnValueLocator.getText().trim(), searchTextForMPNTest);
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(assertMPNUnderProductChoices(searchTextForMPNTest),"MPN is not presenet");
+		}
 		return this;
 	}
 
+	private boolean assertMPNUnderProductChoices(String searchTextForMPNTest) throws Exception
+	{
+		
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement productChoiceImage : productChoicesImagesLocator)
+			{
+				
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",productChoiceImage);
+				Thread.sleep(2000);
+				Waiting.explicitWaitVisibilityOfElement(mpnValueLocator, 10);
+					if(mpnValueLocator.getText().trim().equals(searchTextForMPNTest))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
+	}
+	
+	
+	
 	@Step("verify UPC is {0}")
 	public ProductsDetailsPageObjects verifyUPCInProductDetailsPage(String searchTextForUPCLabelTest) throws Exception {
 		
