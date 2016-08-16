@@ -324,6 +324,7 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String tabDelimitedFilePathForImproperValues = PropertyFileReader.propertiesReader(searchData, "tabDelimitedFilePathForImproperValues");
 	
+	private String partialPartNumber = PropertyFileReader.propertiesReader(searchData, "partialPartNumber");
 	
 	
 	public String getCopyRightsOfUnilogText() {
@@ -1152,6 +1153,11 @@ public String getInvalidNumberAlertText() {
 public String getTabDelimitedFilePathForImproperValues() {
 	
 	return tabDelimitedFilePathForImproperValues;
+}
+
+public String getPartialPartNumber() {
+	// TODO Auto-generated method stub
+	return partialPartNumber;
 }
 
 }

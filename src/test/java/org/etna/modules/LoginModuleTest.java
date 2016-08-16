@@ -180,7 +180,6 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  {
 		loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
-		loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		   homePage()
 		  .clickLoginLink()
@@ -238,7 +237,6 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  {  
 		loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
-		loginAsASuperUser(); 
 		  String searchText = data.getSearchText();
 		  homePage()
 		  .searchText(searchText)

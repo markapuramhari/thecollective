@@ -65,7 +65,10 @@ public class ComparePageObjects extends PageFactoryInitializer
 	private List<WebElement> partNumberValuesLocator;
 	
 	@FindAll(value={@FindBy(xpath="//a[contains(text(),'Add To Cart') and not(contains(@class,'disable'))]")})
-	private List<WebElement> addToCartButtonsLocator;
+	private List<WebElement> addToCartButtonsWhichAreNotDisabledLocator;
+	
+	@FindBy(xpath="//a[contains(@class,'disable')]")
+	private List<WebElement> addToCartButtonsWhichAreDisabledLocator;
 	
 	@FindAll(value={@FindBy(xpath="//label[@class='customCheckBox2']")})
 	private List<WebElement> removeCheckboxesLocator;
@@ -280,10 +283,9 @@ public class ComparePageObjects extends PageFactoryInitializer
 	}
 
 	public ComparePageObjects verifyAddToCartbuttonIsDisabled() {
-		for(int i = 0 ; i<addToCartButtonsLocator.size() ; i++)
-		{
-			Assert.assertTrue(addToCartButtonsLocator.get(i).getAttribute("class").contains("disable"));
-		}
+		
+			Assert.assertTrue(addToCartButtonsWhichAreDisabledLocator.get(0).isDisplayed(),"Add to cart button is not displayed.");
+		
 		return this;
 	}
 

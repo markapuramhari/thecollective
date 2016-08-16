@@ -1,33 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Etna Automation Suite">
-	<listeners>
-        	<listener class-name="org.etna.maincontroller.MainController"/>
-        	<listener class-name="org.etna.utils.ReportGenerator"/>
-  	</listeners>
-  
-    <test name="Regression Testing">
-  	<groups>
-  		<run>
-  			<include name="regression"/>
-  		</run>
-  	</groups>
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Etna Automation Suite]">
+  <listeners>
+    <listener class-name="org.etna.maincontroller.MainController"/>
+    <listener class-name="org.etna.utils.ReportGenerator"/>
+  </listeners>
+ <test name="Regression Testing(failed)(failed)(failed)">
+    <groups>
+      <run>
+        <include name="regression"/>
+      </run>
+    </groups>
     <classes>
-      <class name="org.etna.modules.MyAccountDashboardModuleTest"/>
-      <class name="org.etna.modules.OrderFulFillmentModuleTest"/>
-      <class name="org.etna.modules.LoginModuleTest"/>
-      <class name="org.etna.modules.ForgotPasswordModuleTest"/>
-      <class name="org.etna.modules.MyProductGroupModuleTest"/>
-      <class name="org.etna.modules.MyCartModuleTest"/>
-      <class name="org.etna.modules.SaveCartModuleTest"/>
-      <class name="org.etna.modules.APAModuleTest"/>
-      <class name="org.etna.modules.ShopByBrandsModuleTest"/>
-      <class name="org.etna.modules.GeneralSearchModuleTest"/>
-      <class name="org.etna.modules.QuickOrderPadModuleTest"/>
-      <class name="org.etna.modules.CompareModuleTest"/>
-      <class name="org.etna.modules.PDPModuleTest"/>
-      <class name="org.etna.modules.RegistrationModuleTest"/>
-      <class name="org.etna.modules.CategoryModuleTest"/>
-      <class name="org.etna.modules.HomePageModuleTest"/>
+      <class name="org.etna.modules.APAModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.APAModuleTest -->
+      <class name="org.etna.modules.PDPModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="TC_PDP_008_PrintFunctionalityTest"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.PDPModuleTest -->
+      <class name="org.etna.modules.CategoryModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="TC_categories_003_navigateProductDetailsPage"/>
+          <include name="TC_categories_004_verifyBanners"/>
+          <include name="startRecording"/>
+          <include name="TC_categories_003_navigateProductListPage"/>
+          <include name="TC_categories_005_ClickingOnImages"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.CategoryModuleTest -->
+      <class name="org.etna.modules.RegistrationModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="beforeSuite"/>
+          <include name="tearDown"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.RegistrationModuleTest -->
+      <class name="org.etna.modules.CompareModuleTest">
+        <methods>
+          <include name="addToCartButtonCallForPriceDisable"/>
+          <include name="setUp"/>
+          <include name="verifyComparePage_SKUMode"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.CompareModuleTest -->
+      <class name="org.etna.modules.MyProductGroupModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="quantityZeroBulkUpdate"/>
+          <include name="verifyMyProductGroupPage"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.MyProductGroupModuleTest -->
+      <class name="org.etna.modules.QuickOrderPadModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="startRecording"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.QuickOrderPadModuleTest -->
+      <class name="org.etna.modules.GeneralSearchModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="verifySearchFunctionality_Autocomplete_productCategory"/>
+          <include name="startRecording"/>
+          <include name="verifySearchFunctionality_PartialPartNumber"/>
+          <include name="callStopRecording"/>
+        </methods>
+      </class> <!-- org.etna.modules.GeneralSearchModuleTest -->
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test> <!-- Regression Testing(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Etna Automation Suite] -->

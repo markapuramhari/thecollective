@@ -55,6 +55,8 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 	   {
 	  String searchText = data.getSearchTextForEnlargeImageTest();
 	     loginModule.loginAsASuperUser();
+	     homePage().logout();
+	     loginModule.loginAsASuperUser();
 	      myCartPage()
 	    .clearCart();
 	     Thread.sleep(1500);
@@ -77,7 +79,9 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ORDERFULLFILLMENT_002")
 	public void orderFullFillmentFlow_ErrorScenario_WhenEmailIdIsNotProvidedInShippingDetails() throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		 loginModule.loginAsASuperUser();
+	     homePage().logout();
+	     loginModule.loginAsASuperUser();
 		homePage().searchText(data.getSearchTextForEnlargeImageTest()).clickOnSearch()
 		.productDetailsPage()
 		.clickOnAddToCartButton()
@@ -99,7 +103,9 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 	@TestCaseId("{0}")
 	public void orderFullFillment_ES(String testCaseId, String orderType,String orderedBy,String purchaseOrder,String errorMessage) throws Exception
 	{
-		loginModule.loginAsASuperUser();
+		 loginModule.loginAsASuperUser();
+	     homePage().logout();
+	     loginModule.loginAsASuperUser();
 		homePage().searchText(data.getSearchTextForEnlargeImageTest()).clickOnSearch()
 		.productDetailsPage()
 		.clickOnAddToCartButton()

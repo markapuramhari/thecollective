@@ -224,9 +224,8 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 			.productDetailsPage()
 			.enterQuanityInProductDetailsPage(quantity)
 			.clickOnAddToCartButton()
-			 .myCartPage()
-			 .clickOnCheckoutInMyCartPopup()
-			 .checkWhetherItIsTheSameQuantity(quantity);
+			.loginPopUp()
+			.verifyLoginPopUp();
 	  }
 	  
 	@Features("My Cart Module")

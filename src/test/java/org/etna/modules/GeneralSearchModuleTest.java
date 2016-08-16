@@ -35,9 +35,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifySearchFunctionality_Autocomplete_productCategory() throws Exception
 	  {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		 
 				String category = data.getProductCategory();
 				String partialSubCategory = category.substring(0,category.indexOf(" "));
 				verifyInvalidSearch();
@@ -72,7 +70,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-				String partNumber = data.getSearchTextForAnotherItem();
+				String partNumber = data.getPartialPartNumber();
 				String partialPartNumber = partNumber.substring(0, 2);
 		  		homePage()
 		  		.searchText(partialPartNumber)

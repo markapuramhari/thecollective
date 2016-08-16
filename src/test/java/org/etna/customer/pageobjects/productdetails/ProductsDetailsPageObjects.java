@@ -37,7 +37,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	@FindBy(xpath="//input[@class='quantity']")
 	public WebElement quantityTextbox;
 	
-	@FindBy(xpath="//a[@class='log-addTocart-btn addToCart']")
+	@FindBy(xpath="//a[contains(@class,'log-addTocart-btn')]")
 	private WebElement addToCartButton;
 	
 	@FindBy(xpath="(//a[contains(text(),'Checkout')])[2]")

@@ -613,6 +613,13 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		addToCompareCheckboxesInSKUModeCallForPriceLocator.get(specificSKUModeCompareCheckbox-1).click();
 		return this;
 	}
+	
+	@Step("click on {0} compare checkboxes")
+	public ProductsListPageObjects clickOnSpecificAddToCompareCheckboxInSKUMode(int specificCheckboxInSKUMode)
+	{
+		addToCompareCheckboxesInSKUModeLocator.get(specificCheckboxInSKUMode-1).click();
+		return this;
+	}
 
 
 	@Step("verify the list of products contains both brand name and mpn")

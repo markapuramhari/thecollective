@@ -130,9 +130,7 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight similar,all the attributes that are similar should show up in green.")
 	  public void highlightSimilarButtonVerification() throws Exception
 	  {  		
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+	
 		compare_Two_Items();
 		comparePage()
 		.clickOnHighLightSimilar()
@@ -147,9 +145,7 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight different,all the attributes that are different should show up in red.")
 	  public void highlightDifferentButtonVerification() throws Exception
 	  {  		
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		
 		compare_Two_Items();
 		comparePage()
 		.clickOnHighlightDifferent()
@@ -164,9 +160,7 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies that on clicking highlight off,all the attributes that were highlighted should show revert back.")
 	  public void highlightOffButtonVerification() throws Exception
 	  {  		
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		
 		compare_Two_Items();
 		String colourOfHighlightDifferentAttributes  = comparePage()
 		.clickOnHighlightDifferent()
@@ -187,8 +181,14 @@ public class CompareModuleTest extends PageFactoryInitializer{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-		compare_Two_Items();	
-		comparePage()
+		homePage()
+  		.searchText(data.getSearchBrand())
+  		.clickOnSearch()
+  		.productListPage()
+		.clickOnAddToCompareCheckboxWhichIsInSKUModeCallForPrice(1)
+		.clickOnSpecificAddToCompareCheckboxInSKUMode(2)
+		.clickOnCompareLink()
+		.comparePage()
 		.verifyAddToCartbuttonIsDisabled();
 	}	
 	
@@ -278,8 +278,6 @@ public class CompareModuleTest extends PageFactoryInitializer{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-		LoginModuleTest login = new LoginModuleTest();
-		login.loginAsASuperUser();
 		homePage()
   		.searchText(data.getSearchText())
   		.clickOnSearch()
@@ -325,9 +323,7 @@ public class CompareModuleTest extends PageFactoryInitializer{
 	@Description("This is a test case which verifies the alert text when we are trying to remove an item when there are only two items while comparing.")
 	  public void verify_AlertText_Remove_WhenTwoItemsArePresent() throws Exception
 	  {  		
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+	
 		compare_Two_Items();
 		comparePage()
 		.clickOnSpecficRemoveCheckbox(1)
@@ -486,8 +482,10 @@ public class CompareModuleTest extends PageFactoryInitializer{
   		.searchText(data.getSearchBrand())
   		.clickOnSearch()
   		.productListPage()
-  		.clickOnAddToCompareCheckboxWhichIsInSKUModeCallForPrice(1)
-  		.clickOnAddToCompareCheckboxWhichIsInSKUModeCallForPrice(2)
+  		.clickOnSpecificAddToCompareCheckboxInSKUMode(1)
+  		.clickOnSpecificAddToCompareCheckboxInSKUMode(2)
+  		/*.clickOnAddToCompareCheckboxWhichIsInSKUModeCallForPrice(1)
+  		.clickOnAddToCompareCheckboxWhichIsInSKUModeCallForPrice(2)*/
   		.clickOnCompareLink()
   		.comparePage()
   		.verifyCompareHeaderAndBreampCrumpAndTitle(data.getComparePageName(),setUp.getProductName())
