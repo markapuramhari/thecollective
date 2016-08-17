@@ -636,7 +636,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		}
 		catch(NoSuchElementException e)
 		{
-			Assert.assertTrue(assertUPC(searchTextForUPCLabelTest));
+			Assert.assertTrue(assertUPC(searchTextForUPCLabelTest),"Searched UPC is not displayed");
 		}
 		return this;
 	}
@@ -706,6 +706,14 @@ return this;
 		Waiting.explicitWaitVisibilityOfElement(By.xpath("//a[@title='Send this Page']"), 5);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",shareLocator);
 		return sharePage();
+	}
+
+	
+
+	public ProductsDetailsPageObjects verifyBrandNameOrMPNInNameOfTheProduct(String brandNameOrMPN) {
+		
+		Assert.assertTrue(itemTitleLocator.getText().trim().toLowerCase().contains(brandNameOrMPN.toLowerCase()) ,"Name of the product is "+itemTitleLocator.getText().trim().toLowerCase()+" But expecting "+brandNameOrMPN.toLowerCase());
+		return this;
 	}	
 }
 

@@ -60,12 +60,14 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_Searchv2_001")
 	public void keyword_ExactMatching_BNOrMPN(String testCaseId,@Parameter("Brand Name Or MPN") String searchKeyword) throws Exception
 	{
-		 
+		 String [] searchKeyWordArray = searchKeyword.split(" ");
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
-		.productListPage()
-		.verifyBrandNameOrMPNProductListPage(searchKeyword);
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0])
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[1])
+		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[1]);
 	}
 	
 	@Features("Search V2")
@@ -74,12 +76,14 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_Searchv2_002")
 	public void keyword_ExactMatch_PNOrMPN(String testCaseId,@Parameter("Part Number Or MPN") String searchKeyword) throws Exception
 	{
-		 
+		String [] searchKeyWordArray = searchKeyword.split(" ");
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
-		.productListPage()
-		.verifyPartNumberOrMPNProductListPage(searchKeyword);
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[1])
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[0])
+		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[1]);
 	}
 	
 	
@@ -89,12 +93,13 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@TestCaseId("{0}")
 	public void keyword_ExactMatch_BNOrPN(String testCaseId,@Parameter("Brand Name Or Part Number") String searchKeyword) throws Exception
 	{
-		 
+		String [] searchKeyWordArray = searchKeyword.split(" ");
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
-		.productListPage()
-		.verifyBrandNameOrPartNumberProductListPage(searchKeyword);
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0])
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[1]);
 	}
 	
 	@Features("Search V2")
@@ -103,25 +108,28 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@TestCaseId("{0}")
 	public void keyword_ExactMatch_BNOrUPC(String testCaseId,@Parameter("Brand Name Or UPC") String searchKeyword) throws Exception
 	{
-		 
+		String [] searchKeyWordArray = searchKeyword.split(" ");
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
-		.productListPage()
-		.verifyBrandNameOrUPCProductListPage(searchKeyword);
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0])
+		.verifyUPCInProductDetailsPage(searchKeyWordArray[1]);
 	}
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keyword_ExactMatching_PNOrUPC(String testCaseId,@Parameter("Part Number Or UPC") String searchKeyword) throws Exception
+	public void keyword_ExactMatching_UPCOrPN(String testCaseId,@Parameter("UPC Or Part Number") String searchKeyword) throws Exception
 	{
+		String [] searchKeyWordArray = searchKeyword.split(" ");
 		homePage()
 		.searchText(searchKeyword)
 		.clickOnSearch()
-		.productListPage()
-		.verifyPartNumberOrUPCProductListPage(searchKeyword);
+		.productDetailsPage()
+		.verifyUPCInProductDetailsPage(searchKeyWordArray[0])
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[1]);
 	}
 }
 
