@@ -182,6 +182,7 @@ public void beforeSuite() throws Exception{
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Windows/IEDriverServer.exe");
 			driver=new InternetExplorerDriver();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		}
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))

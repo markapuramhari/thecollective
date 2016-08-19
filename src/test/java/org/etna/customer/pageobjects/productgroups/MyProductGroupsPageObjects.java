@@ -70,9 +70,9 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 
 
 	@FindBy(id="sortByBrand")
-	private WebElement sortByOptionsLocator;
+	private WebElement sortByLocator;
 	
-	@FindAll(value={@FindBy(xpath="//select[@id='sortByBrand']/option")})
+	@FindAll(value={@FindBy(xpath="//div[@id='sortByBrand_chosen']/descendant::li")})
 	private List<WebElement> sortByOptionsTextLocator;
 	
 	
@@ -119,6 +119,8 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//table/descendant::input[contains(@id,'chkSelectall')]")
 	private WebElement selectAllCheckboxLocator;
 	
+	@FindBy(xpath="//div[@id='sortByBrand_chosen']/a")
+	private WebElement sortByDropdownLocator;
 	
 	@Step("click on {0} group")
 	public MyProductGroupsPageObjects clickOnTheGroupCreated(String myProductGroupName) {
@@ -237,17 +239,17 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("verify my product group page after clicking on the product")
-	public MyProductGroupsPageObjects verifyMyProductGroupPageAfterClickingOnTheProduct() {
-		Assert.assertTrue(sortByOptionsLocator.isDisplayed());
-		Assert.assertTrue(resultsPerPageLocator.isDisplayed());
-		Assert.assertTrue(myProductGroupCartSection.isDisplayed());
-		Assert.assertTrue(clearSearchButtonLocator.isDisplayed());		
-		Assert.assertTrue(serachGoButtonLocator.isDisplayed());		
-		Assert.assertTrue(searchTextboxLocator.isDisplayed());
-		Assert.assertTrue(bulkOptionsLocator.isDisplayed());
-		Assert.assertTrue(editGroupNameButtonLocator.isDisplayed());
-		Assert.assertTrue(deleteGroupButtonLocator.isDisplayed());
-		Assert.assertTrue(changeViewLocator.isDisplayed());
+	public MyProductGroupsPageObjects verifyMyProductGroupPageAfterClickingOnTheProduct() throws InterruptedException {
+		Assert.assertTrue(changeViewLocator.isDisplayed(),"Change view dropdown is not displayed.");
+		Assert.assertTrue(sortByLocator.isDisplayed(),"Sort By options is not displayed.");
+		Assert.assertTrue(resultsPerPageLocator.isDisplayed(),"Results Per page is not displayed.");
+		Assert.assertTrue(myProductGroupCartSection.isDisplayed(),"My Product Group Cart Section is not displayed.");
+		Assert.assertTrue(clearSearchButtonLocator.isDisplayed(),"Clear search is not displayed.");		
+		Assert.assertTrue(serachGoButtonLocator.isDisplayed(),"Search Go button is not displayed.");		
+		Assert.assertTrue(searchTextboxLocator.isDisplayed(),"Search textbox is not displayed.");
+		Assert.assertTrue(bulkOptionsLocator.isDisplayed(),"Bulk options is not displayed.");
+		Assert.assertTrue(editGroupNameButtonLocator.isDisplayed(),"Edit group name button is not displayed.");
+		Assert.assertTrue(deleteGroupButtonLocator.isDisplayed(),"Delete group name button is not displayed.");
 		return this;
 	}
 
@@ -372,7 +374,9 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("verify no items in group message.")
-	public MyProductGroupsPageObjects verifySortByDrodown(String[] expectedSortByDropdownOptions) {
+	public MyProductGroupsPageObjects verifySortByDrodown(String[] expectedSortByDropdownOptions) throws InterruptedException {
+		Thread.sleep(3500);
+		sortByDropdownLocator.click();
 		for(int i = 0 ; i<sortByOptionsTextLocator.size() ; i++)
 		{
 		Assert.assertEquals(sortByOptionsTextLocator.get(i).getText().trim(), expectedSortByDropdownOptions[i]);

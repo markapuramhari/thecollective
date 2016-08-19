@@ -131,5 +131,143 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 		.verifyUPCInProductDetailsPage(searchKeyWordArray[0])
 		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[1]);
 	}
+	
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_WC_ExactMatch_PNOrMPN(String testCaseId,@Parameter("PN Or MPN") String searchKeyword) throws Exception
+	{
+		
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_WC_ExactMatch_BNOrPN(String testCaseId,@Parameter("BN Or MPN") String searchKeyword) throws Exception
+	{
+		
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_WC_ExactMatch_BNOrUPC(String testCaseId,@Parameter("BN Or UPC") String searchKeyword) throws Exception
+	{
+		
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_WC_ExactMatch_UPCOrPN(String testCaseId,@Parameter("UPC Or PN") String searchKeyword) throws Exception
+	{
+	
+	}	
+	
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for Brand Name or MPN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_OrCond_BrandNameOrMPN(String testCaseId,@Parameter("BN Or MPN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("OR");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("OR","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0])
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[1]);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for MPN or PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_OrCond_MPNOrPN(String testCaseId,@Parameter("MPN Or PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("OR");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("OR","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim())
+		.verifyPartNumberInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for BN or PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_OrCond_BNOrPN(String testCaseId,@Parameter("BN Or PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("OR");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("OR","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim())
+		.verifyPartNumberInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for BN or UPC in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_OrCond_BNOrUPC(String testCaseId,@Parameter("BN Or UPC") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("OR");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("OR","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim());
+		productListPage()
+		.verifyUPCInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for UPC Or PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_OrCond_PNOrUPC(String testCaseId,@Parameter("UPC Or PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("OR");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("OR","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyUPCInProductListPage(searchKeyWordArray[0].trim());
+		driver.navigate().refresh();
+		productListPage().verifyPartNumberInProductListPage(searchKeyWordArray[1].trim());
+		
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies Or condition of the search keyword for BN AND MPN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_AndCond_BNAndMPN(String testCaseId,@Parameter("BN And MPN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("AND");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("AND","").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0].trim())
+		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
 }
 

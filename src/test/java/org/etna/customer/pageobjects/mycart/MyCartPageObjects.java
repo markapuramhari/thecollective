@@ -50,7 +50,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//a[contains(text(),'Empty Cart')]")
 	private WebElement emptyCartButton;
 
-	@FindBy(xpath="//li/a[@title='View cart']")
+	@FindBy(xpath="//li[@class='cartCountDisplayLi']/a[@title='View cart']")
 	private WebElement cartButtonInTopNavigationMenu;
 	
 	@FindBy(xpath="//h4[text()='No items in your shopping cart']")

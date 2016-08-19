@@ -153,8 +153,6 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//span[text()='ADD TO COMPARE']")})
 	private List<WebElement> addToCompareCheckboxesInSKUModeLocator;
 	
-	
-	
 	@FindAll(value={@FindBy(xpath="//a[@class='log-addTocart-btn btns-disable']/ancestor::li/following-sibling::div/descendant::span[contains(text(),'ADD TO COMPARE')]")})
 	private List<WebElement> addToCompareCheckboxesInSKUModeCallForPriceLocator;
 	
@@ -172,12 +170,11 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	@FindAll(value={@FindBy(xpath="//b[contains(text(),'UPC')]/following-sibling::span")})
 	private List<WebElement> upcValueInSKUModeLocator;
-	
-	
+
 	@FindAll(value={@FindBy(xpath="//span[contains(@id,'partNumber')]")})
 	private List<WebElement> partNumberValueInSKUModeLocator;
 	
-	@FindAll(value={@FindBy(xpath="//td[@class='tabelImage details-control']/span")})
+	@FindAll(value={@FindBy(xpath="//td[@class='tabelImage details-control']/span[@class='partNum']")})
 	private List<WebElement> partNumbersAboveLocators;
 	
 	@FindBy(xpath="//div[@id='resultPerPage_chosen']/a")
@@ -646,298 +643,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		}
 		return false;
 }
-	
 
-
-	public boolean assertPartNumberProductListPage(String searchKeyword,String mpnOrBrand) throws InterruptedException {
-		Thread.sleep(1700);
-		try
-		{
-		if(driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/following-sibling::li/descendant::div[@class='itemCountList']/button")).isDisplayed())
-			{
-			driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/following-sibling::li/descendant::div[@class='itemCountList']/button")).click();
-			Thread.sleep(3000);
-			List<WebElement> partNumbersAboveLocators = driver.findElements(By.xpath("//td[@class='tabelImage details-control']/span"));	
-			for(int i = 0 ; i <  partNumbersAboveLocators.size() ; i++)
-			{
-				if(partNumbersAboveLocators.get(i).getText().trim().equals(searchKeyword))
-				{
-				return true;
-				}
-				
-			}
-			for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
-			{
-			if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-				{
-				return true;
-				}	
-			}	
-			}
-	   }	
-		catch(NoSuchElementException e)
-		{
-			try
-			{
-				if(driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/preceding-sibling::li/descendant::div[@class='itemCountList']/button")).isDisplayed())
-				{
-				driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/preceding-sibling::li/descendant::div[@class='itemCountList']/button")).click();
-				Thread.sleep(3000);
-					
-				for(int i = 0 ; i <  partNumbersAboveLocators.size() ; i++)
-				{
-					if(partNumbersAboveLocators.get(i).getText().trim().equals(searchKeyword))
-					{
-					return true;
-					}
-					
-				}
-				for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
-				{
-					{
-					if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-						{
-						return true;
-						}	
-					}
-				}
-			 }
-			}
-			catch(NoSuchElementException e1)
-			{
-				for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
-				{
-					{
-					if(partNumberValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-						{
-						return true;
-						}	
-					}
-				}
-			}
-		}
-		return false;
-	}
-	
-	public ProductsListPageObjects verifyPartNumberOrMPNProductListPage(String searchKeyword) throws Exception{
-		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(splitIntoTwo[1]),"Manufacturer Part Number is not displayed in the product list page.");
-		Assert.assertTrue(assertPartNumberProductListPage(splitIntoTwo[0],splitIntoTwo[1]),"Part number is not displayed in the product list page.");
-		return this;
-	}
-
-
-	public ProductsListPageObjects verifyBrandNameOrPartNumberProductListPage(String searchKeyword) throws InterruptedException {
-		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(splitIntoTwo[0]),"Brand name is not displayed in the product list page.");
-		Assert.assertTrue(assertPartNumberProductListPage(splitIntoTwo[1],splitIntoTwo[0]),"Part number is not displayed in the product list page.");	
-		return this;
-	}
-
-
-	public ProductsListPageObjects verifyBrandNameOrUPCProductListPage(String searchKeyword) throws Exception {
-		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(splitIntoTwo[0]),"Brand name is not displayed in the product list page.");
-		Assert.assertTrue(assertUPCProductListPage(splitIntoTwo[1],splitIntoTwo[0]),"UPC is not displayed in the product list page.");	
-		return this;
-	}
-
-
-	private boolean assertUPCProductListPage(String searchKeyword, String mpnOrBrand) throws Exception{
-		Thread.sleep(1700);
-		try
-		{
-		if(driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/following-sibling::li/descendant::div[@class='itemCountList']/button")).isDisplayed())
-			{
-			driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/following-sibling::li/descendant::div[@class='itemCountList']/button")).click();
-			Thread.sleep(3000);
-			for(int i = 0 ; i<moreChoicesProductModeImagesLocator.size(); i ++)
-			{
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(i));
-				Thread.sleep(1500);
-				if(upcValueInProductModeLocator.getText().trim().equals(searchKeyword))
-				{
-				return true;
-				}
-				
-			}
-			}
-		for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
-		{
-			if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-			{
-				return true;
-			}	
-		}
-	   }	
-		catch(NoSuchElementException e)
-		{
-			try
-			{
-			if(driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/preceding-sibling::li/descendant::div[@class='itemCountList']/button")).isDisplayed())
-				{
-				driver.findElement(By.xpath("//a[not(contains(text(),'"+mpnOrBrand+"'))]/ancestor::li/preceding-sibling::li/descendant::div[@class='itemCountList']/button")).click();
-				Thread.sleep(3000);
-				for(int i = 0 ; i<moreChoicesProductModeImagesLocator.size(); i ++)
-				{
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(i));
-					Thread.sleep(1500);
-					if(upcValueInProductModeLocator.getText().trim().equals(searchKeyword))
-					{
-					return true;
-					}
-					
-				}
-				}
-			for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
-			{
-				if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-				{
-					return true;
-				}	
-			}
-		   }	
-			catch(NoSuchElementException e1)
-			{
-				for(int i = 0 ; i <upcValueInSKUModeLocator.size() ; i++)
-				{
-					if(upcValueInSKUModeLocator.get(i).getText().trim().equals(searchKeyword))
-					{
-						return true;
-					}	
-				}
-			}
-		}
-		return false;
-
-	}
-
-
-	public void verifyPartNumberOrUPCProductListPage(String searchKeyword) throws Exception {
-		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertForPartNumber(splitIntoTwo[0]),"Searched Part number is not displayed.");
-		Assert.assertTrue(assertForUPC(splitIntoTwo[1]),"Searched UPC is not displayed.");
-		
-		
-	}
-
-
-	private boolean assertForPartNumber(String partNumber) throws InterruptedException {
-		try
-		{
-			List <WebElement> partNumberValueInSKUModeLocators = driver.findElements(By.xpath("//span[contains(@id,'partNumber')]"));
-			
-			for(WebElement partNumberValueInSKUModeLocator : partNumberValueInSKUModeLocators)
-			{
-				if(partNumberValueInSKUModeLocator.getText().trim().equals(partNumber))
-				{
-					return true;
-				}
-			}
-			
-			if(moreChoicesButtonLocator.size()>=1)
-			{
-				
-				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
-				{
-					moreChoicesButtonLocator.get(i).click();
-					Thread.sleep(1500);
-					for(int j = 0 ; j < partNumbersAboveLocators.size() ; j++)
-					{
-					if(partNumbersAboveLocators.get(j).getText().trim().equals(partNumber))
-					{
-						return true;
-					}
-					}
-				}
-			}
-			
-		}
-		catch(NoSuchElementException e)
-		{
-			if(moreChoicesButtonLocator.size()>=1)
-			{
-				
-				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
-				{
-					
-					moreChoicesButtonLocator.get(i).click();
-					Thread.sleep(1500);
-					for(int j = 0 ; j < partNumbersAboveLocators.size() ; j++)
-					{
-					if(partNumbersAboveLocators.get(j).getText().trim().equals(partNumber))
-					{
-						return true;
-					}
-					}
-				}
-			}
-		}
-		
-		return false;
-	}
-	
-	private boolean assertForUPC(String upc) throws Exception {
-		try
-		{
-			List <WebElement> partNumberValueInSKUModeLocators = driver.findElements(By.xpath("//b[contains(text(),'UPC')]/following-sibling::span"));
-			for(WebElement partNumberValueInSKUModeLocator : partNumberValueInSKUModeLocators)
-			{
-				if(partNumberValueInSKUModeLocator.getText().trim().equals(upc))
-				{
-					return true;
-				}
-			}
-			
-			if(moreChoicesButtonLocator.size()>=1)
-			{
-				for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
-				{
-					
-					moreChoicesButtonLocator.get(i).click();
-					Thread.sleep(2000);
-					for(int j = 0 ; j < moreChoicesProductModeImagesLocator.size() ; j++)
-					{
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(j));
-					Thread.sleep(1500);
-					if(upcValueInProductModeLocator.getText().trim().equals(upc))
-					{
-						return true;
-					}
-					}
-					
-				}
-			}
-			
-		}
-		catch(NoSuchElementException e)
-		{
-			if(moreChoicesButtonLocator.size()>=1)
-			{
-			for(int i = 0 ; i<moreChoicesButtonLocator.size() ; i++)
-			{
-			
-				moreChoicesButtonLocator.get(i).click();
-				Thread.sleep(2000);
-				for(int j = 0 ; j < moreChoicesProductModeImagesLocator.size() ; j++)
-				{
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesProductModeImagesLocator.get(j));
-				Thread.sleep(1500);
-				if(upcValueInProductModeLocator.getText().trim().equals(upc))
-				{
-					return true;
-				}
-				}
-				
-			}
-			}
-		}
-		
-		return false;
-	}
-	
-	
-	
 
 
 	public ProductsListPageObjects clickOnShowResultsDropdown() {
@@ -984,5 +690,108 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 			}
 		}
 		return this;
+	}
+
+
+	public ProductsListPageObjects verifyBrandNameOrMPNInProductListPage(String brandNameOrMPN) {
+		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(brandNameOrMPN),"Brand Name Or MPN is not displayed in the product list page.");
+		return this;
+	}
+
+	public boolean assertPartNumberInSKUModeInProductListPage(String partNumber)
+	{
+		for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
+		{
+			if(partNumberValueInSKUModeLocator.get(i).getText().trim().equalsIgnoreCase(partNumber))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	public ProductsListPageObjects verifyPartNumberInProductListPage(String partNumber) throws InterruptedException {
+		try
+		{
+			if((assertPartNumberInSKUModeInProductListPage(partNumber)))
+			{
+				Assert.assertTrue(assertPartNumberInSKUModeInProductListPage(partNumber),"Part Number is not displayed in product list page.");
+			}
+			Assert.assertTrue(verifyPartNumberInProductMode(partNumber),"Part number is not displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(verifyPartNumberInProductMode(partNumber),"Part number is not displayed in product list page.");
+		}
+		return this;
+	}
+
+
+	private boolean verifyPartNumberInProductMode(String partNumber) throws InterruptedException {
+		for(int i = 0 ; i < moreChoicesButtonLocator.size() ; i++)
+		{
+			moreChoicesButtonLocator.get(i).click();
+			Thread.sleep(3000); 
+			for(int j = 0 ; j <  partNumbersAboveLocators.size() ; j++)
+			{
+				if(partNumbersAboveLocators.get(j).getText().trim().equals(partNumber.trim()))
+				{
+				return true;
+				}
+				
+			}
+		}
+		return false;
+	}
+
+
+	public ProductsListPageObjects verifyUPCInProductListPage(String upc) throws InterruptedException {
+		
+		try
+		{
+			if((assertUPCInSKUModeInProductListPage(upc)))
+			{
+				Assert.assertTrue(assertUPCInSKUModeInProductListPage(upc),"Part Number is not displayed in product list page.");
+			}
+			Assert.assertTrue(verifyUPCInProductMode(upc),"UPC is not displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(verifyUPCInProductMode(upc),"UPC is not displayed in product list page.");
+		}
+		return this;
+	}
+
+
+	private boolean verifyUPCInProductMode(String upc) throws InterruptedException {
+		for(int i = 0 ; i < moreChoicesButtonLocator.size() ; i++)
+		{
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesButtonLocator.get(i));
+			Thread.sleep(3000); 
+			for(int j = 0 ; j <  moreChoicesProductModeImagesLocator.size() ; j++)
+			{
+				
+				moreChoicesProductModeImagesLocator.get(j).click();
+				Thread.sleep(1500); 
+				if(upcValueInProductModeLocator.getText().trim().equals(upc))
+				{
+					return true;
+				}
+					
+			}
+		}
+		return false;
+	}
+
+
+	private boolean assertUPCInSKUModeInProductListPage(String upc) {
+		for(int i = 0 ; i<upcValueInSKUModeLocator.size() ; i++)
+		{
+			if(upcValueInSKUModeLocator.get(i).getText().trim().equalsIgnoreCase(upc))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

@@ -593,7 +593,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 
 	@Step("verify mpn is {0}")
 	public ProductsDetailsPageObjects verifyManufacturerPartNumberInProductDetailsPage(String searchTextForMPNTest) throws Exception {
-		Assert.assertTrue(itemTitleLocator.getText().trim().contains(searchTextForMPNTest),"Name of the product does not contain MPN "+searchTextForMPNTest);
+		
 		try
 		{
 			Assert.assertEquals(mpnValueLocator.getText().trim(), searchTextForMPNTest);

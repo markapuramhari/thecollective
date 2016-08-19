@@ -39,11 +39,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_001,TC_ProductGroup_002,TC_ProductGroup_032,TC_ProductGroup_028,TC_ProductGroup_035")
 	@Test(groups={"regression"})
 	public void verifyCreationAndDeletionOfMyProductGroup_ProductListPage() throws Exception{
+		String searchText = data.getSearchText();
+		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-		String searchText = data.getSearchText();
-		String myProductGroupName = data.getMyProductGroupName();
+		
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -57,7 +60,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnTheGroupCreated(myProductGroupName)
 		.verifyBreadCrump(myProductGroupName)
 		.verifyPageName(myProductGroupName);
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 	}
 	
 	
@@ -66,11 +78,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_003,TC_ProductGroup_004")
 	@Test(groups={"regression"})
 	public void verifyClickingOnSuccessMessageOnGroupCreation_ProductListPage() throws Exception{
+		
+		String searchText = data.getSearchText();
+		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-		String searchText = data.getSearchText();
-		String myProductGroupName = data.getMyProductGroupName();
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -82,7 +97,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnSuccessMessage()
 		.verifyBreadCrump(myProductGroupName)
 		.verifyPageName(myProductGroupName);
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 		
 }	
 	
@@ -92,11 +116,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_005")
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_GridView_ProductListPage() throws Exception {
+	
+		String searchText = data.getSearchText();
+		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
-		String searchText = data.getSearchText();
-		String myProductGroupName = data.getMyProductGroupName();
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -111,7 +138,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnSuccessMessage()
 		.verifyBreadCrump(myProductGroupName)
 		.verifyPageName(myProductGroupName);
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 	}	
 	
 	@Features("My Product Group Module")
@@ -119,6 +155,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_007")
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_errorMessage_BlankText() throws Exception {
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
@@ -132,6 +170,12 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.enterGroupName("")
 		.hitEnter()
 		.verifyAlertMessage(data.getExpectedAlertMessageForBlankData());
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
 	}	
 	
 	@Features("My Product Group Module")
@@ -139,6 +183,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_008")
 	@Test(groups={"regression"})
 	public void verifyMyProductCreation_errorMessage_JustSpaces() throws Exception {
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
@@ -152,6 +198,13 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.enterGroupName("")
 		.hitEnter()
 		.verifyAlertMessage(data.getExpectedAlertMessageForBlankData());
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		
 	}	
 	
 	
@@ -160,11 +213,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_010")
 	@Test(groups={"regression"})
 	public void verifyAddingProductToExsistingMyProductGroup_ListView() throws Exception {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
+		
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -181,7 +237,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnSuccessMessage()
 		.verifyBreadCrump(myProductGroupName)
 		.verifyPageName(myProductGroupName);
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 	}
 	
 	
@@ -190,11 +255,15 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_010")
 	@Test(groups={"regression"})
 	public void verifyAddingProductToExistingMyProductGroup_GridView() throws Exception {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
+		
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
-		loginModule.loginAsASuperUser(); 
+		
+		try
+		{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -216,7 +285,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnSuccessMessage()
 		.verifyBreadCrump(myProductGroupName)
 		.verifyPageName(myProductGroupName);
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 	}	
 	
 	@Features("My Product Group Module")
@@ -224,22 +302,45 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_013,TC_ProductGroup_030,TC_ProductGroup_031,TC_ProductGroup_032,TC_ProductGroup_033")
 	@Test(groups={"regression"})
 	public void verifyMyProductGroupPage() throws Exception {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
-		String myProductGroupNameThatWasClicked = 
-		homePage()
-		.navigateToMyProductGroups()
-		.myProductGroupsPage()
-		.verifyPageTitle(data.getMyProductGroupLandingPageTitle(),setUp.getProductName())
-		.verifyPageNameOfMyProductGroupLandingPage(data.getMyProductGroupsPageName())
-		.verifyBreadCrumpOfMyProductGroupLandingPage(data.getMyProductGroupsPageName())
-		.clickOnSpecficProductGroupAndGetProductName(1);
-		myProductGroupsPage()
-		.verifyPageName(myProductGroupNameThatWasClicked)
-		.verifyBreadCrump(myProductGroupNameThatWasClicked)
-		.verifyPageTitle(data.getMyProductGroupsPageName().replace("My", "").replace("s", "").trim(), setUp.getProductName())
-		.verifyMyProductGroupPageAfterClickingOnTheProduct();
+		
+		String searchText = data.getSearchText();
+		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
+			
+			homePage()
+			.searchText(searchText)
+			.clickOnSearch()
+			.productListPage()
+			.clickOnSpecificMyProductGroupButton(1)
+			.enterGroupName(myProductGroupName)
+			.hitEnter()
+			.verifyMyProductCreationSuccessMsg(myProductGroupName)
+			.homePage()
+			.navigateToMyProductGroups()
+			.myProductGroupsPage()
+			.verifyPageTitle(data.getMyProductGroupLandingPageTitle(),setUp.getProductName())
+			.verifyPageNameOfMyProductGroupLandingPage(data.getMyProductGroupsPageName())
+			.verifyBreadCrumpOfMyProductGroupLandingPage(data.getMyProductGroupsPageName())
+			.clickOnTheGroupCreated(myProductGroupName)
+			.verifyPageName(myProductGroupName)
+			.verifyBreadCrump(myProductGroupName)
+			.verifyPageTitle(data.getMyProductGroupsPageName().replace("My", "").replace("s", "").trim(), setUp.getProductName())
+			.verifyMyProductGroupPageAfterClickingOnTheProduct();
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
+		productGroupDeleteAndVerify(myProductGroupName);
+		}
+		
 	}
 	
 	@Features("My Product Group Module")
@@ -247,13 +348,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_014")
 	@Test(groups={"regression"})
 	public void myProductGroup_bulkAction_Delete() throws Exception{
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
+		
 		data.setBulkOption("Delete Selected Items");
-		loginModule.loginAsASuperUser(); 
+		
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
-
+		try
+		{
+		loginModule.loginAsASuperUser(); 
+		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser(); 
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -271,6 +375,12 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.selectBulkActionsDropdown(data.getBulkOption());
 		myProductGroupsPage()
 		.verifyAlertText(data.getDeleteItemFromProductGroupAlertText().trim());
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
 	}
 	
 	@Features("My Product Group Module")
@@ -278,12 +388,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ProductGroup_015")
 	@Test(groups={"regression"})
 	public void myProductGroup_editGroupName_BlankText() throws Exception {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
+		
 		data.setBulkOption("Update Selected Items");
-		loginModule.loginAsASuperUser(); 
+	
 		String searchText = data.getSearchText();
 		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 		homePage()
 		.searchText(searchText)
 		.clickOnSearch()
@@ -301,8 +415,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.enterEditGroupName("")
 		.clickOnSave()
 		.verifyAlertText(data.getPleaseEnterGroupNameALertText());
-		
+		}
+		catch(UnhandledAlertException e)
+		{
+			TestUtility.alertAccept();
+			throw new Exception("Unhandled alert");
+		}
+		finally
+		{
 		productGroupDeleteAndVerify(myProductGroupName);
+		}
 	}
 	
 
@@ -318,13 +440,11 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			data.setBulkOption("Update Selected Items");
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-			
+			try
+			{
 			loginModule.loginAsASuperUser(); 
 			homePage().logout();
 			loginModule.loginAsASuperUser(); 
-			
-			
-			
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -348,7 +468,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			 .verifyUpdateOfQuantityInShoppingCart(data.getQuantityForShoppingCartPageVerification())
 			 .myProductGroupsPage()
 			 .verifyExtPrice(data.getQuantityForShoppingCartPageVerification(),currentExtnPrice);
-			 productGroupDeleteAndVerify(myProductGroupName);
+			}
+			 catch(UnhandledAlertException e)
+				{
+					TestUtility.alertAccept();
+					throw new Exception("Unhandled alert");
+				}
+				finally
+				{
+				productGroupDeleteAndVerify(myProductGroupName);
+				}
 		}
 	
 			
@@ -358,7 +487,9 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_019")
 		@Test(groups={"regression"})
 		public void quantityZeroBulkUpdate() throws Exception {
-
+			
+			String searchText = data.getSearchTextForEnlargeImageTest();
+			String myProductGroupName = data.getMyProductGroupName();
 		try
 		{
 		data.setBulkOption("Update Selected Items");
@@ -367,14 +498,10 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		homePage().logout();
 		loginModule.loginAsASuperUser(); 
 		
-		String searchText = data.getSearchText();
-		String myProductGroupName = data.getMyProductGroupName();
-
-		homePage()
-		.searchText(searchText)
-		.clickOnSearch()
-		.productListPage()
-		.clickOnSpecificMyProductGroupButton(1)
+		String partNumber = homePage().searchText(searchText).clickOnSearch().productDetailsPage().getPartNumber();
+		
+		productDetailsPage()
+		.clickOnMyProductGroupButton()
 		.enterGroupName(myProductGroupName)
 		.hitEnter()
 		.verifyMyProductCreationSuccessMsg(myProductGroupName)
@@ -382,19 +509,24 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.myProductGroupsPage()
 		.clickOnTheGroupCreated(myProductGroupName)
 		.verifyBreadCrump(myProductGroupName)
-		.verifyPageName(myProductGroupName)
-		.myCartPage()
+		.verifyPageName(myProductGroupName);
+		
+		myCartPage()
 		.enterQuantityInShoppingCart("0")
 		.myProductGroupsPage()
 		.clickOnTheSpecificCheckbox(1)
-		.selectBulkActionsDropdown(data.getBulkOption())
-		.verifyNoItemsInGroupMessage();
+		.verifyAlertText("Min Order Quantity is 1. For PN: "+partNumber+". To Continue with Min Order Qty click \"Ok\".To cancel this item click \"Cancel\"");
 		}
 		catch(UnhandledAlertException e)
 		{
 			TestUtility.alertAccept();
 			throw new Exception("Unhandled Alert");
 			
+		}
+		
+		finally
+		{
+		productGroupDeleteAndVerify(myProductGroupName);
 		}
 		}
 		
@@ -409,6 +541,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		data.setBulkOption("Add Selected Items to Cart");
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		String myProductGroupName = data.getMyProductGroupName();
+		try
+		{
 		loginModule.loginAsASuperUser(); 
 		homePage().logout();
 		loginModule.loginAsASuperUser(); 
@@ -437,7 +571,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		.clickOnCheckoutInMyCartPopup()
 		.verifyNameOfTheProductInMyCartPage(nameOfTheProductInProductGroup)
 		.verifyUpdateOfQuantityInShoppingCart(getQuantityInOfTheProductInMyProductGroup);
-		productGroupDeleteAndVerify(myProductGroupName);
+		}
+		 catch(UnhandledAlertException e)
+			{
+				TestUtility.alertAccept();
+				throw new Exception("Unhandled alert");
+			}
+			finally
+			{
+			productGroupDeleteAndVerify(myProductGroupName);
+			}
 
 		}
 		
@@ -484,15 +627,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Test(groups={"regression"})
 		public void editGroupName() throws Exception {
 	
-			loginModule.loginAsASuperUser(); 
-			homePage().clickOnUserAccountDropdown().logout();
-			loginModule.loginAsASuperUser(); 
+			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
 			String editGroupName = myProductGroupName+RandomGenerator.generateCharacters();
 		
-			
-			
+			try
+			{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -510,9 +654,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.enterEditGroupName(editGroupName)
 			.clickOnSave()
 			 .verifyAlertText(data.getEditGroupNameSuccessAlertText());
-			  
+			}
+			catch(UnhandledAlertException e)
+			{
+				TestUtility.alertAccept();
+				throw new Exception("Unhandled alert");
+			}
+			finally
+			{
 			productGroupDeleteAndVerify(editGroupName);
-			
+			}
 		}	
 		
 		
@@ -521,12 +672,15 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_023")
 		@Test(groups={"regression"})
 		public void editGroupName_whenGroupNameIsAlreadyExisting() throws Exception {
-			loginModule.loginAsASuperUser(); 
-			homePage().clickOnUserAccountDropdown().logout();
-			loginModule.loginAsASuperUser(); 
+			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
 			String editGroupName = data.getMyProductGroupName()+RandomGenerator.generateCharacters();
+			try
+			{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -546,18 +700,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.clickOnEditButton()
 			.enterEditGroupName(editGroupName)
 			.clickOnSave()
-			 .verifyAlertText(data.getGroupNameAlreadyExistsAlertText())
-			 .homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.clickOnTheGroupCreated(myProductGroupName)
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText())
-			.homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			 .verifyAlertText(data.getGroupNameAlreadyExistsAlertText());
+			}
+			 catch(UnhandledAlertException e)
+				{
+					TestUtility.alertAccept();
+					throw new Exception("Unhandled alert");
+				}
+				finally
+				{
+				productGroupDeleteAndVerify(myProductGroupName);
+				}
 			
 		}	
 		
@@ -566,12 +719,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_024")
 		@Test(groups={"regression"})
 		public void editGroupName_noChangesYetClickingOnSave() throws Exception {
-			loginModule.loginAsASuperUser(); 
-			homePage().clickOnUserAccountDropdown().logout();
-			loginModule.loginAsASuperUser(); 
+			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-			
+			try
+			{
+				loginModule.loginAsASuperUser(); 
+				homePage().clickOnUserAccountDropdown().logout();
+				loginModule.loginAsASuperUser(); 
 			 homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -585,18 +740,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.clickOnTheGroupCreated(myProductGroupName)
 			.clickOnEditButton()
 			.clickOnSave()
-			 .verifyAlertText(data.getNoChangesToGroupNameAlertText())
-			 .homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.clickOnTheGroupCreated(myProductGroupName)
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText())
-			.homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			 .verifyAlertText(data.getNoChangesToGroupNameAlertText());
+			}
+			 catch(UnhandledAlertException e)
+				{
+					TestUtility.alertAccept();
+					throw new Exception("Unhandled alert");
+				}
+				finally
+				{
+				productGroupDeleteAndVerify(myProductGroupName);
+				}
 			
 		}	
 		
@@ -605,12 +759,14 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_026")
 		@Test(groups={"regression"})
 		public void verifySortByInMyProductGroups() throws Exception {
+			
+			String searchText = data.getSearchText();
+			String myProductGroupName = data.getMyProductGroupName();
+			try
+			{
 			loginModule.loginAsASuperUser(); 
 			homePage().clickOnUserAccountDropdown().logout();
 			loginModule.loginAsASuperUser(); 
-			String searchText = data.getSearchText();
-			String myProductGroupName = data.getMyProductGroupName();
-			
 			 homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -622,18 +778,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.clickOnMyProductGroups()
 			.myProductGroupsPage()
 			.clickOnTheGroupCreated(myProductGroupName)
-			.verifySortByDrodown(data.getExpectedSortByOptionsInMyProductGroups().split(","))
-			 .homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.clickOnTheGroupCreated(myProductGroupName)
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText())
-			.homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			.verifySortByDrodown(data.getExpectedSortByOptionsInMyProductGroups().split(","));
+			}
+			 catch(UnhandledAlertException e)
+				{
+					TestUtility.alertAccept();
+					throw new Exception("Unhandled alert");
+				}
+				finally
+				{
+				productGroupDeleteAndVerify(myProductGroupName);
+				}
 			
 		}	
 		
@@ -642,15 +797,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@TestCaseId("TC_ProductGroup_027")
 		@Test(groups={"regression"})
 		public void verifyGroupNameCreation_Is_Limited_To_25_Characters() throws Exception {
-			loginModule.loginAsASuperUser(); 
-			homePage().clickOnUserAccountDropdown().logout();
-			loginModule.loginAsASuperUser(); 
+			 
 			
 			String searchText = data.getSearchText();
 	
 			String myProductGroupName = data.getMyProductGroupName()+Integer.toString(RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers());
 			String groupNameCreationVerification = myProductGroupName.substring(0, Math.min(myProductGroupName.length(), 25));
-			
+			try
+			{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser();
 			 homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -663,18 +820,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.myProductGroupsPage()
 			.clickOnTheGroupCreated(groupNameCreationVerification)
 			.verifyPageName(groupNameCreationVerification)
-			.verifyBreadCrump(groupNameCreationVerification)
-			.homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.clickOnTheGroupCreated(myProductGroupName)
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText())
-			.homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			.verifyBreadCrump(groupNameCreationVerification);
+			}
+			 catch(UnhandledAlertException e)
+				{
+					TestUtility.alertAccept();
+					throw new Exception("Unhandled alert");
+				}
+				finally
+				{
+				productGroupDeleteAndVerify(myProductGroupName);
+				}
 			
 		}	
 		
@@ -687,7 +843,8 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			data.setBulkOption("Update Selected Items");
 			String searchText = data.getSearchTextForEnlargeImageTest();
 			String myProductGroupName = data.getMyProductGroupName();
-			
+			try
+			{
 			loginModule.loginAsASuperUser(); 
 			homePage().logout();	
 			loginModule.loginAsASuperUser(); 
@@ -720,15 +877,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.clickOnSelectAllCheckbox()
 			.selectBulkActionsDropdown(data.getBulkOption())
 			.myCartPage()
-			.verifyQuantitiesInShoppingCartForMultipleItems(data.getQuantityForShoppingCartPageVerification())
-			.myProductGroupsPage()
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText());
-			homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			.verifyQuantitiesInShoppingCartForMultipleItems(data.getQuantityForShoppingCartPageVerification());
+			}
+			catch(UnhandledAlertException e)
+			{
+				TestUtility.alertAccept();
+				throw new Exception("Unhandled alert");
+			}
+			finally
+			{
+			productGroupDeleteAndVerify(myProductGroupName);
+			}
 			
 		}	
 		
@@ -738,14 +897,16 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 		public void pG_bulkAlert_ItemNotChosen(String testcaseId,String bulkOption,String expectedAlertText) throws Exception {
 			
-			loginModule.loginAsASuperUser(); 
-			homePage().clickOnUserAccountDropdown().logout();
-			loginModule.loginAsASuperUser(); 
+			
 			
 			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-
+			try
+			{
+			loginModule.loginAsASuperUser(); 
+			homePage().clickOnUserAccountDropdown().logout();
+			loginModule.loginAsASuperUser(); 
 			homePage()
 			.searchText(searchText)
 			.clickOnSearch()
@@ -760,15 +921,17 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			.myProductGroupsPage()
 			.clickOnTheGroupCreated(myProductGroupName)
 			.selectBulkActionsDropdown(bulkOption)
-			.verifyAlertText(expectedAlertText)
-			.myProductGroupsPage()
-			.clickOnDelete()
-			.verifyAlertText(data.getDeleteGroupAlertText());
-			homePage()
-			.navigateToMyProductGroups()
-			.myProductGroupsPage()
-			.verifyPageName()
-			.verifyWhetherGroupIsDeleted(myProductGroupName);
+			.verifyAlertText(expectedAlertText);
+			}
+			catch(UnhandledAlertException e)
+			{
+				TestUtility.alertAccept();
+				throw new Exception("Unhandled alert");
+			}
+			finally
+			{
+			productGroupDeleteAndVerify(myProductGroupName);
+			}
 			
 		}	
 }

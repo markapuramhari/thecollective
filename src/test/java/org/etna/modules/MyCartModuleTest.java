@@ -257,13 +257,13 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 	  }
 	  
 	@Features("My Cart Module")
-	  @Test(enabled=false,groups={"MyCartModule","regression"})
+	  @Test(groups={"MyCartModule","regression"})
 	  public void TC_ShoppingCart_004_signedUser_ShoppingCartQuanitityUpdateWithZero() throws Exception
 	  {
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
+		loginModule.loginAsASuperUser();
 		String searchText = data.getSearchTextForEnlargeImageTest();
-		  	loginModule.loginAsASuperUser();
 		  	 myCartPage()
 			 .clearCart();
 		  	Thread.sleep(1500);
@@ -275,8 +275,9 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 			.myCartPage()
 			.clickOnCheckoutInMyCartPopup()
 			 .enterQuantityInShoppingCart("0")
-			 .clickOnUpdateButton()
-			 .verifyEmptyCart();
+			.clickOnUpdateButton()
+			.myProductGroupsPage()
+			.verifyAlertText("Invalid Number");
 	  }
 	  
 	@Features("My Cart Module")
