@@ -203,7 +203,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies Or condition of the search keyword for BN or PN in product list page.")
+	@Description("This is a test case which verifies for BN or PN in product list page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_BNOrPN(String testCaseId,@Parameter("BN Or PN") String searchKeyword) throws Exception
@@ -220,7 +220,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies Or condition of the search keyword for BN or UPC in product list page.")
+	@Description("This is a test case which verifies for BN or UPC in product list page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_BNOrUPC(String testCaseId,@Parameter("BN Or UPC") String searchKeyword) throws Exception
@@ -237,7 +237,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies Or condition of the search keyword for UPC Or PN in product list page.")
+	@Description("This is a test case which verifies for UPC Or PN in product list page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_PNOrUPC(String testCaseId,@Parameter("UPC Or PN") String searchKeyword) throws Exception
@@ -255,7 +255,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies Or condition of the search keyword for BN AND MPN in product list page.")
+	@Description("This is a test case which verifies for BN AND MPN in product details page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_BNAndMPN(String testCaseId,@Parameter("BN And MPN") String searchKeyword) throws Exception
@@ -268,6 +268,174 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 		.productDetailsPage()
 		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0].trim())
 		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for PN AND MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_AndCond_PNAndMPN(String testCaseId,@Parameter("PN And MPN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("AND");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("AND","").trim()};
+		
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[0].trim())
+		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	
+
+	@Features("Search V2")
+	@Description("This is a test case which verifies for BN AND PN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_AndCond_BNAndPN(String testCaseId,@Parameter("BN And PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("AND");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("AND","").trim()};
+		
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0].trim())
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for BN AND UPC in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_AndCond_BNAndUPC(String testCaseId,@Parameter("BN And UPC") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("AND");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("AND","").trim()};
+		
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(searchKeyWordArray[0].trim())
+		.verifyUPCInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for PN AND UPC in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_AndCond_PNAndUPC(String testCaseId,@Parameter("PN And UPC") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf("AND");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replace("AND","").trim()};
+		
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[0].trim())
+		.verifyUPCInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for BN - MPN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BNMinusMPN(String testCaseId,@Parameter("BN - MPN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.indexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim())
+		.verifyBrandNameOrMPNIsNotDisplayedInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for PN - MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_PNMinusMPN(String testCaseId,@Parameter("PN - MPN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.indexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyPartNumberInProductDetailsPage(searchKeyWordArray[0].trim())
+		.verifyMPNIsNotDisplayedInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for BN - PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BNMinusPN(String testCaseId,@Parameter("BN - PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.indexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim())
+		.verifyPartNumberNotDisplayedInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for BN - UPC in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BNMinusUPC(String testCaseId,@Parameter("BN - UPC") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.indexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(searchKeyWordArray[0].trim())
+		.verifyUPCNotDisplayedInProductListPage(searchKeyWordArray[1].trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for MPN - PN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_MPNMinusPN(String testCaseId,@Parameter("MPN - PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyManufacturerPartNumberInProductDetailsPage(searchKeyWordArray[0].trim())
+		.verifyPartNumberIsNotDisplayedInProductDetailsPage(searchKeyWordArray[1].trim());
+	}
+	
+
+	@Features("Search V2")
+	@Description("This is a test case which verifies for UPC - PN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_UPCMinusPN(String testCaseId,@Parameter("UPC - PN") String searchKeyword) throws Exception
+	{
+		int splitViaIndex = searchKeyword.lastIndexOf(" ");
+		String[] searchKeyWordArray =  {searchKeyword.substring(0, splitViaIndex).trim(), searchKeyword.substring(splitViaIndex).replaceFirst("-", "").trim()};
+		homePage()
+		.searchText(searchKeyword)
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyUPCInProductDetailsPage(searchKeyWordArray[0].trim())
+		.verifyPartNumberIsNotDisplayedInProductDetailsPage(searchKeyWordArray[1].trim());
 	}
 }
 

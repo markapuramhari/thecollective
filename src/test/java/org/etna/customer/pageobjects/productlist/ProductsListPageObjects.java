@@ -750,7 +750,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		{
 			if((assertUPCInSKUModeInProductListPage(upc)))
 			{
-				Assert.assertTrue(assertUPCInSKUModeInProductListPage(upc),"Part Number is not displayed in product list page.");
+				Assert.assertTrue(assertUPCInSKUModeInProductListPage(upc),"UPC Number is not displayed in product list page.");
 			}
 			Assert.assertTrue(verifyUPCInProductMode(upc),"UPC is not displayed in product list page.");
 		}
@@ -793,5 +793,46 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		}
 
 		return false;
+	}
+
+
+	public ProductsListPageObjects verifyBrandNameOrMPNIsNotDisplayedInProductListPage(String brandNameOrMPN) {
+		Assert.assertFalse(assertForBrandNameOrMPNInProductListPage(brandNameOrMPN),"Searched MPN or Brand is displayed in product list page. It should not get displayed! ");
+		return this;
+	}
+
+
+	public ProductsListPageObjects verifyPartNumberNotDisplayedInProductListPage(String partNumber) throws InterruptedException {
+		try
+		{
+			if((assertPartNumberInSKUModeInProductListPage(partNumber)))
+			{
+				Assert.assertFalse(assertPartNumberInSKUModeInProductListPage(partNumber),"Part Number is  displayed in product list page.");
+			}
+			Assert.assertFalse(verifyPartNumberInProductMode(partNumber),"Part number is  displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertFalse(verifyPartNumberInProductMode(partNumber),"Part number is  displayed in product list page.");
+		}
+		return this;
+	}
+
+
+	public ProductsListPageObjects verifyUPCNotDisplayedInProductListPage(String upc) throws InterruptedException {
+		try
+		{
+			if((assertUPCInSKUModeInProductListPage(upc)))
+			{
+				Assert.assertFalse(assertUPCInSKUModeInProductListPage(upc),"UPC Number is displayed in product list page.");
+			}
+			Assert.assertFalse(verifyUPCInProductMode(upc),"UPC is displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertFalse(verifyUPCInProductMode(upc),"UPC is displayed in product list page.");
+		}
+		
+		return this;
 	}
 }

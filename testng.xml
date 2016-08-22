@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Search V2">
+  <listeners>
+    <listener class-name="org.etna.maincontroller.MainController"/>
+    <listener class-name="org.etna.utils.ReportGenerator"/>
+  </listeners>
+ <test name="Regression">
+    <groups>
+      <run>
+        <include name="regression"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="org.etna.modules.SearchV2ModuleTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

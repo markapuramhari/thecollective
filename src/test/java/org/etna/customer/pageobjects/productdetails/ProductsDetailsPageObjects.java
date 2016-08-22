@@ -183,7 +183,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	@FindBy(xpath="//a[@title='Send this Page']")
 	private WebElement shareLocator;
 	
-	@FindAll(value={@FindBy(xpath="//td[contains(@class,'tabelImage')]/descendant::span[not(contains(@id,'quantityBreakPricingDetails')) and not(contains(@class,'imgForSend'))]")})
+	@FindAll(value={@FindBy(xpath="//span[@class='partNum']")})
 	private List<WebElement> partNumberUnderProductChoicesLocator;
 	
 	@Step("verify whether the item name contains {0}")
@@ -581,6 +581,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		{
 			for(WebElement partNumberUnderProductChoiceLocator : partNumberUnderProductChoicesLocator)
 			{
+		
 				Waiting.explicitWaitVisibilityOfElement(partNumberUnderProductChoiceLocator, 10);
 					if(partNumberUnderProductChoiceLocator.getText().trim().equals(searchPartNumber))
 					{
@@ -596,11 +597,11 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		
 		try
 		{
-			Assert.assertEquals(mpnValueLocator.getText().trim(), searchTextForMPNTest);
+			Assert.assertEquals(mpnValueLocator.getText().trim(), searchTextForMPNTest,"MPN is not present");
 		}
 		catch(NoSuchElementException e)
 		{
-			Assert.assertTrue(assertMPNUnderProductChoices(searchTextForMPNTest),"MPN is not presenet");
+			Assert.assertTrue(assertMPNUnderProductChoices(searchTextForMPNTest),"MPN is not present");
 		}
 		return this;
 	}
@@ -714,6 +715,37 @@ return this;
 		
 		Assert.assertTrue(itemTitleLocator.getText().trim().toLowerCase().contains(brandNameOrMPN.toLowerCase()) ,"Name of the product is "+itemTitleLocator.getText().trim().toLowerCase()+" But expecting "+brandNameOrMPN.toLowerCase());
 		return this;
+	}
+
+	public ProductsDetailsPageObjects verifyMPNIsNotDisplayedInProductDetailsPage(String mpnOrBrand) throws Exception {
+		
+		try
+		{
+			Assert.assertNotEquals(mpnValueLocator.getText().trim(), mpnOrBrand);
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertFalse(assertMPNUnderProductChoices(mpnOrBrand),"MPN is present");
+		}
+		return this;
+	}
+	
+
+
+
+	public ProductsDetailsPageObjects verifyPartNumberIsNotDisplayedInProductDetailsPage(String partNumber) throws Exception {
+		
+		try
+		{
+		Assert.assertNotEquals(partNumberValueLocator.getText().trim(), partNumber,"Searched Part Number is displayed in product details page");
+		}
+		catch(NoSuchElementException e)
+		{
+			
+				Assert.assertFalse(assertPartNumberUnderProductChoices(partNumber),"Searched Part Number is displayed in product details page");
+		}
+		return this;	
+		}
 	}	
-}
+
 
