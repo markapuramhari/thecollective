@@ -112,6 +112,9 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	private WebElement submitCartForApprovalButtonLocator;
 	
 
+	@FindBy(xpath="//h3[text()='My Cart']/ancestor::div[@class='addToCartHeaderContent']/descendant::div[@class='cartTotalCount pull-right']/a/i")
+	private WebElement clickOnCloseLocator;
+	
 	
 	@Step("Click on checkout in my cart pop up")
 	public MyCartPageObjects clickOnCheckoutInMyCartPopup() throws Exception {
@@ -442,7 +445,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 	
 	private boolean assertDeleteAlertText(String mpn) {
-		System.out.println(TestUtility.getAlertText().trim());
+		
 		boolean t = TestUtility.getAlertText().trim().equals("You want to delete item "+mpn+" from cart?");
 		TestUtility.alertAccept();
 		return t;
@@ -518,6 +521,19 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 		submitCartForApprovalButtonLocator.click();
 		return this;
 	}
+
+		@Step("Click on save cart button")
+	public MyCartPageObjects clickOnSaveCartButton() {
+		Waiting.explicitWaitVisibilityOfElement(saveCartButton, 6);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",saveCartButton);
+
+		return this;
+	}
+		
+		public MyCartPageObjects clickOnCloseButtonInMyCartPopUp() {
+			clickOnCloseLocator.click();
+			return this;
+		}
 	
 	
 }

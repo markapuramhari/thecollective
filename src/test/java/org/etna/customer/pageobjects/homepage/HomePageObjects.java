@@ -1253,6 +1253,12 @@ return this;
 	action.moveToElement(divisionsLinkInHeaderLocator).build().perform();
 		return this;
 	}
-	
+
+	@Step("click on my save cart link")
+	public SaveCartPageObjects clickOnMySaveCartLink() {
+		Waiting.explicitWaitVisibilityOfElement(mySaveCartLink, 3);
+		mySaveCartLink.click();
+		return saveCartPage();
+	}
 }
 	

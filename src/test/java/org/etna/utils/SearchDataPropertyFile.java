@@ -327,6 +327,18 @@ public class SearchDataPropertyFile extends MainController{
 	private String partialPartNumber = PropertyFileReader.propertiesReader(searchData, "partialPartNumber");
 	
 	
+	
+	private String myAccountBreadcrumb = PropertyFileReader.propertiesReader(searchData, "myAccountBreadcrumb");
+	
+	
+	private String searchTextForThirdItem = PropertyFileReader.propertiesReader(searchData, "searchTextForThirdItem");
+	
+	private String alertTextCartNameAlreadyExists = PropertyFileReader.propertiesReader(searchData, "alertTextCartNameAlreadyExists");
+	
+	private String alertTextOfDeleteSaveCart = PropertyFileReader.propertiesReader(searchData, "alertTextOfDeleteSaveCart");
+	
+	
+	
 	public String getCopyRightsOfUnilogText() {
 		return copyRightsOfUnilog;
 	}
@@ -1156,8 +1168,29 @@ public String getTabDelimitedFilePathForImproperValues() {
 }
 
 public String getPartialPartNumber() {
-	// TODO Auto-generated method stub
+	
 	return partialPartNumber;
 }
+
+
+	public String getMyAccountBreadcrumb() {
+
+		return myAccountBreadcrumb;
+	}
+
+	public String getSearchTextForThirdItem() {
+		
+		return searchTextForThirdItem;
+	}
+
+	public String getAlertTextCartNameAlreadyExists() {
+		
+		return alertTextCartNameAlreadyExists;
+	}
+
+	public String getAlertTextOfDeleteSaveCart() {
+		
+		return alertTextOfDeleteSaveCart;
+	}
 
 }

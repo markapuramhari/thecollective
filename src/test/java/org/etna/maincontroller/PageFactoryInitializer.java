@@ -28,7 +28,10 @@ import org.etna.customer.pageobjects.signup.SignUpPageObjects;
 import org.etna.customer.pageobjects.signup.firsttimeordering.FirstTimeOrderingRegistrationPageObjects;
 import org.etna.customer.pageobjects.signup.newcommercialcustomer.CommercialCustomerRegistrationPageObjects;
 import org.etna.customer.pageobjects.signup.retailuser.RetailCustomerRegistrationPageObjects;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
+
+import ru.yandex.qatools.allure.annotations.Step;
 
 public class PageFactoryInitializer extends MainController{
 
@@ -218,4 +221,6 @@ public class PageFactoryInitializer extends MainController{
 		ContactUsPageObjects contactUsPage = PageFactory.initElements(driver,ContactUsPageObjects.class);
 		return contactUsPage;
 	}
+
+
 }

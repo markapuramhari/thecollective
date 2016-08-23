@@ -1,6 +1,7 @@
 package org.etna.customer.pageobjects.myaccount;
 import java.io.File;
 
+import org.etna.customer.pageobjects.savecart.SaveCartPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.Waiting;
@@ -98,6 +99,10 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 	
 	@FindBy(xpath="//a[contains(text(),'Add Shipping Address')]")
 	private WebElement addNewShippingAddressButtonLocator;
+	
+	@FindBy(xpath="//h3[text()='My Saved Carts']/ancestor::div[@class='accountDash cimm_halfBlockColumns']/descendant::a[contains(text(),'View More')]")
+	private WebElement viewMore;
+	
 	
 	@Step("verify my accounts page")
 	public MyAccountsPageObjects verifyMyAccountPage() {
@@ -224,6 +229,37 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 		addNewShippingAddressShipToLocator.sendKeys(Integer.toString(generateEightRandomNumbers));
 		return this;
 	}
+
+
+	@Step("click on groups tab")
+	public MyAccountsPageObjects clickOnGroupsTab() throws Exception {
+		Thread.sleep(4000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",groupsTab);
+		return this;
+	}
+
+
+	public MyAccountsPageObjects verifyPageName(String myAccountBreadCrumb) {
+		Assert.assertTrue(myAccountPageName.getText().trim().equalsIgnoreCase(myAccountBreadCrumb),"Page name is not "+myAccountBreadCrumb+" It is "+myAccountPageName.getText().trim());
+		return this;
+	}
+
+
+	@Step("click on view more icon")
+	public MyAccountsPageObjects clickOnViewMore() throws Exception {
+		Thread.sleep(4000);
+
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",viewMore);
+		return this;
+	}
+
+
+	@Step("verify page name")
+	public MyAccountsPageObjects verifyPageName() {
+		Assert.assertTrue(myAccountPageName.isDisplayed(),"My Account page name is not displayed.");
+		return this;
+	}
+
 }
 	
 	
