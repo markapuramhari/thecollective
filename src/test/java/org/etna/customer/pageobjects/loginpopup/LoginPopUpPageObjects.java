@@ -183,7 +183,7 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LoginPopUpPageObjects verifyTabFocusTopToButtom(String userNameId,String passwordId,String forgotYourPasswordId,String rememberMeClassName, String loginButtonId) {
+	public LoginPopUpPageObjects verifyTabFocusTopToBottom(String userNameId,String passwordId,String forgotYourPasswordId,String rememberMeClassName, String loginButtonId) {
 		//String [] expectedTabOrder = {userNameId,passwordId,rememberMeClassName,forgotYourPasswordId,loginButtonId};
 		
 		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),userNameId);
@@ -199,12 +199,12 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 	}
 	
 	
-	public LoginPopUpPageObjects verifyTabFocusButtomToTop(String userNameHTMLId, String passwordHTMLId,
+	public LoginPopUpPageObjects verifyTabFocusBottomToTop(String userNameHTMLId, String passwordHTMLId,
 			String forgotYourPasswordHTMLText, String rememberMeHTMLClassName, String loginButtonHTMLId) {
 		
 		String tabBehind = Keys.chord(Keys.SHIFT,Keys.TAB);
 		
-		verifyTabFocusTopToButtom(userNameHTMLId,passwordHTMLId,forgotYourPasswordHTMLText,rememberMeHTMLClassName,loginButtonHTMLId);
+		verifyTabFocusTopToBottom(userNameHTMLId,passwordHTMLId,forgotYourPasswordHTMLText,rememberMeHTMLClassName,loginButtonHTMLId);
 		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),loginButtonHTMLId);
 		driver.switchTo().activeElement().sendKeys(tabBehind);
 		Assert.assertEquals(driver.switchTo().activeElement().getText().trim(),forgotYourPasswordHTMLText);

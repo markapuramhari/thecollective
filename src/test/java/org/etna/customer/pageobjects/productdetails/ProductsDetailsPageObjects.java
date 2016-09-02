@@ -839,6 +839,13 @@ return this;
 		Assert.assertEquals(actualUOMName[0].replace("\n", "").trim(), uomName);
 		return this;
 	}
+
+	public Number getPriceForSingleItemWhichHasMultipleUOM() throws ParseException {
+		Waiting.explicitWaitVisibilityOfElement(priceLocator, 5);
+		String priceLocatorArray [] = priceLocator.getText().split("/");
+		Number price = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", ""));
+		return price;
+	}
 	}	
 
 

@@ -428,6 +428,72 @@ public class PDPModuleTest extends PageFactoryInitializer {
 				.checkUOMChange(uomName)
 				.checkLatestPriceForItemThatHasMultipleUOM(priceForSingleItem,quantity.replace("(", "").replace(")", ""));
 	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void multiple_UOM_PLP_MyCartVerification() throws Exception
+	  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		data.setSpecificUOM("pl(450)");	
+		  		
+		  		String priceForSingleItemWithUOM = homePage()
+						.searchText(data.getSearchText())
+						.clickOnSearch()
+						.productListPage()
+						.getPriceForSingleItemWhichHasMultipleUOMWithTheUOM();
+				
+				productListPage()
+				.selectSpecificUOM(data.getSpecificUOM());
+				
+				Number priceAfterUOMSelection = productListPage().getPriceForSingleItemWhichHasMultipleUOM();
+				
+				productListPage()
+				.clickOnAddToCartBWhichHasMultipleUOM(1)
+				.myCartPage()
+				.clickOnCheckoutInMyCartPopup()
+				.verifyPerUnitPrice(priceForSingleItemWithUOM)
+				.verifyUOM(data.getSpecificUOM())
+				.verifyExtPrice(priceAfterUOMSelection)
+				.verifyTotalPrice(priceAfterUOMSelection);
+	  }
+	  
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void multiple_UOM_PDP_MyCartVerification() throws Exception
+	  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		data.setSpecificUOM("pl(450)");	
+		  		
+		  		String priceForSingleItemWithUOM = homePage()
+						.searchText(data.getSearchTextForThirdItem())
+						.clickOnSearch()
+						.productListPage()
+						.clickOnSpecificItem(1)
+						.getPriceForSingleItemWhichHasMultipleUOMWithTheUOM();
+				
+				productDetailsPage()
+				.selectSpecificUOM(data.getSpecificUOM());
+				
+				Number priceAfterUOMSelection = productDetailsPage().getPriceForSingleItemWhichHasMultipleUOM();
+				
+				productDetailsPage()
+				.clickOnAddToCartButton()
+				.myCartPage()
+				.clickOnCheckoutInMyCartPopup()
+				.verifyPerUnitPrice(priceForSingleItemWithUOM)
+				.verifyUOM(data.getSpecificUOM())
+				.verifyExtPrice(priceAfterUOMSelection)
+				.verifyTotalPrice(priceAfterUOMSelection);
+	  }
 	 }
 
 	

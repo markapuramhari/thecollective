@@ -266,7 +266,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		  homePage()
 		  .clickLoginLink()
 		  .loginPopUp()
-		  .verifyTabFocusTopToButtom(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
+		  .verifyTabFocusTopToBottom(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
 		}
 	
 	@Features("Login Module")
@@ -277,7 +277,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		  homePage()
 		  .clickLoginLink()
 		  .loginPopUp()
-		  .verifyTabFocusButtomToTop(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
+		  .verifyTabFocusBottomToTop(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
 		}
 	
 	@Features("Login Module")

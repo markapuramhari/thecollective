@@ -82,6 +82,7 @@ public class CheckoutPageObjects extends PageFactoryInitializer{
 	@Step("enter email id {0}")
 	public CheckoutPageObjects enterEmailId(String userName) throws Exception{
 		Thread.sleep(1500);
+		emailIdForShippingAddressLocator.clear();
 		emailIdForShippingAddressLocator.sendKeys(userName);
 		return this;
 	}

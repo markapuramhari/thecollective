@@ -132,7 +132,7 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 				 .enterQuantityInShoppingCart(quantity)
 				 .clickOnUpdateLink()
 				 .verifyUpdateOfQuantityInShoppingCart(quantity)
-				 .verifyExtPrice(quantity,currentExtnPrice)
+				 .verifyExtPriceAfterUpdate(quantity,currentExtnPrice)
 				 .verifyTotalPrice(quantity,currentTotalPrice);
 	  }
   
@@ -252,7 +252,7 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 			 .enterQuantityInShoppingCart(quantity)
 			 .clickOnUpdateButton()
 			 .verifyUpdateOfQuantityInShoppingCart(quantity)
-			 .verifyExtPrice(quantity,currentExtnPrice)
+			 .verifyExtPriceAfterUpdate(quantity,currentExtnPrice)
 			 .verifyTotalPrice(quantity,currentTotalPrice);
 	  }
 	  

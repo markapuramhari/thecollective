@@ -209,6 +209,10 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	private WebElement priceInSKUModeWhoseProductHasMultipleUOMLocator;
 	
 	
+	@FindAll(value={@FindBy(xpath="//select[contains(@id,'Uom')]/ancestor::li[contains(@class,'productQty')]/descendant::a[contains(@class,'addToCart')]")})
+	private List<WebElement> addToCartButtonsMultipleUOMLocator;
+	
+	
 	
 	@Step("verify header contains {0}")
 	public ProductsListPageObjects verifyHeader(String searchText) {
@@ -1009,6 +1013,18 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		String priceLocatorArray [] = priceInSKUModeWhoseProductHasMultipleUOMLocator.getText().split("/");
 		String actualUOMName[] = priceLocatorArray[1].split("\\(");
 		Assert.assertEquals(actualUOMName[0].replace("\n", "").trim(), uomName);
+		return this;
+	}
+
+
+	public String getPriceForSingleItemWhichHasMultipleUOMWithTheUOM() {
+		Waiting.explicitWaitVisibilityOfElement(priceInSKUModeWhoseProductHasMultipleUOMLocator, 5);
+		return priceInSKUModeWhoseProductHasMultipleUOMLocator.getText().trim();
+	}
+
+
+	public ProductsListPageObjects clickOnAddToCartBWhichHasMultipleUOM(int specificAddToCartButtonWithMultipleUOM) {
+		addToCartButtonsMultipleUOMLocator.get(specificAddToCartButtonWithMultipleUOM-1).click();
 		return this;
 	}
 }

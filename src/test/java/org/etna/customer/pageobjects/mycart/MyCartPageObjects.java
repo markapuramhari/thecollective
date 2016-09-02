@@ -84,7 +84,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	private WebElement extPrice;
 	
 	@FindBy(xpath="//span[@class='priceValue']")
-	private WebElement currentTotalPriceInShoppingCart;
+	private WebElement totalPrice;
 	
 	@FindAll(value={@FindBy(xpath="//input[@class='quantity']")})
 	private List<WebElement> quantityInShoppingCartPage;
@@ -114,6 +114,13 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 	@FindBy(xpath="//h3[text()='My Cart']/ancestor::div[@class='addToCartHeaderContent']/descendant::div[@class='cartTotalCount pull-right']/a/i")
 	private WebElement clickOnCloseLocator;
+	
+	
+	@FindBy(xpath="//td[@data-th='Per Unit Price']/strong")
+	private WebElement perUnitPriceLocator;
+	
+	@FindBy(xpath="//td[@data-th='Per Unit Price']/following-sibling::td[1]/strong")
+	private WebElement uomChosenLocator;
 	
 	
 	@Step("Click on checkout in my cart pop up")
@@ -317,8 +324,8 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 
 	public Number getTotalPrice() throws ParseException {
-		Waiting.explicitWaitVisibilityOfElement(currentTotalPriceInShoppingCart, 5);
-		Number currentTotalPrice = NumberFormat.getCurrencyInstance(Locale.getDefault()).parse(currentTotalPriceInShoppingCart.getText().replace("\n", "").replace(" ", "").trim());
+		Waiting.explicitWaitVisibilityOfElement(totalPrice, 5);
+		Number currentTotalPrice = NumberFormat.getCurrencyInstance(Locale.getDefault()).parse(totalPrice.getText().replace("\n", "").replace(" ", "").trim());
 		return currentTotalPrice;
 	}
 
@@ -351,7 +358,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 
 	@Step("verify update of extension price")
-	public MyCartPageObjects verifyExtPrice(String quantity, Number currentExtnPrice) throws ParseException {
+	public MyCartPageObjects verifyExtPriceAfterUpdate(String quantity, Number currentExtnPrice) throws ParseException {
 		Number afterUpdateExtensionPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(extPrice.getText().replace("\n", "").replace(" ", "").trim());
 		int quantityValue = Integer.parseInt(quantity);
 		Assert.assertTrue(checkForExtnPrice(currentExtnPrice,afterUpdateExtensionPrice,quantityValue),"extension price is not getting updated.");
@@ -372,7 +379,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 	@Step("verify update of total price")
 	public MyCartPageObjects verifyTotalPrice(String quantity, Number currentTotalPrice) throws ParseException {
-		Number afterUpdateTotalPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(currentTotalPriceInShoppingCart.getText().replace("\n", "").replace(" ", "").trim());
+		Number afterUpdateTotalPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(totalPrice.getText().replace("\n", "").replace(" ", "").trim());
 		int quantityValue = Integer.parseInt(quantity);
 		Assert.assertTrue(checkForExtnPrice(currentTotalPrice,afterUpdateTotalPrice,quantityValue),"total price is not getting updated");
 		return this;
@@ -532,6 +539,29 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 		
 		public MyCartPageObjects clickOnCloseButtonInMyCartPopUp() {
 			clickOnCloseLocator.click();
+			return this;
+		}
+
+		public MyCartPageObjects verifyPerUnitPrice(String priceForSingleItemWithUOM) {
+			Waiting.explicitWaitVisibilityOfElement(perUnitPriceLocator, 6);
+			Assert.assertEquals(perUnitPriceLocator.getText().trim(), priceForSingleItemWithUOM);
+			return this;
+		}
+
+		public MyCartPageObjects verifyUOM(String uomName) {
+			Assert.assertEquals(uomChosenLocator.getText().replace(" ", "").trim(), uomName);
+			return this;
+		}
+
+		public MyCartPageObjects verifyExtPrice(Number expectedExtPrice) throws ParseException {
+			Number actualExtPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(extPrice.getText().replace("\n", "").replace(" ", "").trim());
+			Assert.assertEquals(actualExtPrice,expectedExtPrice);
+			return this;
+		}
+
+		public MyCartPageObjects verifyTotalPrice(Number expectedTotalPrice) throws ParseException {
+			Number actualTotalPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(totalPrice.getText().replace("\n", "").replace(" ", "").trim());
+			Assert.assertEquals(actualTotalPrice,expectedTotalPrice);
 			return this;
 		}
 	
