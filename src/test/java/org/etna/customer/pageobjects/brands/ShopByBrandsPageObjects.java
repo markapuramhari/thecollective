@@ -149,7 +149,7 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 	}
 
 	public String getNameOfTheSpecificBrand(String specificBrandname) {
-		String nameOfTheBrandString = driver.findElement(By.xpath("(//h4[contains(text(),'Brands')]/following-sibling::span/ancestor::dt/following-sibling::dd)[1]/descendant::li/a[contains(@href,'"+specificBrandname+"')]")).getAttribute("href");
+		String nameOfTheBrandString = driver.findElement(By.xpath("//dt[contains(text(),'Brands')]/following-sibling::dd/descendant::a[contains(@href,'"+specificBrandname+"')]")).getAttribute("href");
 		String nameOfTheBrandsubString =nameOfTheBrandString.substring(nameOfTheBrandString.lastIndexOf("/")+1);
 		return nameOfTheBrandsubString;
 	}
@@ -159,11 +159,11 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 		Thread.sleep(2000);
 		if(setUp.getBrowser().equalsIgnoreCase("ghost"))
 		{
-			driver.findElement(By.xpath("(//h4[contains(text(),'Brands')]/following-sibling::span/ancestor::dt/following-sibling::dd)[1]/descendant::li/a[contains(@href,'"+specificBrandname+"')]")).click();		
+			driver.findElement(By.xpath("//dt[contains(text(),'Brands')]/following-sibling::dd/descendant::a[contains(@href,'"+specificBrandname+"')]")).click();		
 		}
 		else
 		{
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("(//h4[contains(text(),'Brands')]/following-sibling::span/ancestor::dt/following-sibling::dd)[1]/descendant::li/a[contains(@href,'"+specificBrandname+"')]")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//dt[contains(text(),'Brands')]/following-sibling::dd/descendant::a[contains(@href,'"+specificBrandname+"')]")));
 		}
 		return this;
 	}

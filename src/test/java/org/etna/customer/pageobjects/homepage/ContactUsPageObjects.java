@@ -24,7 +24,7 @@ public class ContactUsPageObjects extends PageFactoryInitializer {
 	@FindBy(id="phNum")
 	private WebElement phoneNumberLocator;
 	
-	@FindBy(id="email")
+	@FindBy(id="ContactEmail")
 	private WebElement emailAddressLocator;
 	
 	@FindBy(id="companyName")
@@ -44,8 +44,12 @@ public class ContactUsPageObjects extends PageFactoryInitializer {
 	@FindBy(id="zip")
 	private WebElement zipCodeLocator;
 	
-	@FindBy(id="address")
-	private WebElement addressLocator;
+	@FindBy(id="add1")
+	private WebElement address1Locator;
+	
+	@FindBy(id="add2")
+	private WebElement address2Locator;
+	
 	
 	@FindBy(id="comments")
 	private WebElement questionsAndCommentsLocator;
@@ -57,9 +61,12 @@ public class ContactUsPageObjects extends PageFactoryInitializer {
 	private WebElement successMessageLocator;
 	
 	
+	@FindBy(id="errorMsg")
+	private WebElement errorMessageLocator;
+	
 	
 	public ContactUsPageObjects selectAreaOfInterest(String areaOfInterest) throws InterruptedException {
-		Thread.sleep(5000);
+		Thread.sleep(3500);
 		areaOfInterestLocator.click();
 		switch(areaOfInterest)
 		{
@@ -126,8 +133,8 @@ public class ContactUsPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public ContactUsPageObjects enterAddress(String address) {
-		addressLocator.sendKeys(address);
+	public ContactUsPageObjects enterAddress1(String address) {
+		address1Locator.sendKeys(address);
 		return this;
 	}
 
@@ -152,10 +159,21 @@ public class ContactUsPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public void verifySuccessCustomAlertMessage(String expectedSuccessMessage) {
+	public ContactUsPageObjects verifySuccessCustomAlertMessage(String expectedSuccessMessage) {
 		Waiting.explicitWaitVisibilityOfElement(successMessageLocator, 5);
 		Assert.assertEquals(successMessageLocator.getText().trim(), expectedSuccessMessage);
-		
+		return this;
+	}
+
+	public ContactUsPageObjects enterAddress2(String address2) {
+		address2Locator.sendKeys(address2);
+		return this;
+	}
+
+	public ContactUsPageObjects verifyErrorMessage(String expectedErrorMessage) {
+		Waiting.explicitWaitVisibilityOfElement(errorMessageLocator, 3);
+		Assert.assertEquals(errorMessageLocator.getText().replace("\n", "").trim(), expectedErrorMessage);
+		return this;
 	}
 	
 }

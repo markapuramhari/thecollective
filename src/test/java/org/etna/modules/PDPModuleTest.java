@@ -8,6 +8,7 @@ import org.testng.SkipException;
 
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class PDPModuleTest extends PageFactoryInitializer {
 	
@@ -69,7 +70,6 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	.verifyDisplayOfQuantityInterval()
 	  	.verifyDisplayOfYourPrice()
 	  	.verifyDisplayOfQuantity()
-	  	//.verifyDisplayOfShipBranchName()
 	  	.verifyDisplayOfPrintLink()
 	  	.verifyToolTipOfPrintLink()
 	  	.verifyDisplayOfShare()
@@ -346,5 +346,88 @@ public class PDPModuleTest extends PageFactoryInitializer {
 				.verifyResultsPerPageDropdown()
 				.verifyShowItemsPerPage(showItemsPerPage);
 	  }
-}
+	
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  public void multiple_UOM_ProductListPage() throws Exception
+	  {
+		
+		  		loginModule.loginAsASuperUser();
+	  			homePage().logout();
+	  			loginModule.loginAsASuperUser();
+		  		String searchText = data.getSearchText();
+				homePage()
+				.searchText(searchText)
+				.clickOnSearch()
+				.productListPage()
+				.verifyUOMDropdown(data.getExpectedOptionsFromUOMDropdown().split(","));
+	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  public void multiple_UOM_ProductDetailPage() throws Exception
+	  {
+		
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		String searchText = data.getSearchTextForThirdItem();
+				homePage()
+				.searchText(searchText)
+				.clickOnSearch()
+				.productListPage()
+				.clickOnSpecificItemWhichHasUOM(1)
+				.verifyUOMDropdown(data.getExpectedOptionsFromUOMDropdown().split(","));
+	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void multiple_UOM_PDP_PriceUpdate() throws Exception
+	  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		data.setSpecificUOM("bx(25)");	
+		  		String uomArray[] = data.getSpecificUOM().split("\\(");
+		  		String uomName = uomArray[0];
+		  		String quantity = uomArray[1];
+				Number priceForSingleItem = homePage()
+				.searchText(data.getSearchTextForThirdItem())
+				.clickOnSearch()
+				.productListPage()
+				.clickOnSpecificItemWhichHasUOM(1)
+				.getPriceForSingleItem();
+				productDetailsPage()
+				.selectSpecificUOM(data.getSpecificUOM())
+				.checkUOMChange(uomName)
+				.checkLatestPrice(priceForSingleItem,quantity.replace("(", "").replace(")", ""));
+	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void multiple_UOM_PLP_PriceUpdate() throws Exception
+	  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		data.setSpecificUOM("pl(450)");	
+		  		String uomArray[] = data.getSpecificUOM().split("\\(");
+		  		String uomName = uomArray[0];
+		  		String quantity = uomArray[1];
+				Number priceForSingleItem = homePage()
+				.searchText(data.getSearchText())
+				.clickOnSearch()
+				.productListPage()
+				.getPriceForSingleItemWhichHasMultipleUOM();
+				productListPage()
+				.selectSpecificUOM(data.getSpecificUOM())
+				.checkUOMChange(uomName)
+				.checkLatestPriceForItemThatHasMultipleUOM(priceForSingleItem,quantity.replace("(", "").replace(")", ""));
+	  }
+	 }
+
 	

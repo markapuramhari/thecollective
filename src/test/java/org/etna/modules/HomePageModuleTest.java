@@ -115,7 +115,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	@Features("Homepage Module")
 	@Test(groups="regression",dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void verifyContactUsPositives(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String companyName,String country,String state,String city,String zipCode,String address,String questionsOrComments,String preferredMethodOfCommunication,String expectedSuccessMessage) throws InterruptedException{
+	public void verifyContactUsPositives(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String companyName,String country,String state,String city,String zipCode,String address1,String address2,String questionsOrComments,String preferredMethodOfCommunication,String expectedSuccessMessage) throws InterruptedException{
 			homePage().clickOnContactUsLink().contactUsPage()
 			.selectAreaOfInterest(areaOfInterest)
 			.enterFirstName(firstName)
@@ -127,10 +127,25 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 			.selectState(state)
 			.enterCity(city)
 			.enterZipCode(zipCode)
-			.enterAddress(address)
+			.enterAddress1(address1)
+			.enterAddress2(address2)
 			.enterQuestionsOrComments(questionsOrComments)
 			.choosePreferredMethodOfCommunication(preferredMethodOfCommunication)
 			.clickOnSubmitRequest()
 			.verifySuccessCustomAlertMessage(expectedSuccessMessage);
+	}
+	
+	@Features("Homepage Module")
+	@Test(groups="regression",dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void verifyContactUsES(String testCaseId,String areaOfInterest,String firstName,String lastName,String phoneNumber,String emailAddress,String expectedErrorMessage) throws InterruptedException{
+			homePage().clickOnContactUsLink().contactUsPage()
+			.selectAreaOfInterest(areaOfInterest)
+			.enterFirstName(firstName)
+			.enterLastName(lastName)
+			.enterPhoneNumber(phoneNumber)
+			.enterEmailAddress(emailAddress)
+			.clickOnSubmitRequest()
+			.verifyErrorMessage(expectedErrorMessage);
 	}
 }

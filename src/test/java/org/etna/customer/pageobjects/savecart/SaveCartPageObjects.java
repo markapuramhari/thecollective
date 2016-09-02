@@ -263,7 +263,6 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	@Step("verify whether alert text is {0}")
 	public SaveCartPageObjects verifyAlertText(String expectedAlertText) throws Exception{
 		Thread.sleep(1500);
-
 		Assert.assertTrue(assertAlertText(expectedAlertText),"Alert text is invalid");
 		return this;
 

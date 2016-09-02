@@ -43,7 +43,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//a[contains(@href,'itemsInCart')]")
 	private WebElement addedToCartCountInFileUploadLocator;
 	
-	@FindBy(xpath="//span[contains(@id,'cartCountrefresh')]")
+	@FindBy(xpath="//div[contains(@class,'navigationBar')]/descendant::span[contains(@id,'cartCountrefresh')]")
 	private WebElement shoppingCartCountLocator;
 	
 	@FindBy(xpath="//input[@value='Upload']")
@@ -144,6 +144,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	@Step("copy paste file whose file path is {0}")
 	public QuickOrderPageObjects copyPasteTxtFile(String relativeFilePath) throws Exception {
+		Thread.sleep(1500);
 		copyPasteSectionLocator.click();
 		  String line = "";
 		  File absolutePath = new File(relativeFilePath);

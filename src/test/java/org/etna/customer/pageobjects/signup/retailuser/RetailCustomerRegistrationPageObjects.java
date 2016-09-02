@@ -22,8 +22,8 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 	@FindBy(xpath="//form[contains(@action,'RetailReg')]/descendant::input[@id='lastName2AB']")
 	private WebElement lastNameLocator;
 	
-	@FindBy(xpath="//form[contains(@action,'RetailReg')]/descendant::input[@id='companyName2AB']")
-	private WebElement companyNameLocator;
+/*	@FindBy(xpath="//form[contains(@action,'RetailReg')]/descendant::input[@id='companyName2AB']")
+	private WebElement companyNameLocator;*/
 	
 	@FindBy(xpath="//form[contains(@action,'RetailReg')]/descendant::input[@id='emailAddress2AB']")
 	private WebElement emailAddressLocator;
@@ -88,7 +88,6 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 		Thread.sleep(1500);
 		Assert.assertTrue(firstNameLocator.isDisplayed(), "first name is not displayed.");
 		Assert.assertTrue(lastNameLocator.isDisplayed(), "last name is not displayed.");
-		Assert.assertTrue(companyNameLocator.isDisplayed(), "company name is not displayed.");
 		Assert.assertTrue(emailAddressLocator.isDisplayed(), "email address is not displayed.");
 		Assert.assertTrue(passwordLocator.isDisplayed(), "password is not displayed.");
 		Assert.assertTrue(confirmPasswordLocator.isDisplayed(), "confirm password is not displayed.");
@@ -114,7 +113,6 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 		else
 		{
 		String emailIdSplit []  = emailId.split("@");
-		System.out.println(emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
 		emailAddressLocator.sendKeys(emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
 		
 		}
@@ -135,11 +133,6 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 		return this;
 	}
 
-	@Step("Enter company name {0}")
-	public RetailCustomerRegistrationPageObjects enterCompanyName(String companyName) {
-		companyNameLocator.sendKeys(companyName);
-		return this;
-	}
 
 	@Step("Enter password {0}")
 	public RetailCustomerRegistrationPageObjects enterPassword(String password) {
@@ -184,8 +177,8 @@ public class RetailCustomerRegistrationPageObjects extends PageFactoryInitialize
 	}
 
 	@Step("Enter State {0}")
-	public RetailCustomerRegistrationPageObjects chooseState(String state) {
-	
+	public RetailCustomerRegistrationPageObjects chooseState(String state) throws Exception {
+		Thread.sleep(3000);
 
 		if(state.equals(""))
 		{

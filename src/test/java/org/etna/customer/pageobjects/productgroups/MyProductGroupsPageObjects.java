@@ -124,8 +124,8 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	
 	@Step("click on {0} group")
 	public MyProductGroupsPageObjects clickOnTheGroupCreated(String myProductGroupName) {
-		String productGroup = "//a[text()='"+myProductGroupName+"']";
-		Waiting.explicitWaitVisibilityOfElement(driver.findElement(By.xpath(productGroup)), 20);
+		String productGroup = "//a[text()[normalize-space() = '"+myProductGroupName+"']]";
+		Waiting.explicitWaitVisibilityOfElement((By.xpath(productGroup)), 20);
 		WebElement myProductGroup = driver.findElement(By.xpath(productGroup));
 		myProductGroup.click();
 		return this;
@@ -340,8 +340,6 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 	public MyProductGroupsPageObjects verifyExtPrice(String quantity, Number currentExtnPrice) throws ParseException {
 		Number afterUpdateExtensionPrice = NumberFormat.getCurrencyInstance(Locale.US).parse(extensionPriceLocator.getText().replace("\n", "").replace(" ", "").trim());
 		int quantityValue = Integer.parseInt(quantity);
-		System.out.println("current price : "+currentExtnPrice);
-		System.out.println("current price : "+afterUpdateExtensionPrice);
 		Assert.assertTrue(checkForExtnPrice(currentExtnPrice,afterUpdateExtensionPrice,quantityValue),"extension price is not getting updated.");
 		return this;
 	}

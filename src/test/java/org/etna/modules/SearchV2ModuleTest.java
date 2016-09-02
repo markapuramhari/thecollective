@@ -98,9 +98,9 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 		homePage()
 		.searchText(brandName.trim()+" OR "+pn.trim())
 		.clickOnSearch()
-		.productDetailsPage()
-		.verifyBrandNameOrMPNInNameOfTheProduct(brandName.trim())
-		.verifyPartNumberInProductDetailsPage(pn.trim());
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyPartNumberInProductListPage(pn.trim());
 	}
 	
 	@Features("Search V2")
@@ -429,13 +429,205 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@TestCaseId("{0}")
 	public void keyword_UPCMinusPN(String testCaseId,@Parameter("UPC") String upc,@Parameter("Part Number") String pn) throws Exception
 	{
-		
 		homePage()
 		.searchText(upc.trim()+" -"+pn.trim())
 		.clickOnSearch()
 		.productDetailsPage()
 		.verifyUPCInProductDetailsPage(upc.trim())
 		.verifyPartNumberIsNotDisplayedInProductDetailsPage(pn.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name + MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BrandNamePlusMPN(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("MPN") String mpn) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" +"+mpn.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyBrandNameOrMPNInProductListPage(mpn.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Part Number + MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_PartNumberPlusMPN(String testCaseId,@Parameter("Part Number") String partNumber,@Parameter("MPN") String mpn) throws Exception
+	{
+		homePage()
+		.searchText(partNumber.trim()+" +"+mpn.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(mpn.trim())
+		.verifyPartNumberInProductListPage(partNumber.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name + Part Number in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BNPlusPN(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("Part Number") String pn) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" +"+pn.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyPartNumberInProductListPage(pn.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name + UPC in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BNPlusUPC(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("UPC") String upc) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" +"+upc.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyUPCInProductListPage(upc);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name + UPC in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_UPCPlusPN(String testCaseId,@Parameter("UPC") String upc,@Parameter("PN") String pn) throws Exception
+	{
+		homePage()
+		.searchText(upc.trim()+" +"+pn.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyUPCInProductListPage(upc)
+		.verifyPartNumberInProductListPage(pn);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Parenthesis short description in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_Parenthesis(String testCaseId,@Parameter("Parenthesis") String parenthesis) throws Exception
+	{
+		homePage()
+		.searchText(parenthesis.trim())
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyShortDescription(parenthesis.replace("\"", "").replace("&Reg;", "®").trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name NOT MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_BrandNameNOTMpn(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("MPN") String mpn) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" NOT "+mpn.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName)
+		.verifyBrandNameOrMPNIsNotDisplayedInProductListPage(mpn)
+		.verifyMPNIsNotDisplayedInProductListPage(mpn);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name NOT MPN in product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_partNumberNOTMpn(String testCaseId,@Parameter("Part Number") String partNumber,@Parameter("MPN") String mpn) throws Exception
+	{
+		homePage()
+		.searchText(partNumber.trim()+" NOT "+mpn.trim())
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyPartNumberInProductDetailsPage(partNumber.trim())
+		.verifyMPNIsNotDisplayedInProductDetailsPage(mpn.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_brandNameNOTPn(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("Part Number") String partNumber) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" NOT "+partNumber.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyPartNumberNotDisplayedInProductListPage(partNumber.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_brandNameNOTUpc(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("UPC") String upc) throws Exception
+	{
+		homePage()
+		.searchText(brandName.trim()+" NOT "+upc.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.trim())
+		.verifyUPCNotDisplayedInProductListPage(upc.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void keyword_uPCNOTPn(String testCaseId,@Parameter("UPC") String upc,@Parameter("Part Number") String partNumber) throws Exception
+	{
+		homePage()
+		.searchText(upc.trim()+" NOT "+partNumber.trim())
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyUPCInProductDetailsPage(upc.trim())
+		.verifyPartNumberIsNotDisplayedInProductDetailsPage(partNumber.trim());
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies partial part number search for a product that has SKU mode. This search functionality should navigate to product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void partialPNSearch_SKU(String testCaseId,@Parameter("Part Number") String partNumber) throws Exception
+	{
+		homePage()
+		.searchText(partNumber.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyPartialPartNumberSKUMode(partNumber);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies partial part number search for a product that has product mode. This search functionality should navigate to product details page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void partialPNSearch_ProductMode(String testCaseId,@Parameter("Part Number") String partNumber) throws Exception
+	{
+		homePage()
+		.searchText(partNumber.trim())
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyPartialPartNumberProductMode(partNumber);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies partial short description that is in product mode and sku mode. This search functionality should navigate to product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void partialShortDescriptionSearch(String testCaseId,@Parameter("Part Number") String shortDescription) throws Exception
+	{
+		homePage()
+		.searchText(shortDescription.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyPartialShortDescription(shortDescription);
 	}
 }
 

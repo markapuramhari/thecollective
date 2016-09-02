@@ -218,6 +218,7 @@ public class ExcelLibrary {
 		case 3:
 			result = "";
 			break;
+		
 		default:
 			throw new RuntimeException("no support for this cell");
 		}

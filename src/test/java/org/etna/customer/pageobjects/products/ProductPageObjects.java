@@ -31,7 +31,7 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	private WebElement categoryToggleButton;
 	
 	
-	@FindAll(value={@FindBy(xpath="(//h4[contains(text(),'Category')]/ancestor::dt/following-sibling::dd)[1]/ul/li/a")})
+	@FindAll(value={@FindBy(xpath="//dt[contains(text(),'Category')]/following-sibling::dd[1]/descendant::a[@class='active']")})
 	private List<WebElement> categoriesList;
 	
 	@FindAll(value={@FindBy(xpath="//div[@class='cimm_productCategory']/descendant::h5")})
@@ -59,7 +59,7 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	Waiting.explicitWaitVisibilityOfElements(categoriesList, 15);
 		for(int i=0;i<categoriesList.size(); i++)
 		{
-			Assert.assertTrue((categoriesList.get(i).getText().trim()).equalsIgnoreCase(categoryNamesInThePage.get(i).getText().trim()),"category name is not the same as it was in the dropdown. The name in the category list is : "+categoriesList.get(i).getText().trim()+" and the name in the category page is : "+categoryNamesInThePage.get(i).getText().trim()+".");
+			Assert.assertTrue((categoriesList.get(i).getText().replace(".", "").trim()).equalsIgnoreCase(categoryNamesInThePage.get(i).getText().trim()),"category name is not the same as it was in the dropdown. The name in the category list is : "+categoriesList.get(i).getText().trim()+" and the name in the category page is : "+categoryNamesInThePage.get(i).getText().trim()+".");
 		}
 	
 		return this;
@@ -88,15 +88,8 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	@Step("click on {0} st/nd/rd specific category")
 	public ProductPageObjects clickOnSpecificCategory(String getSpecificCategory) 
  {
-	Waiting.explicitWaitVisibilityOfElements(categoryNamesInThePage, 10);	
-	for(WebElement categoryOption : categoryNamesInThePage)
-	{
-		if(categoryOption.getText().trim().contains(getSpecificCategory.toUpperCase()))
-		{
-			categoryOption.click();
-			break;
-		}	
-	}	
+		Waiting.explicitWaitVisibilityOfElement(By.xpath("//h5[text()[normalize-space() = '"+getSpecificCategory+"']]"), 5);
+		driver.findElement(By.xpath("//h5[text()[normalize-space() = '"+getSpecificCategory+"']]")).click();
 		return this;
  }
 

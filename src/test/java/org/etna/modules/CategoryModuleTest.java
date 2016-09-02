@@ -43,7 +43,6 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 				.verifyBreadcrump(productsPageBreadCrump)
 				.verifyPageTitle(productsPageBreadCrump)
 				.verifyNamesOfAllTheCategoriesInListAndInPage();
-				//.verifyPagename(productsPageBreadCrump);
 				
 	}
 	
@@ -68,9 +67,9 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 		@Description("Verification of last level category link for Product List Page.")
 		public void TC_categories_003_navigateProductListPage() throws Exception
 		{
-		  		data.setSpecificCategory("Safety & Security");
+		  		data.setSpecificCategory("Plumbing");
 		  		String getSpecificCategory1 = data.getSpecificCategory();
-		  		data.setSpecificCategory("Clothing - Rainwea...");
+		  		data.setSpecificCategory("Fasteners & Hardwa...");
 		  		String getSpecificCategory2 = data.getSpecificCategory();
 				homePage()
 				.clickOnProductsLink()
@@ -86,11 +85,11 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 		}
 		
 	@Features("Category Module")
-		@Test(alwaysRun=true,groups={"CategoryModule","regression"})
+		@Test(enabled=false,alwaysRun=true,groups={"CategoryModule","regression"})
 		@Description("Verification of last level category link for Product Details Page.")
 		public void TC_categories_003_navigateProductDetailsPage() throws Exception
 		{
-		  		data.setSpecificCategory("Safety & Security");
+		  		data.setSpecificCategory("Plumbing");
 		  		String getSpecificCategory1 = data.getSpecificCategory();
 		  		data.setSpecificCategory("Clothing - Workwea...");
 		  		String getSpecificCategory2 = data.getSpecificCategory();
@@ -115,11 +114,11 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 	  }
 		
 	@Features("Category Module")
-		@Test(alwaysRun=true,groups={"CategoryModule","regression"})
+		@Test(enabled=false,alwaysRun=true,groups={"CategoryModule","regression"})
 		@Description("Verification of description and banners.")
 		public void TC_categories_004_verifyBanners() throws Exception
 			{
-		  		data.setSpecificCategory("Safety & Security");
+		  		data.setSpecificCategory("Plumbing");
 		  		String getSpecificCategory = data.getSpecificCategory();
 				homePage()
 				.clickOnProductsLink()
@@ -133,7 +132,7 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 			@Description("Verification of image link of any category")
 			public void TC_categories_005_ClickingOnImages() throws Exception
 				{
-			  		data.setSpecificCategory("Safety & Security");
+			  		data.setSpecificCategory("Plumbing");
 			  		String getSpecificCategory = data.getSpecificCategory();
 					homePage()
 					.clickOnProductsLink()

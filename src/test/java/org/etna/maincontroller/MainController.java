@@ -19,6 +19,8 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.etna.customer.pageobjects.homepage.HomePageObjects;
+import org.etna.modules.LoginModuleTest;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SendEmailGmail;
 import org.etna.utils.TestUtility;
@@ -144,7 +146,8 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("IE"))
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Mac/IEDriverServer.exe");
-			driver=new InternetExplorerDriver();			  
+			driver=new InternetExplorerDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			  
 		}
 
@@ -236,13 +239,9 @@ public void callStopRecording() throws Exception{
 		}	
 }
 
-
-
-
-
-
 @AfterSuite(alwaysRun=true)
 public void tearDown(){
-	driver.close();
+	
+	driver.quit();
 }
 }

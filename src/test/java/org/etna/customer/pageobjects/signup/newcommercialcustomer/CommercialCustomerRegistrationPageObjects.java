@@ -180,9 +180,9 @@ public class CommercialCustomerRegistrationPageObjects extends PageFactoryInitia
 	}
 
 	@Step("Enter State {0}")
-	public CommercialCustomerRegistrationPageObjects chooseState(String state) {
-	
-
+	public CommercialCustomerRegistrationPageObjects chooseState(String state) throws Exception {
+		
+		Thread.sleep(3000);
 		if(state.equals(""))
 		{
 				
@@ -230,7 +230,6 @@ public class CommercialCustomerRegistrationPageObjects extends PageFactoryInitia
 	}
 
 	public CommercialCustomerRegistrationPageObjects enterEmailIdForPositiveFlow(String emailId) {
-		System.out.println(emailId);
 		emailAddressLocator.sendKeys(emailId);
 		return this;
 	}

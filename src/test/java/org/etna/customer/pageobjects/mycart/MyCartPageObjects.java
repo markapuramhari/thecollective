@@ -118,7 +118,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	
 	@Step("Click on checkout in my cart pop up")
 	public MyCartPageObjects clickOnCheckoutInMyCartPopup() throws Exception {
-		Thread.sleep(1500);
+		Thread.sleep(3000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",checkoutButtonInMyCartPopUp);
 		return this;
 		

@@ -1,10 +1,11 @@
 package org.etna.customer.pageobjects.productdetails;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
-import org.etna.customer.pageobjects.productlist.ProductsListPageObjects;
-import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
@@ -18,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import ru.yandex.qatools.allure.annotations.Step;
@@ -43,8 +45,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	@FindBy(xpath="(//a[contains(text(),'Checkout')])[2]")
 	private WebElement checkoutButton;
 	
-	@FindBy(className="cimm_itemShortDesc")
-	private WebElement shortDescriptionLocator;
+
 	
 	@FindBy(xpath="//span[contains(text(),'MPN')]/following-sibling::span")
 	private WebElement mpnValue;
@@ -185,6 +186,16 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	
 	@FindAll(value={@FindBy(xpath="//span[@class='partNum']")})
 	private List<WebElement> partNumberUnderProductChoicesLocator;
+	
+	@FindBy(xpath="//div[contains(@class,'itemDescription')]/descendant::p[contains(@class,'ShortDesc')]")
+	private WebElement shortDescriptionLocator;
+	
+	@FindBy(xpath="//select[@class='multipleUom']")
+	private WebElement multipleUOMDropdownLocator;
+	
+	
+	@FindBy(xpath="//div[@class='price']/descendant::span[@class='priceSpan']")
+	private WebElement priceLocator;
 	
 	@Step("verify whether the item name contains {0}")
 	public ProductsDetailsPageObjects verifyDisplayOfItemName(String searchText) {
@@ -536,7 +547,8 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 
 
 	@Step("click on add to cart button")
-	public ProductsDetailsPageObjects clickOnAddToCartButton() {
+	public ProductsDetailsPageObjects clickOnAddToCartButton() throws InterruptedException {
+		Thread.sleep(2500);
 		Waiting.explicitWaitVisibilityOfElement(addToCartButton, 10);
 		addToCartButton.click();
 		return this;
@@ -746,6 +758,87 @@ return this;
 		}
 		return this;	
 		}
+
+	@Step("verify short description contains {0}")
+	public ProductsDetailsPageObjects verifyShortDescription(String shortDescription) {
+		Assert.assertTrue(shortDescriptionLocator.getText().trim().contains(shortDescription),"Short description does not contain "+shortDescription+" .It contains "+shortDescriptionLocator.getText().trim());
+		return this;
+	}
+
+	public ProductsDetailsPageObjects verifyPartialPartNumberProductMode(String partNumber) throws Exception {
+		Assert.assertTrue(assertPartialPartNumberUnderProductChoices(partNumber),"Partial Part Number does not contain the part number in details page.");
+		return this;
+	}
+
+	private boolean assertPartialPartNumberUnderProductChoices(String partNumber) {
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement partNumberUnderProductChoiceLocator : partNumberUnderProductChoicesLocator)
+			{
+		
+				Waiting.explicitWaitVisibilityOfElement(partNumberUnderProductChoiceLocator, 10);
+					if(partNumberUnderProductChoiceLocator.getText().trim().contains(partNumber))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
+	}
+
+	public ProductsDetailsPageObjects verifyUOMDropdown(String[] expectedMultipleUOMs) {
+		Select select = new Select(multipleUOMDropdownLocator);
+		for(int i = 0 ; i< expectedMultipleUOMs.length ; i++)
+		{
+		Assert.assertEquals(select.getOptions().get(i).getText().trim(), expectedMultipleUOMs[i]);
+		}
+		return this;
+	}
+
+	public ProductsDetailsPageObjects selectSpecificUOM(String specificUOM) {
+		Select select = new Select(multipleUOMDropdownLocator);
+		select.selectByVisibleText(specificUOM);
+		return this;
+	}
+	
+	public ProductsDetailsPageObjects selectSpecificUOM(int specificUOM) {
+		Select select = new Select(multipleUOMDropdownLocator);
+		select.selectByIndex(specificUOM);
+		return this;
+	}
+
+	public Number getPriceForSingleItem() throws ParseException {
+		String priceLocatorArray [] = priceLocator.getText().split("/");
+		Number price = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", ""));
+		return price;
+	}
+
+	public void checkLatestPrice(Number priceForSingleItem,String quantity) throws Exception {
+		Thread.sleep(1000);
+		String priceLocatorArray [] = priceLocator.getText().split("/");
+		Number afterUpdatePrice = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", "").trim());
+		int quantityValue = Integer.parseInt(quantity);
+		Assert.assertTrue(checkForExtnPrice(priceForSingleItem,afterUpdatePrice,quantityValue),"extension price is not getting updated.");
+	}
+
+	private boolean checkForExtnPrice(Number priceForSingleItem, Number afterUpdatePrice, int quantityValue) {
+		DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
+		String previous = oneDigit.format(priceForSingleItem.doubleValue()*quantityValue);
+		String after = oneDigit.format(afterUpdatePrice.doubleValue());
+
+		if(previous.equals(after))
+		{	
+			return true;
+		}
+		return false;
+	}
+
+	public ProductsDetailsPageObjects checkUOMChange(String uomName) {
+		String priceLocatorArray [] = priceLocator.getText().split("/");
+		String actualUOMName[] = priceLocatorArray[1].split("\\(");
+		Assert.assertEquals(actualUOMName[0].replace("\n", "").trim(), uomName);
+		return this;
+	}
 	}	
 
 

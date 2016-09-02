@@ -1,10 +1,13 @@
 package org.etna.customer.pageobjects.productlist;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.etna.customer.pageobjects.productdetails.ProductsDetailsPageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
-import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
@@ -18,7 +21,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -36,7 +38,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	private WebElement productDetailsBrandHeading;
 
 
-	@FindAll(@FindBy(xpath="//li[@id='getchangemode']"))
+	@FindAll(@FindBy(xpath="//ul[@class='listGridContainer']/li"))
 	private List<WebElement> listOfProductsLocator;
 
 	
@@ -153,7 +155,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//span[text()='ADD TO COMPARE']")})
 	private List<WebElement> addToCompareCheckboxesInSKUModeLocator;
 	
-	@FindAll(value={@FindBy(xpath="//a[@class='log-addTocart-btn btns-disable']/ancestor::li/following-sibling::div/descendant::span[contains(text(),'ADD TO COMPARE')]")})
+	@FindAll(value={@FindBy(xpath="//a[@class='log-addTocart-btn btns-disable']/ancestor::li/following-sibling::li[contains(@class,'Compare')]/descendant::span[text()='ADD TO COMPARE']")})
 	private List<WebElement> addToCompareCheckboxesInSKUModeCallForPriceLocator;
 	
 	@FindAll(value={@FindBy(xpath="//td[@class='tabelImage details-control']/img")})
@@ -179,6 +181,34 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	@FindBy(xpath="//div[@id='resultPerPage_chosen']/a")
 	private WebElement showResultsDropdownLocator;
+	
+	@FindAll(value={@FindBy(xpath="//b[contains(text(),'MPN')]/following-sibling::span")})
+	private List<WebElement> mpnValueInSKUModeLocator;
+	
+	@FindAll(value = { @FindBy(xpath="//p[contains(@id,'ShortDesc')]") })
+	private List<WebElement> shortDescriptionLocator;
+	
+	@FindBy(xpath="//select[contains(@id,'multipleUom')]")
+	private WebElement multipleUOMDropdownsLocator;
+	
+	
+	@FindAll(value={@FindBy(xpath="//select[contains(@id,'multipleUom')]/ancestor::ul/preceding-sibling::ul/descendant::h4/a")})
+	private List<WebElement> itemsWithMultipleUOMsLocator;
+	
+	
+
+	@FindBy(xpath="//li[@class='price']/span[@class='priceSpan']")
+	private WebElement priceInSKUModeLocator;
+	
+	
+	@FindBy(xpath="//select[@class='multipleUom']")
+	private WebElement multipleUOMDropdownLocator;
+	
+	
+	@FindBy(xpath="//select[contains(@id,'Uom')]/ancestor::li[contains(@class,'productQty')]/preceding-sibling::li[@class='price']/descendant::span")
+	private WebElement priceInSKUModeWhoseProductHasMultipleUOMLocator;
+	
+	
 	
 	@Step("verify header contains {0}")
 	public ProductsListPageObjects verifyHeader(String searchText) {
@@ -619,14 +649,6 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	}
 
 
-	@Step("verify the list of products contains both brand name and mpn")
-	public ProductsListPageObjects verifyBrandNameOrMPNProductListPage(String searchKeyword) throws InterruptedException {
-		String splitIntoTwo[] = searchKeyword.split(" ");
-		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(splitIntoTwo[0]));
-		Assert.assertTrue(assertForBrandNameOrMPNInProductListPage(splitIntoTwo[1]));
-		return this;
-	}	
-	
 
 	
 	
@@ -716,7 +738,10 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 			{
 				Assert.assertTrue(assertPartNumberInSKUModeInProductListPage(partNumber),"Part Number is not displayed in product list page.");
 			}
+			else
+			{
 			Assert.assertTrue(verifyPartNumberInProductMode(partNumber),"Part number is not displayed in product list page.");
+			}
 		}
 		catch(NoSuchElementException e)
 		{
@@ -824,7 +849,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		{
 			if((assertUPCInSKUModeInProductListPage(upc)))
 			{
-				Assert.assertFalse(assertUPCInSKUModeInProductListPage(upc),"UPC Number is displayed in product list page.");
+				Assert.assertFalse(false,"UPC Number is displayed in product list page.");
 			}
 			Assert.assertFalse(verifyUPCInProductMode(upc),"UPC is displayed in product list page.");
 		}
@@ -833,6 +858,157 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 			Assert.assertFalse(verifyUPCInProductMode(upc),"UPC is displayed in product list page.");
 		}
 		
+		return this;
+	}
+
+
+
+	private boolean verifyMPNInProductMode(String mpn) throws InterruptedException {
+		
+		for(int i = 0 ; i < moreChoicesButtonLocator.size() ; i++)
+		{
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesButtonLocator.get(i));
+			Thread.sleep(3000); 
+			for(int j = 0 ; j <  moreChoicesProductModeImagesLocator.size() ; j++)
+			{
+				
+				moreChoicesProductModeImagesLocator.get(j).click();
+				Thread.sleep(1500); 
+				if(mpnValueInProductModeLocator.getText().trim().equals(mpn))
+				{
+					return true;
+				}
+					
+			}
+		}
+		return false;
+	}
+
+
+	private boolean assertMPNInSKUModeInProductListPage(String mpn) {
+		for(int i = 0 ; i<mpnValueInSKUModeLocator.size() ; i++)
+		{
+			if(mpnValueInSKUModeLocator.get(i).getText().trim().equalsIgnoreCase(mpn))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
+	
+	public ProductsListPageObjects verifyMPNIsNotDisplayedInProductListPage(String mpn) throws InterruptedException {
+		try
+		{
+			if((assertMPNInSKUModeInProductListPage(mpn)))
+			{
+				Assert.assertFalse(false,"MPN Number is displayed in product list page.");
+			}
+			Assert.assertFalse(verifyMPNInProductMode(mpn),"MPN is displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertFalse(verifyMPNInProductMode(mpn),"MPN is displayed in product list page.");
+		}
+		
+		return this;
+		
+	}
+
+
+	public ProductsListPageObjects verifyPartialPartNumberSKUMode(String partNumber) {
+		for(int i = 0 ; i < partNumberValueInSKUModeLocator.size() ; i++)
+		{
+			Assert.assertTrue(partNumberValueInSKUModeLocator.get(i).getText().trim().contains(partNumber),"Part Number does not contain "+partNumber+" .Part Number is "+partNumberValueInSKUModeLocator.get(i).getText().trim());
+		}
+		return this;
+	}
+
+
+	public ProductsListPageObjects verifyPartialShortDescription(String shortDescription) {
+		for(int i = 0 ; i < shortDescriptionLocator.size() ; i++)
+		{
+		Assert.assertTrue(shortDescriptionLocator.get(i).getText().trim().contains(shortDescription),"Partial short description search is not working. Searched short description: "+shortDescription+" Short description from web application is "+shortDescriptionLocator.get(i).getText().trim());
+		}
+		return this;
+	}
+
+
+	public ProductsListPageObjects verifyUOMDropdown(String[] expectedOptionsFromUOMDropdown) {
+		Waiting.explicitWaitVisibilityOfElement(multipleUOMDropdownsLocator, 5);
+		Select select = new Select(multipleUOMDropdownsLocator);
+		for(int i = 0 ; i < expectedOptionsFromUOMDropdown.length ; i++)
+		{
+		Assert.assertEquals(select.getOptions().get(i).getText().trim(),expectedOptionsFromUOMDropdown[i],"Multiple UOMs are not displaying properly.");
+		}
+		return this;
+	}
+
+
+	public ProductsDetailsPageObjects clickOnSpecificItemWhichHasUOM(int specificProductThatHasUOM) {
+		Waiting.explicitWaitVisibilityOfElements(itemsWithMultipleUOMsLocator, 6);
+		itemsWithMultipleUOMsLocator.get(specificProductThatHasUOM-1).click();
+		return productDetailsPage();
+	}
+
+
+	public Number getPriceForSingleItem() throws ParseException {
+		String priceLocatorArray [] = priceInSKUModeLocator.getText().split("/");
+		Number price = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", ""));
+		return price;
+	}
+
+	public void checkLatestPrice(Number priceForSingleItem,String quantity) throws Exception {
+		Thread.sleep(1000);
+		String priceLocatorArray [] = priceInSKUModeLocator.getText().split("/");
+		Number afterUpdatePrice = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", "").trim());
+		int quantityValue = Integer.parseInt(quantity);
+		Assert.assertTrue(checkForExtnPrice(priceForSingleItem,afterUpdatePrice,quantityValue),"extension price is not getting updated.");
+	}
+
+	private boolean checkForExtnPrice(Number priceForSingleItem, Number afterUpdatePrice, int quantityValue) {
+		DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
+		String previous = oneDigit.format(priceForSingleItem.doubleValue()*quantityValue);
+		String after = oneDigit.format(afterUpdatePrice.doubleValue());
+
+		if(previous.equals(after))
+		{	
+			return true;
+		}
+		return false;
+	}
+
+	public ProductsListPageObjects selectSpecificUOM(String specificUOM) {
+		Select select = new Select(multipleUOMDropdownLocator);
+		select.selectByVisibleText(specificUOM);
+		return this;
+	}
+
+
+	public Number getPriceForSingleItemWhichHasMultipleUOM() throws ParseException {
+		Waiting.explicitWaitVisibilityOfElement(priceInSKUModeWhoseProductHasMultipleUOMLocator, 5);
+		String priceLocatorArray [] = priceInSKUModeWhoseProductHasMultipleUOMLocator.getText().split("/");
+		Number price = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", ""));
+		return price;
+	}
+
+
+	public ProductsListPageObjects checkLatestPriceForItemThatHasMultipleUOM(Number priceForSingleItem, String quantity) throws Exception {
+		Thread.sleep(1000);
+		String priceLocatorArray [] = priceInSKUModeWhoseProductHasMultipleUOMLocator.getText().split("/");
+		Number afterUpdatePrice = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", "").trim());
+		int quantityValue = Integer.parseInt(quantity);
+		Assert.assertTrue(checkForExtnPrice(priceForSingleItem,afterUpdatePrice,quantityValue),"extension price is not getting updated.");
+		return this;
+	}
+
+
+	
+	public ProductsListPageObjects checkUOMChange(String uomName) {
+		String priceLocatorArray [] = priceInSKUModeWhoseProductHasMultipleUOMLocator.getText().split("/");
+		String actualUOMName[] = priceLocatorArray[1].split("\\(");
+		Assert.assertEquals(actualUOMName[0].replace("\n", "").trim(), uomName);
 		return this;
 	}
 }

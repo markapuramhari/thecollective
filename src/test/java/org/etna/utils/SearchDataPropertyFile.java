@@ -326,16 +326,20 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String partialPartNumber = PropertyFileReader.propertiesReader(searchData, "partialPartNumber");
 	
-	
-	
 	private String myAccountBreadcrumb = PropertyFileReader.propertiesReader(searchData, "myAccountBreadcrumb");
-	
 	
 	private String searchTextForThirdItem = PropertyFileReader.propertiesReader(searchData, "searchTextForThirdItem");
 	
 	private String alertTextCartNameAlreadyExists = PropertyFileReader.propertiesReader(searchData, "alertTextCartNameAlreadyExists");
 	
 	private String alertTextOfDeleteSaveCart = PropertyFileReader.propertiesReader(searchData, "alertTextOfDeleteSaveCart");
+	
+	private String alertTextDeleteItemsFromCart = PropertyFileReader.propertiesReader(searchData, "alertTextDeleteItemsFromCart");
+	
+	private String expectedOptionsFromUOMDropdown = PropertyFileReader.propertiesReader(searchData, "expectedOptionsFromUOMDropdown");
+	
+	private String specificUOM = PropertyFileReader.propertiesReader(searchData, "specificUOM");
+	
 	
 	
 	
@@ -1192,5 +1196,25 @@ public String getPartialPartNumber() {
 		
 		return alertTextOfDeleteSaveCart;
 	}
+
+	public String getAlertTextDeleteItemsFromCart() {
+
+		return alertTextDeleteItemsFromCart;
+	}
+
+	public String getExpectedOptionsFromUOMDropdown() {
+		
+		return expectedOptionsFromUOMDropdown;
+	}
+
+	public String getSpecificUOM() {
+		return specificUOM;
+	}
+
+	public void setSpecificUOM(String specificUOM) {
+		this.specificUOM = specificUOM;
+	}
+
+
 
 }

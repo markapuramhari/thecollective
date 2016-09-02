@@ -1,4 +1,4 @@
-﻿package org.etna.modules;
+package org.etna.modules;
 
 import org.testng.annotations.Test;
 
@@ -13,6 +13,8 @@ import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.RandomGenerator;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.TestUtility;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.UnhandledAlertException;
 
 
@@ -84,7 +86,7 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.verifyBreadCrumps(saveCartName)
 			.verifyPageName(saveCartName)
 			.verifyTitleAfterClickingOnTheCartCreated();
-			saveCartDeleteAndVerify(saveCartName);
+			
 		}
 		catch(UnhandledAlertException e){
 			TestUtility.alertAccept();
@@ -459,10 +461,6 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			TestUtility.alertAccept();
 			throw new Exception("Alert not handled.");
 		}
-
-		finally{
-			saveCartDeleteAndVerify(saveCartName);
-		}
 	}
 
 	@Features("Save Cart Module")
@@ -502,7 +500,6 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.enterQuantity("0")
 			.clickOnFirstSelectCheckbox()
 			.verifyAlertText("Min Order Quantity is 1. For PN: "+partNumber+". To Continue with Min Order Qty click \"Ok\".To cancel this item click \"Cancel\"");
-			saveCartDeleteAndVerify(saveCartName);
 		}
 		catch(UnhandledAlertException e){
 			TestUtility.alertAccept();
@@ -549,7 +546,6 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.enterQuantity("")
 			.clickOnFirstSelectCheckbox()
 			.verifyAlertText("Invalid Qty. For PN: "+partNumber+". To Continue with Min Order Qty click \"Ok\".To cancel this item click \"Cancel\"");
-			saveCartDeleteAndVerify(saveCartName);
 		}
 		catch(UnhandledAlertException e){
 			TestUtility.alertAccept();
@@ -599,7 +595,6 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.verifyNumberAddedSuccessfullyMsg(1)
 			.myCartPage()
 			.clickOnCloseButtonInMyCartPopUp();
-			saveCartDeleteAndVerify(saveCartName);
 
 		}
 		catch(UnhandledAlertException e){
@@ -616,10 +611,10 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 	@Description("This Test Case Verifies Bulk Option to Add Items From Saved Cart By Select All Option")
 	@TestCaseId("TC_SavedCart_015")
 	@Test(groups={"SaveCartModule","regression"})
-	public void verifiesDeletingItemsFromSavedCartWithSelectAllOption() throws Exception {
+	public void verifyDeletingItemsFromSavedCartWithSelectAllOption() throws Exception {
 
 		String searchText = data.getSearchTextForEnlargeImageTest();
-		String searchAnotherText = data.getSearchTextForAnotherItem();
+		String searchAnotherText = data.getSearchTextForThirdItem();
 		String saveCartName = data.getSaveCartName();
 		data.setBulkOption("Delete Selected Items");
 
@@ -641,6 +636,8 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.homePage()
 			.searchText(searchAnotherText)
 			.clickOnSearch()
+			.productListPage()
+			.clickOnSpecificItem(1)
 			.productDetailsPage()
 			.clickOnAddToCartButton()
 			.myCartPage()
@@ -656,18 +653,12 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			.verifyPageName(saveCartName)
 			.clickOnSelectAllCheckBox()
 			.selectBulkActionsDropdown(data.getBulkOption())
-			.verifyAlertText("Delete item from Saved Cart?");
-
-
+			.verifyAlertText(data.getAlertTextDeleteItemsFromCart());
 
 		}
 		catch(UnhandledAlertException e){
 			TestUtility.alertAccept();
 			throw new Exception("Alert not handled.");
-		}
-
-		finally{
-			saveCartDeleteAndVerify(saveCartName);
 		}
 	}
 
@@ -833,9 +824,16 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			throw new Exception("Alert not handled.");
 		}
 		finally{
-			saveCartDeleteAndVerify(saveCartName);
+			try
+			{
+				saveCartDeleteAndVerify(saveCartName);
+			}
+			catch(NoSuchElementException | TimeoutException e)
+			{
+			driver.navigate().refresh();
+			saveCartDeleteAndVerify(editCartName);
+			}
 		}
-
 	}
 
 	@Features("Save Cart Module")
