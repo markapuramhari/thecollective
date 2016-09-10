@@ -8,6 +8,7 @@ import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.Waiting;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
@@ -145,6 +146,20 @@ public class ProductPageObjects extends PageFactoryInitializer{
 		Assert.assertTrue(bannerImages.get(i).getAttribute("src").trim().equals(bannerImagesInLevelOne[i]));
 		}
 		return this;
+	}
+
+	public ProductPageObjects clickOnSpecificCategoryUnderTheProductsLink(String categoryNameToSearch) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[contains(text(),'"+categoryNameToSearch+"')]")));
+		return this;
+	}
+
+	public String[] getNamesOfTheCategories() {
+		String [] categoryNames = new String[categoryNamesInThePage.size()];
+		for(int i = 0 ; i < categoryNamesInThePage.size() ; i++)
+		{
+			categoryNames[i] = categoryNamesInThePage.get(i).getText().trim();
+		}
+		return categoryNames;
 	}
 	
 }

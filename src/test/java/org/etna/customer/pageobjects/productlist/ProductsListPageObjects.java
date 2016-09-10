@@ -205,12 +205,19 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	private WebElement multipleUOMDropdownLocator;
 	
 	
-	@FindBy(xpath="//select[contains(@id,'Uom')]/ancestor::li[contains(@class,'productQty')]/preceding-sibling::li[@class='price']/descendant::span")
+	@FindBy(xpath="//span[@class='priceSpan']")
 	private WebElement priceInSKUModeWhoseProductHasMultipleUOMLocator;
 	
 	
 	@FindAll(value={@FindBy(xpath="//select[contains(@id,'Uom')]/ancestor::li[contains(@class,'productQty')]/descendant::a[contains(@class,'addToCart')]")})
 	private List<WebElement> addToCartButtonsMultipleUOMLocator;
+	
+	
+	@FindAll(value={@FindBy(xpath="//span[text()='Select Item']")})
+	private List<WebElement> selectItemsInSKUModeLocator;
+	
+	@FindBy(xpath="//div[contains(@class,'Slider')]/descendant::a[@data-perform='multipleProductGroup']")
+	private WebElement addToProductGroupFromSliderLocator;
 	
 	
 	
@@ -1025,6 +1032,41 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 
 	public ProductsListPageObjects clickOnAddToCartBWhichHasMultipleUOM(int specificAddToCartButtonWithMultipleUOM) {
 		addToCartButtonsMultipleUOMLocator.get(specificAddToCartButtonWithMultipleUOM-1).click();
+		return this;
+	}
+
+
+	public ProductsListPageObjects clickOnSpecificSelectItemOfAProductInSKUMode(int specificSelectItemOfAProductInSKUMode) throws InterruptedException {
+		Thread.sleep(2000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",selectItemsInSKUModeLocator.get(specificSelectItemOfAProductInSKUMode-1));
+		
+		return this;	
+	}
+
+
+	public ProductsListPageObjects clickOnAddToMyProductGroupFromSlider() throws InterruptedException {
+		Thread.sleep(3000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",addToProductGroupFromSliderLocator);
+		return this;
+	}
+
+
+	public String[] getNamesOfTheItems() {
+
+		String []str = new String[items.size()];
+		for(int i = 0 ;  i < items.size() ; i++)
+		{
+		str[i] =  items.get(i).getText().trim();
+	}
+		return str;
+}
+
+
+	public ProductsListPageObjects verifyNamesOfTheProducts(String[] nameOfTheItems) {
+		for(int i = 0 ; i<items.size() ;i++)
+		{
+			Assert.assertEquals(items.get(i).getText().trim(), nameOfTheItems[i]);
+		}
 		return this;
 	}
 }

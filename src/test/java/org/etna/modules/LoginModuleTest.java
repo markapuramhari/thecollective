@@ -40,7 +40,8 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		
 		
 	@Features("Login Module")
-	@Test(groups={"LoginModule","smoke","regression"})
+	@Test(groups={"smoke","regression"})
+	@TestCaseId("TC_LOGIN_001")
 		public void TC_Login_001_TC_Login_002_TC_Login_024_TC_Login_025_TC_Login_026_TC_Login_027() throws Exception
 		{
 		   homePage()
@@ -91,7 +92,8 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  
 	  
 	@Features("Login Module")
-	@Test(groups={"LoginModule","regression"},enabled=true)
+	@Test(groups={"regression"},enabled=true)
+	@TestCaseId("TC_LOGIN_008")
 	  public void TS_Login_001_TC_Login_008_Verify_Tab_focus() throws Exception
 	  {
 		  
@@ -103,6 +105,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 
 	@Features("Login Module")
 	@Test(groups={"LoginModule","regression"},enabled=true)
+	@TestCaseId("{0}")
 	  public void TC_Login_009_010_RememberPassword_UserNameAndPasswordRefill() throws Exception
 	  {
 		  
@@ -260,6 +263,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  
 	@Features("Login Module")
 	@Test(groups={"LoginModule","regression"})
+	@TestCaseId("TC_LOGIN_009")
 	  public void TC_Login_021_loginVerifyTabOrderTopToBottom() throws Exception
 	  {
 		  
@@ -271,6 +275,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	
 	@Features("Login Module")
 	@Test(groups={"LoginModule","regression"})
+	@TestCaseId("TC_LOGIN_010")
 	  public void TC_Login_021_loginVerifyTabOrderBottomToTop() throws Exception
 	  {
 		  
@@ -291,19 +296,4 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		  .forgotPasswordPage()
 		  .verifyRetrievePasswordPage();
 		}
-	
-	@Features("Login Module")
-	@Test(groups={"LoginModule","regression"})
-	  public void TC_Login_019_verifyRegisterPage() throws Exception
-	  {
-
-	 homePage()
-	 .clickLoginLink()
-	 .loginPopUp()
-	 .clickOnSignUp()
-	 .signUpPage()
-	 .verifyBreadCrump(data.getRegistrationBreadCrump())
-	 .verifyRegistrationPageName(data.getRegistrationBreadCrump())
-	 .verifyWhetherNewCommercialCustomerIsEnabledFirstAndNewRetailCustomerIsNotEnabledFirst();
-	  }
 }

@@ -101,19 +101,10 @@ public class CommercialCustomerRegistrationPageObjects extends PageFactoryInitia
 
 	@Step("Enter email Id {0}")
 	public CommercialCustomerRegistrationPageObjects enterEmailId(String emailId) {
-		if(emailId.equals(""))
-		{
-			
-		}
-		else if(!emailId.contains("@"))
-		{
+		
+		
 		emailAddressLocator.sendKeys(emailId);
-		}
-		else
-		{
-		String emailIdSplit []  = emailId.split("@");
-		emailAddressLocator.sendKeys(emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
-		}
+		
 		return this;
 	}
 

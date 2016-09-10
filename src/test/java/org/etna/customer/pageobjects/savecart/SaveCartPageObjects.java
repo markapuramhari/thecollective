@@ -1,10 +1,12 @@
 package org.etna.customer.pageobjects.savecart;
+import java.util.ArrayList;
 import java.util.List;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.TestUtility;
 import org.etna.utils.Waiting;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -53,7 +55,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//input[@id='searchKey']")
 	private WebElement searchBoxLocator;
 
-	@FindBy(xpath="//a[text()='3M TestMPN']/ancestor::td[@data-th='Item Description']/following-sibling::td[@data-th='select']/label[@class='customCheckBox2']")
+	@FindBy(xpath="//tr/td[@data-th='select']")
 	private WebElement selectOneCheckboxLocator;
 
 	@FindBy(xpath="//input[@id='searchBtn']")
@@ -71,10 +73,10 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//button[contains(text(),'Share')]")
 	private WebElement shareLocator;
 
-	@FindBy(id="sortByBrand")
+	@FindBy(id="sortByBrand_chosen")
 	private WebElement sortByLocator;
 
-	@FindBy(id="resultPage")
+	@FindBy(xpath="//div[@id='resultPage_chosen']/a")
 	private WebElement itemsPerPageLocator;
 
 	@FindBy(name="views")
@@ -128,8 +130,32 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//td[text()='No results found']")
 	private WebElement noResultsFoundMsg;
 
+	@FindBy(xpath="//div[@class='expndCollapseViews']/descendant::a")
+	private WebElement changeViewAfterPluginLoadLocator;
 
+	@FindAll(value={@FindBy(xpath="//div[@class='expndCollapseViews']/descendant::li")})
+	private List<WebElement> changeViewOptionsLocator;
 
+	@FindBy(xpath="//li[@class='hideForCollapse']/p")
+	private WebElement descriptionLocator;
+
+	@FindBy(xpath="//div[@class='chosen-drop']/descendant::li[text()='Part Number (Asc)']")
+	private WebElement partNumberAscLocator;
+
+	@FindBy(xpath="//div[@class='chosen-drop']/descendant::li[text()='Part Number (Desc)']")
+	private WebElement partNumberDescLocator;
+
+	@FindBy(xpath="//div[@class='chosen-drop']/descendant::li[text()='Manf Part# (Asc)']")
+	private WebElement manfPartNoAscLocator;
+
+	@FindBy(xpath="//div[@class='chosen-drop']/descendant::li[text()='Manf Part# (Desc)']")
+	private WebElement manfPartNoDescLocator;
+
+	@FindAll(value={@FindBy(xpath="//div[@id='resultPage_chosen']/div/ul/li")})
+	private List<WebElement> itemPerPageOptionsLocator;
+
+	@FindAll(value={@FindBy(xpath="//table[@class='cimm_siteTable cimm_pgTable rwd-table rwd-Tab']/descendant::tbody/tr")})
+	private List<WebElement> verifyItemsPerPage;
 
 
 	@Step("click on mysavedcart ")
@@ -152,7 +178,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@Step("click on cart name : {0} ")
 	public SaveCartPageObjects clickOnTheCreatedSaveCart(String saveCartName) throws Exception {
-		Thread.sleep(2000);
+		Waiting.explicitWaitVisibilityOfElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]"), 4);
 		driver.findElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]")).click();
 		return this;
 	}
@@ -219,11 +245,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 	public boolean  assertDeletionOfSaveCart(String saveCartName) {
-		try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+
 		try
 		{
 			Assert.assertFalse(driver.findElement(By.xpath("//a[contains(text(),'"+saveCartName+"')])")).isDisplayed());
@@ -262,14 +284,15 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@Step("verify whether alert text is {0}")
 	public SaveCartPageObjects verifyAlertText(String expectedAlertText) throws Exception{
-		Thread.sleep(1500);
+
+
 		Assert.assertTrue(assertAlertText(expectedAlertText),"Alert text is invalid");
 		return this;
 
 	}
 
 	public SaveCartPageObjects verifyNumberAddedSuccessfullyMsg(int expectedNumberOfAddedSuccessfullyMessages) throws Exception{
-		Thread.sleep(1500);
+
 		Assert.assertEquals(addedSuccessfullyMsgLocator.size(), expectedNumberOfAddedSuccessfullyMessages);
 		return this;
 
@@ -293,6 +316,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	public SaveCartPageObjects verifyBreadCrumpOfMySavedCart(String mySavedCart) {
 		Assert.assertTrue(saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(mySavedCart));
 		return this;
+
 	}
 
 	public SaveCartPageObjects verifyBreadCrumpAfterCreation(String saveCartName, String mySaveCartBreadCrumb,String myAccountBreadcrumb) {
@@ -314,11 +338,12 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		Assert.assertTrue(editCartNameLocator.isDisplayed(),"editCartName is not displayed.");
 		Assert.assertTrue(deleteCartLocator.isDisplayed(),"deleteCart is not displayed.");
 		Assert.assertTrue(shareLocator.isDisplayed(),"share is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(sortByLocator, 10);
+		Waiting.explicitWaitVisibilityOfElement(sortByLocator, 15);
+		sortByLocator.click();
 		Assert.assertTrue(sortByLocator.isDisplayed(),"sortBy is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(itemsPerPageLocator, 10);
+		Waiting.explicitWaitVisibilityOfElement(itemsPerPageLocator, 15);
 		Assert.assertTrue(itemsPerPageLocator.isDisplayed(),"itemsPerPage is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(collapseViewLocator, 10);
+		Waiting.explicitWaitVisibilityOfElement(collapseViewLocator, 15);
 		Assert.assertTrue(collapseViewLocator.isDisplayed(),"collapseView is not displayed.");
 		Assert.assertTrue(itemImageLocator.isDisplayed(),"itemImage is not displayed.");
 		Assert.assertTrue(itemDescriptionLocator.isDisplayed(),"itemDescription is not displayed.");
@@ -414,14 +439,14 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@Step("verifies the item displayed when searched in saved cart ")
 	public SaveCartPageObjects verifyItemDisplay(String searchText) throws Exception {
-		Thread.sleep(2000);
+
 		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='"+searchText+"']")).isDisplayed());
 		return this;
 	}
 
 	@Step("verifies the item is not displayed for inavlid search in saved cart ")
 	public SaveCartPageObjects verifyNoResultsFoundMsg() throws Exception {
-		Thread.sleep(2000);
+
 		Assert.assertTrue(noResultsFoundMsg.isDisplayed());
 		return this;
 	}
@@ -430,6 +455,108 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	public SaveCartPageObjects clickOnClearSearchButton() throws Exception {
 		Waiting.explicitWaitVisibilityOfElement(clearSearchBtnLocator, 15);
 		clearSearchBtnLocator.click();
+		return this;
+	}
+	@Step("click On Sort By Drop Down")
+	public SaveCartPageObjects clickOnSortByDropDown() throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(sortByLocator, 15);
+		sortByLocator.click();
+		return this;
+	}
+	@Step("click On Collapse View")
+	public SaveCartPageObjects clickOnViewLocator() throws Exception {
+		Thread.sleep(4500);
+		changeViewAfterPluginLoadLocator.click();
+		return this;
+	}
+
+
+	@Step("click on {0}")
+	public SaveCartPageObjects clickOnSpecificView(String specificView) throws Exception {
+
+		Thread.sleep(1500);
+
+
+		for(int i = 0 ; i < changeViewOptionsLocator.size() ; i++)
+		{
+			if(changeViewOptionsLocator.get(i).getText().trim().equals(specificView))
+			{
+
+				changeViewOptionsLocator.get(i).click();
+				break;
+			}
+		}
+		return this;
+	}
+
+	@Step("verifies display of description for expand view ")
+	public SaveCartPageObjects verifyDescriptionDisplayForExpandView() throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(descriptionLocator, 15);
+		Assert.assertTrue(descriptionLocator.isDisplayed());
+		return this;
+	}
+
+	@Step("verifies there is no display of description for collapse view ")
+	public SaveCartPageObjects verifyDescriptionDisplayForCollapseView() throws Exception {
+
+		Assert.assertFalse(descriptionLocator.isDisplayed(),"Description is displayed");
+		return this;
+	}
+
+	@Step("verifies display of sort by dropdown ")
+	public SaveCartPageObjects verifySortByDropdown() throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(partNumberAscLocator, 15);
+		Assert.assertTrue(partNumberAscLocator.isDisplayed());
+		Waiting.explicitWaitVisibilityOfElement(partNumberDescLocator, 15);
+		Assert.assertTrue(partNumberDescLocator.isDisplayed());
+		Waiting.explicitWaitVisibilityOfElement(manfPartNoAscLocator, 15);
+		Assert.assertTrue(manfPartNoAscLocator.isDisplayed());
+		Waiting.explicitWaitVisibilityOfElement(manfPartNoDescLocator, 15);
+		Assert.assertTrue(manfPartNoDescLocator.isDisplayed());
+		return this;
+	}
+
+	@Step("click On Item Per Page Locator")
+	public SaveCartPageObjects clickOnItemPerPage() throws Exception {
+		Thread.sleep(4500);
+		itemsPerPageLocator.click();
+		return this;
+	}
+
+	@Step("click On Item Per Page Options in  dropdown")
+	public SaveCartPageObjects clickOnItemPerPageOption(int option) throws Exception {
+
+		for(int i = 0 ; i < itemPerPageOptionsLocator.size() ; i++)
+		{
+			if(itemPerPageOptionsLocator.get(i).getText().trim().equals(option))
+			{
+
+				itemPerPageOptionsLocator.get(i).click();
+				break;
+			}
+		}
+		return this;
+	}
+
+	@Step("verify display of items per page")
+	public SaveCartPageObjects verifyDisplayOfItems(int items) throws Exception {
+
+
+		for(int i = 0 ; i <=verifyItemsPerPage.size() ; i++)
+		{
+			if(verifyItemsPerPage.size()<=items)
+			{
+
+				Assert.assertTrue(true);
+				break;
+			}
+		}
+		return this;
+	}
+
+	public SaveCartPageObjects verifyWhetherCreatedCartIsDisplayedInSaveCartListPage(String saveCartName) {
+		Waiting.explicitWaitVisibilityOfElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]"), 6);
+		Assert.assertTrue(driver.findElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]")).isDisplayed(),"Created cart is not getting displayed in Save Cart List Page.");
 		return this;
 	}
 

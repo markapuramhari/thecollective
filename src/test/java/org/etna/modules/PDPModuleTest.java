@@ -4,6 +4,8 @@ import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
+import org.etna.utils.TestUtility;
+import org.openqa.selenium.UnhandledAlertException;
 import org.testng.SkipException;
 
 import ru.yandex.qatools.allure.annotations.Features;
@@ -16,7 +18,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	LoginModuleTest loginModule = new LoginModuleTest();
-	
+	MyProductGroupModuleTest myProductGroup = new MyProductGroupModuleTest();
 	@Features("PDP Module")
 	@Test(groups={"PDPModule","regression"})
 	  public void TC_PDP_001_TC_PDP_003_TC_PDP_013_TC_PDP_014_unsignedUser_verifyProductDetailsPageTest() throws Exception
@@ -494,6 +496,162 @@ public class PDPModuleTest extends PageFactoryInitializer {
 				.verifyExtPrice(priceAfterUOMSelection)
 				.verifyTotalPrice(priceAfterUOMSelection);
 	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void createPGPLPInPopUp() throws Exception
+	  {
+		  try
+		  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		homePage()
+		  		.searchText(data.getSearchText())
+		  		.clickOnSearch()
+		  		.productListPage()
+		  		.clickOnSpecificSelectItemOfAProductInSKUMode(1)
+		  		.clickOnAddToMyProductGroupFromSlider()
+		  		.myProductGroupPopUp()
+		  		.enterProductGroupName(data.getMyProductGroupName())
+		  		.clickOnAddNewGroup()
+		  		.clickOnAddButton()
+		  		.verifySuccessMsg()
+		  		.clickOnTheCreatedProductGroup(data.getMyProductGroupName())
+		  		.myProductGroupsPage()
+		  		.verifyPageName(data.getMyProductGroupName())
+		  		.verifyBreadCrump(data.getMyProductGroupName());
+		  }
+		  catch(UnhandledAlertException e){
+				TestUtility.alertAccept();
+				throw new Exception("Alert not handled.");
+			}
+			finally{
+				myProductGroup.productGroupDeleteAndVerify(data.getMyProductGroupName());
+			}
+	  }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
+	  @TestCaseId("{0}")
+	  public void pG_PLPInPopUp_ES(String testCaseId,String productGroupName,String expectedAlertText) throws Exception
+	  {
+		  try
+		  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		homePage()
+		  		.searchText(data.getSearchText())
+		  		.clickOnSearch()
+		  		.productListPage()
+		  		.clickOnSpecificSelectItemOfAProductInSKUMode(1)
+		  		.clickOnAddToMyProductGroupFromSlider()
+		  		.myProductGroupPopUp()
+		  		.enterProductGroupName(productGroupName)
+		  		.clickOnAddNewGroup()
+		  		.myProductGroupsPage()
+		  		.verifyAlertText(expectedAlertText);
+		  }
+		  catch(UnhandledAlertException e){
+				TestUtility.alertAccept();
+				throw new Exception("Alert not handled.");
+			}
 	 }
+	  
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void pG_PLP_CreatingPGSameName() throws Exception
+	  {
+		  try
+		  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		homePage()
+		  		.searchText(data.getSearchText())
+		  		.clickOnSearch()
+		  		.productListPage()
+		  		.clickOnSpecificSelectItemOfAProductInSKUMode(1)
+		  		.clickOnAddToMyProductGroupFromSlider()
+		  		.myProductGroupPopUp()
+		  		.enterProductGroupName(data.getMyProductGroupName())
+		  		.clickOnAddNewGroup()
+		  		.enterProductGroupName(data.getMyProductGroupName())
+		  		.clickOnAddNewGroup()
+		  		.myProductGroupsPage()
+		  		.verifyAlertText(data.getGroupNameAlreadyExistsInPGPopUpAlertText());
+		  }
+		  catch(UnhandledAlertException e){
+				TestUtility.alertAccept();
+				throw new Exception("Alert not handled.");
+			}
+	 }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void pG_PLP_NoGroupSelected_ES() throws Exception
+	  {
+		  try
+		  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		homePage()
+		  		.searchText(data.getSearchText())
+		  		.clickOnSearch()
+		  		.productListPage()
+		  		.clickOnSpecificSelectItemOfAProductInSKUMode(1)
+		  		.clickOnAddToMyProductGroupFromSlider()
+		  		.myProductGroupPopUp()
+		  		.enterProductGroupName(data.getMyProductGroupName())
+		  		.clickOnAddNewGroup()
+		  		.clickOnTheGroupCreatedInTheList(data.getMyProductGroupName())
+		  		.clickOnAddButton()
+		  		.myProductGroupsPage()
+		  		.verifyAlertText(data.getAlertTextNoGroupSelected());
+		  }
+		  catch(UnhandledAlertException e){
+				TestUtility.alertAccept();
+				throw new Exception("Alert not handled.");
+			}
+	 }
+	  
+	  @Features("PDP Module")
+	  @Test(groups={"PDPModule","regression"})
+	  @TestCaseId("{0}")
+	  public void pG_PLP_PGCheckbox() throws Exception
+	  {
+		  try
+		  {
+		  		loginModule.loginAsASuperUser();
+		  		homePage().logout();
+		  		loginModule.loginAsASuperUser();
+		  		
+		  		homePage()
+		  		.searchText(data.getSearchText())
+		  		.clickOnSearch()
+		  		.productListPage()
+		  		.clickOnSpecificSelectItemOfAProductInSKUMode(1)
+		  		.clickOnAddToMyProductGroupFromSlider()
+		  		.myProductGroupPopUp()
+		  		.enterProductGroupName(data.getMyProductGroupName())
+		  		.clickOnAddNewGroup()
+		  		.verifyCheckboxAssociatedWithTheProductGroupIsSelected();
+		  }
+		  catch(UnhandledAlertException e){
+				TestUtility.alertAccept();
+				throw new Exception("Alert not handled.");
+			}
+	 }
+}
 
 	

@@ -29,20 +29,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 			  		
 		}
 	
-	@Features("General Search Module")
-	@TestCaseId("TC_General Search_002")
-	@Description("This is a test case which verifies whether Product Category list should auto populate when Product category keyword is searched.")
-	@Test(groups={"GeneralSearchModule","regression"})
-	  public void verifySearchFunctionality_Autocomplete_productCategory() throws Exception
-	  {
-		 
-				String category = data.getProductCategory();
-				String partialSubCategory = category.substring(0,category.indexOf(" "));
-				verifyInvalidSearch();
-				homePage()
-		  		.searchText(partialSubCategory)
-		  		.verifyAutoCompleteList(partialSubCategory);
-	}
+	
 	
 	
 	@Features("General Search Module")
@@ -159,9 +146,6 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 	@Test(groups={"GeneralSearchModule","regression"})
 	  public void verifyInvalidSearch() throws Exception
 	  {
-		loginModule.loginAsASuperUser(); 
-		homePage().clickOnUserAccountDropdown().logout();
-		loginModule.loginAsASuperUser(); 
 				homePage()
 		  		.searchText(data.getSearchTextForInvalidTestData())
 		  		.clickOnSearch()

@@ -19,7 +19,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	LoginModuleTest loginModule = new LoginModuleTest();
 
 	@Features("Sign Up Module")
-	@TestCaseId("TC_Registration_001")
+	@TestCaseId("TC_REG_032")
 	@Description("This is a test case which verifies retail customer registration tab in the user signup page.")
 	@Test(alwaysRun=true,groups={"Sign Up Module","regression"})
 	  public void verifyNewRetailCustomerTab() throws Exception
@@ -35,7 +35,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	
 	
 	@Features("Sign Up Module")
-	@TestCaseId("TC_Registration_002")
+	@TestCaseId("TC_REG_014")
 	@Description("This is a test case which verifies commercial customer registration tab in the user signup page.")
 	@Test(enabled=true,groups={"Sign Up Module","regression"})
 	  public void verifyNewCommercialCustomerTab() throws Exception
@@ -49,7 +49,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  }
 	
 	@Features("Sign Up Module")
-	@TestCaseId("TC_Registration_004")
+	@TestCaseId("TC_REG_002")
 	@Description("This is a test case which verifies sign up page")
 	@Test(enabled=false,groups={"Sign Up Module","regression"})
 	  public void verifyFirstTimeOrderingTab() throws Exception
@@ -95,6 +95,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	@TestCaseId("{0}")
 	public void verifyNewCCUserRegistrationES(String testCaseId,@Parameter("First Name")String firstName,@Parameter("Last Name")String lastName,@Parameter("Company Name")String companyName,@Parameter("Email Address")String emailAddress,@Parameter("Password")String password,@Parameter("Confirm Password")String confirmPassword,@Parameter("Address1")String address1,@Parameter("Address2")String address2,@Parameter("City")String city,@Parameter("State")String state,@Parameter("Zip Code")String zipCode,@Parameter("Phone Number")String phoneNumber,@Parameter("Expected Error Message")String expectedErrorMsg) throws Exception
 	  {
+	
 	  homePage()
 	  .clickOnSignUpLink()
 	  .signUpPage()
@@ -139,11 +140,13 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  }
 	
 	@Features("Sign Up Module")
-	@TestCaseId("TC_Registration_021")
+	@TestCaseId("TC_REG_033")
 	@Description("This is a test case which verifies new retail customer registration functionality in the user signup page.")
 	@Test(groups={"Sign Up Module","regression"})
 	  public void verifyNewRetailRegistrationCustomerFunctionality() throws Exception
 	  {
+		String emailIdSplit []  = data.getEmailIdForRegistration().split("@");
+		String emailId = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
 	  homePage()
 	  .clickOnSignUpLink()
 	  .signUpPage()
@@ -151,7 +154,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  .retailUserRegistrationPage()
 	  .enterFirstName(data.getfirstNameForRegistration())
 	  .enterLastName(data.getLastNameForRegistration())
-	  .enterEmailId(data.getEmailIdForRegistration())
+	  .enterEmailId(emailId)
 	  .enterPassword(data.getPasswordForRegistration())
 	  .enterConfirmPassword(data.getPasswordForRegistration())
 	  .enterAddress1(data.getAddress1ForRegistration())
@@ -166,7 +169,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  }
 	
 	@Features("Sign Up Module")
-	@TestCaseId("TC_Registration_022")
+	@TestCaseId("TC_REG_015")
 	@Description("This is a test case which verifies new commercials customer registration functionality in the user signup page.")
 	@Test(groups={"Sign Up Module","regression"})
 	  public void verifyNewCommercialRegistrationCustomerFunctionality() throws Exception
@@ -190,5 +193,21 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  .enterPhoneNumber(data.getPhoneNumberForRegistration())
 	  .clickOnIAccept()
 	  .verifySuccessMsg(emailId,data.getCommercialUserRegistrationSuccessMsg());
+	  }
+
+	@Features("Sign Up Module")
+	@Test(groups={"regression"})
+	@TestCaseId("TC_REG_001")
+	  public void TC_Login_019_verifyRegisterPage() throws Exception
+	  {
+
+	 homePage()
+	 .clickLoginLink()
+	 .loginPopUp()
+	 .clickOnSignUp()
+	 .signUpPage()
+	 .verifyBreadCrump(data.getRegistrationBreadCrump())
+	 .verifyRegistrationPageName(data.getRegistrationBreadCrump())
+	 .verifyWhetherNewCommercialCustomerIsEnabledFirstAndNewRetailCustomerIsNotEnabledFirst();
 	  }
 }

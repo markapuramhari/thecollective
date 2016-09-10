@@ -204,6 +204,7 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String groupNameAlreadyExistsAlertText = PropertyFileReader.propertiesReader(searchData, "groupNameAlreadyExistsAlertText");
 	
+	private String groupNameAlreadyExistsInPGPopUpAlertText = PropertyFileReader.propertiesReader(searchData, "groupNameAlreadyExistsInPGPopUpAlertText");
 	
 	private String noChangesToGroupNameAlertText = PropertyFileReader.propertiesReader(searchData, "noChangesToGroupNameAlertText");
 	
@@ -339,6 +340,14 @@ public class SearchDataPropertyFile extends MainController{
 	private String expectedOptionsFromUOMDropdown = PropertyFileReader.propertiesReader(searchData, "expectedOptionsFromUOMDropdown");
 	
 	private String specificUOM = PropertyFileReader.propertiesReader(searchData, "specificUOM");
+	
+	private String alertTextNoGroupSelected = PropertyFileReader.propertiesReader(searchData, "alertTextNoGroupSelected");
+	
+	private String alertTextDeleteItemFromSavedCart = PropertyFileReader.propertiesReader(searchData, "alertTextDeleteItemFromSavedCart");
+	
+	
+	
+	private String viewType;
 	
 	
 	
@@ -774,6 +783,12 @@ public String getTabDelimitedFilePath() {
 	
 	return tabDelimitedFilePath;
 }
+
+public String getGroupNameAlreadyExistsInPGPopUpAlertText() {
+	
+	return groupNameAlreadyExistsInPGPopUpAlertText;
+}
+
 
 public String getPartNumberOrUPC() {
 	
@@ -1213,6 +1228,26 @@ public String getPartialPartNumber() {
 
 	public void setSpecificUOM(String specificUOM) {
 		this.specificUOM = specificUOM;
+	}
+
+	public String getAlertTextNoGroupSelected() {
+		
+		return alertTextNoGroupSelected;
+	}
+
+	public void setViewType(String viewType) {
+		this.viewType=viewType;
+		
+	}
+
+	public String getViewType() {
+
+		return viewType;
+	}
+
+	public String getAlertTextDeleteItemFromSavedCart() {
+		
+		return alertTextDeleteItemFromSavedCart;
 	}
 
 

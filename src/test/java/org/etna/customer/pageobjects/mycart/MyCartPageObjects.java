@@ -112,7 +112,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	private WebElement submitCartForApprovalButtonLocator;
 	
 
-	@FindBy(xpath="//h3[text()='My Cart']/ancestor::div[@class='addToCartHeaderContent']/descendant::div[@class='cartTotalCount pull-right']/a/i")
+	@FindBy(xpath="//div[@class='mulAddTocartWrap']/descendant::a[@class='closeBtn']")
 	private WebElement clickOnCloseLocator;
 	
 	
@@ -538,7 +538,8 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	}
 		
 		public MyCartPageObjects clickOnCloseButtonInMyCartPopUp() {
-			clickOnCloseLocator.click();
+			Waiting.explicitWaitVisibilityOfElement(clickOnCloseLocator, 5);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();",clickOnCloseLocator);
 			return this;
 		}
 
@@ -564,6 +565,11 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 			Assert.assertEquals(actualTotalPrice,expectedTotalPrice);
 			return this;
 		}
-	
+
+		public MyCartPageObjects verifyWhetherCartCreatedInDisplayedInCartOptionsDropdown(String saveCartName) throws InterruptedException {
+			  Waiting.explicitWaitVisibilityOfElement(By.xpath("//dl[contains(@class,'dropdown')]/descendant::li/a[text()='"+saveCartName+"']"), 2);
+			  Assert.assertTrue(driver.findElement(By.xpath("//dl[contains(@class,'dropdown')]/descendant::li/a[text()='"+saveCartName+"']")).isDisplayed(),"Save Cart that was created is not getting displayed in the Save Cart Button dropdown.");
+			  return this;
+			 }
 	
 }

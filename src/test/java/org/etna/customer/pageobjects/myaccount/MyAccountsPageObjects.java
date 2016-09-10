@@ -5,6 +5,7 @@ import org.etna.customer.pageobjects.savecart.SaveCartPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.Waiting;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -259,6 +260,12 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 		Assert.assertTrue(myAccountPageName.isDisplayed(),"My Account page name is not displayed.");
 		return this;
 	}
+	
+	public MyAccountsPageObjects verifyWhetherCreatedCartIsDisplayedUnderSaveCartSectionInGroupsTab(String saveCartName) {
+		  Waiting.explicitWaitVisibilityOfElement(By.xpath("//h3[text()='My Saved Carts']/following-sibling::ul/descendant::a[text()[normalize-space() = '"+saveCartName+"']]"), 6);
+		  Assert.assertTrue(driver.findElement(By.xpath("//h3[text()='My Saved Carts']/following-sibling::ul/descendant::a[text()[normalize-space() = '"+saveCartName+"']]")).isDisplayed(),"Created cart is not getting displayed under groups tab.");
+		  return this;
+		 }
 
 }
 	

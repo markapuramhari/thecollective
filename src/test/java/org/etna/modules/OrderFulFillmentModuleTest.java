@@ -90,7 +90,8 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 		.clickOnCheckoutInMyCartPage()
 		.enterPhoneNumber(data.getPhoneNumber())
 		.clickOnNextButton()
-		.enterShippingPhoneNumber(data.getPhoneNumber());
+		.enterShippingPhoneNumber(data.getPhoneNumber())
+		.enterEmailId(" ");
 		Thread.sleep(1000);
 		checkoutPage()
 		.clickOnNextButton()

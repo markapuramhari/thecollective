@@ -621,13 +621,94 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@Description("This is a test case which verifies partial short description that is in product mode and sku mode. This search functionality should navigate to product list page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void partialShortDescriptionSearch(String testCaseId,@Parameter("Part Number") String shortDescription) throws Exception
+	public void partialShortDescriptionSearch(String testCaseId,@Parameter("Partial Short Description") String shortDescription) throws Exception
 	{
 		homePage()
 		.searchText(shortDescription.trim())
 		.clickOnSearch()
 		.productListPage()
 		.verifyPartialShortDescription(shortDescription);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies full short description. This search functionality should navigate to product list page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void fullShortDescriptionSearch(String testCaseId,@Parameter("Short Description") String shortDescription) throws Exception
+	{
+		homePage()
+		.searchText(shortDescription.trim())
+		.clickOnSearch()
+		.productDetailsPage()
+		.verifyExactShortDescription(shortDescription);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies category search of the last level which navigates to product list page. We have to search without selecting from  without selecting from Auto Suggest List")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void categoryNamesLastLevel(String testCaseId,@Parameter("Category Name") String categoryNameToSearch) throws Exception
+	{
+		
+		String [] nameOfTheItems = homePage()
+				.clickOnProductsLink()
+		.clickOnSpecificCategoryUnderTheProductsLink(categoryNameToSearch)
+		.productListPage()
+		.getNamesOfTheItems();
+		
+		homePage()
+		.searchText(categoryNameToSearch.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyNamesOfTheProducts(nameOfTheItems);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies category search which navigates to product list page. We have to search without selecting from  without selecting from Auto Suggest List")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void categoryNamesExceptLastLevel(String testCaseId,@Parameter("Category Name") String categoryNameToSearch) throws Exception
+	{
+		
+		String [] nameOfTheItems = homePage()
+				.clickOnProductsLink()
+		.clickOnSpecificCategoryUnderTheProductsLink(categoryNameToSearch)
+		.getNamesOfTheCategories();
+		
+		homePage()
+		.searchText(categoryNameToSearch.trim())
+		.clickOnSearch()
+		.productListPage()
+		.verifyNamesOfTheProducts(nameOfTheItems);
+	}
+	
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies auto suggest feature of categories.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	  public void autoSuggest(String testCaseId,@Parameter("Search text")String searchText) throws Exception
+	  {
+		 
+				GeneralSearchModuleTest generalSearch = new GeneralSearchModuleTest();
+				generalSearch.verifyInvalidSearch();
+				homePage()
+		  		.searchText(searchText)
+		  		.verifyAutoCompleteList(searchText);
+	}
+	
+	@Features("Search V2")
+	@Description("This is a test case which verifies auto suggest feature of categories.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	  public void partialAutoSuggest(String testCaseId,@Parameter("Search text")String partialSearchText,@Parameter("Search text")String expectedTextToComeInDropdown) throws Exception
+	  {
+		 
+				GeneralSearchModuleTest generalSearch = new GeneralSearchModuleTest();
+				generalSearch.verifyInvalidSearch();
+				homePage()
+		  		.searchText(partialSearchText)
+		  		.verifyAutoCompleteList(expectedTextToComeInDropdown);
 	}
 }
 

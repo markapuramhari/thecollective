@@ -15,6 +15,7 @@ import org.etna.customer.pageobjects.mycart.MyCartPageObjects;
 import org.etna.customer.pageobjects.orderconfirmation.OrderConfirmationPageObjects;
 import org.etna.customer.pageobjects.productdetails.ProductsDetailsPageObjects;
 import org.etna.customer.pageobjects.productdetails.SharePageObjects;
+import org.etna.customer.pageobjects.productgroups.MyProductGroupPopUp;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
 import org.etna.customer.pageobjects.productlist.ProductsListPageObjects;
 import org.etna.customer.pageobjects.products.ProductPageObjects;
@@ -220,6 +221,12 @@ public class PageFactoryInitializer extends MainController{
 	{
 		ContactUsPageObjects contactUsPage = PageFactory.initElements(driver,ContactUsPageObjects.class);
 		return contactUsPage;
+	}
+	
+	public MyProductGroupPopUp myProductGroupPopUp()
+	{
+		MyProductGroupPopUp myProductGroupPopUp = PageFactory.initElements(driver,MyProductGroupPopUp.class);
+		return myProductGroupPopUp;
 	}
 
 

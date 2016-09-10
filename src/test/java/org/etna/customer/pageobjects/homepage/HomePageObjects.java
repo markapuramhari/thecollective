@@ -173,10 +173,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//label[contains(.,'Featured Manufacturers')]")
 	private WebElement featuredManufacturersHeading;
 	
-	
 
-	@FindBy(xpath="//label[contains(.,'Featured Manufacturers')]")
-	private WebElement featuredBrandsHeading;
 	
 	@FindBy(xpath="//ul[@id='featuredBrands']")
 	private WebElement featuredBrandsList;
@@ -714,8 +711,6 @@ public class HomePageObjects extends PageFactoryInitializer {
 		verifyCarousel();
 		verifyFeaturedManufacturersHeading();
 		verifyFeaturedManufacturersList();
-		verifyFeaturedBrandsHeading();
-		verifyFeaturedBrandsList();
 		verifyDisplayOfSearchTextboxButton();
 		verifyHeaderSection();
 		verifyProductsLink();
@@ -761,11 +756,6 @@ public class HomePageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	@Step("verify featurered brands heading")
-	private HomePageObjects verifyFeaturedBrandsHeading() {
-		Assert.assertTrue(featuredBrandsHeading.isDisplayed(),"featured brands heading is not displayed");
-		return this;
-	}
 	
 	public HomePageObjects verifyHeaderSection() {
 		verifyDisplayOfLoginLink();
@@ -1098,7 +1088,7 @@ return this;
 	@Step("click on products link")
 	public ProductPageObjects clickOnProductsLink() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",productsLink);
-		return new ProductPageObjects();
+		return productsPage();
 	}
 
 	@Step("click on my save cart")
@@ -1259,6 +1249,11 @@ return this;
 		Waiting.explicitWaitVisibilityOfElement(mySaveCartLink, 3);
 		mySaveCartLink.click();
 		return saveCartPage();
+	}
+
+	public HomePageObjects clickOnSpecificCategory(String categoryNameToSearch) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[text()='"+categoryNameToSearch+"']")));
+		return this;
 	}
 }
 	

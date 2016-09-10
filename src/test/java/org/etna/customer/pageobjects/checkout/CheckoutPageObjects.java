@@ -98,7 +98,7 @@ public class CheckoutPageObjects extends PageFactoryInitializer{
 		{
 		case "Credit card Payment": driver.findElement(By.xpath("//div[@id='orderType_chosen']/descendant::li[contains(text(),'Credit card Payment')]")).click();
 			break;
-		case "Purchase Order": driver.findElement(By.xpath("//div[@id='orderType_chosen']/descendant::li[contains(text(),'Purchase Order')]")).click();
+		case "Account": driver.findElement(By.xpath("//div[@id='orderType_chosen']/descendant::li[contains(text(),'Account')]")).click();
 			break;		
 	}
 		

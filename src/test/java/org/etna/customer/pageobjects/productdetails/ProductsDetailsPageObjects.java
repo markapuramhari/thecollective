@@ -846,6 +846,11 @@ return this;
 		Number price = NumberFormat.getCurrencyInstance(Locale.US).parse(priceLocatorArray[0].replace("\n", "").replace(" ", ""));
 		return price;
 	}
+
+	public ProductsDetailsPageObjects verifyExactShortDescription(String shortDescription) {
+		Assert.assertEquals(shortDescriptionLocator.getText().trim(), shortDescription,"Exact short description is not working.");
+		return this;
+	}
 	}	
 
 
