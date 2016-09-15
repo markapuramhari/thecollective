@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.productdetails.ProductsDetailsPageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
@@ -1069,4 +1070,124 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 		}
 		return this;
 	}
+	
+	
+	@Step("verify whether breadcrumb contains {0}")
+	public ProductsListPageObjects verifyBrandBreadCrump(String nameOfTheBrand) {
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
+				breadCrumps.size()-1).getText().replace("/", "").trim()
+				.contains(nameOfTheBrand),"Breadcrump does not contain the brand that is clicked. It is "+productDetailsPage()
+				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+		return this;
+	}
+
+	@Step("verify whether title contains {0}")
+	public ProductsListPageObjects verifyTitleOfTheBrand(String nameOfTheBrand) throws Exception{
+		Thread.sleep(2500);;
+		Assert.assertTrue(driver.getTitle().trim().contains(nameOfTheBrand),"The title does not contain the brand that was clicked. The title is "+driver.getTitle().trim()+"."+"Asserting with data : "+nameOfTheBrand + " | "+setUp.getProductName()+".");
+		Assert.assertTrue(driver.getTitle().trim().contains(" | "+setUp.getProductName()),"The title does not contain the product name.");
+		Assert.assertFalse(driver.getTitle().trim().startsWith("|"),"The title does start with | .");
+		return this;
+		
+	}
+
+	private boolean assertWildCardUPCInSKUModeInProductListPage(String upc) {
+		
+		for(int i = 0 ; i<upcValueInSKUModeLocator.size() ; i++)
+		{
+			if(upcValueInSKUModeLocator.get(i).getText().trim().toLowerCase().contains(upc.toLowerCase()))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+private boolean verifyWildCardUPCInProductMode(String upc) throws InterruptedException {
+	for(int i = 0 ; i < moreChoicesButtonLocator.size() ; i++)
+	{
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",moreChoicesButtonLocator.get(i));
+		Thread.sleep(3000); 
+		for(int j = 0 ; j <  moreChoicesProductModeImagesLocator.size() ; j++)
+		{
+			
+			moreChoicesProductModeImagesLocator.get(j).click();
+			Thread.sleep(1500); 
+			if(upcValueInProductModeLocator.getText().trim().contains(upc))
+			{
+				return true;
+			}
+				
+		}
+	}
+	return false;
 }
+
+	public ProductsListPageObjects verifyWildCardUPC(String upc) throws InterruptedException {
+		try
+		{
+			if((assertUPCInSKUModeInProductListPage(upc)))
+			{
+				Assert.assertTrue(assertWildCardUPCInSKUModeInProductListPage(upc),"UPC Number is not displayed in product list page.");
+			}
+			Assert.assertTrue(verifyWildCardUPCInProductMode(upc),"UPC is not displayed in product list page.");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(verifyWildCardUPCInProductMode(upc),"UPC is not displayed in product list page.");
+		}
+		return this;
+	}
+
+
+	public ProductsListPageObjects verifyWildCardPartNumber(String partNumber) throws InterruptedException {
+		try
+		{
+			if((assertPartNumberInSKUModeInProductListPage(partNumber)))
+			{
+				Assert.assertTrue(assertWildCardPartNumberInSKUModeInProductListPage(partNumber),"Part Number is not displayed in product list page.");
+			}
+			else
+			{
+			Assert.assertTrue(verifyWildCardPartNumberInProductMode(partNumber),"Part number is not displayed in product list page.");
+			}
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(verifyWildCardPartNumberInProductMode(partNumber),"Part number is not displayed in product list page.");
+		}
+		return this;
+		
+	}
+
+
+	private boolean assertWildCardPartNumberInSKUModeInProductListPage(String partNumber) {
+		for(int i = 0 ; i<partNumberValueInSKUModeLocator.size() ; i++)
+		{
+			if(partNumberValueInSKUModeLocator.get(i).getText().trim().toLowerCase().contains(partNumber.toLowerCase()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean verifyWildCardPartNumberInProductMode(String partNumber) throws InterruptedException {
+		for(int i = 0 ; i < moreChoicesButtonLocator.size() ; i++)
+		{
+			moreChoicesButtonLocator.get(i).click();
+			Thread.sleep(3000); 
+			for(int j = 0 ; j <  partNumbersAboveLocators.size() ; j++)
+			{
+				if(partNumbersAboveLocators.get(j).getText().trim().contains(partNumber.trim()))
+				{
+				return true;
+				}
+				
+			}
+		}
+		return false;
+	}
+	}

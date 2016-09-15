@@ -536,7 +536,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  @Features("PDP Module")
 	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
 	  @TestCaseId("{0}")
-	  public void pG_PLPInPopUp_ES(String testCaseId,String productGroupName,String expectedAlertText) throws Exception
+	  public void pG_PLPInPopUp_ES(String testCaseId,@Parameter("product group name")String productGroupName,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception
 	  {
 		  try
 		  {

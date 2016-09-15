@@ -4,6 +4,8 @@ import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
+
+import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -276,24 +278,12 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Features("Login Module")
 	@Test(groups={"LoginModule","regression"})
 	@TestCaseId("TC_LOGIN_010")
-	  public void TC_Login_021_loginVerifyTabOrderBottomToTop() throws Exception
+	  public void loginVerifyTabOrderBottomToTop() throws Exception
 	  {
 		  
 		  homePage()
 		  .clickLoginLink()
 		  .loginPopUp()
 		  .verifyTabFocusBottomToTop(data.getUserNameHTMLID(),data.getPasswordHTMLId(),data.getForgotYourPasswordHTMLText(),data.getRememberMeHTMLId(),data.getLoginButtonHTMLId());
-		}
-	
-	@Features("Login Module")
-	@Test(groups={"LoginModule","regression"})
-	  public void TC_Login_020_verifyForgotPasswordPage() throws Exception
-	  {
-		   homePage()
-		  .clickLoginLink()
-		  .loginPopUp()
-		  .clickOnForgotYourPassword()
-		  .forgotPasswordPage()
-		  .verifyRetrievePasswordPage();
 		}
 }

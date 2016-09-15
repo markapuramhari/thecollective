@@ -8,7 +8,7 @@ import org.etna.customer.pageobjects.homepage.ContactUsPageObjects;
 import org.etna.customer.pageobjects.homepage.HomePageObjects;
 import org.etna.customer.pageobjects.loginpopup.ForgotPasswordPageObjects;
 import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
-import org.etna.customer.pageobjects.maunfacturers.ShopByManufacturersPageObjects;
+import org.etna.customer.pageobjects.manufacturers.ShopByManufacturersPageObjects;
 import org.etna.customer.pageobjects.myaccount.EditContactInfoPageObjects;
 import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
 import org.etna.customer.pageobjects.mycart.MyCartPageObjects;

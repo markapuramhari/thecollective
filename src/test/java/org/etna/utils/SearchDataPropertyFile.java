@@ -345,9 +345,18 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String alertTextDeleteItemFromSavedCart = PropertyFileReader.propertiesReader(searchData, "alertTextDeleteItemFromSavedCart");
 	
+	private String expectedContactInfoUpdateSuccessMessage = PropertyFileReader.propertiesReader(searchData, "expectedContactInfoUpdateSuccessMessage");
+	
+	private String country = PropertyFileReader.propertiesReader(searchData, "country");
+	
+	private String state = PropertyFileReader.propertiesReader(searchData, "state");
 	
 	
 	private String viewType;
+	
+	private String	specificAlphabetToClickInShopByBrandsPage;
+	
+	private String	categoryDescription;
 	
 	
 	
@@ -1248,6 +1257,41 @@ public String getPartialPartNumber() {
 	public String getAlertTextDeleteItemFromSavedCart() {
 		
 		return alertTextDeleteItemFromSavedCart;
+	}
+
+	public void setSpecificAlphabetToClickInShopByBrandsPage(String specificAlphabetToClickInShopByBrandsPage) {
+		this.specificAlphabetToClickInShopByBrandsPage = specificAlphabetToClickInShopByBrandsPage;
+		
+	}
+
+	public String getSpecificAlphabetToClickInShopByBrandsPage() {
+		
+		return specificAlphabetToClickInShopByBrandsPage;
+	}
+
+	public void setCategoryDescription(String categoryDescription) {
+	this.categoryDescription = categoryDescription;
+		
+	}
+
+	public String getCategoryDescription() {
+		
+		return categoryDescription;
+	}
+
+	public String getExpectedContactInfoUpdateSuccessMessage() {
+	
+		return expectedContactInfoUpdateSuccessMessage;
+	}
+
+	public String getCountry() {
+	
+		return country;
+	}
+
+	public String getState() {
+		
+		return state;
 	}
 
 

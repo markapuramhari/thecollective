@@ -4,7 +4,7 @@ import java.util.List;
 import org.etna.customer.pageobjects.approvalcartlist.ApprovalCartListPageObjects;
 import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
-import org.etna.customer.pageobjects.maunfacturers.ShopByManufacturersPageObjects;
+import org.etna.customer.pageobjects.manufacturers.ShopByManufacturersPageObjects;
 import org.etna.customer.pageobjects.myaccount.EditContactInfoPageObjects;
 import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
@@ -367,6 +367,14 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@FindBy(xpath="//ul[contains(@class,'header')]/descendant::a[contains(text(),'Contact Us')]")
 	private WebElement contactUsInHeaderLocator;
+	
+	
+	@FindAll(value={@FindBy(xpath="//a[text()='Products']/following-sibling::ul/li/a")})
+	private List<WebElement> levelOneCategoriesUnderProductsLinkLocator;
+	
+	@FindBy(xpath="//ul[@class='cimm_myAccountMenu']/descendant::a[text()='Edit Contact']")
+	private WebElement editContactInfoInUserAccountDropdownLocator;
+	
 	
 	
 	
@@ -899,14 +907,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@Step("verify brands dropdown links")
 	public HomePageObjects verifyBrandsDropdownLinks() throws Exception{
-		if(setUp.getBrowser().equalsIgnoreCase("ghost"))
-		{
-			for(WebElement brandLinkDropdown : brandDropdownLinks)
-			{
-			Assert.assertTrue(brandLinkDropdown.isDisplayed(), "Brand dropdown Link is not displayed.");
-			}
-			Assert.assertTrue(viewAllBrandsLink.isDisplayed(),"View All Brands link is not displayed.");
-		}
+	
 		for(WebElement brandLinkDropdown : brandDropdownLinks)
 		{
 		Assert.assertTrue(brandLinkDropdown.isDisplayed(), "Brand dropdown Link is not displayed.");
@@ -934,6 +935,14 @@ public class HomePageObjects extends PageFactoryInitializer {
 		manufacturersDropdownLinks.get(specificManufacturer-1).click();
 		return this;
 	}
+	
+	@Step("click on the {0} st/nd/3rd manufacturer")
+	public HomePageObjects clickOnASpecificManufacturer(String specificManufacturer) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//ul[contains(@class,'Manufacturer')]/descendant::a[text()='"+specificManufacturer+"']")));
+	
+		return this;
+	}
+	
 	
 	
 	public String getSpecificBrandLinkName(int specificBrand) {
@@ -1254,6 +1263,26 @@ return this;
 	public HomePageObjects clickOnSpecificCategory(String categoryNameToSearch) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[text()='"+categoryNameToSearch+"']")));
 		return this;
+	}
+
+	public HomePageObjects hoverProductsLink() {
+		action.moveToElement(productsLink).build().perform();
+		return this;
+	}
+
+	public HomePageObjects verifyFirstLevelCategories(String[] productNames) throws InterruptedException {
+		Thread.sleep(2000);
+		for(int i = 0 ; i < levelOneCategoriesUnderProductsLinkLocator.size();i++)
+		{
+			
+			Assert.assertTrue(levelOneCategoriesUnderProductsLinkLocator.get(i).getText().toLowerCase().replace(".","").trim().contains(productNames[i].replace(".", "").toLowerCase()), "Expected : "+productNames[i].toLowerCase()+ " Actual : "+levelOneCategoriesUnderProductsLinkLocator.get(i).getText().toLowerCase().replace(".","").trim());	
+		}
+		return this;
+}
+
+	public EditContactInfoPageObjects clickOnEditContactLinkInUserAccountDropdown() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",editContactInfoInUserAccountDropdownLocator);
+		return editContactInfoPage();
 	}
 }
 	

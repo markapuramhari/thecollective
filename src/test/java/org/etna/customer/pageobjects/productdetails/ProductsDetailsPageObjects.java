@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
@@ -850,6 +852,122 @@ return this;
 	public ProductsDetailsPageObjects verifyExactShortDescription(String shortDescription) {
 		Assert.assertEquals(shortDescriptionLocator.getText().trim(), shortDescription,"Exact short description is not working.");
 		return this;
+	}
+	
+	@Step("verify whether breadcrumb contains {0}")
+	public ProductsDetailsPageObjects verifyBrandBreadCrump(String nameOfTheBrand) {
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
+				breadCrumps.size()-1).getText().replace("/", "").trim()
+				.contains(nameOfTheBrand),"Breadcrump does not contain the brand that is clicked. It is "+productDetailsPage()
+				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+		return this;
+	}
+
+	@Step("verify whether title contains {0}")
+	public ProductsDetailsPageObjects verifyTitleOfTheBrand(String nameOfTheBrand) throws Exception{
+		Thread.sleep(2500);;
+		Assert.assertTrue(driver.getTitle().trim().contains(nameOfTheBrand),"The title does not contain the brand that was clicked. The title is "+driver.getTitle().trim()+"."+"Asserting with data : "+nameOfTheBrand + " | "+setUp.getProductName()+".");
+		Assert.assertTrue(driver.getTitle().trim().contains(" | "+setUp.getProductName()),"The title does not contain the product name.");
+		Assert.assertFalse(driver.getTitle().trim().startsWith("|"),"The title does start with | .");
+		return this;
+		
+	}
+
+	public ProductsDetailsPageObjects verifyWildCardPartNumber(String partNumber) {
+		
+		try
+		{
+		Assert.assertTrue(partNumberValueLocator.getText().trim().contains(partNumber));
+		}
+		catch(NoSuchElementException e)
+		{
+			
+				Assert.assertTrue(assertWildCardUnderProductChoices(partNumber),"Searched Part Number is not displayed in product details page when searched via wildcard.");
+		}
+		return this;	
+	}
+
+	private boolean assertWildCardUnderProductChoices(String partNumber) {
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement partNumberUnderProductChoiceLocator : partNumberUnderProductChoicesLocator)
+			{
+		
+				Waiting.explicitWaitVisibilityOfElement(partNumberUnderProductChoiceLocator, 10);
+					if(partNumberUnderProductChoiceLocator.getText().trim().contains(partNumber))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
+	}
+
+	public ProductsDetailsPageObjects verifyWildCardManufacturerPartNumber(String mpn) throws Exception {
+		
+		try
+		{
+			Assert.assertTrue(mpnValueLocator.getText().trim().contains(mpn) ,"Wild card search for MPN is not working");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(assertWildCardMPNUnderProductChoices(mpn),"Wild card search for MPN is not working");
+		}
+		return this;
+	}
+
+	private boolean assertWildCardMPNUnderProductChoices(String mpn) throws InterruptedException {
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement productChoiceImage : productChoicesImagesLocator)
+			{
+				
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",productChoiceImage);
+				Thread.sleep(2000);
+				Waiting.explicitWaitVisibilityOfElement(mpnValueLocator, 10);
+					if(mpnValueLocator.getText().trim().contains(mpn))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
+	}
+
+	public ProductsDetailsPageObjects verifyWildCardBrandName(String brandName) {
+		Assert.assertTrue(itemTitleLocator.getText().trim().toLowerCase().contains(brandName.toLowerCase()) ,"Name of the product is "+itemTitleLocator.getText().trim().toLowerCase()+" But expecting "+brandName.toLowerCase());
+	return this;	
+	}
+
+	public ProductsDetailsPageObjects verifyWildCardUPC(String upc) throws Exception {
+		try
+		{
+			Assert.assertTrue(upcValueLocator.getText().trim().contains(upc),"Wild card verification for upc is not working");
+		}
+		catch(NoSuchElementException e)
+		{
+			Assert.assertTrue(assertWildCardUPC(upc),"Wild card verification for upc is not working");
+		}
+		return this;
+	}
+
+	private boolean assertWildCardUPC(String upc) throws InterruptedException {
+		if(productChoicesLocator.isDisplayed())
+		{
+			for(WebElement productChoiceImage : productChoicesImagesLocator)
+			{
+				
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",productChoiceImage);
+				Thread.sleep(2000);
+				Waiting.explicitWaitVisibilityOfElement(upcValueLocator, 10);
+					if(upcValueLocator.getText().trim().contains(upc))
+					{
+					return true;
+					}
+			}
+		}
+		return false;
 	}
 	}	
 

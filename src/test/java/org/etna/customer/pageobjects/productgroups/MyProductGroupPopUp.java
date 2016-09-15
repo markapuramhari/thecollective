@@ -1,20 +1,12 @@
 package org.etna.customer.pageobjects.productgroups;
-import java.util.List;
-
-import org.etna.customer.pageobjects.orderconfirmation.OrderConfirmationPageObjects;
-import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.Waiting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
-import ru.yandex.qatools.allure.annotations.Step;
 
 public class MyProductGroupPopUp extends PageFactoryInitializer{
 

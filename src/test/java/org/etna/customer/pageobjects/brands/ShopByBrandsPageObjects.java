@@ -33,6 +33,12 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 	public List<WebElement> allBrandsUnderBrandsDropdown;
 	
 	
+	@FindBy(xpath="//ul[@class='cimm_breadcrumbs']/descendant::i[contains(@class,'home')]")
+	private WebElement homeIconInBreadcrumbLocator;
+	
+	@FindBy(xpath="//ul[@class='cimm_breadcrumbs']/descendant::li[contains(text(),'Shop By Brands')]")
+	private WebElement shopByBrandsBreadcrumbLocator;
+	
 	@Step("verify shop by brands page name")
 	public ShopByBrandsPageObjects verifyShopByBrandsPageName(){
 		Waiting.explicitWaitVisibilityOfElement(shopByBrandsHeading, 10);
@@ -42,11 +48,7 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 	
 	@Step("verify shop by brand breadcrump")
 	public ShopByBrandsPageObjects verifyShopByBreadcrump(String shopByBrandBreadcrump) throws  Exception{
-		if(setUp.getBrowser().equalsIgnoreCase("ghost"))
-		{
-			Thread.sleep(3500);
-		}
-		else
+		
 		{
 		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
 		}
@@ -128,25 +130,7 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 		return nameOfTheBrandSubString;
 	}
 
-	@Step("verify whether breadcrumb contains {0}")
-	public ShopByBrandsPageObjects verifyBrandBreadCrump(String nameOfTheBrand) {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
-				.contains(nameOfTheBrand),"Breadcrump does not contain the brand that is clicked. It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
-		return this;
-	}
 
-	@Step("verify whether title contains {0}")
-	public ShopByBrandsPageObjects verifyTitleOfTheBrand(String nameOfTheBrand) throws Exception{
-		Thread.sleep(2500);;
-		Assert.assertTrue(driver.getTitle().trim().contains(nameOfTheBrand),"The title does not contain the brand that was clicked. The title is "+driver.getTitle().trim()+"."+"Asserting with data : "+nameOfTheBrand + " | "+setUp.getProductName()+".");
-		Assert.assertTrue(driver.getTitle().trim().contains(" | "+setUp.getProductName()),"The title does not contain the product name.");
-		Assert.assertFalse(driver.getTitle().trim().startsWith("|"),"The title does start with | .");
-		return this;
-		
-	}
 
 	public String getNameOfTheSpecificBrand(String specificBrandname) {
 		String nameOfTheBrandString = driver.findElement(By.xpath("//dt[contains(text(),'Brands')]/following-sibling::dd/descendant::a[contains(@href,'"+specificBrandname+"')]")).getAttribute("href");
@@ -168,4 +152,30 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 
+	public ShopByBrandsPageObjects clickOnSpecificAlphabet(String specificAlphabetToClickInShopByBrandsPage) {
+		driver.findElement(By.xpath("//a[text()='"+specificAlphabetToClickInShopByBrandsPage+"']")).click();
+		return this;
+		
+	}
+
+	public ShopByBrandsPageObjects clickOnSpecificBrandUnderAlphabets(String specificBrandname) throws InterruptedException {
+			Thread.sleep(1500);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//div[@id='displayBrand']/descendant::li/a[text()='"+specificBrandname+"']")));
+		return this;
+	}
+
+	public ShopByBrandsPageObjects clickOnHomeIconInBreadcrumb() {
+		homeIconInBreadcrumbLocator.click();
+		return this;
+	}
+
+	public ShopByBrandsPageObjects verifyDisplayOfHomeIconInBreadcrumb() {
+		Assert.assertTrue(homeIconInBreadcrumbLocator.isDisplayed(),"Home Icon is not displayed in the breadcrumb.");
+		return this;
+	}
+
+	public ShopByBrandsPageObjects clickOnShopByBrandsCrumb() {
+		shopByBrandsBreadcrumbLocator.click();
+		return this;
+	}
 }

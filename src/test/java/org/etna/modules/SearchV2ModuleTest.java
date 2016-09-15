@@ -1,5 +1,6 @@
 package org.etna.modules;
 
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
@@ -151,39 +152,75 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@Description("Wild Card Scenario. Part Number and Manufacturer Part Number for the same product. The control should be navigated to Product Details Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keyword_WC_ExactMatch_PNOrMPN(String testCaseId,@Parameter("PN Or MPN") String searchKeyword) throws Exception
+	public void wildCard_PN_MPN_SingleProduct(String testCaseId,@Parameter("Part Number") String partNumber,@Parameter("MPN") String mpn) throws Exception
 	{
-		
+	homePage().searchText(partNumber.trim()+" "+mpn.trim()).clickOnSearch().productDetailsPage()
+	.verifyWildCardPartNumber(partNumber.replace("*", "").trim()).verifyWildCardManufacturerPartNumber(mpn.replace("*", "").trim());	
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@Description("Wild Card Scenario. Brand Name and Part Number. The control should be navigated to Product Details Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keyword_WC_ExactMatch_BNOrPN(String testCaseId,@Parameter("BN Or MPN") String searchKeyword) throws Exception
+	public void wildCard_BN_PN_SingleProduct(String testCaseId,@Parameter("Brand Name") String bn,@Parameter("PN") String partNumber) throws Exception
 	{
-		
+		homePage().searchText(bn.trim()+" "+partNumber.trim()).clickOnSearch().productDetailsPage().verifyWildCardBrandName(bn.replace("*", "").trim())
+		.verifyWildCardPartNumber(partNumber.replace("*", "").trim());	
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@Description("Wild Card Scenario. Brand Name and UPC for the same product. The control should be navigated to Product Details Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keyword_WC_ExactMatch_BNOrUPC(String testCaseId,@Parameter("BN Or UPC") String searchKeyword) throws Exception
+	public void wildCard_BN_UPC_SingleProduct(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("UPC") String upc) throws Exception
 	{
-		
+		homePage().searchText(brandName.trim()+" "+upc.trim()).clickOnSearch().productDetailsPage()
+		.verifyBrandNameOrMPNInNameOfTheProduct(brandName.replace("*", "").trim()).verifyWildCardUPC(upc.replace("*", "").trim());
+	}
+	
+
+	@Features("Search V2")
+	@Description("Wild Card Scenario. Brand Name and UPC for the same product. The control should be navigated to Product List Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void wc_BN_UPC_MultipleProducts(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("UPC") String upc) throws Exception
+	{
+		homePage().searchText(brandName.trim()+" "+upc.trim()).clickOnSearch().productListPage()
+		.verifyBrandNameOrMPNInProductListPage(brandName.replace("*", "")).verifyWildCardUPC(upc.replace("*", "").trim());
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@Description("Wild Card Scenario. Brand Name and Part Number. The control should be navigated to Product List Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
-	public void keyword_WC_ExactMatch_UPCOrPN(String testCaseId,@Parameter("UPC Or PN") String searchKeyword) throws Exception
+	public void wc_BN_PN_MultipleProducts(String testCaseId,@Parameter("Brand Name") String bn,@Parameter("Part Number") String partNumber) throws Exception
 	{
+		homePage().searchText(bn.trim()+" "+partNumber.trim()).clickOnSearch().productListPage().verifyBrandNameOrMPNInProductListPage(bn.replace("*", "").trim())
+		.verifyWildCardPartNumber(partNumber.replace("*", "").trim());	
+	}
 	
+	
+	@Features("Search V2")
+	@Description("Wild Card Scenario. Part Number and Manufacturer Part Number. The control should be navigated to Product List Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void wc_PN_MPN_MultipleProducts(String testCaseId,@Parameter("Part Number") String partNumber,@Parameter("MPN") String mpn) throws Exception
+	{
+	homePage().searchText(partNumber.trim()+" "+mpn.trim()).clickOnSearch().productListPage()
+	.verifyBrandNameOrMPNInProductListPage(mpn.replace("*", "")).verifyWildCardPartNumber(partNumber.replace("*", ""));
+	}
+	
+	
+	@Features("Search V2")
+	@Description("Wild Card Scenario. UPC and PN for the same product. The control should be navigated to Product Details Page.")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	public void wildCard_UPC_PN_SameProduct(String testCaseId,@Parameter("UPC") String upc,@Parameter("PN") String pn) throws Exception
+	{
+		throw new SkipException("No Support for this feature");
 	}	
 	
 	
@@ -699,16 +736,17 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	@Features("Search V2")
 	@Description("This is a test case which verifies auto suggest feature of categories.")
-	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@Test(enabled=false,groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	  public void partialAutoSuggest(String testCaseId,@Parameter("Search text")String partialSearchText,@Parameter("Search text")String expectedTextToComeInDropdown) throws Exception
 	  {
-		 
+		
 				GeneralSearchModuleTest generalSearch = new GeneralSearchModuleTest();
 				generalSearch.verifyInvalidSearch();
 				homePage()
 		  		.searchText(partialSearchText)
 		  		.verifyAutoCompleteList(expectedTextToComeInDropdown);
+				throw new SkipException("partial auto suggest is pending.");
 	}
 }
 

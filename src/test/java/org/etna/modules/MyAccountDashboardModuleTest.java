@@ -13,8 +13,8 @@ public class MyAccountDashboardModuleTest extends PageFactoryInitializer{
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	
-	@Features("AccountDashboard Module")
-	@Test(groups={"Account Dashboard Module","regression"})
+	@Features("Account Dashboard Module")
+	@Test(groups={"regression"})
 		public void verifyMyAccountDashboardPage() throws Exception
 		{
 		   homePage()
@@ -32,33 +32,9 @@ public class MyAccountDashboardModuleTest extends PageFactoryInitializer{
 		  .verifyMyAccountPage();
 		}
 	
-	@Features("AccountDashboard Module")
-	@Test(groups={"Account Dashboard Module","regression"})
-		public void verifyEditContactInfoPage() throws Exception
-		{
-		   homePage()
-		  .clickLoginLink()
-		  .loginPopUp()
-		  .verifyLoginPopUp()
-		  .enterUserName()
-		  .enterPassword()
-		  .clickOnLoginButton()
-		  .homePage()
-		  .verifyWelcomeMsg()
-		  .clickOnUserAccountDropdown()
-		  .clickOnMyAccount()
-		  .myAccountsPage()
-		  .clickOnEditContactInfo()
-		  .editContactInfoPage()
-		  //.verifyEditContactInfoPageTitle(data.getEditContactInfoTitle().trim()+" | "+setUp.getProductName().toUpperCase())
-		  .verifyEditContactInfoPageName(data.getEditContactInfoTitle().trim())
-		  .verifyEditContactInfoBreadcrumb(data.getEditContactInfoTitle().trim())
-		  .verifyEntityAddressCheckbox()
-		  .verifyUpdateButton();
-		}
 	
-	@Features("AccountDashboard Module")
-	@Test(groups={"Account Dashboard Module","regression"})
+	@Features("Account Dashboard Module")
+	@Test(groups={"regression"})
 		public void verifyImageUpload() throws Exception
 		{
 		homePage()
@@ -76,5 +52,31 @@ public class MyAccountDashboardModuleTest extends PageFactoryInitializer{
 		  .uploadFile(data.getImagePath().trim())
 		  .clickOnUpload()
 		  .verifyFileUpload(data.getImagePath().trim());
+		}
+	
+	@Features("Account Dashboard Module")
+	@Test(groups={"regression"})
+		public void verifyEditContactInfoFromMyAccount() throws Exception
+		{
+		   homePage()
+		  .clickLoginLink()
+		  .loginPopUp()
+		  .verifyLoginPopUp()
+		  .enterUserName()
+		  .enterPassword()
+		  .clickOnLoginButton()
+		  .homePage()
+		  .verifyWelcomeMsg()
+		  .clickOnUserAccountDropdown()
+		  .clickOnMyAccount()
+		  .myAccountsPage()
+		  .clickOnEditContactInfo()
+		  .editContactInfoPage()
+		  .verifyEditContactInfoPageTitle(data.getEditContactInfoTitle().trim()+" | "+setUp.getProductName().toUpperCase())
+		  .verifyDisplayOfMyAccountLinkInBreadCrumb(data.getMyAccountBreadcrumb())
+		  .verifyEditContactInfoPageName(data.getEditContactInfoTitle().trim())
+		  .verifyEditContactInfoBreadcrumb(data.getEditContactInfoTitle().trim())
+		  .verifyDisplayOfEntityAddressCheckbox()
+		  .verifyDisplayOfUpdateButton();
 		}
 }

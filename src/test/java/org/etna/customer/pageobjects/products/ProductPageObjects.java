@@ -47,6 +47,15 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//div[@class='slick-track']/descendant::img")})
 	private List<WebElement> bannerImages;
 	
+	
+	@FindBy(xpath="//ul[@class='cimm_breadcrumbs']/descendant::i[contains(@class,'home')]")
+	private WebElement homeIconInBreadcrumbLocator;
+	
+	
+	@FindAll(value={@FindBy(xpath="//div[@class='cimm_productCategory']/descendant::a")})
+	private List<WebElement> linkForEveryCategoryLocator;
+	
+	
 	@Step("click on category toggle button")
 	public ProductPageObjects clickOnCategoryToggleButton() {
 		Waiting.explicitWaitVisibilityOfElement(categoryToggleButton, 15);
@@ -70,6 +79,7 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	
 	@Step("verify breadcrumbs to have {0}")
 	public ProductPageObjects verifyBreadcrump(String productsPageBreadCrump) {	
+		Assert.assertTrue(homeIconInBreadcrumbLocator.isDisplayed(),"Home icon is not displayed in the breadcrumb.");
 		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim(), productsPageBreadCrump);
 		return this;
 	}
@@ -114,8 +124,6 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	public ProductPageObjects verifyPageTitle(String lastButOneBreadcrump, String lastBreadcrump) throws Exception {
 		Thread.sleep(1500);
 		String title = lastBreadcrump+" | "+setUp.getProductName();
-		System.out.println(title);
-		System.out.println(driver.getTitle().trim());
 		Assert.assertEquals(driver.getTitle().trim(), title);
 		return this;
 	}
@@ -160,6 +168,25 @@ public class ProductPageObjects extends PageFactoryInitializer{
 			categoryNames[i] = categoryNamesInThePage.get(i).getText().trim();
 		}
 		return categoryNames;
+	}
+
+	public String[] getProductNames() {
+		String [] productName = new String[linkForEveryCategoryLocator.size()];
+		for(int i = 0 ; i < linkForEveryCategoryLocator.size() ; i++)
+		{
+			productName[i] = categoryNamesInThePage.get(i).getText().trim();
+		}
+		return productName;
+	}
+
+	public ProductPageObjects clickOnSpecificCategoryInTheLeftPanel(String specificCategory) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//div[contains(@class,'leftMenu')]/descendant::dt[contains(text(),'Category')]/following-sibling::dd/descendant::a[text()='"+specificCategory+"']")));
+		return this;	
+	}
+
+	public ProductPageObjects verifyCategoryDescription(String categoryDescription) {
+		Assert.assertTrue(false, "category description is not getting updated in ecommerce.");
+		return this;
 	}
 	
 }
