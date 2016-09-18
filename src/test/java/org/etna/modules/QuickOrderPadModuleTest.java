@@ -434,7 +434,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 		loginModule.loginAsASuperUser();
 		homePage().logout();
 		loginModule.loginAsASuperUser();
-		data.setNumberOfRowsToEnter(2);
+		data.setNumberOfRowsToEnter(1);
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnQuickOrderPadLink().quickOrderPadPage()
@@ -447,13 +447,68 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	
 	@Features("Quick Order Pad Module")
 	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_007")
+	@Description("Verification of Add to cart functionality when Quantity field is left blank in speed entry tab")
+	public void speedEntryQtyFieldBlank() throws Exception{
+		String keyword[] = data.getPartNumberOrUPCForSpeedEntry().split(",");
+		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(1);
+		homePage()
+		.clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink().quickOrderPadPage()
+		.clickOnSpeedEntry()
+		.enterKeywordOrQtyBut1FieldIsEmpty(keyword[0].split(":"),"Keyword",data.getNumberOfRowsToEnter())
+		.clickOnAddToCartButtonSpeedEntry()
+		.verifyAlertText(data.getAlertTextForInvalidQuantityInSpeedEntry()+Integer.toString(data.getNumberOfRowsToEnter()));
+	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_008")
+	@Description("Verification of Add to cart functionality when Keyword field is left blank in speed entry tab")
+	public void speedEntryKeywordFieldBlank() throws Exception{
+		String keyword[] = data.getPartNumberOrUPCForSpeedEntry().split(",");
+		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(1);
+		homePage()
+		.clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink().quickOrderPadPage()
+		.clickOnSpeedEntry()
+		.enterKeywordOrQtyBut1FieldIsEmpty(keyword[0].split(":"),"Quantity",data.getNumberOfRowsToEnter())
+		.clickOnAddToCartButtonSpeedEntry()
+		.verifyAlertText(data.getAlertTextForInvalidQuantityInSpeedEntry()+Integer.toString(data.getNumberOfRowsToEnter()));
+	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_009")
+	@Description("Verification of 'Add to cart' functionality when item price is unavailable in speed entry tab.")
+	public void speedEntryNoPriceItem() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(1);
+		homePage()
+		.clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink().quickOrderPadPage()
+		.clickOnSpeedEntry()
+		.enterPartNumberOrUPCForSpeedEntry(data.getPartNumberOrUPCForSpeedEntry().split(","), data.getNumberOfRowsToEnter())
+		.clickOnAddToCartButtonSpeedEntry()
+		.verifyAlertText(data.getAlertTextForInvalidQuantityInSpeedEntry()+Integer.toString(data.getNumberOfRowsToEnter()));
+	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups={"regression"})
 	@TestCaseId("TC_QOP_012")
 	@Description("Verification of table cell extension in 'Speed Entry' ")
 	public void speedEntryCellExtension() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
 		loginModule.loginAsASuperUser();
-		data.setNumberOfRowsToEnter(2);
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnQuickOrderPadLink().quickOrderPadPage()

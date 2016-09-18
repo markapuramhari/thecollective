@@ -252,12 +252,12 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("Enter part number or upc {0} and the number of rows to enter is {1}")
-	public QuickOrderPageObjects enterPartNumberOrUPCForSpeedEntry(String []partNumberOrUpc, int numberOfRowsToEnter) throws Exception {
+	public QuickOrderPageObjects enterPartNumberOrUPCForSpeedEntry(String []keyword, int numberOfRowsToEnter) throws Exception {
 		
 	        
 	        for(int i=0;i<numberOfRowsToEnter;i++)
 	        {
-	        String [] partNumberUPC = partNumberOrUpc[i].split(":");
+	        String [] partNumberUPC = keyword[i].split(":");
 	       TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
 	        TestUtility.enterDataInHandsOnTable(i+1,"Keyword",partNumberUPC[0]);
 	        TestUtility.enterDataInHandsOnTable(i+1,"Quantity",partNumberUPC[1]); 
@@ -358,5 +358,24 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		  }
 		  return this;
 		
+	}
+
+	public QuickOrderPageObjects enterKeywordOrQtyBut1FieldIsEmpty(String[] keyword, String header, int numberOfRowsToEnter) throws Exception {
+		  TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
+		  if(header.equals("Keyword"))
+		  {
+		  for(int i = 0 ; i< numberOfRowsToEnter ; i++)
+		  {
+	        TestUtility.enterDataInHandsOnTable(i+1,header,keyword[i]);
+		  }
+		  }
+		  else if(header.equals("Quantity"))
+		  {
+			  for(int i = 0 ; i< numberOfRowsToEnter ; i++)
+			  {
+		        TestUtility.enterDataInHandsOnTable(i+1,header,keyword[i+1]);
+			  }
+		  }
+		return this;
 	}
 }
