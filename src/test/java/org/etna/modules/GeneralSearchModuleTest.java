@@ -168,6 +168,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 		  		.productListPage()
 		  		.enterSearchTextInNarrowFilterTextbox(data.getSearchTextForEnlargeImageTest())
 		  		.clickOnNarrowSearchButton()
+		  		.productDetailsPage()
 		  		.verifyPartNumberInProductDetailsPage(data.getSearchTextForEnlargeImageTest());
 		  		
 	}
@@ -187,6 +188,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 		  		.productListPage()
 		  		.enterSearchTextInNarrowFilterTextbox(data.getSearchTextForMPNTest())
 		  		.clickOnNarrowSearchButton()
+		  		.productDetailsPage()
 		  		.verifyManufacturerPartNumberInProductDetailsPage(data.getSearchTextForMPNTest()); 		
 	}
 	
@@ -206,6 +208,7 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 		  		.productListPage()
 		  		.enterSearchTextInNarrowFilterTextbox(data.getSearchTextForUPCLabelTest())
 		  		.clickOnNarrowSearchButton()
+		  		.productDetailsPage()
 		  		.verifyUPCInProductDetailsPage(data.getSearchTextForUPCLabelTest()); 		
 	}
 	

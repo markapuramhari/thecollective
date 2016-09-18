@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
+import ru.yandex.qatools.allure.annotations.Stories;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import org.etna.dataprovider.SearchData;
@@ -16,6 +17,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	LoginModuleTest loginModule = new LoginModuleTest();
 	@Features("Search V2")
+	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for part number.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
@@ -30,6 +32,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Search V2")
+	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for manufacturer part number.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
@@ -44,6 +47,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 
 	@Features("Search V2")
+	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for UPC.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
@@ -58,7 +62,9 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for brand name or MPN when given together.")
+	@Stories("1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches")
+	@Description("This is a test case which verifies exact matching of the search keyword for brand name or "
+  + "MPN when given together. Since it is an exact match scenario it should navigate to product details page.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("TC_Searchv2_001")
 	public void keyword_ExactMatching_BNOrMPN(String testCaseId,@Parameter("Brand Name") String brandName,@Parameter("MPN") String mpn) throws Exception
@@ -90,7 +96,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	
 	
 	@Features("Search V2")
-	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or Manufacturer Part Number.")
+	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or Part Number.")
 	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
 	@TestCaseId("{0}")
 	public void keyword_ExactMatch_BNOrPN(String testCaseId,@Parameter("Brand Name Or Part Number") String brandName,@Parameter("Part Number") String pn) throws Exception
@@ -747,6 +753,25 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 		  		.searchText(partialSearchText)
 		  		.verifyAutoCompleteList(expectedTextToComeInDropdown);
 				throw new SkipException("partial auto suggest is pending.");
+	}
+	
+	@Features("Search V2")
+	@Description("General Search and Search within - Attribute Name (ie Filter name)")
+	@Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=SearchData.class)
+	@TestCaseId("{0}")
+	  public void searchWithinAttributeName(String testCaseId,@Parameter("Search text")String searchText,@Parameter("Filter Name")String filterName,@Parameter("Attribute Name")String attributeName) throws Exception
+	  {
+		
+				String numberOfItemsAssociatedWithTheAttribute =
+				homePage().searchText(searchText).clickOnSearch()
+				.productListPage()
+				.clickOnSpecificFilter(filterName)
+				.getNumberOfItemsInTheAttribute(attributeName);
+				productListPage()
+				.enterSearchTextInNarrowFilterTextbox(attributeName)
+				.clickOnNarrowSearchButton()
+				.verifyNumberOfItemsInThePage(numberOfItemsAssociatedWithTheAttribute);
+		  		
 	}
 }
 

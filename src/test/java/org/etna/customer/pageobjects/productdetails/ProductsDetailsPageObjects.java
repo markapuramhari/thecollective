@@ -17,6 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
@@ -582,8 +583,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	}
 	catch(NoSuchElementException e)
 	{
-		
-			Assert.assertTrue(assertPartNumberUnderProductChoices(searchPartNumber),"Searched Part Number is not displayed in product details page");
+	Assert.assertTrue(assertPartNumberUnderProductChoices(searchPartNumber),"Searched Part Number is not displayed in product details page");
 	}
 	return this;	
 	}

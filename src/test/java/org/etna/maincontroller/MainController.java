@@ -3,7 +3,7 @@ import java.io.File;
 import static org.monte.media.FormatKeys.EncodingKey;
 import static org.monte.media.FormatKeys.FrameRateKey;
 import static org.monte.media.FormatKeys.KeyFrameIntervalKey;
-import static org.monte.media.FormatKeys.MIME_AVI;
+import static org.monte.media.FormatKeys.MIME_QUICKTIME;
 import static org.monte.media.FormatKeys.MediaTypeKey;
 import static org.monte.media.FormatKeys.MimeTypeKey;
 import static org.monte.media.VideoFormatKeys.CompressorNameKey;
@@ -19,8 +19,6 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.etna.customer.pageobjects.homepage.HomePageObjects;
-import org.etna.modules.LoginModuleTest;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SendEmailGmail;
 import org.etna.utils.TestUtility;
@@ -31,7 +29,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.IHookCallBack;
@@ -97,7 +97,6 @@ public void beforeSuite() throws Exception{
 	@BeforeMethod(alwaysRun=true)
 	public void startRecording(Method methodName) throws Exception{
  		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
- 		 //File file = new File(outputFolder+"/"+"Videos/");
  		if(setUp.getVideoPermission().equalsIgnoreCase("yes"))
  		{
  		 File file = new File(outputVideo+"/");
@@ -113,7 +112,7 @@ public void beforeSuite() throws Exception{
           .getDefaultConfiguration();
  
 	this.screenRecorder = new Video(gc, captureSize,
-          new Format(MediaTypeKey, MediaType.VIDEO, MimeTypeKey, MIME_AVI),
+          new Format(MediaTypeKey, MediaType.VIDEO, MimeTypeKey, MIME_QUICKTIME),
           new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
                CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
                DepthKey, 24, FrameRateKey, Rational.valueOf(15),
@@ -154,6 +153,7 @@ public void beforeSuite() throws Exception{
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
+			System.setProperty("webdriver.gecko.driver", "resources/drivers/MAC/geckodriver");
 			driver = new FirefoxDriver();
 			
 		}
@@ -185,13 +185,15 @@ public void beforeSuite() throws Exception{
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Windows/IEDriverServer.exe");
 			driver=new InternetExplorerDriver();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		}
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
-			driver = new FirefoxDriver();
 			
+			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
+			driver = new FirefoxDriver();
+			driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		}
 		else
 		{
@@ -221,8 +223,7 @@ public void run(IHookCallBack callBack, ITestResult testResult){
     		e.printStackTrace();
     	}
    }
-}
-
+    } 
 
 @Attachment(value = "Screenshot of {0}", type = "image/png")
   public byte[] saveScreenshot(String name,WebDriver driver) {
@@ -241,7 +242,6 @@ public void callStopRecording() throws Exception{
 
 @AfterSuite(alwaysRun=true)
 public void tearDown(){
-	
 	driver.quit();
 }
 }

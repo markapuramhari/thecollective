@@ -95,9 +95,6 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//span[contains(text(),'My Product Groups')]")})
 	private List<WebElement> myProductGroupsLocator;
 	
-	/*@FindAll(value={@FindBy(xpath="//a[contains(@id,'enableCart') and not(contains(@class,'disable'))]/ancestor::li/following-sibling::div[contains(@class,'selectCompareGroupBlock')]/descendant::span[text()='My Product Groups']")})
-	private List<WebElement> myProductGroupsLocator;*/
-	
 	@FindBy(xpath="//form[@id='ItemsperPageForm']/descendant::select[@id='resultPerPage']")
 	private WebElement resultsPerPageDrodownLocator;
 	
@@ -109,8 +106,8 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//a[text()='Add To Cart']/ancestor::li/descendant::ul/descendant::h4/a")})
 	private List<WebElement> items;
 	
-/*	@FindAll(value={@FindBy(xpath="//a[contains(@id,'enableCart') and not(contains(@class,'disable'))]/ancestor::ul/preceding-sibling::ul/descendant::a")})
-	private List<WebElement> items;*/
+	@FindAll(value={@FindBy(xpath="//ul[@class='listGridContainer']/descendant::h4")})
+	private List<WebElement> allProductsLocator;
 	
 	@FindAll(value={@FindBy(xpath="//a[contains(@id,'enableCart')]/ancestor::ul/preceding-sibling::ul/descendant::a")})
 	private List<WebElement> skuItemsWithCallForPriceLocator;
@@ -472,9 +469,9 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	}
 
 	@Step("Click on narrow search button")
-	public ProductsDetailsPageObjects clickOnNarrowSearchButton() {
+	public ProductsListPageObjects clickOnNarrowSearchButton() {
 		filterSearchButtonLocator.click();
-		return productDetailsPage();
+		return this;
 	}
 
 
@@ -666,6 +663,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	public boolean assertForBrandNameOrMPNInProductListPage(String searchKeyword)
 	{
+		Waiting.explicitWaitVisibilityOfElements(listOfProductsLocator, 3);
 		for(int i = 0 ; i < listOfProductsLocator.size() ; i++)
 		{
 
@@ -1189,5 +1187,27 @@ private boolean verifyWildCardUPCInProductMode(String upc) throws InterruptedExc
 			}
 		}
 		return false;
+	}
+
+
+	public ProductsListPageObjects clickOnSpecificFilter(String filterName) throws InterruptedException {
+		Thread.sleep(1500);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//dt[contains(text(),'"+filterName+"')]")));
+		return this;
+	}
+
+	public String getNumberOfItemsInTheAttribute(String attributeName) throws InterruptedException {
+		
+		Waiting.explicitWaitVisibilityOfElement(By.xpath("//span[contains(text(),'"+attributeName+"')]"), 2);
+		String attribute = driver.findElement(By.xpath("//span[contains(text(),'"+attributeName+"')]")).getText().trim();
+		return  attribute.substring(attribute.lastIndexOf("(")+1).replace("(", "").replace(")", "").trim();
+	}
+
+
+	public ProductsListPageObjects verifyNumberOfItemsInThePage(String numberOfItemsAssociatedWithTheAttribute) throws InterruptedException {
+		Thread.sleep(800);
+		Waiting.explicitWaitVisibilityOfElements(allProductsLocator, 2);
+		Assert.assertEquals(allProductsLocator.size(), Integer.parseInt(numberOfItemsAssociatedWithTheAttribute),"Number of products is not equal to the number of products that the attribute was associated to.");
+		return this;
 	}
 	}

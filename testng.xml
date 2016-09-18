@@ -14,7 +14,7 @@
   	
   	
     <classes>
-      <class name="org.etna.modules.CategoryModuleTest"/>
+      <class name="org.etna.modules.SearchV2ModuleTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

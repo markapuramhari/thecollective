@@ -15,7 +15,7 @@
     	<compiler.version>1.8</compiler.version>
         <allure.version>1.5.0.RC2</allure.version>
         <aspectj.version>1.8.9</aspectj.version>
-        <version.selenium>3.0.0-beta3</version.selenium>
+        <version.selenium>3.0.0-beta2</version.selenium>
          <version.slf4j>1.7.7</version.slf4j>
     </properties>
 
@@ -23,6 +23,7 @@
     <description>Etna is an e commerce company that is mainly known for selling items related to plumbing</description>
 
     <dependencies>
+
 	 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
@@ -32,7 +33,7 @@
     <dependency>
 	<groupId>com.pojosontheweb</groupId>
 	<artifactId>monte-repack</artifactId>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	</dependency>
 
     <dependency>
@@ -186,15 +187,6 @@
                 </configuration>
             </plugin>
             
-            <plugin>
-    			<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-resources-plugin</artifactId>
-    			<version>3.0.1</version>
-    			<configuration>
-        		<encoding>${project.build.sourceEncoding}</encoding>
-    			</configuration>
-			</plugin>
-           
             
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
