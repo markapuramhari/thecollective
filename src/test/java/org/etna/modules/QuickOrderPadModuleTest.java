@@ -491,14 +491,39 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 		loginModule.loginAsASuperUser();
 		homePage().logout();
 		loginModule.loginAsASuperUser();
-		data.setNumberOfRowsToEnter(1);
-		homePage()
+		data.setNumberOfRowsToEnter(2);
+		int actualItemsWithException = homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnQuickOrderPadLink().quickOrderPadPage()
 		.clickOnSpeedEntry()
-		.enterPartNumberOrUPCForSpeedEntry(data.getPartNumberOrUPCForSpeedEntry().split(","), data.getNumberOfRowsToEnter())
+		.enterPartNumberOrUPCForSpeedEntry(data.getPartNumberOrUPCForSpeedEntryWhichHasCallForPrice().split(","), data.getNumberOfRowsToEnter())
 		.clickOnAddToCartButtonSpeedEntry()
-		.verifyAlertText(data.getAlertTextForInvalidQuantityInSpeedEntry()+Integer.toString(data.getNumberOfRowsToEnter()));
+		.verifyCartCountEqualToAddedToCartCount(0)
+		.getItemsWithExceptionsSection();
+		quickOrderPadPage().verifyNumberOfItemsWithExceptions(actualItemsWithException,data.getNumberOfRowsToEnter())
+		.verifyWhetherTheItemsAddedHaveCallForPrice(data.getNumberOfRowsToEnter());
+	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_010")
+	@Description("Verification of Add to cart functionality in 'Speed Entry' tab for Invalid PartNumber.")
+	public void speedEntryInvalidPartNumber() throws Exception{
+		String jibberishKeywords[] = {"asdajkdhsjadha:1"}; 
+		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(1);
+		int actualItemsWithNoMatches = homePage()
+		.clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink().quickOrderPadPage()
+		.clickOnSpeedEntry()
+		.enterPartNumberOrUPCForSpeedEntry(jibberishKeywords, data.getNumberOfRowsToEnter())
+		.clickOnAddToCartButtonSpeedEntry()
+		.verifyCartCountEqualToAddedToCartCount(0)
+		.getItemsWithNoMatches();
+		quickOrderPadPage()
+		.verifyNumberOfWithNoMatches(actualItemsWithNoMatches,data.getNumberOfRowsToEnter());
 	}
 	
 	@Features("Quick Order Pad Module")

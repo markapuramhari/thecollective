@@ -353,6 +353,9 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String speedEntryInstructions = PropertyFileReader.propertiesReader(searchData, "speedEntryInstructions");
 	
+	private String partNumberOrUPCForSpeedEntryWhichHasCallForPrice = PropertyFileReader.propertiesReader(searchData, "partNumberOrUPCForSpeedEntryWhichHasCallForPrice");
+	
+	
 	
 	
 	private String viewType;
@@ -1324,6 +1327,11 @@ public String getPartialPartNumber() {
 	public String getSpeedEntryCellExtensionOptions() {
 		
 		return speedEntryCellExtensionOptions;
+	}
+
+	public String getPartNumberOrUPCForSpeedEntryWhichHasCallForPrice() {
+
+		return partNumberOrUPCForSpeedEntryWhichHasCallForPrice;
 	}
 
 

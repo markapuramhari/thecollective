@@ -109,6 +109,14 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
     private List<WebElement> speedEntryRightClickOptionsLocator;
     
     
+    @FindBy(xpath="//a[contains(text(),'Items With Exceptions')]")
+    private WebElement speedEntryitemsWithExceptionsLocator;
+    
+    @FindBy(xpath="//a[contains(text(),'No Matches')]")
+    private WebElement noMatchesLocator;
+    
+    
+    
     
 	@Step("click on file upload tab")
 	public QuickOrderPageObjects clickOnFileUploadTab() {
@@ -378,4 +386,31 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		  }
 		return this;
 	}
-}
+
+	public int getItemsWithExceptionsSection() {
+		Waiting.explicitWaitVisibilityOfElement(speedEntryitemsWithExceptionsLocator, 15);
+		return  Integer.parseInt(speedEntryitemsWithExceptionsLocator.getText().replace("ITEMS WITH EXCEPTIONS", "").replace(")", "").replace("(", "").replace(" ", "").trim());
+	}
+
+	public QuickOrderPageObjects verifyNumberOfItemsWithExceptions(int actualItemsWithException,int expectedNumberOfItemsInException) {
+		Assert.assertEquals(actualItemsWithException, expectedNumberOfItemsInException);
+		return this;
+	}
+
+	public QuickOrderPageObjects verifyWhetherTheItemsAddedHaveCallForPrice(int numberOfRowsToEnter) {
+		Assert.assertEquals(driver.findElements(By.xpath("//span[text()='Call for Price']")).size(), numberOfRowsToEnter,"Number of items that have call for price are not the same as expected.");
+		return this;
+	}
+
+	public int getItemsWithNoMatches() {
+		Waiting.explicitWaitVisibilityOfElement(noMatchesLocator, 15);
+		return Integer.parseInt(noMatchesLocator.getText().replace("NO MATCHES", "").replace(")", "").replace("(", "").replace(" ", "").trim());
+	}
+
+	public QuickOrderPageObjects verifyNumberOfWithNoMatches(int actualItemsWithNoMatches, int numberOfRowsToEnter) {
+		Assert.assertEquals(actualItemsWithNoMatches, numberOfRowsToEnter);
+		return this;
+		
+	}
+	}
+	
