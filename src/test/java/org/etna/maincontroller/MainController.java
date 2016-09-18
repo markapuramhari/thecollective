@@ -167,8 +167,6 @@ public void beforeSuite() throws Exception{
 		{
 			System.out.println("cannot load driver");
 		}
-		
-		TestUtility.maximizeScreen(driver);
 	}
 
 	else if(System.getProperty("os.name").toUpperCase().contains("WIN"))

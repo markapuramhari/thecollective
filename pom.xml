@@ -3,13 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>Etna</groupId>
     <artifactId>implementation.Etna</artifactId>
    	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
-
     <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<compiler.version>1.8</compiler.version>
@@ -18,72 +17,63 @@
         <version.selenium>3.0.0-beta2</version.selenium>
          <version.slf4j>1.7.7</version.slf4j>
     </properties>
-
     <name>Etna</name>
     <description>Etna is an e commerce company that is mainly known for selling items related to plumbing</description>
-
     <dependencies>
-
 	 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.7.0</version>
   </dependency>
-
     <dependency>
 	<groupId>com.pojosontheweb</groupId>
 	<artifactId>monte-repack</artifactId>
 	<version>1.0.1</version>
 	</dependency>
-
     <dependency>
   <groupId>org.testng</groupId>
   <artifactId>testng</artifactId>
   <version>6.9.10</version>
   <scope>test</scope>
 </dependency>
-    
-    
+
+
     <dependency>
 	<groupId>com.jayway.restassured</groupId>
 	<artifactId>rest-assured</artifactId>
 	<version>2.9.0</version>
 	</dependency>
-    
- <!-- custom excelread library using apachePOI -->   
+
+ <!-- custom excelread library using apachePOI -->
     <dependency>
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi</artifactId>
 	<version>3.13</version>
 </dependency>
-    
+
     <dependency>
     <groupId>org.apache.poi</groupId>
     <artifactId>poi-ooxml</artifactId>
     <version>3.13</version>
 </dependency>
-
 <dependency>
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi-ooxml-schemas</artifactId>
 	<version>3.13</version>
 </dependency>
-
 <!-- zipturnaround -->
 	<dependency>
 	<groupId>org.zeroturnaround</groupId>
 	<artifactId>zt-zip</artifactId>
 	<version>1.7</version>
 	</dependency>
-
-
  <!-- java mail -->
     <dependency>
 	<groupId>javax.mail</groupId>
 	<artifactId>mail</artifactId>
 	<version>1.4.7</version>
 </dependency>
-            
+
         <!-- Selenium and Drivers -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -91,14 +81,14 @@
             <version>${version.selenium}</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
 	<groupId>org.seleniumhq.selenium</groupId>
 	<artifactId>selenium-server</artifactId>
 	<version>${version.selenium}</version>
 </dependency>
-        
-        
+
+
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-testng-adaptor</artifactId>
@@ -111,71 +101,68 @@
             </exclusions>
         </dependency>
 
- 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
         </dependency>
-        
+
         <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>phantomjsdriver</artifactId>
     <version>1.3.0</version>
 </dependency>
-
          <dependency>
 	<groupId>com.google.code.gson</groupId>
 	<artifactId>gson</artifactId>
 	<version>2.3.1</version>
 	</dependency>
-	
+
 	 <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
-        
+
          <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
             <version>${aspectj.version}</version>
           </dependency>
-          
+
            <dependency>
                    <groupId>org.aspectj</groupId>
                    <artifactId>aspectjrt</artifactId>
                     <version>${aspectj.version}</version>
-                    </dependency>     
+                    </dependency>
     </dependencies>
-
     <build>
 <pluginManagement>
 	 <plugins>
-        
-        	
+
+
         	<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -186,8 +173,8 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            
-            
+
+
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -196,7 +183,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-      
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -215,7 +202,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-    
 
             <!--Needed only to show reports locally. Run jetty:run and
             open localhost:8080 to show the report-->
@@ -231,9 +217,8 @@
             </plugin>
         </plugins>
 </pluginManagement>
-       
-    </build>
 
+    </build>
     <reporting>
         <excludeDefaults>true</excludeDefaults>
         <plugins>
