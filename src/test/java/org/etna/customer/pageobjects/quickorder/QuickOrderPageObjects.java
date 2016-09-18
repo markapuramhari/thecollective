@@ -33,6 +33,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class QuickOrderPageObjects extends PageFactoryInitializer {
 	public SearchDataPropertyFile data = new SearchDataPropertyFile();
+	 ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	
 	@FindBy(xpath="//a[contains(text(),'File Upload')]")
 	private WebElement fileUploadTabLocator;
@@ -88,6 +89,27 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//div[@class='quickorderTableEnclosure']/descendant::span[contains(text(),'Combine')]")
 	private WebElement combineInSpeedEntryLinkLocator;
 	
+	@FindBy(xpath="//div[@id='typeItems']/div[@class='cimm_quickOrderInstruction']")
+	private WebElement speedEntryInstructionsLocator;
+	
+	By tableName=By.className("htCore");
+	
+    By headerNameRow=By.className("colHeader");
+    
+    By invalidQuantityLocator = By.className("htInvalid");
+    
+    @FindAll(value={@FindBy(xpath="//div[@class='ht_master handsontable']/descendant::span[@class='colHeader columnSorting']")})
+    private List<WebElement> speedEntryColumnsLocator;
+    
+
+    @FindAll(value={@FindBy(xpath="//div[@class='ht_master handsontable']/descendant::span[@class='rowHeader']")})
+    private List<WebElement> speedEntryRowsLocator;
+    
+    @FindAll(value={@FindBy(xpath="//div[@class='htItemWrapper']")})
+    private List<WebElement> speedEntryRightClickOptionsLocator;
+    
+    
+    
 	@Step("click on file upload tab")
 	public QuickOrderPageObjects clickOnFileUploadTab() {
 		Waiting.explicitWaitVisibilityOfElement(fileUploadTabLocator, 10);
@@ -179,7 +201,6 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	public boolean verifyAlertText(String expectedAlertMessage){
 		boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
-		System.out.println(TestUtility.getAlertText().replace("\n", "").trim());
 		TestUtility.alertAccept();
 		return t;	
 	}
@@ -233,8 +254,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	@Step("Enter part number or upc {0} and the number of rows to enter is {1}")
 	public QuickOrderPageObjects enterPartNumberOrUPCForSpeedEntry(String []partNumberOrUpc, int numberOfRowsToEnter) throws Exception {
 		
-	        By tableName=By.className("htCore");
-	        By headerNameRow=By.className("colHeader");
+	        
 	        for(int i=0;i<numberOfRowsToEnter;i++)
 	        {
 	        String [] partNumberUPC = partNumberOrUpc[i].split(":");
@@ -262,8 +282,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	}
 
 	public QuickOrderPageObjects enterPartNumberOrUPCForSpeedEntryForCombine(String[] partNumberOrUpc, int numberOfRowsToEnter) throws Exception {
-		By tableName=By.className("htCore");
-        By headerNameRow=By.className("colHeader");
+		
         for(int i=0;i<numberOfRowsToEnter;i++)
         {
         String [] partNumberUPC = partNumberOrUpc[0].split(":");
@@ -290,21 +309,54 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	}
 
 	public QuickOrderPageObjects enterInvalidQuantityInSpeedEntry(String quantity) throws Exception{
-		By tableName=By.className("htCore");
-        By headerNameRow=By.className("colHeader");
+	
         TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
 		TestUtility.enterDataInHandsOnTable(1, "Quantity", quantity);
 		return this;
 	}
-	public QuickOrderPageObjects verifyInvalidQuantityColour(String invalidQuantityColour) {
+	public QuickOrderPageObjects verifyInvalidQuantityColour(String invalidQuantityColourChrome,String invalidQuantityColourFirefox) throws InterruptedException, Exception {
 		
-		List<WebElement> invalidQuantity = driver.findElements(By.className("htInvalid"));
+		List<WebElement> invalidQuantity = driver.findElements(invalidQuantityLocator);
 		for(int i = 0 ; i<invalidQuantity.size(); i++)
 			
 		{
-			Assert.assertEquals(invalidQuantity.get(i).getCssValue("background-color"),invalidQuantityColour,"Actual is "+invalidQuantity.get(i).getCssValue("background-color")+", Expecting rgba(255, 76, 66, 1)");
-		}
+			if(setUp.getBrowser().equals("firefox"))
+			{
+				Waiting.explicitWaitVisibilityOfElement(speedEntryInstructionsLocator, 3);
+				Assert.assertEquals(invalidQuantity.get(i).getCssValue("background-color"),invalidQuantityColourFirefox,"Actual is "+invalidQuantity.get(i).getCssValue("background-color")+", Expecting"+invalidQuantityColourFirefox);
+			}
+			else
+			{
+			Assert.assertEquals(invalidQuantity.get(i).getCssValue("background-color"),invalidQuantityColourChrome,"Actual is "+invalidQuantity.get(i).getCssValue("background-color")+", Expecting "+invalidQuantityColourChrome);
+			}
+			}
 		
 		return this;
+	}
+
+	public QuickOrderPageObjects verifySpeedEntryTab(String speedEntryInstructions) {
+		Waiting.explicitWaitVisibilityOfElement(speedEntryInstructionsLocator, 6);
+		Assert.assertEquals(speedEntryInstructionsLocator.getText().replace("\n", "").trim(),speedEntryInstructions, "Speed entry instructions is wrong.");
+		Assert.assertTrue(addToCartButtonSpeedEntryLocator.isDisplayed(),"Add to cart button is not displayed in speed entry tab.");
+		Assert.assertEquals(speedEntryColumnsLocator.size(),2,"Number of columns is not 2. It is "+speedEntryColumnsLocator.size());
+		Assert.assertEquals(speedEntryRowsLocator.size(),10,"Number of rows is not 10. It is "+speedEntryRowsLocator.size());	
+		return this;
+	}
+
+	public QuickOrderPageObjects rightClickOnASpecificCell(String header, int cellNumber) throws Exception {
+		  TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
+		  TestUtility.rightCickOnCell(cellNumber,header);
+		 
+		return this;
+	}
+
+	public QuickOrderPageObjects verifyRightClickOptions(String[] speedEntryExtensionOptions) {
+		 Waiting.explicitWaitVisibilityOfElements(speedEntryRightClickOptionsLocator, 3);
+		  for(int i = 0 ; i < speedEntryRightClickOptionsLocator.size() ; i++)
+		  {
+			  Assert.assertEquals(speedEntryRightClickOptionsLocator.get(i).getText().trim(),speedEntryExtensionOptions[i]);
+		  }
+		  return this;
+		
 	}
 }

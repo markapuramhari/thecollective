@@ -282,7 +282,7 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String invalidQuantityForSpeedEntry = PropertyFileReader.propertiesReader(searchData, "invalidQuantityForSpeedEntry");
 	
-	private String invalidQuantityColour = PropertyFileReader.propertiesReader(searchData, "invalidQuantityColour");
+	private String speedEntryInvalidQuantityColourChrome = PropertyFileReader.propertiesReader(searchData, "speedEntryInvalidQuantityColourChrome");
 	
 	private String showSimilarButtonAfterClick = PropertyFileReader.propertiesReader(searchData, "showSimilarButtonAfterClick");
 	
@@ -351,12 +351,24 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String state = PropertyFileReader.propertiesReader(searchData, "state");
 	
+	private String speedEntryInstructions = PropertyFileReader.propertiesReader(searchData, "speedEntryInstructions");
+	
+	
 	
 	private String viewType;
 	
 	private String	specificAlphabetToClickInShopByBrandsPage;
 	
 	private String	categoryDescription;
+	
+	private String	alertTextForInvalidQuantityInSpeedEntry = PropertyFileReader.propertiesReader(searchData, "alertTextForInvalidQuantityInSpeedEntry");
+	
+	private String	speedEntryInvalidQuantityColourFirefox = PropertyFileReader.propertiesReader(searchData, "speedEntryInvalidQuantityColourFirefox");
+	
+	private String	speedEntryCellExtensionOptions = PropertyFileReader.propertiesReader(searchData, "speedEntryCellExtensionOptions");
+	
+	
+	
 	
 	
 	
@@ -1101,9 +1113,9 @@ public String getInvalidQuantityForSpeedEntry() {
 	return invalidQuantityForSpeedEntry;
 }
 
-public String getSpeedEntryInvalidQuantityColour() {
+public String getSpeedEntryInvalidQuantityColourChrome() {
 	 
-	return invalidQuantityColour;
+	return speedEntryInvalidQuantityColourChrome;
 }
 
 public String getShowSimilarButtonAfterClick() {
@@ -1292,6 +1304,26 @@ public String getPartialPartNumber() {
 	public String getState() {
 		
 		return state;
+	}
+
+	public String getSpeedEntryInstructions() {
+		
+		return speedEntryInstructions;
+	}
+
+	public String getAlertTextForInvalidQuantityInSpeedEntry() {
+		
+		return alertTextForInvalidQuantityInSpeedEntry;
+	}
+
+	public String getSpeedEntryInvalidQuantityColourFirefox() {
+		
+		return speedEntryInvalidQuantityColourFirefox;
+	}
+
+	public String getSpeedEntryCellExtensionOptions() {
+		
+		return speedEntryCellExtensionOptions;
 	}
 
 

@@ -3,9 +3,12 @@ import org.testng.annotations.Test;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
+
+import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Issue;
 import ru.yandex.qatools.allure.annotations.Issues;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	
@@ -17,6 +20,8 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	
 	@Features("Quick Order Pad Module")
 	@Test(groups="regression")
+	@TestCaseId("TC_QOP_001")
+	@Description("Verification of 'Quick Order Pad' page")
 	public void verifyQuickOrderLandingPage() throws Exception{
 		homePage()
 		.clickLoginLink()
@@ -31,6 +36,20 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 		.quickOrderPadPage()
 		.verifyQuickOrderPage();
 	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups="regression")
+	@TestCaseId("TC_QOP_002")
+	@Description("Verification of 'Speed Entry' tab in  'Quick Order Pad' page.")
+	public void verifySpeedEntryTab() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink()
+		.verifySpeedEntryTab(data.getSpeedEntryInstructions());
+		
+	}
+	
+	
 	
 	
 	@Features("Quick Order Pad Module")
@@ -324,7 +343,9 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups={"speed entry","smoke","regression"})
+	@Test(groups={"smoke","regression"})
+	@Description("Verification of add to cart functionality in 'Speed Entry' tab")
+	@TestCaseId("TC_QOP_003")
 	public void speedEntrySmoke() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -341,7 +362,9 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups={"speed entry","regression"})
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_004")
+	@Description("Verification of 'Combine' functionality in 'Speed Entry' tab")
 	public void speedEntryCombine() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -360,7 +383,9 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups={"speed entry","regression"})
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_005")
+	@Description("Verification of 'Separate' functionality in 'Speed Entry' tab")
 	public void speedEntrySeperate() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -380,7 +405,9 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups={"speed entry","regression"})
+	@Test(groups={"regression"})
+	@Description("Verification of 'Remove' functionality in 'Speed Entry' tab")
+	@TestCaseId("TC_QOP_006")
 	public void speedEntryRemove() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
@@ -400,17 +427,38 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("Quick Order Pad Module")
-	@Test(groups={"speed entry","regression"})
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_011")
+	@Description("Verification of Add to cart functionality in 'Speed Entry' tab for Invalid Quantity.")
 	public void speedEntryInvalidQuantity() throws Exception{
 		loginModule.loginAsASuperUser();
 		homePage().logout();
-		data.setNumberOfRowsToEnter(2);
 		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(2);
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnQuickOrderPadLink().quickOrderPadPage()
 		.clickOnSpeedEntry()
 		.enterPartNumberOrUPCForSpeedEntry(data.getInvalidQuantityForSpeedEntry().split(","),data.getNumberOfRowsToEnter())
-		.verifyInvalidQuantityColour(data.getSpeedEntryInvalidQuantityColour());
+		.verifyInvalidQuantityColour(data.getSpeedEntryInvalidQuantityColourChrome(),data.getSpeedEntryInvalidQuantityColourFirefox())
+		.clickOnAddToCartButtonSpeedEntry()
+		.verifyAlertText(data.getAlertTextForInvalidQuantityInSpeedEntry()+Integer.toString(data.getNumberOfRowsToEnter()));
+	}
+	
+	@Features("Quick Order Pad Module")
+	@Test(groups={"regression"})
+	@TestCaseId("TC_QOP_012")
+	@Description("Verification of table cell extension in 'Speed Entry' ")
+	public void speedEntryCellExtension() throws Exception{
+		loginModule.loginAsASuperUser();
+		homePage().logout();
+		loginModule.loginAsASuperUser();
+		data.setNumberOfRowsToEnter(2);
+		homePage()
+		.clickOnUserAccountDropdown()
+		.clickOnQuickOrderPadLink().quickOrderPadPage()
+		.clickOnSpeedEntry()
+		.rightClickOnASpecificCell("Keyword",1)
+		.verifyRightClickOptions(data.getSpeedEntryCellExtensionOptions().split(","));
 	}
 }

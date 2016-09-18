@@ -12,6 +12,7 @@ import org.etna.customer.pageobjects.products.ProductPageObjects;
 import org.etna.customer.pageobjects.purchasingagent.AddNewPurchasingAgentPageObjects;
 import org.etna.customer.pageobjects.purchasingagent.DisablePurchasingAgentPageObjects;
 import org.etna.customer.pageobjects.purchasingagent.ManagePurchasingAgentPageObjects;
+import org.etna.customer.pageobjects.quickorder.QuickOrderPageObjects;
 import org.etna.customer.pageobjects.requestforquote.RequestForQuotePageObjects;
 import org.etna.customer.pageobjects.savecart.SaveCartPageObjects;
 import org.etna.customer.pageobjects.signup.SignUpPageObjects;
@@ -384,8 +385,15 @@ public class HomePageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LoginPopUpPageObjects clickLoginLink() {
-		Waiting.explicitWaitVisibilityOfElement(loginLinkLocator, 20);
+	public LoginPopUpPageObjects clickLoginLink() throws Exception {
+		if(setUp.getBrowser().equals("firefox"))
+		{
+			Thread.sleep(2000);
+		}
+		else
+		{
+			Waiting.explicitWaitVisibilityOfElement(loginLinkLocator, 6);
+		}
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",loginLinkLocator);
 		return loginPopUp();
 	}
@@ -610,11 +618,11 @@ public class HomePageObjects extends PageFactoryInitializer {
 	}
 
 	@Step("click on quick order pad link")
-	public MyAccountsPageObjects clickOnQuickOrderPadLink() throws InterruptedException {
+	public QuickOrderPageObjects clickOnQuickOrderPadLink() throws InterruptedException {
 		Waiting.explicitWaitVisibilityOfElement(quickOrderPadLink, 10);
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();",quickOrderPadLink);
 		Thread.sleep(6000);
-		return myAccountsPage();
+		return quickOrderPadPage();
 		
 	}
 

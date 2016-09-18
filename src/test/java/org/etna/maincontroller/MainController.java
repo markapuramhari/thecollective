@@ -193,7 +193,6 @@ public void beforeSuite() throws Exception{
 			
 			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
 			driver = new FirefoxDriver();
-			driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		}
 		else
 		{

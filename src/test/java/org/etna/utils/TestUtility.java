@@ -184,4 +184,19 @@ public class TestUtility extends MainController {
 	    	 driver.findElement(By.xpath(colrow)).sendKeys(dataToEnter);
 	       }
 	    }
-}
+	    
+	    public static void rightCickOnCell(int rownumber,String colName) throws Exception{
+	    	
+	    	Actions action = new Actions(driver);
+	    	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
+	    	String colrow="//tr["+rownumber+"]/td["+headerindex.get(colName)+"]";
+	    	  if(setUp.getBrowser().equalsIgnoreCase("firefox"))
+		        {
+		        	driver.findElement(By.xpath(colrow)).click();
+		        }
+	    	  
+	        action.contextClick(driver.findElement(By.xpath(colrow))).build().perform();
+	      
+	       }
+	    }
+

@@ -266,7 +266,6 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 		  Assert.assertTrue(driver.findElement(By.xpath("//h3[text()='My Saved Carts']/following-sibling::ul/descendant::a[text()[normalize-space() = '"+saveCartName+"']]")).isDisplayed(),"Created cart is not getting displayed under groups tab.");
 		  return this;
 		 }
-
 }
 	
 	
