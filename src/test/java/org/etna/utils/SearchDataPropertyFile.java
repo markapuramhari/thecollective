@@ -354,30 +354,42 @@ public class SearchDataPropertyFile extends MainController{
 	private String speedEntryInstructions = PropertyFileReader.propertiesReader(searchData, "speedEntryInstructions");
 	
 	private String partNumberOrUPCForSpeedEntryWhichHasCallForPrice = PropertyFileReader.propertiesReader(searchData, "partNumberOrUPCForSpeedEntryWhichHasCallForPrice");
-	
-	
-	
-	
+
+    private String copyPasteSectionInstructions = PropertyFileReader.propertiesReader(searchData, "copyPasteSectionInstructions");
+
+	private String cSVFilePathForNoPriceItem = PropertyFileReader.propertiesReader(searchData, "cSVFilePathForNoPriceItem");
+
 	private String viewType;
 	
 	private String	specificAlphabetToClickInShopByBrandsPage;
 	
 	private String	categoryDescription;
+
+    private int	expectedNumberOfRowsItemsWithExceptions;
 	
 	private String	alertTextForInvalidQuantityInSpeedEntry = PropertyFileReader.propertiesReader(searchData, "alertTextForInvalidQuantityInSpeedEntry");
 	
 	private String	speedEntryInvalidQuantityColourFirefox = PropertyFileReader.propertiesReader(searchData, "speedEntryInvalidQuantityColourFirefox");
 	
 	private String	speedEntryCellExtensionOptions = PropertyFileReader.propertiesReader(searchData, "speedEntryCellExtensionOptions");
-	
-	
-	
-	
-	
-	
+
+    private String	cSVFilePathForCombineAndSeperateRemoveTest = PropertyFileReader.propertiesReader(searchData, "cSVFilePathForCombineAndSeperateRemoveTest");
+
+    private String	alertTextForInvalidFormatInCopyPaste = PropertyFileReader.propertiesReader(searchData, "alertTextForInvalidFormatInCopyPaste");
+
+    private String	cSVFileForNoPartNumber = PropertyFileReader.propertiesReader(searchData, "cSVFileForNoPartNumber");
+
+    private String	cSVFilePathInvalidPartNumber = PropertyFileReader.propertiesReader(searchData, "cSVFilePathInvalidPartNumber");
+
+    private String	cSVFilePathInvalidQty = PropertyFileReader.propertiesReader(searchData, "cSVFilePathInvalidQty");
+
+
+
+
 	
 	public String getCopyRightsOfUnilogText() {
-		return copyRightsOfUnilog;
+
+        return copyRightsOfUnilog;
 	}
 	
 	public int getNumberOfCheckboxesToBeClicked() {
@@ -1335,5 +1347,46 @@ public String getPartialPartNumber() {
 	}
 
 
+	public String getCopyPasteSectionInstructions() {
 
+		return copyPasteSectionInstructions;
+	}
+
+    public String getCSVFilePathForCombineSeperateRemoveTest() {
+
+        return cSVFilePathForCombineAndSeperateRemoveTest;
+    }
+
+	public String getCSVFilePathForNoPriceItem() {
+
+		return cSVFilePathForNoPriceItem;
+	}
+
+    public void setExpectedNumberOfRowsItemsWithExceptions(int expectedNumberOfRowsItemsWithExceptions) {
+      this.expectedNumberOfRowsItemsWithExceptions  =expectedNumberOfRowsItemsWithExceptions;
+    }
+
+    public int getExpectedNumberOfRowsItemsWithExceptions() {
+
+        return expectedNumberOfRowsItemsWithExceptions;
+    }
+
+    public String getAlertTextForInvalidFormatInCopyPaste() {
+        return alertTextForInvalidFormatInCopyPaste;
+    }
+
+
+    public String getCSVFileForNoPartNumber() {
+        return cSVFileForNoPartNumber;
+    }
+
+    public String getCSVFilePathInvalidPartNumber() {
+
+        return cSVFilePathInvalidPartNumber;
+    }
+
+    public String getCSVFilePathInvalidQty() {
+
+        return cSVFilePathInvalidQty;
+    }
 }

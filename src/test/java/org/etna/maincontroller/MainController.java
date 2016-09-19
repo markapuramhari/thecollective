@@ -29,6 +29,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -139,6 +140,7 @@ public void beforeSuite() throws Exception{
 			  
 			System.setProperty("webdriver.chrome.driver", "resources/drivers/Mac/chromedriver");
 			driver = new ChromeDriver();
+			TestUtility.maximizeScreen(driver);
 			
 			  
 		}
@@ -155,18 +157,20 @@ public void beforeSuite() throws Exception{
 		{
 			System.setProperty("webdriver.gecko.driver", "resources/drivers/MAC/geckodriver");
 			driver = new FirefoxDriver();
-			
+
 		}
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("safari"))
 		{
 			driver = new SafariDriver();
+			TestUtility.maximizeScreen(driver);
 		}
 			
 		else
 		{
 			System.out.println("cannot load driver");
 		}
+
 	}
 
 	else if(System.getProperty("os.name").toUpperCase().contains("WIN"))
@@ -189,7 +193,15 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
 			
-			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
+			/*System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
+			String downloadPath = "/Users/hemanthsridhar/Downloads/QuickCartExample.xlsx";
+			FirefoxProfile firefoxProfile = new FirefoxProfile();
+			firefoxProfile.setPreference("browser.download.folderList",2);
+			firefoxProfile.setPreference("browser.download.manager.showWhenStarting",false);
+			firefoxProfile.setPreference("browser.download.dir",downloadPath);
+			firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+					"text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml");
+*/
 			driver = new FirefoxDriver();
 		}
 		else

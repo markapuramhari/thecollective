@@ -510,6 +510,7 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 	@Step("verify whether number of items in shopping cart is {0}")
 	public MyCartPageObjects verifyNumberOfItemsInShoppingCart(int expectedNumberOfProducts) {
+		Waiting.explicitWaitVisibilityOfElements(productImages,6);
 		Assert.assertEquals(productImages.size(),expectedNumberOfProducts,"Number of products in the cart is "+myCartProductName.size()+" but expecting "+expectedNumberOfProducts+".");
 		return this;
 		

@@ -8,25 +8,17 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
 
-import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
-import org.etna.utils.ApplicationSetUpPropertyFile;
-import org.etna.utils.SearchDataPropertyFile;
-import org.etna.utils.TestUtility;
-import org.etna.utils.Waiting;
-import org.openqa.selenium.Alert;
+import org.etna.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import ru.yandex.qatools.allure.annotations.Step;
@@ -42,7 +34,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	private WebElement chooseFileLocator;
 	
 	@FindBy(xpath="//a[contains(@href,'itemsInCart')]")
-	private WebElement addedToCartCountInFileUploadLocator;
+	private WebElement addedToCartCountLocator;
 	
 	@FindBy(xpath="//div[contains(@class,'navigationBar')]/descendant::span[contains(@id,'cartCountrefresh')]")
 	private WebElement shoppingCartCountLocator;
@@ -68,11 +60,10 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//h2")
 	private WebElement pageNameLocator;
 	
-	@FindAll(value={@FindBy(xpath="//div[@id='fileUpload']/div[@class='cimm_quickOrderInstruction']/descendant::li")})
-	private List<WebElement> cartFileUploadInstructionsLocator;
+
 	
 	@FindBy(xpath="//div[contains(@class,'uploadForm')]/descendant::span[contains(text(),'Separate')]")
-	private WebElement seperateButtonLocator;
+	private WebElement seperateButtonInCartFileUploadLocator;
 	
 	@FindBy(xpath="//div[@class='quickorderTableEnclosure']/descendant::span[contains(text(),'Separate')]")
 	private WebElement seperateButtonSpeedEntryLocator;
@@ -116,8 +107,22 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
     private WebElement noMatchesLocator;
     
     
-    
-    
+    @FindBy(xpath="//div[@id='copyPaste']/descendant::div[@class='cimm_quickOrderInstruction']")
+	private WebElement copyPasteInstructionsLocator;
+
+	@FindBy(xpath="//div[@id='fileUpload']/descendant::div[@class='cimm_quickOrderInstruction']")
+	private WebElement cartFileUploadInstructionsLocator;
+
+	@FindBy(xpath="//div[@class='copy_area']/following-sibling::div[@class='cimm_radioBtnWrap']/descendant::span[text()='Separate']")
+	private WebElement seperateButtonInCopyPasteLocator;
+
+	@FindBy(xpath="//div[@class='copy_area']/following-sibling::div[@class='cimm_radioBtnWrap']/descendant::span[text()='Remove']")
+	private WebElement removeButtonInCopyPasteLocator;
+
+
+	@FindBy(xpath="//div[@id='fileUpload']/descendant::a")
+	private WebElement clickHereLinkLocator;
+
 	@Step("click on file upload tab")
 	public QuickOrderPageObjects clickOnFileUploadTab() {
 		Waiting.explicitWaitVisibilityOfElement(fileUploadTabLocator, 10);
@@ -141,9 +146,9 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	}
 
 	public int getAddedToCartCount() {
-		Waiting.explicitWaitVisibilityOfElement(addedToCartCountInFileUploadLocator, 20);
+		Waiting.explicitWaitVisibilityOfElement(addedToCartCountLocator, 20);
 	 
-		return Integer.parseInt(addedToCartCountInFileUploadLocator.getText().replace("ADDED TO CART", "").replace(")", "").replace("(", "").replace(" ", "").trim());
+		return Integer.parseInt(addedToCartCountLocator.getText().replace("ADDED TO CART", "").replace(")", "").replace("(", "").replace(" ", "").trim());
 	}
 
 	@Step("verify cart count equal to {0}")
@@ -191,8 +196,8 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 }
 	
 	@Step("click on add to cart button")
-	public QuickOrderPageObjects clickOnAddToCartButton() {
-		Waiting.explicitWaitVisibilityOfElement(shoppingCartCountLocator, 30);
+	public QuickOrderPageObjects clickOnAddToCartButtonInCopyPaste() throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(addToCartButtonInCopyPasteSectionLocator, 4);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",addToCartButtonInCopyPasteSectionLocator);
 		return this;
 	}
@@ -207,10 +212,12 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	
 
-	public boolean verifyAlertText(String expectedAlertMessage){
-		boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
-		TestUtility.alertAccept();
-		return t;	
+	public boolean verifyAlertText(String expectedAlertMessage) throws Exception {
+
+			Waiting.explicitWaitForAlert(3);
+			boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
+			TestUtility.alertAccept();
+			return t;
 	}
 
 	@Step("verify alert message is {0}")
@@ -249,7 +256,13 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	@Step("click on seperate button")
 	public QuickOrderPageObjects clickOnSeperateButton() {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",seperateButtonLocator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",seperateButtonInCartFileUploadLocator);
+		return this;
+	}
+
+	@Step("click on seperate button")
+	public QuickOrderPageObjects clickOnSeperateButtonInCopyPaste() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",seperateButtonInCopyPasteLocator);
 		return this;
 	}
 
@@ -387,7 +400,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public int getItemsWithExceptionsSection() {
+	public int getItemsWithExceptions() {
 		Waiting.explicitWaitVisibilityOfElement(speedEntryitemsWithExceptionsLocator, 15);
 		return  Integer.parseInt(speedEntryitemsWithExceptionsLocator.getText().replace("ITEMS WITH EXCEPTIONS", "").replace(")", "").replace("(", "").replace(" ", "").trim());
 	}
@@ -412,5 +425,49 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		return this;
 		
 	}
+
+	public QuickOrderPageObjects verifyCopyPasteSection(String copyPasteSectionInstructions) throws InterruptedException {
+		Waiting.explicitWaitVisibilityOfElement(copyPasteInstructionsLocator,5);
+		Assert.assertEquals(copyPasteInstructionsLocator.getText().replace("\n","").trim(),copyPasteSectionInstructions);
+		Assert.assertTrue(addToCartButtonInCopyPasteSectionLocator.isDisplayed(),"Add to Cart Button in copy paste section is not displayed.");
+
+		return this;
 	}
+
+    public QuickOrderPageObjects clickOnRemoveButtonInCopyPaste() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",removeButtonInCopyPasteLocator);
+        return this;
+    }
+
+	public QuickOrderPageObjects verifyFileUploadTab(String cartFileUploadInstructions) {
+		Waiting.explicitWaitVisibilityOfElement(cartFileUploadInstructionsLocator,5);
+		Assert.assertEquals(cartFileUploadInstructionsLocator.getText().replace("\n","").trim(),cartFileUploadInstructions);
+		Assert.assertTrue(cartFileUploadInstructionsLocator.isDisplayed(),"Add to Cart Button in Cart File Upload section is not displayed.");
+		return this;
+	}
+
+	public QuickOrderPageObjects clickOnClickHereLink() throws Exception{
+		Waiting.explicitWaitVisibilityOfElement(clickHereLinkLocator,5);
+		clickHereLinkLocator.click();
+		Thread.sleep(3000);
+		if(setUp.getBrowser().equals("firefox"))
+		{
+			Robot rb = new Robot();
+			rb.keyPress(KeyEvent.VK_ENTER);
+			rb.keyRelease(KeyEvent.VK_ENTER);
+			Thread.sleep(2000);
+		}
+
+		return this;
+	}
+
+	public QuickOrderPageObjects verifySampleFile(String downloadedPath) throws Exception {
+		Thread.sleep(2000);
+		File file = new File(downloadedPath);
+		ExcelLibrary excel = new ExcelLibrary(file.getAbsolutePath());
+		Assert.assertEquals(ExcelLibrary.xlsxReadCell(0,0),"Key Word");
+		Assert.assertEquals(ExcelLibrary.xlsxReadCell(1,0),"Quantity");
+		return this;
+	}
+}
 	
