@@ -105,7 +105,9 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
     
     @FindBy(xpath="//a[contains(text(),'No Matches')]")
     private WebElement noMatchesLocator;
-    
+
+	@FindBy(xpath="//i[contains(@class,'home')]")
+	public WebElement homeIconLocator;
     
     @FindBy(xpath="//div[@id='copyPaste']/descendant::div[@class='cimm_quickOrderInstruction']")
 	private WebElement copyPasteInstructionsLocator;
@@ -212,9 +214,9 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	
 
-	public boolean verifyAlertText(String expectedAlertMessage) throws Exception {
+	private boolean verifyAlertText(String expectedAlertMessage) throws Exception {
 
-			Waiting.explicitWaitForAlert(3);
+			Waiting.explicitWaitForAlert(5);
 			boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
 			TestUtility.alertAccept();
 			return t;
@@ -246,6 +248,9 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 
 	@Step("verify quick order pad page")
 	public QuickOrderPageObjects verifyQuickOrderPage() {
+		Waiting.explicitWaitVisibilityOfElement(homeIconLocator,5);
+		Assert.assertTrue(homeIconLocator.isDisplayed(),"Home Icon is not displayed in the breadcrumb.");
+		Assert.assertTrue(editContactInfoPage().myAccountInBreadcrumbLocator.isDisplayed(),"My Account is not present in the breadcrumb");
 		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase("Quick Order"));
 		Assert.assertTrue(pageNameLocator.getText().trim().equalsIgnoreCase("Quick Order"));
 		Assert.assertTrue(speedEntryTabLocator.getAttribute("class").equals("active"));
@@ -420,7 +425,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		return Integer.parseInt(noMatchesLocator.getText().replace("NO MATCHES", "").replace(")", "").replace("(", "").replace(" ", "").trim());
 	}
 
-	public QuickOrderPageObjects verifyNumberOfWithNoMatches(int actualItemsWithNoMatches, int numberOfRowsToEnter) {
+	public QuickOrderPageObjects verifyNumberOfItemsWithNoMatches(int actualItemsWithNoMatches, int numberOfRowsToEnter) {
 		Assert.assertEquals(actualItemsWithNoMatches, numberOfRowsToEnter);
 		return this;
 		
@@ -449,9 +454,10 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	public QuickOrderPageObjects clickOnClickHereLink() throws Exception{
 		Waiting.explicitWaitVisibilityOfElement(clickHereLinkLocator,5);
 		clickHereLinkLocator.click();
-		Thread.sleep(3000);
+
 		if(setUp.getBrowser().equals("firefox"))
 		{
+			Thread.sleep(3000);
 			Robot rb = new Robot();
 			rb.keyPress(KeyEvent.VK_ENTER);
 			rb.keyRelease(KeyEvent.VK_ENTER);

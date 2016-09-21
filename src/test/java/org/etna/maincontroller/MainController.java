@@ -192,16 +192,7 @@ public void beforeSuite() throws Exception{
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
-			
-			/*System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
-			String downloadPath = "/Users/hemanthsridhar/Downloads/QuickCartExample.xlsx";
-			FirefoxProfile firefoxProfile = new FirefoxProfile();
-			firefoxProfile.setPreference("browser.download.folderList",2);
-			firefoxProfile.setPreference("browser.download.manager.showWhenStarting",false);
-			firefoxProfile.setPreference("browser.download.dir",downloadPath);
-			firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk",
-					"text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml");
-*/
+
 			driver = new FirefoxDriver();
 		}
 		else

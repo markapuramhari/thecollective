@@ -392,7 +392,7 @@ public class HomePageObjects extends PageFactoryInitializer {
 		}
 		else
 		{
-			Waiting.explicitWaitVisibilityOfElement(loginLinkLocator, 6);
+			Waiting.explicitWaitElementToBeClickable(loginLinkLocator, 6);
 		}
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",loginLinkLocator);
 		return loginPopUp();
@@ -414,8 +414,8 @@ public class HomePageObjects extends PageFactoryInitializer {
 		{
 		Thread.sleep(3000);
 		Assert.assertTrue(checkForUseThisAddress());	
-		Thread.sleep(3000);
-		Waiting.explicitWaitVisibilityOfElement(userAccountDropdown, 30);
+		Thread.sleep(1500);
+		Waiting.explicitWaitElementToBeClickable(userAccountDropdown, 8);
 		Assert.assertTrue(userAccountDropdown.isDisplayed(),"user dropdown is not displayed");
 		}
 		catch(StaleElementReferenceException e)
@@ -1118,10 +1118,7 @@ return this;
 	
 	@Step("verify use this address button locator")
 	public HomePageObjects verifyUseThisAddressButtonIsDisplayedAndIfDisplayedClickIt() throws Exception {
-		if(setUp.getBrowser().equalsIgnoreCase("safari")||setUp.getBrowser().equalsIgnoreCase("ie"))
-		{
-		Waiting.explicitWaitVisibilityOfElements(useThisAddressButton, 20);
-		}
+		Waiting.explicitWaitVisibilityOfElements(useThisAddressButton,5);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",useThisAddressButton.get(0));
 		return this;
 	}

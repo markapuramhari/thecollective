@@ -78,7 +78,7 @@ public class EditContactInfoPageObjects extends PageFactoryInitializer {
 	private WebElement updateButton;
 	
 	@FindBy(xpath="//ul[contains(@class,'breadcrumbs')]/descendant::a[text()[normalize-space()='My Account']]")
-	private WebElement myAccountInBreadcrumbLocator;
+	public WebElement myAccountInBreadcrumbLocator;
 	
 	@FindBy(xpath="//span[@id='message']")
 	private WebElement confirmationMessageLocator;

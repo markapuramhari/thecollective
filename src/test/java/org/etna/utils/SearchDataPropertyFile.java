@@ -170,7 +170,7 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String selectFileToUploadAlertMessage = PropertyFileReader.propertiesReader(searchData, "selectFileToUploadAlertMessage");
 	
-	private String selectXLSXFileToUploadAlertMessage = PropertyFileReader.propertiesReader(searchData, "selectXLSXFileToUploadAlertMessage");
+
 
 	public String cartFileUploadInstructions = PropertyFileReader.propertiesReader(searchData, "cartFileUploadInstructions");;
 	
@@ -383,10 +383,14 @@ public class SearchDataPropertyFile extends MainController{
 
     private String	cSVFilePathInvalidQty = PropertyFileReader.propertiesReader(searchData, "cSVFilePathInvalidQty");
 
+	private String	cartFileUploadForThan800Records = PropertyFileReader.propertiesReader(searchData, "cartFileUploadForThan800Records");
 
+	private String	alertTextForCartFileUploadMoreThan800Records = PropertyFileReader.propertiesReader(searchData, "alertTextForCartFileUploadMoreThan800Records");
 
+	private String	cartFileUploadEmptyTemplate = PropertyFileReader.propertiesReader(searchData, "cartFileUploadEmptyTemplate");
 
-	
+	private String	alertTextUploadFileIsNotInDesiredFormat = PropertyFileReader.propertiesReader(searchData, "alertTextUploadFileIsNotInDesiredFormat");
+
 	public String getCopyRightsOfUnilogText() {
 
         return copyRightsOfUnilog;
@@ -844,11 +848,6 @@ public String getCopyPasteInvalidFormatAlertMessage() {
 public String getSelectFileToUploadAlertMessage() {
 	
 	return selectFileToUploadAlertMessage;
-}
-
-public String getSelectXLSXFileToUploadAlertMessage() {
-	
-	return selectXLSXFileToUploadAlertMessage;
 }
 
 public String getCartFileUploadInstructions() {
@@ -1389,4 +1388,24 @@ public String getPartialPartNumber() {
 
         return cSVFilePathInvalidQty;
     }
+
+	public String getCartFileUploadForThan800Records() {
+
+		return cartFileUploadForThan800Records;
+	}
+
+	public String getAlertTextForCartFileUploadMoreThan800Records() {
+
+		return alertTextForCartFileUploadMoreThan800Records;
+	}
+
+	public String getCartFileUploadEmptyTemplate() {
+
+		return cartFileUploadEmptyTemplate;
+	}
+
+	public String getAlertTextUploadFileIsNotInDesiredFormat() {
+
+		return alertTextUploadFileIsNotInDesiredFormat;
+	}
 }
