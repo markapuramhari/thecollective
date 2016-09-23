@@ -1289,5 +1289,7 @@ return this;
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",editContactInfoInUserAccountDropdownLocator);
 		return editContactInfoPage();
 	}
+
+	
 }
 	

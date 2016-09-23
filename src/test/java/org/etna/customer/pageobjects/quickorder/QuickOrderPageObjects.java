@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.etna.maincontroller.PageFactoryInitializer;
@@ -16,7 +17,9 @@ import org.etna.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -215,7 +218,7 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 	
 
 	private boolean verifyAlertText(String expectedAlertMessage) throws Exception {
-
+System.out.println(TestUtility.getAlertText().replace("\n", "").trim());
 			Waiting.explicitWaitForAlert(5);
 			boolean t = TestUtility.getAlertText().replace("\n", "").trim().equals(expectedAlertMessage);
 			TestUtility.alertAccept();
@@ -471,8 +474,20 @@ public class QuickOrderPageObjects extends PageFactoryInitializer {
 		Thread.sleep(2000);
 		File file = new File(downloadedPath);
 		ExcelLibrary excel = new ExcelLibrary(file.getAbsolutePath());
-		Assert.assertEquals(ExcelLibrary.xlsxReadCell(0,0),"Key Word");
-		Assert.assertEquals(ExcelLibrary.xlsxReadCell(1,0),"Quantity");
+		Assert.assertEquals(excel.xlsxReadCell(0,0),"Key Word");
+		Assert.assertEquals(excel.xlsxReadCell(1,0),"Quantity");
+		return this;
+	}
+
+	public QuickOrderPageObjects enterPartNumberOrUPCForSpeedEntryForMoreThanNRecords(String[] partNumberOrUpc,int numberOfRowsToEnter) throws Exception {
+
+		for(int i=0;i<numberOfRowsToEnter;i++)
+        {
+        String [] partNumberUPC = partNumberOrUpc[0].split(":");
+       TestUtility.headerindex = TestUtility.headers(tableName,headerNameRow);
+        TestUtility.enterDataInHandsOnTable(i+1,"Keyword",partNumberUPC[0]);
+        TestUtility.enterDataInHandsOnTable(i+1,"Quantity",partNumberUPC[1]); 
+        }
 		return this;
 	}
 }

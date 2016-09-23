@@ -390,6 +390,17 @@ public class SearchDataPropertyFile extends MainController{
 	private String	cartFileUploadEmptyTemplate = PropertyFileReader.propertiesReader(searchData, "cartFileUploadEmptyTemplate");
 
 	private String	alertTextUploadFileIsNotInDesiredFormat = PropertyFileReader.propertiesReader(searchData, "alertTextUploadFileIsNotInDesiredFormat");
+	
+	private String	filePathToCopyToExcelSheet = PropertyFileReader.propertiesReader(searchData, "filePathToCopyToExcelSheet");
+	
+	private String	cSVFilePathForCopyPasteMoreThanNRecords = PropertyFileReader.propertiesReader(searchData, "cSVFilePathForCopyPasteMoreThanNRecords");
+	
+	private String	alertTextForCopyPastingMoreThanNRecords = PropertyFileReader.propertiesReader(searchData, "alertTextForCopyPastingMoreThanNRecords");
+	
+	
+	
+	
+	
 
 	public String getCopyRightsOfUnilogText() {
 
@@ -1407,5 +1418,20 @@ public String getPartialPartNumber() {
 	public String getAlertTextUploadFileIsNotInDesiredFormat() {
 
 		return alertTextUploadFileIsNotInDesiredFormat;
+	}
+
+	public String getFilePathToCopyToExcelSheet() {
+		
+		return filePathToCopyToExcelSheet;
+	}
+
+	public String getCSVFilePathForCopyPasteMoreThanNRecords() {
+		
+		return cSVFilePathForCopyPasteMoreThanNRecords;
+	}
+
+	public String getAlertTextForCopyPastingMoreThanNRecords() {
+	
+		return alertTextForCopyPastingMoreThanNRecords;
 	}
 }

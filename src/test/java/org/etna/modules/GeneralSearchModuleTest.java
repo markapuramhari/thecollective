@@ -228,8 +228,5 @@ public class GeneralSearchModuleTest extends PageFactoryInitializer{
 		  		.productDetailsPage()
 		  		.verifyPDPPageTitle()
 		  		.verifyDisplayOfItemName(data.getSearchTextForGeneralSearch());
-	}
-	
-	
-	
+	}	
 }

@@ -21,11 +21,11 @@ public class APAModuleTest extends PageFactoryInitializer {
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	String shopByBrandBreadcrump = data.getShopByBrandsBreadcrump();
 	String shopByManufacturersBreadcrump = data.getShopByManufacturersBreadcrump();
-	String addNewPurchasingAgentBreadcrump = data.getAddNewPurchasingAgentBreadcrump();
+	String addNewPurchasingAgentBreadcrumb = data.getAddNewPurchasingAgentBreadcrump();
 	LoginModuleTest loginModule = new LoginModuleTest();
 	
 	@Features("APA Module")
-	@Description("This is a test case which verifies whether Add new Purchasing Agent, Manage Purchasing Agent and Delete Purchasing Agent is displayed in the user account dropdown.")
+	@Description(" Verification of Add / Manage / Disable purchasing agent in  customer service ")
 	@TestCaseId("TC_APA_001")
 	@Test(groups={"regression"})
 	public void verifyDisplayOfManageAddDisablePAafterSuperUserLogin() throws Exception{
@@ -38,7 +38,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 	}
 	
 	@Features("APA Module")
-	@Description("This is a test case which verifies the Add new Purchasing Agent page.")
+	@Description("Verification of Add New Purchasing Agent page fields")
 	@TestCaseId("TC_APA_002,TC_APA_050")
 	@Test(groups={"regression"})
 	 public void verifyAddNewPA_afterSuperUserLogin_VerifyBreadcrumpOfAddNewPurchasingAgent() throws Exception{
@@ -49,7 +49,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		homePage()
 		.clickOnUserAccountDropdown()
 		.clickOnAddNewPurchasingAgent()
-		.verifyAddNewPurchasingAgentPageName(addNewPurchasingAgentBreadcrump)
+		.verifyAddNewPurchasingAgentPageName(addNewPurchasingAgentBreadcrumb)
 		.verifyAddNewPurchasingAgentInstructions()
 		.verifyAddNewPurchasingEmailAddressTextbox()
 		.verifyMandatoryFields()
@@ -70,7 +70,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.verifyRoleChosenDropdown()
 		.verifyCountryDropdown()
 		.verifyStateDropdown()
-		.verifyAddNewPurchasingAgentBreadcrump(addNewPurchasingAgentBreadcrump);
+		.verifyAddNewPurchasingAgentBreadcrumb(addNewPurchasingAgentBreadcrumb);
 }
 	
 	@Features("APA Module")

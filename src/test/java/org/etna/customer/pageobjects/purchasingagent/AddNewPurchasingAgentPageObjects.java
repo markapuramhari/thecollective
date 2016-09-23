@@ -164,8 +164,8 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 	}
 
 	@Step("verify add new purchasing agent breadcrumb to have {0}")
-	public AddNewPurchasingAgentPageObjects verifyAddNewPurchasingAgentBreadcrump(String addNewPurchasingAgentBreadcrump) throws Exception {
-		Assert.assertEquals(driver.getTitle().trim(),addNewPurchasingAgentBreadcrump+" | "+setUp.getProductName());
+	public AddNewPurchasingAgentPageObjects verifyAddNewPurchasingAgentBreadcrumb(String addNewPurchasingAgentBreadcrumb) throws Exception {
+		Assert.assertEquals(driver.getTitle().trim(),addNewPurchasingAgentBreadcrumb+" | "+setUp.getProductName());
 		return this;
 		
 	}

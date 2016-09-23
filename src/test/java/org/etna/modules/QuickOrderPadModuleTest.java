@@ -137,30 +137,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
     }
 
 
-    @Features("Quick Order Pad Module")
-    @Test(groups = "regression")
-    public void copyPasteTabDelimitedFile() throws Exception {
-        loginModule.loginAsASuperUser();
-        homePage().logout();
-        int addedToCartCount = homePage()
-                .clickLoginLink()
-                .loginPopUp()
-                .enterUserName()
-                .enterPassword()
-                .clickOnLoginButton()
-                .homePage()
-                .verifyWelcomeMsg()
-                .clickOnUserAccountDropdown()
-                .clickOnQuickOrderPadLink()
-                .quickOrderPadPage()
-                .clickOnCopyPasteTab()
-                .copyPasteTxtFile(data.getTabDelimitedFilePath().trim())
-                .clickOnAddToCartButtonInCopyPaste()
-                .getAddedToCartCount();
-        quickOrderPadPage()
-                .verifyCartCountEqualToAddedToCartCount(addedToCartCount);
-    }
-
+  
 
     @Features("Quick Order Pad Module")
     @Test(groups = "regression")
@@ -183,31 +160,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
                 .verifyAlertMessage(data.getSpeedEntryEmptyValuesAlertMessage());
     }
 
-    @Features("Quick Order Pad Module")
-    @Test(groups = "regression", enabled = false)
-    @Issues(value = {@Issue(value = "NEST-160")})
-    public void copyPasteImproperValues() throws Exception {
-        loginModule.loginAsASuperUser();
-        homePage().logout();
-        homePage()
-                .clickLoginLink()
-                .loginPopUp()
-                .enterUserName()
-                .enterPassword()
-                .clickOnLoginButton()
-                .homePage()
-                .verifyWelcomeMsg()
-                .clickOnUserAccountDropdown()
-                .clickOnQuickOrderPadLink()
-                .quickOrderPadPage()
-                .clickOnCopyPasteTab()
-                .clickOnFileUploadTab()
-                .clickOnCopyPasteTab()
-                .copyPasteTxtFile(data.getTabDelimitedFilePathForImproperValues().trim())
-                .clickOnAddToCartButtonInCopyPaste()
-                .verifyAlertMessage(data.getCopyPasteInvalidFormatAlertMessage());
-    }
-
+ 
     @Features("Quick Order Pad Module")
     @Test(groups = "regression")
     @TestCaseId("TC_QOP_026")
@@ -849,5 +802,174 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
                 .clickOnUpload()
                 .verifyAlertMessage(data.getAlertTextForCartFileUploadMoreThan800Records().trim());
     }
+    
 
+    
+    
+    
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of Combine functionality in Copy Paste tab. The file that is copied is a tab delimited file.")
+    public void copyPasteTabSeperatedFileCombine() throws Exception {
+    	 data.setNumberOfRowsToEnter(4);
+        loginModule.loginAsASuperUser();
+        homePage().logout();
+        int addedToCartCount = homePage()
+                .clickLoginLink()
+                .loginPopUp()
+                .enterUserName()
+                .enterPassword()
+                .clickOnLoginButton()
+                .homePage()
+                .verifyWelcomeMsg()
+                .clickOnUserAccountDropdown()
+                .clickOnQuickOrderPadLink()
+                .quickOrderPadPage()
+                .clickOnCopyPasteTab()
+                .copyPasteTxtFile(data.getTabDelimitedFilePath().trim())
+                .clickOnAddToCartButtonInCopyPaste()
+                .getAddedToCartCount();
+        quickOrderPadPage()
+                .verifyCartCountEqualToAddedToCartCount(addedToCartCount);
+        myCartPage()
+        .clickOnCartIcon()
+        .verifyNumberOfItemsInShoppingCart(1)
+        .verifyQuantitiesInShoppingCartForMultipleItems(Integer.toString(data.getNumberOfRowsToEnter()));
+    }
+    
+    
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of 'Separate' functionality in 'Copy Paste' tab. The file that is copied is a tab delimited file.")
+    public void copyPasteTabSeperatedFileSeperate() throws Exception {
+        loginModule.loginAsASuperUser();
+        data.setNumberOfRowsToEnter(4);
+        homePage().logout();
+        homePage()
+                .clickLoginLink()
+                .loginPopUp()
+                .enterUserName()
+                .enterPassword()
+                .clickOnLoginButton()
+                .homePage()
+                .verifyWelcomeMsg()
+                .clickOnUserAccountDropdown()
+                .clickOnQuickOrderPadLink()
+                .quickOrderPadPage()
+                .clickOnCopyPasteTab()
+                .copyPasteTxtFile(data.getTabDelimitedFilePath().trim())
+                .clickOnSeperateButtonInCopyPaste()
+                .clickOnAddToCartButtonInCopyPaste();
+        Thread.sleep(5500);
+        quickOrderPadPage()
+                .verifyCartCountEqualToAddedToCartCount(data.getNumberOfRowsToEnter())
+                .myCartPage()
+                .clickOnCartIcon()
+                .verifyNumberOfItemsInShoppingCart(data.getNumberOfRowsToEnter())
+                .verifyQuantitiesInShoppingCartForMultipleItems("1");
+    }
+    
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of 'Remove' functionality in 'Copy Paste' tab. The file that is copied is a tab delimited file.")
+    public void copyPasteTabSeperatedFileRemove() throws Exception {
+    	 loginModule.loginAsASuperUser();
+         data.setNumberOfRowsToEnter(1);
+         homePage().logout();
+         homePage()
+                 .clickLoginLink()
+                 .loginPopUp()
+                 .enterUserName()
+                 .enterPassword()
+                 .clickOnLoginButton()
+                 .homePage()
+                 .verifyWelcomeMsg()
+                 .clickOnUserAccountDropdown()
+                 .clickOnQuickOrderPadLink()
+                 .quickOrderPadPage()
+                 .clickOnCopyPasteTab()
+                 .copyPasteTxtFile(data.getTabDelimitedFilePath().trim())
+                 .clickOnRemoveButtonInCopyPaste()
+                 .clickOnAddToCartButtonInCopyPaste();
+         Thread.sleep(5500);
+         quickOrderPadPage()
+                 .verifyCartCountEqualToAddedToCartCount(data.getNumberOfRowsToEnter())
+                 .myCartPage()
+                 .clickOnCartIcon()
+                 .verifyNumberOfItemsInShoppingCart(data.getNumberOfRowsToEnter())
+                 .verifyQuantitiesInShoppingCartForMultipleItems("1");
+    }
+
+
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of Combine functionality in Copy Paste tab. The file that is copied is a tab delimited file.")
+    public void copyPasteImproperValuesTabSeperated() throws Exception {
+        loginModule.loginAsASuperUser();
+        homePage().logout();
+        data.setNumberOfRowsToEnter(4);
+        int actualItemsWithNoMatches = homePage()
+                .clickLoginLink()
+                .loginPopUp()
+                .enterUserName()
+                .enterPassword()
+                .clickOnLoginButton()
+                .homePage()
+                .verifyWelcomeMsg()
+                .clickOnUserAccountDropdown()
+                .clickOnQuickOrderPadLink()
+                .quickOrderPadPage()
+                .clickOnCopyPasteTab()
+                .clickOnFileUploadTab()
+                .clickOnCopyPasteTab()
+                .copyPasteTxtFile(data.getTabDelimitedFilePathForImproperValues().trim())
+                .clickOnAddToCartButtonInCopyPaste()
+                .getItemsWithNoMatches();
+        		quickOrderPadPage().verifyNumberOfItemsWithNoMatches(actualItemsWithNoMatches, data.getNumberOfRowsToEnter());
+    }
+    
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of 'Add to cart' functionality when the number of rows exceeds 800 records in speed centry")
+    public void speedEntryMoreThanNRecords() throws Exception {
+    	
+    	data.setNumberOfRowsToEnter(802);
+        homePage()
+                .clickLoginLink()
+                .loginPopUp()
+                .enterUserName()
+                .enterPassword()
+                .clickOnLoginButton()
+                .homePage()
+                .verifyWelcomeMsg()
+                .clickOnUserAccountDropdown()
+                .clickOnQuickOrderPadLink()
+                .quickOrderPadPage()
+                .clickOnSpeedEntry()
+                .enterPartNumberOrUPCForSpeedEntryForMoreThanNRecords(data.getPartNumberOrUPCForSpeedEntry().split(","), data.getNumberOfRowsToEnter())
+                .clickOnAddToCartButtonSpeedEntry()
+                .verifyAlertMessage(data.getAlertTextForCartFileUploadMoreThan800Records().trim());
+    }
+    
+    @Features("Quick Order Pad Module")
+    @Test(groups = "regression")
+    @Description("Verification of 'Add to cart' functionality when the number of rows exceeds 800 records in copy paste.")
+    public void copyPasteMoreThanNRecordsCSV() throws Exception {
+    			
+    			homePage()
+                .clickLoginLink()
+                .loginPopUp()
+                .enterUserName()
+                .enterPassword()
+                .clickOnLoginButton()
+                .homePage()
+                .verifyWelcomeMsg()
+                .clickOnUserAccountDropdown()
+                .clickOnQuickOrderPadLink()
+                .quickOrderPadPage()
+                .clickOnCopyPasteTab()
+                .copyPasteTxtFile(data.getCSVFilePathForCopyPasteMoreThanNRecords().trim())
+                .clickOnAddToCartButtonInCopyPaste()
+                .verifyAlertMessage(data.getAlertTextForCopyPastingMoreThanNRecords().trim());
+}
 }

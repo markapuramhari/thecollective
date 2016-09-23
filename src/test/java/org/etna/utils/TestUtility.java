@@ -13,6 +13,8 @@ import org.etna.maincontroller.MainController;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -174,10 +176,19 @@ public class TestUtility extends MainController {
 	    	Actions action = new Actions(driver);
 	    	
 	    	String colrow="//tr["+rownumber+"]/td["+headerindex.get(colName)+"]";
+	    	Waiting.explicitWaitVisibilityOfElement(driver.findElement(By.xpath(colrow)), 5);
 	       if(setUp.getBrowser().equalsIgnoreCase("chrome"))
 	       {
+	    	try
+	    	{
+	    	Waiting.explicitWaitVisibilityOfElement(driver.findElement(By.xpath(colrow)), 5);
 	        action.click(driver.findElement(By.xpath(colrow))).sendKeys(dataToEnter).build().perform();
-	       }
+	    	}
+	    	catch(NoSuchElementException e)
+	    	{
+	    		action.sendKeys(driver.findElement(By.xpath(colrow)), Keys.ENTER);
+	    	}
+	       }  
 	       else 
 	       {
 	    	 driver.findElement(By.xpath(colrow)).click();

@@ -131,7 +131,7 @@ public class ExcelLibrary {
 	}
 	
 	//for .xlsx
-	public static String xlsxReadCell(int colNum,int rowNum)
+	public String xlsxReadCell(int colNum,int rowNum)
 	{
 		String data[][] = new String[rowNum+1][colNum+1];
 		XSSFRow row = xssfwrksheet.getRow(rowNum);
