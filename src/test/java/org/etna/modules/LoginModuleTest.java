@@ -1,4 +1,5 @@
 package org.etna.modules;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
@@ -55,6 +56,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		  .clickOnLoginButton()
 		  .homePage()
 		  .verifyWelcomeMsg();
+		   Assert.assertTrue(false);
 		}
 	  
 

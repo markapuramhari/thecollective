@@ -3,7 +3,7 @@ import java.io.File;
 import static org.monte.media.FormatKeys.EncodingKey;
 import static org.monte.media.FormatKeys.FrameRateKey;
 import static org.monte.media.FormatKeys.KeyFrameIntervalKey;
-import static org.monte.media.FormatKeys.MIME_QUICKTIME;
+import static org.monte.media.FormatKeys.MIME_AVI;
 import static org.monte.media.FormatKeys.MediaTypeKey;
 import static org.monte.media.FormatKeys.MimeTypeKey;
 import static org.monte.media.VideoFormatKeys.CompressorNameKey;
@@ -31,10 +31,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.IHookCallBack;
@@ -78,8 +75,8 @@ DesiredCapabilities caps = new DesiredCapabilities();
 @BeforeSuite(alwaysRun=true)
 public void beforeSuite() throws Exception{
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-	outputVideo="./Videos";
-	outputReport="./Report";
+		outputVideo="./Videos";
+		outputReport="./Report";
 		FileUtils.forceMkdir(new File(outputVideo));
 		FileUtils.forceMkdir(new File(outputReport));
 		outputReport += "/Report_" + setUp.getBrowser().toUpperCase()+"_"+SendEmailGmail.getDate()+"_" + SendEmailGmail.getTime();
@@ -108,7 +105,7 @@ public void beforeSuite() throws Exception{
 
 	@BeforeMethod(alwaysRun=true)
 	public void startRecording(Method methodName) throws Exception{
- 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
+		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
  		if(setUp.getVideoPermission().equalsIgnoreCase("yes"))
  		{
  		 File file = new File(outputVideo+"/");
@@ -124,7 +121,7 @@ public void beforeSuite() throws Exception{
           .getDefaultConfiguration();
  
 	this.screenRecorder = new Video(gc, captureSize,
-          new Format(MediaTypeKey, MediaType.VIDEO, MimeTypeKey, MIME_QUICKTIME),
+          new Format(MediaTypeKey, MediaType.VIDEO, MimeTypeKey, MIME_AVI),
           new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
                CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
                DepthKey, 24, FrameRateKey, Rational.valueOf(15),
@@ -280,7 +277,6 @@ public void beforeSuite() throws Exception{
 			
 			FFmpeg ffmpeg = new FFmpeg(ffmpegFile.getAbsolutePath());
 			FFprobe ffprobe = new FFprobe(ffProbeFile.getAbsolutePath());
-			
 			FFmpegProbeResult probeResult = ffprobe.probe("Videos/"+testCaseName+".avi");
 			
 			FFmpegBuilder builder = new FFmpegBuilder()
@@ -321,14 +317,25 @@ public void beforeSuite() throws Exception{
   }
 
 @AfterMethod(alwaysRun=true)
-public void callStopRecording() throws Exception{
-	driver.manage().deleteAllCookies();
+public void stopRecording(ITestResult result) throws Exception
+{
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	if(setUp.getVideoPermission().equalsIgnoreCase("yes"))
 		{
-		  this.screenRecorder.stop();
-		}	
+		if(this.screenRecorder.getStateMessage() != null)
+		{
+		this.screenRecorder.stop();
+		}
+		}
+	deleteFile(result.getName(),"avi");
+	deleteFile(result.getName(),"mp4");
 }
+
+private void deleteFile(String name,String extension) {
+	File file = new File("Videos/"+name+"."+extension);
+	file.delete();	
+}
+
 
 @AfterSuite(alwaysRun=true)
 public void tearDown(){

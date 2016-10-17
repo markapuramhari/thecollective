@@ -30,7 +30,7 @@ import org.monte.screenrecorder.ScreenRecorder;
 			} else if (!movieFolder.isDirectory()) {
 			throw new IOException("\"" + movieFolder + "\" is not a directory.");
 			}
-			File f = new File(movieFolder, name +"_"+SendEmailGmail.getTime()+"." + Registry.getInstance().getExtension(fileFormat));
+			File f = new File(movieFolder, name +"." + Registry.getInstance().getExtension(fileFormat));
 			fileName = f.getAbsolutePath();
 			
 		return f;
