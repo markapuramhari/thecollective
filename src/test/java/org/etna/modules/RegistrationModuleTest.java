@@ -1,6 +1,7 @@
 package org.etna.modules;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
+import org.etna.utils.PermittedCharacters;
 import org.testng.annotations.Test;
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.RandomGenerator;
@@ -65,7 +66,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	
 	@Features("Sign Up Module")
 	@Description("This is a test case which verifies error scenarios while registering for new retail customer.")
-	@Test(alwaysRun=true,groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(alwaysRun=true,groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}") 
 	public void verifyNewRURegistrationES(String testCaseId,@Parameter("First Name")String firstName,@Parameter("Last Name")String lastName,@Parameter("Company Name")String companyName,@Parameter("Email Address")String emailAddress,@Parameter("Password")String password,@Parameter("Confirm Password")String confirmPassword,@Parameter("Address1")String address1,@Parameter("Address2")String address2,@Parameter("City")String city,@Parameter("State")String state,@Parameter("Zip Code")String zipCode,@Parameter("Phone Number")String phoneNumber,@Parameter("Expected Error Message")String expectedErrorMsg) throws Exception
 	  {
@@ -91,7 +92,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	
 	@Features("Sign Up Module")
 	@Description("This is a test case which verifies error scenarios while registering for new commercial customer.")
-	@Test(groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void verifyNewCCUserRegistrationES(String testCaseId,@Parameter("First Name")String firstName,@Parameter("Last Name")String lastName,@Parameter("Company Name")String companyName,@Parameter("Email Address")String emailAddress,@Parameter("Password")String password,@Parameter("Confirm Password")String confirmPassword,@Parameter("Address1")String address1,@Parameter("Address2")String address2,@Parameter("City")String city,@Parameter("State")String state,@Parameter("Zip Code")String zipCode,@Parameter("Phone Number")String phoneNumber,@Parameter("Expected Error Message")String expectedErrorMsg) throws Exception
 	  {
@@ -122,7 +123,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	
 	@Features("Sign Up Module")
 	@Description("This is a test case which verifies error scenarios while registering in first time ordering tab.")
-	@Test(enabled=false,groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(enabled=false,groups={"Sign Up Module","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	  public void verifyFirstTimeOrderingRegES(String testCaseId,@Parameter("Account Number")String accountNumber,@Parameter("First Name")String firstName,@Parameter("Last Name")String lastName,@Parameter("Email Address")String emailAddress,@Parameter("Password")String password,@Parameter("Confirm Password")String confirmPassword,@Parameter("Expected Error Message")String expectedErrorMsg) throws Exception
 	  {
@@ -146,7 +147,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  public void verifyNewRetailRegistrationCustomerFunctionality() throws Exception
 	  {
 		String emailIdSplit []  = data.getEmailIdForRegistration().split("@");
-		String emailId = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		String emailId = emailIdSplit[0]+RandomGenerator.random(4, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1];
 	  homePage()
 	  .clickOnSignUpLink()
 	  .signUpPage()
@@ -175,7 +176,7 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  public void verifyNewCommercialRegistrationCustomerFunctionality() throws Exception
 	  {
 		String emailIdSplit []  = data.getEmailIdForRegistration().split("@");
-		String emailId = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		String emailId = emailIdSplit[0]+RandomGenerator.random(4, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1];
 	  homePage()
 	  .clickOnSignUpLink()
 	  .newCommercialCustomerPage()

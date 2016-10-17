@@ -1,6 +1,6 @@
 package org.etna.modules;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.testng.annotations.Test;
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
@@ -12,7 +12,7 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class PDPModuleTest extends PageFactoryInitializer {
+public class PDPAndPLPModuleTest extends PageFactoryInitializer {
 	
 	
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
@@ -51,7 +51,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  }
 
 	@Features("PDP Module")
-	@Test(alwaysRun=true,groups={"smoke","regression"})
+	@Test(alwaysRun=true,groups={"regression"})
 	  public void TC_PD_002_TC_PD_004_signedUser_verifyProductDetailsPageTest() throws Exception
 	  {
 		loginModule.loginAsASuperUser();
@@ -111,7 +111,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	  public void ShareFunctionality(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject) throws Exception{
 		loginModule.loginAsASuperUser();
 	  	homePage().logout();
@@ -130,7 +130,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  }
 	
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	  public void ShareFunctionality_ES(String testCaseId,String friendName,String friendEmailAddress,String fromName,String fromEmailAddress,String subject,String errorMsg) throws Exception{
 		loginModule.loginAsASuperUser();
 	  	homePage().logout();
@@ -151,7 +151,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","smoke","regression"})
+	  @Test(groups={"PDPModule","regression"})
 	  public void createAndDeleteCPNInProductDetailsPageTest() throws Exception{
 	  	
 	  	String searchText = data.getSearchTextForEnlargeImageTest();
@@ -174,7 +174,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	}
 
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	  public void signedUser_cpnPDP_ES(String testCaseId,@Parameter("CPN")String customerPartNumber,@Parameter("Expected Alert Text") String expectedAlertMsg) throws Exception{
 	  	
 		String searchText = data.getSearchTextForEnlargeImageTest();
@@ -276,7 +276,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  	}
 	  
 		@Features("PDP Module")
-		@Test(groups={"PDPModule","smoke","regression"})
+		@Test(groups={"PDPModule","regression"})
 		public void TC_PDP_011_signedUser_createAndDeleteMyProductGroupInProductDetailsPage() throws Exception{
 			if(setUp.getBrowser().equalsIgnoreCase("safari"))
 			{
@@ -313,7 +313,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 		}
 	  
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","smoke","regression"})
+	  @Test(groups={"PDPModule","regression"})
 	  public void tc005_ListViewGridView() throws Exception
 	  {
 		loginModule.loginAsASuperUser();
@@ -329,7 +329,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  }
 	
 	@Features("PDP Module")
-	  @Test(groups={"PDPModule","smoke","regression"})
+	  @Test(groups={"PDPModule","regression"})
 	  public void tc006_verifyProductListPage_ShowResultsPerPage() throws Exception
 	  {
 		loginModule.loginAsASuperUser();
@@ -534,7 +534,7 @@ public class PDPModuleTest extends PageFactoryInitializer {
 	  }
 	  
 	  @Features("PDP Module")
-	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
+	  @Test(groups={"PDPModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=DataDrivenTestingFromExcel.class)
 	  @TestCaseId("{0}")
 	  public void pG_PLPInPopUp_ES(String testCaseId,@Parameter("product group name")String productGroupName,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception
 	  {

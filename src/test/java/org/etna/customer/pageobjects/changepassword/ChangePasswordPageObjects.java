@@ -3,6 +3,9 @@ import java.util.List;
 
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
+import org.etna.utils.Waiting;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +33,9 @@ public class ChangePasswordPageObjects extends PageFactoryInitializer{
 	@FindBy(id="updateBtn")
 	private WebElement saveButtonLocator;
 	
+	@FindBy(id="message")
+	private WebElement successMsgLocator;
+	
 	
 	@FindBy(xpath="//button[text()='Cancel']")
 	private WebElement cancelButtonLocator;
@@ -47,6 +53,9 @@ public class ChangePasswordPageObjects extends PageFactoryInitializer{
 	
 	@FindBy(xpath="//div[@class='cimm_caption']")
 	private WebElement pleaseNoteLocator;
+
+    @FindBy(xpath = "//span[@id='errorMsg']")
+    private WebElement errorMsgLocator;
 	
 	
 	
@@ -81,5 +90,92 @@ public class ChangePasswordPageObjects extends PageFactoryInitializer{
 		
 		return this;
 	}
-	
+
+
+    @Step("enter old password {0}")
+    public ChangePasswordPageObjects enterOldPassword(String oldPassword) {
+        oldPasswordLocator.sendKeys(oldPassword);
+        return this;
+    }
+
+    @Step("enter new password {0}")
+    public ChangePasswordPageObjects enterNewPassword(String newPassword) {
+        newPasswordLocator.sendKeys(newPassword);
+        return this;
+    }
+
+    @Step("enter confirm password {0}")
+    public ChangePasswordPageObjects enterConfirmPassword(String confirmPassword) {
+
+        confirmPasswordLocator.sendKeys(confirmPassword);
+        return this;
+    }
+
+    @Step("verify whether error msg is {0}")
+    public ChangePasswordPageObjects verifyErrorMsg(String expectedErrorMessage) {
+    	Waiting.explicitWaitVisibilityOfElement(errorMsgLocator, 10);
+        Assert.assertEquals(errorMsgLocator.getText().replace("\n","").trim(),expectedErrorMessage,"Error message is wrong.!");
+        return this;
+    }
+
+    @Step("click on save button")
+    public ChangePasswordPageObjects clickOnSaveButton() {
+        saveButtonLocator.click();
+        return this;
+    }
+
+
+
+	public ChangePasswordPageObjects verifyTabFocusTopToBottom(String oldPasswordId, String newPasswordId, String confirmPasswordId,
+			String saveButtonId, String cancelButtonText) {
+		oldPasswordLocator.click();
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),oldPasswordId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),newPasswordId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),confirmPasswordId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),saveButtonId);
+		driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getText().trim(),cancelButtonText);
+		return this;
+	}
+
+
+
+	public ChangePasswordPageObjects hitTopToToBottom(int numberOfTimesToHitTab) {
+		oldPasswordLocator.click();
+		for(int i = 0 ; i<numberOfTimesToHitTab ; i++)
+		{
+			driver.switchTo().activeElement().sendKeys(Keys.TAB);
+		}
+		return this;
+	}
+
+
+
+	public ChangePasswordPageObjects verifyTabFocusBottomToTop(String cancelButtonText, String saveButtonId, String confirmPasswordId,
+			String newPasswordId, String oldPasswordId) {
+		
+		String tabBehind = Keys.chord(Keys.SHIFT,Keys.TAB);
+		Assert.assertEquals(driver.switchTo().activeElement().getText().trim(),cancelButtonText);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),saveButtonId);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),confirmPasswordId);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),newPasswordId);
+		driver.switchTo().activeElement().sendKeys(tabBehind);
+		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),oldPasswordId);
+		return this;
+	}
+
+
+
+	public ChangePasswordPageObjects verifySuccessMsg(Object passwordChangeSuccessMsg) {
+		Waiting.explicitWaitVisibilityOfElement(successMsgLocator, 8);
+		Assert.assertEquals(successMsgLocator.getText().trim(), passwordChangeSuccessMsg,"Success message is wrong.");
+		return this;
+		
+	}
 }

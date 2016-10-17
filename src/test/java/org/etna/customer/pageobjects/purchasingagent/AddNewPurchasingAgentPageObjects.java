@@ -3,10 +3,7 @@ import java.util.List;
 
 import org.etna.maincontroller.MainController;
 import org.etna.maincontroller.PageFactoryInitializer;
-import org.etna.utils.ApplicationSetUpPropertyFile;
-import org.etna.utils.RandomGenerator;
-import org.etna.utils.SearchDataPropertyFile;
-import org.etna.utils.Waiting;
+import org.etna.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -293,7 +290,7 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 		else
 		{
 		String emailIdSplit []  = emailId.split("@");
-		emailAddressTextbox.sendKeys(emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
+		emailAddressTextbox.sendKeys(emailIdSplit[0]+RandomGenerator.random(6, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1]);
 		}
 		return this;
 	}

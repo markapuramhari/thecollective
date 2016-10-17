@@ -1,12 +1,11 @@
 package org.etna.modules;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
 
-import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -56,7 +55,6 @@ public class LoginModuleTest extends PageFactoryInitializer{
 		  .clickOnLoginButton()
 		  .homePage()
 		  .verifyWelcomeMsg();
-		   Assert.assertTrue(false);
 		}
 	  
 
@@ -64,7 +62,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	  
 	  
 	@Features("Login Module")
-	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void loginAs_SU_PA_GU(String testCaseId,String userName,String password,String expectedMsg) throws Exception
 			{
@@ -80,7 +78,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	
 
 	@Features("Login Module")
-	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=SearchData.class)
+	@Test(alwaysRun=true,groups={"LoginModule","regression"},dataProvider="mutipleSheetsSingleWorkbook", dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	  public void login_ErrorScenarios(String testCaseId,String userName, String password,String expectedMsg) throws Exception
 	  {

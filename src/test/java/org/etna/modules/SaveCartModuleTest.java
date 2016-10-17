@@ -1,5 +1,7 @@
 package org.etna.modules;
 
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
+import org.etna.utils.*;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -7,12 +9,7 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
-import org.etna.utils.ApplicationSetUpPropertyFile;
-import org.etna.utils.RandomGenerator;
-import org.etna.utils.SearchDataPropertyFile;
-import org.etna.utils.TestUtility;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -102,7 +99,7 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 	@Features("Save Cart Module")
 	@Description("This is a test case which verifies the alert text when of every bulk option when no item is selected.")
 	@TestCaseId("{0}")
-	@Test(groups={"SaveCartModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"SaveCartModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	public void sC_BulkAlert_ItemNotChosen(String testcaseId,@Parameter("Bulk Option")String bulkOption,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception {
 
 		String searchText = data.getSearchTextForMPNTest();
@@ -785,7 +782,7 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 	@Features("Save Cart Module")
 	@Description("This Test Case Verifies Edit Cart Name Functionality")
 	@TestCaseId("TC_SavedCart_017,TC_SavedCart_018,TC_SavedCart_019")
-	@Test(groups={"SaveCartModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"SaveCartModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	public void verifyEditCartName_ES_PS(String testcaseId,@Parameter("Save Cart Name")String saveCartName,@Parameter("Save Cart Name")String editCartName,@Parameter("Expected Alert Text")String expectedAlertText) throws Exception {
 
 		String searchText = data.getSearchTextForEnlargeImageTest();
@@ -844,7 +841,7 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 
 		String searchText = data.getSearchTextForEnlargeImageTest();
 		String saveCartName = data.getSaveCartName();
-		String editSaveCartName = data.getSaveCartName()+RandomGenerator.generateCharacters();
+		String editSaveCartName = data.getSaveCartName()+RandomGenerator.random(4, PermittedCharacters.ALPHABETS);
 		try{
 
 			loginModule.loginAsASuperUser();

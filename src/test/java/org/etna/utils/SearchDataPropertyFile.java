@@ -397,7 +397,6 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String	alertTextForCopyPastingMoreThanNRecords = PropertyFileReader.propertiesReader(searchData, "alertTextForCopyPastingMoreThanNRecords");
 	
-	
 	private String	userNameForPasswordChange = PropertyFileReader.propertiesReader(searchData, "userNameForPasswordChange");
 	
 	private String	changePasswordMandatoryFieldsIds = PropertyFileReader.propertiesReader(searchData, "changePasswordMandatoryFieldsIds");
@@ -405,6 +404,8 @@ public class SearchDataPropertyFile extends MainController{
 	private String	passwordForPasswordChange = PropertyFileReader.propertiesReader(searchData, "passwordForPasswordChange");
 	
 	private String	pleaseNoteTextInChangePasswordPage = PropertyFileReader.propertiesReader(searchData, "pleaseNoteTextInChangePasswordPage");
+	
+	private String	passwordChangeSuccessMsg = PropertyFileReader.propertiesReader(searchData, "passwordChangeSuccessMsg");
 	
 	
 	
@@ -1461,5 +1462,10 @@ public String getPartialPartNumber() {
 	public String getPleaseNoteTextInChangePasswordPage() {
 		
 		return pleaseNoteTextInChangePasswordPage;
+	}
+
+	public Object getPasswordChangeSuccessMsg() {
+	
+		return passwordChangeSuccessMsg;
 	}
 }

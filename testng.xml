@@ -14,7 +14,7 @@
   	
   	
     <classes>
-      <class name="org.etna.modules.LoginModuleTest"/>
+      <class name="org.etna.modules.ChangePasswordModuleTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

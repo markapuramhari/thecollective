@@ -1,6 +1,7 @@
 package org.etna.modules;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
+import org.etna.utils.PermittedCharacters;
 import org.testng.annotations.Test;
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.RandomGenerator;
@@ -8,8 +9,6 @@ import org.etna.utils.SearchDataPropertyFile;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Issue;
-import ru.yandex.qatools.allure.annotations.Issues;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class EditContactInfoModuleTest extends PageFactoryInitializer{
@@ -51,7 +50,7 @@ public class EditContactInfoModuleTest extends PageFactoryInitializer{
 	@Description("Verification of Edit Contact functionality")
 		public void verifyEditContactFunctionality() throws Exception
 		{
-		String phoneNumber = Integer.toString(RandomGenerator.generateEightRandomNumbers())+"000";
+		String phoneNumber = RandomGenerator.random(10, PermittedCharacters.NUMERIC);
 		login.loginAsASuperUser();
 		homePage().logout();
 		   homePage()
@@ -74,7 +73,7 @@ public class EditContactInfoModuleTest extends PageFactoryInitializer{
 		}
 	
 	@Features("Edit Contact Info Module")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	@Description("{1}")
 		public void editContact_ES(String testCaseId,String description,String firstName,String lastName,String address1,String address2,String city,String state,String zipCode,String phoneNumber,String expectedErrorMessage) throws Exception
@@ -137,8 +136,7 @@ public class EditContactInfoModuleTest extends PageFactoryInitializer{
 	@Features("Edit Contact Info Module")
 	@Test(groups={"regression"})
 	@TestCaseId("TC_ECI_13")
-	@Issues(value = { @Issue(value = "ESC-267") })
-	@Description("Verify whether user is able to search for the 'State' through the search field present in the ' State Field' dropdown.")
+	@Description("Verify if 'Entity Address Checkbox is unchecked then user has to fill address1, City, state, country and zip code & Phone number")
 		public void useEntityAddress() throws Exception
 		{
 		 login.loginAsASuperUser();

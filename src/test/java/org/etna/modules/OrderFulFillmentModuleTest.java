@@ -1,10 +1,10 @@
 package org.etna.modules;
 
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
@@ -17,7 +17,7 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 
 	@Features("Order FullFillment Module")
 	@Description("This is test case which verifies order fullfillment flow completely.")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void orderFullFillmentFlow(String testCaseId,String emailId,String password,String searchText,String phoneNumber,String orderType,String shipVia,String companyName,String emailIdForConfirmation, String purchaseOrder,String shippingInstructions,String orderNote,String orderInfoLabels) throws Exception
 	{
@@ -100,7 +100,7 @@ public class OrderFulFillmentModuleTest extends PageFactoryInitializer {
 	
 	@Features("Order FullFillment Module")
 	@Description("This is test case which verifies message when email address in not provided in shipping details ")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void orderFullFillment_ES(String testCaseId, String orderType,String orderedBy,String purchaseOrder,String errorMessage) throws Exception
 	{

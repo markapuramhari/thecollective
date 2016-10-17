@@ -1,6 +1,6 @@
 package org.etna.modules;
 import org.apache.commons.io.FileUtils;
-import org.etna.dataprovider.SearchData;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.etna.utils.TestUtility;
 import org.openqa.selenium.UnhandledAlertException;
 import org.testng.SkipException;
@@ -188,7 +188,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
 
 
     @Features("Quick Order Pad Module")
-    @Test(groups = "regression",dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass = SearchData.class)
+    @Test(groups = "regression",dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass = DataDrivenTestingFromExcel.class)
     @TestCaseId("{0}")
     @Description("Verification of 'Upload' button if the file format is not .xlsx")
     public void cartFileUploadDifferentFormats(String testCaseId,String pathToTheInvalidFile, String selectXLSXFileToUploadAlertMessage) throws Exception {

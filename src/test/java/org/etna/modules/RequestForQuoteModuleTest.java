@@ -4,15 +4,13 @@ import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Issue;
-import ru.yandex.qatools.allure.annotations.Issues;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.etna.dataprovider.SearchData;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
@@ -39,7 +37,7 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		.verifyRequestForQuotePage(setUp.getProductName(),expectedNumberOfTextboxesToDisplay);
 	}
 	
-	@Test(groups={"smoke","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"smoke","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")
@@ -61,7 +59,7 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		//verify clearing of all the fields
 	}
 	
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")
@@ -80,7 +78,7 @@ public class RequestForQuoteModuleTest extends PageFactoryInitializer {
 		.verifyErrorMessage(expectedErrorMsg);
 	}
 	
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@Features("Request For Quote Module")
 	@TestCaseId("{0}")
 	@Description("{1}")

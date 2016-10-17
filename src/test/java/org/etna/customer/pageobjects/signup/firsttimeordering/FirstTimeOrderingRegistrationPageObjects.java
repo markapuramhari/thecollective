@@ -1,5 +1,6 @@
 package org.etna.customer.pageobjects.signup.firsttimeordering;
 import org.etna.maincontroller.PageFactoryInitializer;
+import org.etna.utils.PermittedCharacters;
 import org.etna.utils.RandomGenerator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,7 +70,7 @@ public class FirstTimeOrderingRegistrationPageObjects extends PageFactoryInitial
 		else 
 		{
 		String emailIdSplit []  = emailId.split("@");
-		emailAddressLocator.sendKeys(emailIdSplit[0]+"+"+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1]);
+		emailAddressLocator.sendKeys(emailIdSplit[0]+"+"+RandomGenerator.random(6, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1]);
 		}
 		return this;
 	}

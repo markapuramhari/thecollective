@@ -1,17 +1,14 @@
 package org.etna.modules;
 
+import org.etna.utils.*;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import org.etna.dataprovider.SearchData;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.etna.maincontroller.PageFactoryInitializer;
-import org.etna.utils.ApplicationSetUpPropertyFile;
-import org.etna.utils.RandomGenerator;
-import org.etna.utils.SearchDataPropertyFile;
-import org.etna.utils.TestUtility;
 import org.openqa.selenium.UnhandledAlertException;
 
 public class MyProductGroupModuleTest extends PageFactoryInitializer {
@@ -630,7 +627,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-			String editGroupName = myProductGroupName+RandomGenerator.generateCharacters();
+			String editGroupName = myProductGroupName+RandomGenerator.random(4, PermittedCharacters.ALPHABETS);
 		
 			try
 			{
@@ -675,7 +672,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			
 			String searchText = data.getSearchText();
 			String myProductGroupName = data.getMyProductGroupName();
-			String editGroupName = data.getMyProductGroupName()+RandomGenerator.generateCharacters();
+			String editGroupName = data.getMyProductGroupName()+RandomGenerator.random(4, PermittedCharacters.ALPHABETS);
 			try
 			{
 			loginModule.loginAsASuperUser(); 
@@ -801,7 +798,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 			
 			String searchText = data.getSearchText();
 	
-			String myProductGroupName = data.getMyProductGroupName()+Integer.toString(RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers()+RandomGenerator.generateEightRandomNumbers());
+			String myProductGroupName = data.getMyProductGroupName()+RandomGenerator.random(26, PermittedCharacters.ALPHABETS);
 			String groupNameCreationVerification = myProductGroupName.substring(0, Math.min(myProductGroupName.length(), 25));
 			try
 			{
@@ -894,7 +891,7 @@ public class MyProductGroupModuleTest extends PageFactoryInitializer {
 		@Features("My Product Group Module")
 		@Description("This is a test case which verifies the alert text when of every bulk option when no item is selected.")
 		@TestCaseId("TC_ProductGroup_029")
-		@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+		@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 		public void pG_bulkAlert_ItemNotChosen(String testcaseId,String bulkOption,String expectedAlertText) throws Exception {
 			
 			

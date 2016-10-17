@@ -1269,11 +1269,13 @@ return this;
 		return saveCartPage();
 	}
 
+	@Step("click on {0} category")
 	public HomePageObjects clickOnSpecificCategory(String categoryNameToSearch) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[text()='"+categoryNameToSearch+"']")));
 		return this;
 	}
 
+	@Step("hover over products link")
 	public HomePageObjects hoverProductsLink() {
 		action.moveToElement(productsLink).build().perform();
 		return this;
@@ -1289,11 +1291,13 @@ return this;
 		return this;
 }
 
+    @Step("click on edit contact link")
 	public EditContactInfoPageObjects clickOnEditContactLinkInUserAccountDropdown() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",editContactInfoInUserAccountDropdownLocator);
 		return editContactInfoPage();
 	}
 
+	@Step("click on change password")
 	public ChangePasswordPageObjects clickOnChangePassword() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",changePasswordLinkLocator);
 		return changePasswordPage();

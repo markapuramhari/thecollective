@@ -7,7 +7,7 @@ import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.ExcelLibrary;
 import org.testng.annotations.DataProvider;
 
-public class SearchData {
+public class DataDrivenTestingFromExcel {
 
 	
 	@DataProvider(name="excelSheetDataRead")

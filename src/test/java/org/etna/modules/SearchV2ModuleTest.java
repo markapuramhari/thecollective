@@ -1,5 +1,6 @@
 package org.etna.modules;
 
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -8,7 +9,6 @@ import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Stories;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.TestUtility;
 import org.openqa.selenium.UnhandledAlertException;
@@ -20,7 +20,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@Features("Search V2")
 	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for part number.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keywords_exactMatching_PN(String testCaseId, @Parameter("Part Number") String searchKeyword)
 			throws Exception {
@@ -32,7 +32,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@Features("Search V2")
 	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for manufacturer part number.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keywords_exactMatching_MPN(String testCaseId, @Parameter("MPN") String searchKeyword) throws Exception {
 
@@ -43,7 +43,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@Features("Search V2")
 	@Stories(value = { "1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches" })
 	@Description("This is a test case which verifies exact matching of the search keyword for UPC.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keywords_exactMatching_UPC(String testCaseId, @Parameter("UPC") String searchKeyword) throws Exception {
 
@@ -55,7 +55,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	@Stories("1a.  Keywords (Part Number , Manufacturer Part Number, UPC) - Exact Matches")
 	@Description("This is a test case which verifies exact matching of the search keyword for brand name or "
 			+ "MPN when given together. Since it is an exact match scenario it should navigate to product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("TC_Searchv2_001")
 	public void keyword_ExactMatching_BNOrMPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -68,7 +68,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Part Number or Manufacturer Part Number.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("TC_Searchv2_002")
 	public void keyword_ExactMatch_PNOrMPN(String testCaseId, @Parameter("Part Number") String partNumber,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -80,7 +80,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or Part Number.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_ExactMatch_BNOrPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("Part Number") String pn) throws Exception {
@@ -91,7 +91,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for Brand Name or UPC.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_ExactMatch_BNOrUPC(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -107,7 +107,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies exact matching of the search keyword for UPC OR Part Number.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_ExactMatching_UPCOrPN(String testCaseId, @Parameter("UPC") String upc,
 			@Parameter("Part Number") String partNumber) throws Exception {
@@ -123,7 +123,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Part Number and Manufacturer Part Number for the same product. The control should be navigated to Product Details Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wildCard_PN_MPN_SingleProduct(String testCaseId, @Parameter("Part Number") String partNumber,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -134,7 +134,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Brand Name and Part Number. The control should be navigated to Product Details Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wildCard_BN_PN_SingleProduct(String testCaseId, @Parameter("Brand Name") String bn,
 			@Parameter("PN") String partNumber) throws Exception {
@@ -145,7 +145,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Brand Name and UPC for the same product. The control should be navigated to Product Details Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wildCard_BN_UPC_SingleProduct(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -156,7 +156,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Brand Name and UPC for the same product. The control should be navigated to Product List Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wc_BN_UPC_MultipleProducts(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -167,7 +167,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Brand Name and Part Number. The control should be navigated to Product List Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wc_BN_PN_MultipleProducts(String testCaseId, @Parameter("Brand Name") String bn,
 			@Parameter("Part Number") String partNumber) throws Exception {
@@ -178,7 +178,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. Part Number and Manufacturer Part Number. The control should be navigated to Product List Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wc_PN_MPN_MultipleProducts(String testCaseId, @Parameter("Part Number") String partNumber,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -189,7 +189,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("Wild Card Scenario. UPC and PN for the same product. The control should be navigated to Product Details Page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void wildCard_UPC_PN_SameProduct(String testCaseId, @Parameter("UPC") String upc, @Parameter("PN") String pn)
 			throws Exception {
@@ -198,7 +198,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies Or condition of the search keyword for Brand Name or MPN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_BrandNameOrMPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -210,7 +210,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies Or condition of the search keyword for MPN or PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_MPNOrPN(String testCaseId, @Parameter("MPN") String mpn, @Parameter("PN") String pn)
 			throws Exception {
@@ -221,7 +221,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN or PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_BNOrPN(String testCaseId, @Parameter("Brad Name") String brandName,
 			@Parameter("PN") String pn) throws Exception {
@@ -232,7 +232,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN or UPC in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_BNOrUPC(String testCaseId, @Parameter("BN Or UPC") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -243,7 +243,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for UPC Or PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_OrCond_UPCOrPN(String testCaseId, @Parameter("UPC") String upc, @Parameter("PN") String pn)
 			throws Exception {
@@ -257,7 +257,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN AND MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_BNAndMPN(String testCaseId, @Parameter("BrandName") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -269,7 +269,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for PN AND MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_PNAndMPN(String testCaseId, @Parameter("Part Number") String pn,
 			@Parameter("Part Number") String mpn) throws Exception {
@@ -281,7 +281,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN AND PN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_BNAndPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("Part Number") String pn) throws Exception {
@@ -293,7 +293,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN AND UPC in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_BNAndUPC(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -304,7 +304,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for PN AND UPC in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_AndCond_PNAndUPC(String testCaseId, @Parameter("PN") String pn, @Parameter("UPC") String upc)
 			throws Exception {
@@ -315,7 +315,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN - MPN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BNMinusMPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -327,7 +327,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for PN - MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_PNMinusMPN(String testCaseId, @Parameter("PN") String pn, @Parameter("MPN") String mpn)
 			throws Exception {
@@ -339,7 +339,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN - PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BNMinusPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("Part Number") String partNumber) throws Exception {
@@ -351,7 +351,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for BN - UPC in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BNMinusUPC(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -363,7 +363,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for MPN - PN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_MPNMinusPN(String testCaseId, @Parameter("MPN") String mpn, @Parameter("Part Number") String pn)
 			throws Exception {
@@ -375,7 +375,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for UPC - PN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_UPCMinusPN(String testCaseId, @Parameter("UPC") String upc, @Parameter("Part Number") String pn)
 			throws Exception {
@@ -386,7 +386,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name + MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BrandNamePlusMPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -397,7 +397,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Part Number + MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_PartNumberPlusMPN(String testCaseId, @Parameter("Part Number") String partNumber,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -407,7 +407,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name + Part Number in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BNPlusPN(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("Part Number") String pn) throws Exception {
@@ -417,7 +417,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name + UPC in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BNPlusUPC(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -427,7 +427,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name + UPC in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_UPCPlusPN(String testCaseId, @Parameter("UPC") String upc, @Parameter("PN") String pn)
 			throws Exception {
@@ -437,7 +437,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Parenthesis short description in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_Parenthesis(String testCaseId, @Parameter("Parenthesis") String parenthesis) throws Exception {
 		homePage().searchText(parenthesis.trim()).clickOnSearch().productDetailsPage()
@@ -446,7 +446,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name NOT MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_BrandNameNOTMpn(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -457,7 +457,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name NOT MPN in product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_partNumberNOTMpn(String testCaseId, @Parameter("Part Number") String partNumber,
 			@Parameter("MPN") String mpn) throws Exception {
@@ -468,7 +468,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_brandNameNOTPn(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("Part Number") String partNumber) throws Exception {
@@ -479,7 +479,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_brandNameNOTUpc(String testCaseId, @Parameter("Brand Name") String brandName,
 			@Parameter("UPC") String upc) throws Exception {
@@ -490,7 +490,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies for Brand Name NOT PN in product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void keyword_uPCNOTPn(String testCaseId, @Parameter("UPC") String upc,
 			@Parameter("Part Number") String partNumber) throws Exception {
@@ -501,7 +501,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies partial part number search for a product that has SKU mode. This search functionality should navigate to product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void partialPNSearch_SKU(String testCaseId, @Parameter("Part Number") String partNumber) throws Exception {
 		homePage().searchText(partNumber.trim()).clickOnSearch().productListPage()
@@ -510,7 +510,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies partial part number search for a product that has product mode. This search functionality should navigate to product details page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void partialPNSearch_ProductMode(String testCaseId, @Parameter("Part Number") String partNumber)
 			throws Exception {
@@ -520,7 +520,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies partial short description that is in product mode and sku mode. This search functionality should navigate to product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void partialShortDescriptionSearch(String testCaseId,
 			@Parameter("Partial Short Description") String shortDescription) throws Exception {
@@ -530,7 +530,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies full short description. This search functionality should navigate to product list page.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void fullShortDescriptionSearch(String testCaseId, @Parameter("Short Description") String shortDescription)
 			throws Exception {
@@ -540,7 +540,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies category search of the last level which navigates to product list page. We have to search without selecting from  without selecting from Auto Suggest List")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void categoryNamesLastLevel(String testCaseId, @Parameter("Category Name") String categoryNameToSearch)
 			throws Exception {
@@ -555,7 +555,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies category search which navigates to product list page. We have to search without selecting from  without selecting from Auto Suggest List")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void categoryNamesExceptLastLevel(String testCaseId, @Parameter("Category Name") String categoryNameToSearch)
 			throws Exception {
@@ -569,7 +569,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies auto suggest feature of categories.")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void autoSuggest(String testCaseId, @Parameter("Search text") String searchText) throws Exception {
 
@@ -580,7 +580,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("This is a test case which verifies auto suggest feature of categories.")
-	@Test(enabled = false, groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(enabled = false, groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void partialAutoSuggest(String testCaseId, @Parameter("Search text") String partialSearchText,
 			@Parameter("Search text") String expectedTextToComeInDropdown) throws Exception {
@@ -597,7 +597,7 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 
 	@Features("Search V2")
 	@Description("General Search and Search within - Attribute Name (ie Filter name)")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = SearchData.class)
+	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void searchWithinAttributeName(String testCaseId, @Parameter("Search text") String searchText,
 			@Parameter("Filter Name") String filterName, @Parameter("Attribute Name") String attributeName)

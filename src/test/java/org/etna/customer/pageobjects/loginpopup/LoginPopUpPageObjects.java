@@ -184,7 +184,7 @@ public class LoginPopUpPageObjects extends PageFactoryInitializer {
 	}
 
 	public LoginPopUpPageObjects verifyTabFocusTopToBottom(String userNameId,String passwordId,String forgotYourPasswordId,String rememberMeClassName, String loginButtonId) {
-		//String [] expectedTabOrder = {userNameId,passwordId,rememberMeClassName,forgotYourPasswordId,loginButtonId};
+		
 		
 		Assert.assertEquals(driver.switchTo().activeElement().getAttribute("id"),userNameId);
 		driver.switchTo().activeElement().sendKeys(Keys.TAB);

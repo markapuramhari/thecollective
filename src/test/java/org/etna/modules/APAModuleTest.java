@@ -1,4 +1,6 @@
 package org.etna.modules;
+import org.etna.dataprovider.DataDrivenTestingFromExcel;
+import org.etna.utils.*;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -7,12 +9,7 @@ import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
-import org.etna.dataprovider.SearchData;
 import org.etna.maincontroller.PageFactoryInitializer;
-import org.etna.utils.ApplicationSetUpPropertyFile;
-import org.etna.utils.RandomGenerator;
-import org.etna.utils.SearchDataPropertyFile;
-import org.etna.utils.TestUtility;
 
 public class APAModuleTest extends PageFactoryInitializer {
 
@@ -75,12 +72,12 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("These are a bunch of test cases that tests the error scenarios involved during Add New Purchasing Agent.")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void addAndDeleteNew_GU_SU_APA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
 		String emailIdSplit []  = emailId.split("@");
-		String email = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		String email = emailIdSplit[0]+RandomGenerator.random(6, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1];
 		loginModule.loginAsASuperUser(); 
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser(); 
@@ -142,7 +139,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("These are a bunch of test cases that tests the error scenarios involved during Add New Purchasing Agent.")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("{0}")
 	public void addNewPA_errorScenarios(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website,@Parameter("Error Message") String expectedErrorMsg) throws Exception
 	{
@@ -226,7 +223,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 	
 	@Features("APA Module")
 	@Description("This is a test case which verifies disabling searching and disabling a purchase agent in purchase agent page.")
-	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=SearchData.class)
+	@Test(groups={"regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	@TestCaseId("TC_PA_088")
 	public void verify_Disable_PADPA(String testCaseId,@Parameter("Email ID") String emailId,@Parameter("First Name") String firstName,@Parameter("Last Name") String lastName,@Parameter("Password") String password,@Parameter("Confirm Password") String confirmPassword,@Parameter("Address 1") String address1,@Parameter("Address 2") String address2,@Parameter("City") String city,@Parameter("State") String state,@Parameter("Zip Code") String zipCode,@Parameter("Phone Number") String phoneNumber,@Parameter("Role Assignment") String roleAssignment,@Parameter("Fax Number") String faxNumber,@Parameter("Website") String website) throws Exception
 	{
@@ -234,7 +231,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.loginAsASuperUser();
 		String emailIdSplit []  = emailId.split("@");
-		String email = emailIdSplit[0]+RandomGenerator.generateEightRandomNumbers()+"@"+emailIdSplit[1];
+		String email = emailIdSplit[0]+RandomGenerator.random(6, PermittedCharacters.NUMERIC)+"@"+emailIdSplit[1];
 
 		homePage()
 		.clickOnUserAccountDropdown()
@@ -276,7 +273,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		loginModule.loginAsASuperUser();
 		homePage().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
+		String purchaseOrder = RandomGenerator.random(6, PermittedCharacters.NUMERIC);
 		homePage()
 		.searchText(data.getSearchText())
 		.clickOnSearch()
@@ -307,14 +304,14 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.clickOnNextButton()
 		.selectOrderType(data.getOrderType())
 		.enterOrderedBy(data.getCompanyNameForRegistration())
-		.enterPurchaseOrderNumber(Integer.toString(purchaseOrder))
+		.enterPurchaseOrderNumber(purchaseOrder)
 		.selectShipMethod(data.getShipVia())
 		.enterShippingInstructions(data.getShippingInstructions())
 		.enterOrderNotes(data.getOrderNote())
 		.clickOnNextButton()
 		.verifyNameOfTheProductInItemDetailsTab(productName)
 		.clickOnSubmitOrderButton()
-		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),Integer.toString(purchaseOrder),data.getCompanyNameForRegistration(),data.getShipVia());	
+		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),purchaseOrder,data.getCompanyNameForRegistration(),data.getShipVia());
 		}
 	
 	@Features("APA Module")
@@ -325,7 +322,7 @@ public class APAModuleTest extends PageFactoryInitializer {
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
 		homePage().clickOnUserAccountDropdown().logout();
 		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		int purchaseOrder = RandomGenerator.generateEightRandomNumbers();
+		String purchaseOrder = RandomGenerator.random(6, PermittedCharacters.NUMERIC);
 		homePage()
 		.searchText(data.getSearchText())
 		.clickOnSearch()
@@ -354,14 +351,14 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.clickOnNextButton()
 		.selectOrderType(data.getOrderType())
 		.enterOrderedBy(data.getCompanyNameForRegistration())
-		.enterPurchaseOrderNumber(Integer.toString(purchaseOrder))
+		.enterPurchaseOrderNumber(purchaseOrder)
 		.selectShipMethod(data.getShipVia())
 		.enterShippingInstructions(data.getShippingInstructions())
 		.enterOrderNotes(data.getOrderNote())
 		.clickOnNextButton()
 		.verifyNameOfTheProductInItemDetailsTab(productName)
 		.clickOnSubmitOrderButton()
-		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),Integer.toString(purchaseOrder),data.getCompanyNameForRegistration(),data.getShipVia());	
+		.verifyOrderConfirmationPage(productName,data.getOrderInfoLabelsInOrderConfirmationPage().split(","),purchaseOrder,data.getCompanyNameForRegistration(),data.getShipVia());
 }
 	
 	
