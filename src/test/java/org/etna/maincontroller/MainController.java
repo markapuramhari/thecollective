@@ -193,6 +193,7 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
 
+			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		else

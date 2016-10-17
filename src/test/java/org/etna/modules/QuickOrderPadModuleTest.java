@@ -1,19 +1,17 @@
 package org.etna.modules;
 import org.apache.commons.io.FileUtils;
 import org.etna.dataprovider.SearchData;
-import org.etna.utils.ExcelLibrary;
 import org.etna.utils.TestUtility;
 import org.openqa.selenium.UnhandledAlertException;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
+
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.SearchDataPropertyFile;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Issue;
-import ru.yandex.qatools.allure.annotations.Issues;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.io.File;
@@ -929,7 +927,7 @@ public class QuickOrderPadModuleTest extends PageFactoryInitializer {
     }
     
     @Features("Quick Order Pad Module")
-    @Test(groups = "regression")
+    @Test(enabled=false,groups = "regression")
     @Description("Verification of 'Add to cart' functionality when the number of rows exceeds 800 records in speed centry")
     public void speedEntryMoreThanNRecords() throws Exception {
     	

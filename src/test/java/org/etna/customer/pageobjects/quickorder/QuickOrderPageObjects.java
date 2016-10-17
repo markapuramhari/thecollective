@@ -23,7 +23,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class QuickOrderPageObjects extends PageFactoryInitializer {
