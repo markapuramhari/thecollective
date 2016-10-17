@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.etna.customer.pageobjects.approvalcartlist.ApprovalCartListPageObjects;
 import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
+import org.etna.customer.pageobjects.changepassword.ChangePasswordPageObjects;
 import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
 import org.etna.customer.pageobjects.manufacturers.ShopByManufacturersPageObjects;
 import org.etna.customer.pageobjects.myaccount.EditContactInfoPageObjects;
@@ -368,6 +369,9 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@FindBy(xpath="//ul[contains(@class,'header')]/descendant::a[contains(text(),'Contact Us')]")
 	private WebElement contactUsInHeaderLocator;
+	
+	@FindBy(xpath="//ul[contains(@class,'myAccountMenu')]/descendant::a[text()='Change Password']")
+	private WebElement changePasswordLinkLocator;
 	
 	
 	@FindAll(value={@FindBy(xpath="//a[text()='Products']/following-sibling::ul/li/a")})
@@ -1288,6 +1292,11 @@ return this;
 	public EditContactInfoPageObjects clickOnEditContactLinkInUserAccountDropdown() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",editContactInfoInUserAccountDropdownLocator);
 		return editContactInfoPage();
+	}
+
+	public ChangePasswordPageObjects clickOnChangePassword() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",changePasswordLinkLocator);
+		return changePasswordPage();
 	}
 
 	

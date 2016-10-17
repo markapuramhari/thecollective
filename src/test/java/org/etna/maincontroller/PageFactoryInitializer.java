@@ -2,6 +2,7 @@ package org.etna.maincontroller;
 import org.etna.customer.pageobjects.approvalcartlist.ApprovalCartListPageObjects;
 import org.etna.customer.pageobjects.approvalcartlist.ApprovedCartPageObjects;
 import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
+import org.etna.customer.pageobjects.changepassword.ChangePasswordPageObjects;
 import org.etna.customer.pageobjects.checkout.CheckoutPageObjects;
 import org.etna.customer.pageobjects.compare.ComparePageObjects;
 import org.etna.customer.pageobjects.homepage.ContactUsPageObjects;
@@ -74,6 +75,12 @@ public class PageFactoryInitializer extends MainController{
 	{
 		ForgotPasswordPageObjects forgotPasswordPage = PageFactory.initElements(driver,ForgotPasswordPageObjects.class);
 		return forgotPasswordPage;
+	}
+	
+	public ChangePasswordPageObjects changePasswordPage()
+	{
+		ChangePasswordPageObjects changePasswordPage = PageFactory.initElements(driver,ChangePasswordPageObjects.class);
+		return changePasswordPage;
 	}
 
 
