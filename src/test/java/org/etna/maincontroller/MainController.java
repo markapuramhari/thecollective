@@ -16,6 +16,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -43,6 +45,12 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+
+import net.bramp.ffmpeg.FFmpeg;
+import net.bramp.ffmpeg.FFmpegExecutor;
+import net.bramp.ffmpeg.FFprobe;
+import net.bramp.ffmpeg.builder.FFmpegBuilder;
+import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import org.monte.media.Format;
 import org.monte.media.FormatKeys.MediaType;
@@ -58,6 +66,7 @@ public class MainController implements IHookable{
  * @author Hemanth.Sridhar
  */
 public static String outputVideo="";
+public static String outputReport="";
 private ScreenRecorder screenRecorder;
 public static String applicationSetUp = "resources/PropertyFiles/ApplicationSetUp.properties";
 public static String searchData = "resources/PropertyFiles/SearchData.properties";
@@ -69,9 +78,11 @@ DesiredCapabilities caps = new DesiredCapabilities();
 @BeforeSuite(alwaysRun=true)
 public void beforeSuite() throws Exception{
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-		outputVideo="./Videos";
- 		FileUtils.forceMkdir(new File(outputVideo));	
- 		outputVideo += "/Videos_" + setUp.getBrowser().toUpperCase()+"_"+SendEmailGmail.getDate()+"_" + SendEmailGmail.getTime();
+	outputVideo="./Videos";
+	outputReport="./Report";
+		FileUtils.forceMkdir(new File(outputVideo));
+		FileUtils.forceMkdir(new File(outputReport));
+		outputReport += "/Report_" + setUp.getBrowser().toUpperCase()+"_"+SendEmailGmail.getDate()+"_" + SendEmailGmail.getTime();
 }
 
 	@BeforeMethod(alwaysRun=true)
@@ -206,25 +217,103 @@ public void beforeSuite() throws Exception{
 	}
 
 
-@Override
-public void run(IHookCallBack callBack, ITestResult testResult){
-	callBack.runTestMethod(testResult);
-    if (testResult.getThrowable()!= null) {
-    	try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	@Override
+	public void run(IHookCallBack callBack, ITestResult testResult){
+		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
+		callBack.runTestMethod(testResult);
+	    if (testResult.getThrowable()!= null) {
+	    	try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	    	try
+	    	{
+	    	saveScreenshot(testResult.getName(),driver);
+	    	if(setUp.getVideoPermission().equalsIgnoreCase("yes"))
+			{
+	    	this.screenRecorder.stop();
+	    	Thread.sleep(1500);
+	    	convert(testResult.getName());
+	    	saveVideo(testResult.getName(),driver);
+			}
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		e.printStackTrace();
+	    	}
+	    }
+	    } 
+	
+	public void convert(String testCaseName) throws Exception
+	{
+		if(System.getProperty("os.name").toUpperCase().contains("MAC"))
+		{
+		File ffmpegFile = new File("resources/ffmpeg/Mac/ffmpeg");
+		File ffProbeFile = new File("resources/ffmpeg/Mac/ffprobe");
+		
+		FFmpeg ffmpeg = new FFmpeg(ffmpegFile.getAbsolutePath());
+		FFprobe ffprobe = new FFprobe(ffProbeFile.getAbsolutePath());
+		
+		FFmpegProbeResult probeResult = ffprobe.probe("Videos/"+testCaseName+".avi");
+		
+		FFmpegBuilder builder = new FFmpegBuilder()
+				.setInput(probeResult)
+				  .overrideOutputFiles(true) 
+				  
+				  .addOutput("Videos/"+testCaseName+".mp4")
+				    .setFormat("mp4")   
+				    .setVideoCodec("libx264")
+				    .addExtraArgs("-pix_fmt", "yuv420p")
+				    .setVideoFrameRate(30,1)
+				    .addExtraArgs("-q","50")
+				    .setVideoResolution(1680, 1050) 
+				    .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+				    .done();
+				FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+				executor.createJob(builder).run();
+			}
+		else if(System.getProperty("os.name").toUpperCase().contains("WIN"))
+		{
+			File ffmpegFile = new File("resources/ffmpeg/Windows/ffmpeg.exe");
+			File ffProbeFile = new File("resources/ffmpeg/Windows/ffprobe.exe");
+			
+			FFmpeg ffmpeg = new FFmpeg(ffmpegFile.getAbsolutePath());
+			FFprobe ffprobe = new FFprobe(ffProbeFile.getAbsolutePath());
+			
+			FFmpegProbeResult probeResult = ffprobe.probe("Videos/"+testCaseName+".avi");
+			
+			FFmpegBuilder builder = new FFmpegBuilder()
+					.setInput(probeResult)
+					  .overrideOutputFiles(true) 
+					  
+					  .addOutput("Videos/"+testCaseName+".mp4")
+					    .setFormat("mp4")   
+					    .setVideoCodec("libx264")
+					    .addExtraArgs("-pix_fmt", "yuv420p")
+					    .setVideoFrameRate(30,1)
+					    .addExtraArgs("-q","50")
+					    .setVideoResolution(1680, 1050) 
+					    .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+					    .done();
+					FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+					executor.createJob(builder).run();
 		}
-    	try
-    	{
-    	saveScreenshot(testResult.getName(),driver);
-    	}
-    	catch(Exception e)
-    	{
-    		e.printStackTrace();
-    	}
-   }
-    } 
+	}
+
+	
+	private byte[] getFile(String fileName) throws Exception {
+		File file = new File(fileName);
+		return Files.readAllBytes(Paths.get(file.getAbsolutePath()));
+	   
+	}
+	
+	@Attachment(value = "Video of {0}",type="video/mp4")
+	private byte[] saveVideo(String name, WebDriver driver) throws Exception {
+		return getFile("Videos/"+name+".mp4");
+		
+	}
+
 
 @Attachment(value = "Screenshot of {0}", type = "image/png")
   public byte[] saveScreenshot(String name,WebDriver driver) {
