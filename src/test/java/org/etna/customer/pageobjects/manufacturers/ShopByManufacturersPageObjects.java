@@ -45,11 +45,11 @@ public class ShopByManufacturersPageObjects extends PageFactoryInitializer{
 	
 	@Step("verify shop by manufacturers breadcrumb contains {0}")
 	public ShopByManufacturersPageObjects verifyShopByBreadcrump(String shopByManufacturerBreadcrump){
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.equals(shopByManufacturerBreadcrump),"Breadcrump is not "+shopByManufacturerBreadcrump+". It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim()+".");
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim()+".");
 		return this;
 	}
 	
@@ -148,11 +148,11 @@ public class ShopByManufacturersPageObjects extends PageFactoryInitializer{
 
 	@Step("verify manufacturer breadcrumb contains {0}")
 	public ShopByManufacturersPageObjects verifyManufacturerBreadCrump(String nameOfTheManufacturer) {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.contains(nameOfTheManufacturer),"Breadcrump does not contain the manufacturer that is clicked. It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim()+".");
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim()+".");
 		return this;
 	}
 

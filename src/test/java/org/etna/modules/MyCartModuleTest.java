@@ -72,7 +72,7 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 				.clickOnTheConfirmationMessage(saveCartName)
 				.saveCartPage()
 				.verifyPageName(saveCartName)
-				.verifyBreadCrumps(saveCartName)
+				.verifybreadCrumbs(saveCartName)
 				.verifyTitleAfterClickingOnTheCartCreated()
 				.deleteSaveCart();
 				TestUtility.alertAccept();

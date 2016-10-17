@@ -434,7 +434,7 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 
 	@Step("verify breadcrumb to have {0}")
 	public ProductsListPageObjects verifyBreadCrump(String lastBreadcrump) {
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim(), lastBreadcrump);
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim(), lastBreadcrump);
 		return this;
 	}
 
@@ -1072,11 +1072,11 @@ public class ProductsListPageObjects extends PageFactoryInitializer{
 	
 	@Step("verify whether breadcrumb contains {0}")
 	public ProductsListPageObjects verifyBrandBreadCrump(String nameOfTheBrand) {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.contains(nameOfTheBrand),"Breadcrump does not contain the brand that is clicked. It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return this;
 	}
 

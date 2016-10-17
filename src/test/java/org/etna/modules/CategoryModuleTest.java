@@ -98,7 +98,7 @@ public class CategoryModuleTest extends PageFactoryInitializer{
 				.productListPage()
 				.clickOnSpecificItem(1)
 				.productDetailsPage()
-				.verifyBreadCrump()
+				.verifyBreadCrumb()
 				.verifyPDPPageTitle();
 	  }
 		

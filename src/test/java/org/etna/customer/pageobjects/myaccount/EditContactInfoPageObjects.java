@@ -124,10 +124,10 @@ public class EditContactInfoPageObjects extends PageFactoryInitializer {
 	
 	@Step("verify edit contact info breadcrumb contains {0}")
 	public EditContactInfoPageObjects verifyEditContactInfoBreadcrumb(String editContactInfoPageName) {
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.equalsIgnoreCase(editContactInfoPageName),"Breadcrump is not "+editContactInfoPageName+". It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim()+".");
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim()+".");
 		return this;
 	}
 

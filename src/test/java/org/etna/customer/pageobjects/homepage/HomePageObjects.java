@@ -973,11 +973,11 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@Step("verify whether title and breadcrump has the manufacturer name : {0}")
 	public HomePageObjects verifyWhetherTitleAndBreadcrumpHaveTheManufacturersName(String manufacturerName) throws Exception{
 		Thread.sleep(2000);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim().
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim().
 				contains(manufacturerName),
 				"breadcrump is not the same as the manufacturer name clicked. BreadCrump is -"
-				+ " "+productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1)
+				+ " "+productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1)
 				.getText().replace("/", "").trim()+" , but manufacturer name is - "+manufacturerName+".");
 		Assert.assertTrue(driver.getTitle().trim().contains(manufacturerName), "Title does not contain the manufacturer name.");
 		return this;
@@ -986,11 +986,11 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@Step("verify whether title and breadcrump has the brand name : {0}")
 	public HomePageObjects verifyWhetherTitleAndBreadcrumpHaveTheBrandName(String brandName) throws Exception{
 		Thread.sleep(2000);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim().
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim().
 				contains(brandName),
 				"breadcrump is not the same as the brand name clicked. BreadCrump is -"
-				+ " "+productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1)
+				+ " "+productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1)
 				.getText().replace("/", "").trim()+" , but brand name is - "+brandName+".");
 		Assert.assertTrue(driver.getTitle().trim().contains(brandName), "Title does not contain the brand name.");
 		return this;

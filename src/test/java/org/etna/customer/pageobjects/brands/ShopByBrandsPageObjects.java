@@ -50,12 +50,12 @@ public class ShopByBrandsPageObjects extends PageFactoryInitializer{
 	public ShopByBrandsPageObjects verifyShopByBreadcrump(String shopByBrandBreadcrump) throws  Exception{
 		
 		{
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
 		}
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.equals(shopByBrandBreadcrump),"Breadcrump is not Shop By Brands. It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return this;
 	}
 	

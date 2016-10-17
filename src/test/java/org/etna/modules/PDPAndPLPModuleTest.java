@@ -47,7 +47,7 @@ public class PDPAndPLPModuleTest extends PageFactoryInitializer {
 	  	.verifyDisplayOfCustomerPartNumberButton()
 	  	.verifyAddToCartButton()
 	  	.verifyDisplayOfAddMyProductGroupButton()
-	  	.verifyBreadCrump();
+	  	.verifyBreadCrumb();
 	  }
 
 	@Features("PDP Module")
@@ -79,7 +79,7 @@ public class PDPAndPLPModuleTest extends PageFactoryInitializer {
 	  	.verifyDisplayOfCustomerPartNumberButton()
 	  	.verifyAddToCartButton()
 	  	.verifyDisplayOfAddMyProductGroupButton()
-	  	.verifyBreadCrump();
+	  	.verifyBreadCrumb();
 	  }
 
 

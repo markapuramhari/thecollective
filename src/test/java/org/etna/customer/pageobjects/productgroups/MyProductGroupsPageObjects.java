@@ -140,9 +140,9 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 		}
 		else
 		{
-			Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
+			Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
 		}
-	String lastBreadCrump = productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().trim();
+	String lastBreadCrump = productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().trim();
 	Assert.assertEquals(myProductGroupName, lastBreadCrump.replace("/", "").trim(),"item name and the last breadcrump is not the same. Item name is : "+myProductGroupName +" and the last breadcrump is : "+ lastBreadCrump);
 	return this;
 
@@ -213,7 +213,7 @@ public class MyProductGroupsPageObjects extends PageFactoryInitializer {
 
 	@Step("verify whether breadcrumb is {0} ")
 	public MyProductGroupsPageObjects verifyBreadCrumpOfMyProductGroupLandingPage(String myProductGroupsPageName) {
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(myProductGroupsPageName));
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(myProductGroupsPageName));
 		return this;
 	}
 

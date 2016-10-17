@@ -47,7 +47,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	private WebElement myAccountCrumbLocator;
 
 	@FindAll(value={@FindBy(xpath="//ul[@class='cimm_breadcrumbs']/li")})
-	public List<WebElement> breadCrumps;
+	public List<WebElement> breadCrumbs;
 
 	@FindBy(xpath="//li/descendant::i[contains(@class,'home')]")
 	private WebElement homeBreadCrumbLinkLocator;
@@ -184,10 +184,10 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	}
 
 	@Step("verify breadcrumb is {0} ")
-	public SaveCartPageObjects verifyBreadCrumps(String mySaveCartBreadCrumb) {
+	public SaveCartPageObjects verifybreadCrumbs(String mySaveCartBreadCrumb) {
 
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(mySaveCartBreadCrumb.trim()),"Breadcrump is not "+mySaveCartBreadCrumb+". It is :"+saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(mySaveCartBreadCrumb.trim()),"Breadcrump is not "+mySaveCartBreadCrumb+". It is :"+saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return this;
 	}
 
@@ -314,17 +314,17 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@Step("verify whether breadcrumb is {0} ")
 	public SaveCartPageObjects verifyBreadCrumpOfMySavedCart(String mySavedCart) {
-		Assert.assertTrue(saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(mySavedCart));
+		Assert.assertTrue(saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(mySavedCart));
 		return this;
 
 	}
 
 	public SaveCartPageObjects verifyBreadCrumpAfterCreation(String saveCartName, String mySaveCartBreadCrumb,String myAccountBreadcrumb) {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
 		Assert.assertTrue(homeBreadCrumbLinkLocator.isDisplayed(),"home link is not displayed in the breadcrumb navigation");
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-3).getText().replace("/", "").trim().equalsIgnoreCase(myAccountBreadcrumb.trim()),"Breadcrump is not "+myAccountBreadcrumb+". It is :"+saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim());
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-2).getText().replace("/", "").trim().equalsIgnoreCase(mySaveCartBreadCrumb.trim()),"Breadcrump is not "+mySaveCartBreadCrumb+". It is :"+saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim());
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(saveCartName.trim()),"Breadcrump is not "+saveCartName+". It is :"+saveCartPage().breadCrumps.get(saveCartPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-3).getText().replace("/", "").trim().equalsIgnoreCase(myAccountBreadcrumb.trim()),"Breadcrump is not "+myAccountBreadcrumb+". It is :"+saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-2).getText().replace("/", "").trim().equalsIgnoreCase(mySaveCartBreadCrumb.trim()),"Breadcrump is not "+mySaveCartBreadCrumb+". It is :"+saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim().equalsIgnoreCase(saveCartName.trim()),"Breadcrump is not "+saveCartName+". It is :"+saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return this;
 	}
 

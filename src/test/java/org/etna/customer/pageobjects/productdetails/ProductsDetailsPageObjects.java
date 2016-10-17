@@ -90,7 +90,7 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	private WebElement yourPriceLabel;
 	
 	@FindAll(value={@FindBy(xpath="//ul[@class='cimm_breadcrumbs']/li")})
-	public List<WebElement> breadCrumps;
+	public List<WebElement> breadCrumbs;
 	
 	@FindBy(xpath="//h4[contains(text(),'Manufacturers')]/following-sibling::span")
 	private WebElement filterManufactureresToggleButtonLocator;
@@ -436,9 +436,9 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	}
 
 	@Step("verify breadcrump")
-	public ProductsDetailsPageObjects verifyBreadCrump() {
+	public ProductsDetailsPageObjects verifyBreadCrumb() {
 		String itemName = itemTitleLocator.getText().trim();
-		String lastBreadCrump = breadCrumps.get(breadCrumps.size()-1).getText().trim();
+		String lastBreadCrump = breadCrumbs.get(breadCrumbs.size()-1).getText().trim();
 		Assert.assertEquals(itemName, lastBreadCrump.replace("/", "").trim(),"item name and the last breadcrump is not the same. Item name is : "+itemName +" and the last breadcrump is : "+ lastBreadCrump);
 		return this;
 	}
@@ -856,11 +856,11 @@ return this;
 	
 	@Step("verify whether breadcrumb contains {0}")
 	public ProductsDetailsPageObjects verifyBrandBreadCrump(String nameOfTheBrand) {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().
-				breadCrumps.size()-1).getText().replace("/", "").trim()
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().
+				breadCrumbs.size()-1).getText().replace("/", "").trim()
 				.contains(nameOfTheBrand),"Breadcrump does not contain the brand that is clicked. It is "+productDetailsPage()
-				.breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+				.breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return this;
 	}
 

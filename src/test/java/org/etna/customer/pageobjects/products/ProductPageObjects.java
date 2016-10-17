@@ -80,7 +80,7 @@ public class ProductPageObjects extends PageFactoryInitializer{
 	@Step("verify breadcrumbs to have {0}")
 	public ProductPageObjects verifyBreadcrump(String productsPageBreadCrump) {	
 		Assert.assertTrue(homeIconInBreadcrumbLocator.isDisplayed(),"Home icon is not displayed in the breadcrumb.");
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim(), productsPageBreadCrump);
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim(), productsPageBreadCrump);
 		return this;
 	}
 
@@ -106,17 +106,17 @@ public class ProductPageObjects extends PageFactoryInitializer{
 
 	@Step("verify second breadcrumb")
 	public ProductPageObjects verifySecondBreadcrump(String getSpecificCategory) {
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(2).getText().replace("/", "").trim(), getSpecificCategory);
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(2).getText().replace("/", "").trim(), getSpecificCategory);
 		return this;
 	}
 
 	public String getLastBreadCrump() {
-		String lastBreadcrump = (productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim());
+		String lastBreadcrump = (productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
 		return lastBreadcrump;
 	}
 	
 	public String getLastButOneBreadCrump() {
-		String lastButOneBreadcrump = (productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-2).getText().replace("/", "").trim());
+		String lastButOneBreadcrump = (productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-2).getText().replace("/", "").trim());
 		return lastButOneBreadcrump;
 	}
 
@@ -130,7 +130,7 @@ public class ProductPageObjects extends PageFactoryInitializer{
 
 	@Step("verify last breadcrumb to have {0}")
 	public ProductPageObjects verifyLastButOneBreadcrump(String getSpecificCategory) {
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-2).getText().replace("/", "").trim(), getSpecificCategory);
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-2).getText().replace("/", "").trim(), getSpecificCategory);
 		return this;
 	}
 

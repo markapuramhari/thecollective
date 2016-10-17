@@ -156,7 +156,7 @@ public class AddNewPurchasingAgentPageObjects extends PageFactoryInitializer{
 
 	@Step("verify add new purchasing agent breadcrumb")
 	public AddNewPurchasingAgentPageObjects verifyAddNewPurchasingAgentBreadcrump() {
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().trim(),"Add New Purchasing Agent");
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().trim(),"Add New Purchasing Agent");
 		return this;
 	}
 

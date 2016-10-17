@@ -139,8 +139,8 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 
 	@Step("Click on checkout in my cart breadcrumb contains {0}")
 	public MyCartPageObjects verifyMyCartBreadcrump(String myCartBreadcrump) throws Exception {
-		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumps, 10);
-		Assert.assertEquals(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim(),myCartBreadcrump);
+		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
+		Assert.assertEquals(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim(),myCartBreadcrump);
 		return this;
 	}
 

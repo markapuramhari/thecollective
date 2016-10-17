@@ -253,7 +253,7 @@ System.out.println(TestUtility.getAlertText().replace("\n", "").trim());
 		Waiting.explicitWaitVisibilityOfElement(homeIconLocator,5);
 		Assert.assertTrue(homeIconLocator.isDisplayed(),"Home Icon is not displayed in the breadcrumb.");
 		Assert.assertTrue(editContactInfoPage().myAccountInBreadcrumbLocator.isDisplayed(),"My Account is not present in the breadcrumb");
-		Assert.assertTrue(productDetailsPage().breadCrumps.get(productDetailsPage().breadCrumps.size()-1).getText().replace("/", "").trim().equalsIgnoreCase("Quick Order"));
+		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-1).getText().replace("/", "").trim().equalsIgnoreCase("Quick Order"));
 		Assert.assertTrue(pageNameLocator.getText().trim().equalsIgnoreCase("Quick Order"));
 		Assert.assertTrue(speedEntryTabLocator.getAttribute("class").equals("active"));
 		Assert.assertTrue(copyPasteTabLocator.getAttribute("class").equals(""));
