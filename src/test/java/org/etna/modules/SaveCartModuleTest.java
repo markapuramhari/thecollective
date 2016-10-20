@@ -19,9 +19,12 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 	SearchDataPropertyFile data = new SearchDataPropertyFile();
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	LoginModuleTest loginModule = new LoginModuleTest();
+	
 	/*
-@author: hemanth.bs
+	 * @author:Hemanth.Sridhar
+	 * @author:Varsha.RL
 	 */
+	
 	public void saveCartDeleteAndVerify(String saveCartName) throws Exception{
 		homePage()
 		.clickOnUserAccountDropdown()
@@ -75,9 +78,7 @@ public class SaveCartModuleTest extends PageFactoryInitializer {
 			saveCartDeleteAndVerify(saveCartName);
 		}
 	}
-	/*
-	 * @author:Varsha.RL
-	 */
+	
 	@Features("Save Cart Module")
 	@Description("This Test Case Verifies saved cart breadcrumbs from My Account")
 	@TestCaseId("TC_SavedCart_004")

@@ -425,7 +425,26 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String	sharedCartCompleteBreadcrumb = PropertyFileReader.propertiesReader(searchData, "sharedCartCompleteBreadcrumb");
 	
-
+	private String	orderNumberBreadCrumb = PropertyFileReader.propertiesReader(searchData, "orderNumberBreadCrumb");
+	
+	private String	alertForReorderWithNoItemSelected = PropertyFileReader.propertiesReader(searchData, "alertForReorderWithNoItemSelected");
+	
+	private String	orderPageOpenOrdersHeaders = PropertyFileReader.propertiesReader(searchData, "orderPageOpenOrdersHeaders");
+	
+	private String	completedOrderTableHeaders = PropertyFileReader.propertiesReader(searchData, "completedOrderTableHeaders");
+	
+	private String	alertTextForWithoutSearchKeyword = PropertyFileReader.propertiesReader(searchData, "alertTextForWithoutSearchKeyword");
+	
+	private String	textMsgForInvalidPoNoOrOrderNo = PropertyFileReader.propertiesReader(searchData, "textMsgForInvalidPoNoOrOrderNo");
+	
+	private String	expectedSuperUserAccountDropdown = PropertyFileReader.propertiesReader(searchData, "expectedSuperUserAccountDropdown");
+	
+	private String	invalidSearchMsg = PropertyFileReader.propertiesReader(searchData, "invalidSearchMsg");
+	
+	private String	orderPageCompletedOrdersHeaders = PropertyFileReader.propertiesReader(searchData, "orderPageCompletedOrdersHeaders");
+	
+	
+	
 	public String getCopyRightsOfUnilogText() {
 
         return copyRightsOfUnilog;
@@ -1512,7 +1531,7 @@ public String getPartialPartNumber() {
 	}
 
 	public String getUserNameForWhichCartIsShared() {
-		// TODO Auto-generated method stub
+		
 		return userNameForWhichCartIsShared;
 	}
 
@@ -1524,5 +1543,50 @@ public String getPartialPartNumber() {
 	public String getSharedCartCompleteBreadcrumb() {
 		
 		return sharedCartCompleteBreadcrumb;
+	}
+
+	public String getOrderNumberBreadCrumb() {
+	
+		return orderNumberBreadCrumb;
+	}
+
+	public String getAlertForReorderWithNoItemSelected() {
+		
+		return alertForReorderWithNoItemSelected;
+	}
+
+	public String getOrderPageOpenOrdersHeaders() {
+		
+		return orderPageOpenOrdersHeaders;
+	}
+
+	public String getCompletedOrderTableHeaders() {
+		
+		return completedOrderTableHeaders;
+	}
+
+	public String getAlertTextForWithoutSearchKeyword() {
+		
+		return alertTextForWithoutSearchKeyword;
+	}
+
+	public String getTextMsgForInvalidPoNoOrOrderNo() {
+		
+		return textMsgForInvalidPoNoOrOrderNo;
+	}
+
+	public String getExpectedSuperUserAccountDropdown() {
+
+		return expectedSuperUserAccountDropdown;
+	}
+
+	public String getInvalidSearchMsg() {
+
+		return invalidSearchMsg;
+	}
+
+	public String getOrderPageCompletedOrdersHeaders() {
+		
+		return orderPageCompletedOrdersHeaders;
 	}
 }

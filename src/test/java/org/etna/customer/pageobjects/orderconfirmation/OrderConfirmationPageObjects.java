@@ -50,6 +50,13 @@ public class OrderConfirmationPageObjects  extends PageFactoryInitializer{
 	@FindBy(xpath="//p[@class='orderConfTitle']/strong")
 	private WebElement productNameLocator;
 	
+	@FindBy(xpath="//b[contains(text(),'Eclipse order number')]/following-sibling::span")
+	private WebElement ecilpseOrderNumberValueLocator;
+	@FindBy(xpath="//b[contains(text(),'Ordered Date')]/following-sibling::span")
+	private WebElement orderDateValueLocator;
+	@FindBy(xpath="//b[text()[normalize-space()='Order Total']]/ancestor::span/following-sibling::span[contains(@class,'priceValue')]")
+	private WebElement orderTotalValueLocator;
+	
 	@Step("verify order confirmation page.")
 	public OrderConfirmationPageObjects verifyOrderConfirmationPage(String productName,String[] orderInfoLabels, String purchaseOrder,String orderedBy,String shipVia) {
 		Waiting.explicitWaitVisibilityOfElement(orderConfirmationBreadcrumbLocator, 10);
@@ -83,5 +90,12 @@ public class OrderConfirmationPageObjects  extends PageFactoryInitializer{
     	String DateForReport = dateFormat.format(date);
     	return DateForReport;
     }
-    
-}
+
+	public String[] getOrderDetails() {
+		
+			String orderDetails[] = {ecilpseOrderNumberValueLocator.getText().trim(),poValueLocator.getText().trim(),orderDateValueLocator.getText().trim(),orderTotalValueLocator.getText().trim()};
+			return orderDetails;
+		}
+
+	}
+ 

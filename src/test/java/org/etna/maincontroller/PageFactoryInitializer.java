@@ -5,6 +5,7 @@ import org.etna.customer.pageobjects.brands.ShopByBrandsPageObjects;
 import org.etna.customer.pageobjects.changepassword.ChangePasswordPageObjects;
 import org.etna.customer.pageobjects.checkout.CheckoutPageObjects;
 import org.etna.customer.pageobjects.compare.ComparePageObjects;
+import org.etna.customer.pageobjects.completedorders.CompletedOrdersPageObjects;
 import org.etna.customer.pageobjects.homepage.ContactUsPageObjects;
 import org.etna.customer.pageobjects.homepage.HomePageObjects;
 import org.etna.customer.pageobjects.loginpopup.ForgotPasswordPageObjects;
@@ -13,7 +14,10 @@ import org.etna.customer.pageobjects.manufacturers.ShopByManufacturersPageObject
 import org.etna.customer.pageobjects.myaccount.EditContactInfoPageObjects;
 import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
 import org.etna.customer.pageobjects.mycart.MyCartPageObjects;
+import org.etna.customer.pageobjects.openorders.OpenOrdersPageObjects;
 import org.etna.customer.pageobjects.orderconfirmation.OrderConfirmationPageObjects;
+import org.etna.customer.pageobjects.orderdetails.OrderDetailsPageObjects;
+import org.etna.customer.pageobjects.orderhistory.OrderHistoryPageObjects;
 import org.etna.customer.pageobjects.productdetails.ProductsDetailsPageObjects;
 import org.etna.customer.pageobjects.productdetails.SharePageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupPopUp;
@@ -56,6 +60,20 @@ public class PageFactoryInitializer extends MainController{
 		ProductsDetailsPageObjects productDetailsPage = PageFactory.initElements(driver,ProductsDetailsPageObjects.class);
 		return productDetailsPage;
 	}
+	
+	public OrderHistoryPageObjects orderHistoryPage()
+	{
+		OrderHistoryPageObjects orderHistoryPage = PageFactory.initElements(driver,OrderHistoryPageObjects.class);
+		return orderHistoryPage;
+	}
+	
+	public CompletedOrdersPageObjects completedOrdersPage()
+	{
+		CompletedOrdersPageObjects completedOrdersPage = PageFactory.initElements(driver,CompletedOrdersPageObjects.class);
+		return completedOrdersPage;
+	}
+	
+	
 
 	public ProductsListPageObjects productListPage()
 	{
@@ -63,7 +81,19 @@ public class PageFactoryInitializer extends MainController{
 		return productListPage;
 	}
 
+	public OpenOrdersPageObjects openOrdersPage()
+	{
+		OpenOrdersPageObjects openOrdersPage = PageFactory.initElements(driver,OpenOrdersPageObjects.class);
+		return openOrdersPage;
+	}
+	
+	public OrderDetailsPageObjects orderDetailsPage()
+	{
+		OrderDetailsPageObjects orderDetailsPage = PageFactory.initElements(driver,OrderDetailsPageObjects.class);
+		return orderDetailsPage;
+	}
 
+	
 
 	public MyCartPageObjects myCartPage()
 	{

@@ -8,6 +8,8 @@ import org.etna.customer.pageobjects.loginpopup.LoginPopUpPageObjects;
 import org.etna.customer.pageobjects.manufacturers.ShopByManufacturersPageObjects;
 import org.etna.customer.pageobjects.myaccount.EditContactInfoPageObjects;
 import org.etna.customer.pageobjects.myaccount.MyAccountsPageObjects;
+import org.etna.customer.pageobjects.openorders.OpenOrdersPageObjects;
+import org.etna.customer.pageobjects.orderhistory.OrderHistoryPageObjects;
 import org.etna.customer.pageobjects.productgroups.MyProductGroupsPageObjects;
 import org.etna.customer.pageobjects.products.ProductPageObjects;
 import org.etna.customer.pageobjects.purchasingagent.AddNewPurchasingAgentPageObjects;
@@ -175,6 +177,8 @@ public class HomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//label[contains(.,'Featured Manufacturers')]")
 	private WebElement featuredManufacturersHeading;
 	
+	@FindAll(value={@FindBy(xpath="//div[contains(@class,'cimm_headerRight')]/descendant::ul[@class='cimm_myAccountMenu']/li/a")})
+	private List<WebElement> myAcountDropdownLinksLocator;
 
 	
 	@FindBy(xpath="//ul[@id='featuredBrands']")
@@ -379,6 +383,13 @@ public class HomePageObjects extends PageFactoryInitializer {
 	
 	@FindBy(xpath="//ul[@class='cimm_myAccountMenu']/descendant::a[text()='Edit Contact']")
 	private WebElement editContactInfoInUserAccountDropdownLocator;
+
+	@FindBy(xpath="//a[contains(@class,'myaccountDropDown')]/following-sibling::ul/descendant::a[contains(@href,'OrderHistory')]")
+	private WebElement orderHistoryLink;
+	
+	
+	@FindBy(xpath="//a[contains(@class,'myaccountDropDown')]/following-sibling::ul/descendant::a[contains(text(),'Open Orders')]")
+	private WebElement openOrdersLinkLocator;
 	
 	
 	
@@ -1301,6 +1312,30 @@ return this;
 	public ChangePasswordPageObjects clickOnChangePassword() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",changePasswordLinkLocator);
 		return changePasswordPage();
+	}
+
+	@Step("click on Open Orders")
+	public OpenOrdersPageObjects clickOnOpenOrders() {
+		Waiting.explicitWaitVisibilityOfElement(openOrdersLinkLocator, 5);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",openOrdersLinkLocator);
+		return openOrdersPage();
+	}
+
+	@Step("click on Order history")
+	public OrderHistoryPageObjects clickOnOrderHistory() {
+		Waiting.explicitWaitVisibilityOfElement(orderHistoryLink, 5);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",orderHistoryLink);
+		return orderHistoryPage();
+	}
+
+	public HomePageObjects verifyMyAccountDropdown(String[] expectedDropdownLinks) throws Exception {
+		Thread.sleep(1500);
+		Waiting.explicitWaitVisibilityOfElements(myAcountDropdownLinksLocator, 10);
+		for(int i = 0 ; i<myAcountDropdownLinksLocator.size() ; i++)
+		{
+			Assert.assertEquals(myAcountDropdownLinksLocator.get(i).getText().trim(), expectedDropdownLinks[i]);
+		}
+		return this;
 	}
 
 	

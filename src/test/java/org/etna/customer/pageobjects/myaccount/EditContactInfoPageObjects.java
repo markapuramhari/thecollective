@@ -304,6 +304,8 @@ public class EditContactInfoPageObjects extends PageFactoryInitializer {
 		Assert.assertNotEquals(phoneNumber.getAttribute("value").trim(),"", "Phone Number is empty");
 	return this;	
 	}
+
+	
 }
 	
 	
