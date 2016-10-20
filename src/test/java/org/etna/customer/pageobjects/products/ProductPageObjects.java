@@ -188,5 +188,13 @@ public class ProductPageObjects extends PageFactoryInitializer{
 		Assert.assertTrue(false, "category description is not getting updated in ecommerce.");
 		return this;
 	}
+
+	public ProductPageObjects verifyNamesOfAllCategories(String[] nameOfTheItems) {
+		for(int i = 0 ; i < categoryNamesInThePage.size() ; i++)
+		{
+		Assert.assertEquals(categoryNamesInThePage.get(i).getText().trim(),nameOfTheItems[i]);
+		}
+		return this;
+	}
 	
 }

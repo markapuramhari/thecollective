@@ -554,19 +554,25 @@ public class SearchV2ModuleTest extends PageFactoryInitializer {
 	}
 
 	@Features("Search V2")
-	@Description("This is a test case which verifies category search which navigates to product list page. We have to search without selecting from  without selecting from Auto Suggest List")
-	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
-	@TestCaseId("{0}")
-	public void categoryNamesExceptLastLevel(String testCaseId, @Parameter("Category Name") String categoryNameToSearch)
-			throws Exception {
-
-		String[] nameOfTheItems = homePage().clickOnProductsLink()
-				.clickOnSpecificCategoryUnderTheProductsLink(categoryNameToSearch).getNamesOfTheCategories();
-
-		homePage().searchText(categoryNameToSearch.trim()).clickOnSearch().productListPage()
-				.verifyNamesOfTheProducts(nameOfTheItems);
-	}
-
+	  @Description("Click on category(except the last level) & verifies names of all categories")
+	  @Test(groups={"regression"},dataProvider="SearchV2",dataProviderClass=DataDrivenTestingFromExcel.class)
+	  @TestCaseId("{0}")
+	  public void categoryNamesExceptLastLevel(String testCaseId,@Parameter("Category Name") String categoryNameToSearch) throws Exception
+	  {
+	   
+	   String [] nameOfTheItems = homePage()
+	   .clickOnProductsLink()
+	   .clickOnSpecificCategory(categoryNameToSearch)
+	   .productsPage()
+	   .getNamesOfTheCategories();
+	   
+	   homePage()
+	   .searchText(categoryNameToSearch.trim())
+	   .clickOnSearch()
+	   .productsPage()
+	   .verifyNamesOfAllCategories(nameOfTheItems);
+	  }
+	
 	@Features("Search V2")
 	@Description("This is a test case which verifies auto suggest feature of categories.")
 	@Test(groups = { "regression" }, dataProvider = "SearchV2", dataProviderClass = DataDrivenTestingFromExcel.class)
