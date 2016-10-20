@@ -5,7 +5,6 @@ import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.PropertyFileReader;
 import org.etna.utils.SearchDataPropertyFile;
 import org.etna.utils.TestUtility;
-import org.openqa.selenium.UnhandledAlertException;
 import org.testng.SkipException;
 
 import ru.yandex.qatools.allure.annotations.Features;

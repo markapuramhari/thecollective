@@ -1,6 +1,8 @@
 package org.etna.customer.pageobjects.savecart;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.etna.customer.pageobjects.sharepopup.SharePopUpPageObjects;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
 import org.etna.utils.TestUtility;
@@ -220,8 +222,8 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 
 	@Step("verify page name  is {0} ")
-	public SaveCartPageObjects verifyPageName(String saveCartBreadcrump) {
-		Assert.assertTrue(mySavedCartpageName.getText().trim().equalsIgnoreCase(saveCartBreadcrump),"Page name is not "+saveCartBreadcrump);
+	public SaveCartPageObjects verifyPageName(String saveCartBreadcrumb) {
+		Assert.assertTrue(mySavedCartpageName.getText().trim().equalsIgnoreCase(saveCartBreadcrumb),"Page name is not "+saveCartBreadcrumb);
 		return this;
 	}
 
@@ -557,6 +559,37 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	public SaveCartPageObjects verifyWhetherCreatedCartIsDisplayedInSaveCartListPage(String saveCartName) {
 		Waiting.explicitWaitVisibilityOfElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]"), 6);
 		Assert.assertTrue(driver.findElement(By.xpath("//a[text()[normalize-space() = '"+saveCartName+"']]")).isDisplayed(),"Created cart is not getting displayed in Save Cart List Page.");
+		return this;
+	}
+
+	public SaveCartPageObjects verifyDisplayOfShareCartLink() {
+		Waiting.explicitWaitVisibilityOfElement(shareLocator, 6);
+		Assert.assertTrue(shareLocator.isDisplayed(),"Share Cart Link is not displayed");
+		return this;
+	}
+	public SharePopUpPageObjects clickOnShareCartLink() {
+		Waiting.explicitWaitVisibilityOfElement(shareLocator, 6);
+		shareLocator.click();
+		return sharePopUp();
+	}
+
+	public SaveCartPageObjects verifyWhetherTheCartIsShared(String saveCartName) {
+		Assert.assertTrue(driver.findElement(By.xpath("//a[contains(@href,'"+saveCartName+"') and contains(@href,'SharedCart')]")).isDisplayed(),"Cart is which was shared is not displayed");
+		return this;
+	}
+
+	public SaveCartPageObjects clickOnSharedCart(String saveCartName) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[contains(@href,'"+saveCartName+"') and contains(@href,'SharedCart')]")));
+		return this;
+	}
+
+
+	public SaveCartPageObjects verifyCompleteBreadcrumb(String completeBreadcrumb) {
+		String[] str = completeBreadcrumb.split("/");
+		for(int i = 0 ; i < breadCrumbs.size() ; i++)
+		{
+			Assert.assertEquals(breadCrumbs.get(i).getText().replace("/", "").trim(), str[i]);
+		}
 		return this;
 	}
 

@@ -1116,7 +1116,7 @@ return this;
 	public SaveCartPageObjects clickOnMySaveCart() {
 		Waiting.explicitWaitVisibilityOfElement(mySaveCartLink, 3);
 		mySaveCartLink.click();
-		return new SaveCartPageObjects();
+		return saveCartPage();
 	}
 	
 	

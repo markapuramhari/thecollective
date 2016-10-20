@@ -9,6 +9,9 @@ import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.Issues;
+import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import org.etna.maincontroller.PageFactoryInitializer;
 import org.etna.utils.ApplicationSetUpPropertyFile;
@@ -97,8 +100,8 @@ public class ChangePasswordModuleTest extends PageFactoryInitializer {
 	@TestCaseId("TC_ChangePwd_04")
 	@Description("Verification of 'Change Password' with valid values")
 	public void changePassword() throws Exception {
+		
 		String newPassword = RandomGenerator.random(9, PermittedCharacters.ALPHANUMERIC);
-		System.out.println(newPassword);
 		try
 		{
 		login.login(data.getUserNameForPasswordChange(), data.getPasswordForPasswordChange());

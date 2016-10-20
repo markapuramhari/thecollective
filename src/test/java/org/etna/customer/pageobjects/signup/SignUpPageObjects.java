@@ -19,16 +19,6 @@ public class SignUpPageObjects extends PageFactoryInitializer{
 
 	ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 	
-	//mks 
-	/*@FindBy(xpath="//h4[contains(text(),'New Retail Customer')]")
-	private WebElement newRetailCustomerTabLocator;
-	
-	@FindBy(xpath="//h4[contains(text(),'New Commercial Customer')]")
-	private WebElement newCommercialCustomerTabLocator;
-
-	@FindBy(xpath="//h4[contains(text(),'First Time Ordering')]")
-	private WebElement firstTimeOrderingTabLocator;*/
-	
 	//etna
 	@FindBy(xpath="//a[contains(@href,'newRetailCustomer')]")
 	private WebElement newRetailCustomerTabLocator;

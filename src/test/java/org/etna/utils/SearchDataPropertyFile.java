@@ -407,8 +407,23 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String	passwordChangeSuccessMsg = PropertyFileReader.propertiesReader(searchData, "passwordChangeSuccessMsg");
 	
+	private String	shareInstructions = PropertyFileReader.propertiesReader(searchData, "shareInstructions");
 	
+	private String	sharePopUpHeading = PropertyFileReader.propertiesReader(searchData, "sharePopUpHeading");
 	
+	private String	errorMsgNoKeywordEntered = PropertyFileReader.propertiesReader(searchData, "errorMsgNoKeywordEntered");
+	
+	private String	validKeywordForShareCart = PropertyFileReader.propertiesReader(searchData, "validKeywordForShareCart");
+	
+	private String	alertTextForShareFunctionalityWhenUserIsNotSelected = PropertyFileReader.propertiesReader(searchData, "alertTextForShareFunctionalityWhenUserIsNotSelected");
+	
+	private String	noSearchResultsMessage = PropertyFileReader.propertiesReader(searchData, "noSearchResultsMessage");
+	
+	private String	userNameForWhichCartIsShared = PropertyFileReader.propertiesReader(searchData, "userNameForWhichCartIsShared");
+	
+	private String	passwordForWhichCartIsShared = PropertyFileReader.propertiesReader(searchData, "passwordForWhichCartIsShared");
+	
+	private String	sharedCartCompleteBreadcrumb = PropertyFileReader.propertiesReader(searchData, "sharedCartCompleteBreadcrumb");
 	
 
 	public String getCopyRightsOfUnilogText() {
@@ -1467,5 +1482,47 @@ public String getPartialPartNumber() {
 	public Object getPasswordChangeSuccessMsg() {
 	
 		return passwordChangeSuccessMsg;
+	}
+
+	public String getShareInstructions() {
+		return shareInstructions;
+	}
+
+	public String getSharePopUpHeading() {
+		
+		return sharePopUpHeading;
+	}
+
+	public String getErrorMsgNoKeywordEntered() {
+	
+		return errorMsgNoKeywordEntered;
+	}
+
+	public String getValidKeywordForShareCart() {
+		return validKeywordForShareCart;
+	}
+
+	public String getAlertTextForShareFunctionalityWhenUserIsNotSelected() {
+		
+		return alertTextForShareFunctionalityWhenUserIsNotSelected;
+	}
+
+	public String getNoSearchResultsMessage() {
+		return noSearchResultsMessage;
+	}
+
+	public String getUserNameForWhichCartIsShared() {
+		// TODO Auto-generated method stub
+		return userNameForWhichCartIsShared;
+	}
+
+	public String getPasswordForWhichCartIsShared() {
+
+		return passwordForWhichCartIsShared;
+	}
+
+	public String getSharedCartCompleteBreadcrumb() {
+		
+		return sharedCartCompleteBreadcrumb;
 	}
 }

@@ -1,6 +1,8 @@
 package org.etna.modules;
 import org.etna.dataprovider.DataDrivenTestingFromExcel;
 import org.etna.utils.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -399,35 +401,4 @@ public class APAModuleTest extends PageFactoryInitializer {
 		.approvalCartListPage()
 		.verifyDeletionOfApprovalCart(cartToBeRejected);
 	}
-	
-	/*@Features("APA Module")
-	@Description("This is a test case which verifies reject cart functionality")
-	@Test(groups={"regression"})
-	@TestCaseId("TC_APA_092")
-	public void clickingOnUpdateSelectedItemsFunctionalityWithoutSelectingAnItem() throws Exception {
-		loginModule.loginAsASuperUser();
-		homePage().logout();
-		loginModule.login(data.getGeneralUserEmailID(), data.getGeneralUserPassword());
-		homePage()
-		.searchText(data.getSearchText())
-		.clickOnSearch()
-		.productDetailsPage()
-		.clickOnAddToCartButton()
-		.myCartPage()
-		.clickOnCheckoutInMyCartPopup()
-		.clickOnSubmitCartForApproval()
-		.myProductGroupsPage()
-		.verifyAlertText(data.getAlertTextForSubmitCartForApproval())
-		.homePage()
-		.logout();
-		loginModule.loginAsASuperUser();
-		homePage()
-		.clickOnUserAccountDropdown()
-		.clickOnApprovalCartList()
-		.approvalCartListPage()
-		.clickOnLatestGeneralUserAccountLinkWhileSubmmitedCartForApproval(data.getGeneralUserEmailID())
-		.clickOnUpdateSelectedItems()
-		.myProductGroupsPage()
-		.verifyAlertText(data.getAlertTextForClickingOnUpdateSelectedItemsWithoutSelectingAnyItem());
-	}*/
 }

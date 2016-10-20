@@ -26,6 +26,7 @@ import org.etna.customer.pageobjects.purchasingagent.ManagePurchasingAgentPageOb
 import org.etna.customer.pageobjects.quickorder.QuickOrderPageObjects;
 import org.etna.customer.pageobjects.requestforquote.RequestForQuotePageObjects;
 import org.etna.customer.pageobjects.savecart.SaveCartPageObjects;
+import org.etna.customer.pageobjects.sharepopup.SharePopUpPageObjects;
 import org.etna.customer.pageobjects.signup.SignUpPageObjects;
 import org.etna.customer.pageobjects.signup.firsttimeordering.FirstTimeOrderingRegistrationPageObjects;
 import org.etna.customer.pageobjects.signup.newcommercialcustomer.CommercialCustomerRegistrationPageObjects;
@@ -122,6 +123,12 @@ public class PageFactoryInitializer extends MainController{
 	{
 		AddNewPurchasingAgentPageObjects addNewPurchasingAgentPage = PageFactory.initElements(driver,AddNewPurchasingAgentPageObjects.class);
 		return addNewPurchasingAgentPage;
+	}
+	
+	public SharePopUpPageObjects sharePopUp()
+	{
+		SharePopUpPageObjects sharePopUp = PageFactory.initElements(driver,SharePopUpPageObjects.class);
+		return sharePopUp;
 	}
 
 
