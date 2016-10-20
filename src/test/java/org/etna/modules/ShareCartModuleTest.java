@@ -25,7 +25,7 @@ public class ShareCartModuleTest extends PageFactoryInitializer {
 	public void verifySaveCartList() throws Exception{
 	
 		
-		saveCart.TC_ShoppingCart_011_CreateAndDeleteSaveCart();
+		saveCart.createAndDeleteNewSavedCart();
 	}
 	
 	@Features("Share Cart Module")

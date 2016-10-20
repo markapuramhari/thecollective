@@ -122,6 +122,9 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath="//td[@data-th='Per Unit Price']/following-sibling::td[1]/strong")
 	private WebElement uomChosenLocator;
 	
+	@FindAll(value={@FindBy(xpath="//dl[contains(@class,'saveCart_dropdown')]/descendant::ul/descendant::a")})
+	private List<WebElement> saveCartDropdownListLocator;
+	
 	
 	@Step("Click on checkout in my cart pop up")
 	public MyCartPageObjects clickOnCheckoutInMyCartPopup() throws Exception {
@@ -265,13 +268,6 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	@Step("Click on save cart button")
-	public MyCartPageObjects clickOnSaveCart() {
-		Waiting.explicitWaitVisibilityOfElement(saveCartButton, 6);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();",saveCartButton);
-		
-		return this;
-	}
 
 
 	@Step("enter {0} as save cart name")
@@ -538,8 +534,8 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 		
-		public MyCartPageObjects clickOnCloseButtonInMyCartPopUp() {
-			Waiting.explicitWaitVisibilityOfElement(clickOnCloseLocator, 5);
+		public MyCartPageObjects clickOnCloseButtonInMyCartPopUp() throws InterruptedException {
+			Thread.sleep(1500);
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();",clickOnCloseLocator);
 			return this;
 		}
@@ -572,5 +568,19 @@ public class MyCartPageObjects extends PageFactoryInitializer {
 			  Assert.assertTrue(driver.findElement(By.xpath("//dl[contains(@class,'dropdown')]/descendant::li/a[text()='"+saveCartName+"']")).isDisplayed(),"Save Cart that was created is not getting displayed in the Save Cart Button dropdown.");
 			  return this;
 			 }
+
+		public MyCartPageObjects clickOnTheCreatedCartFromTheSaveCartDropdownList(String saveCartName) {
+			Waiting.explicitWaitVisibilityOfElements(saveCartDropdownListLocator, 5);
+			for(WebElement saveCartDropdownList : saveCartDropdownListLocator)
+			{
+				if(saveCartDropdownList.getText().trim().equals(saveCartName))
+				{
+					saveCartDropdownList.click();
+					break;
+				}
+			}
+	
+			return this;
+		}
 	
 }

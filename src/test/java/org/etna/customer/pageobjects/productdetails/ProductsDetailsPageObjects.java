@@ -551,7 +551,6 @@ ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 
 	@Step("click on add to cart button")
 	public ProductsDetailsPageObjects clickOnAddToCartButton() throws InterruptedException {
-		Thread.sleep(2500);
 		Waiting.explicitWaitVisibilityOfElement(addToCartButton, 10);
 		addToCartButton.click();
 		return this;

@@ -23,7 +23,6 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//h2")
 	private WebElement mySavedCartpageName;
 
-
 	@FindAll(value={@FindBy(xpath="//h3[text()='My Saved Carts']/ancestor::div[@class='accountDash cimm_halfBlockColumns']/descendant::ul")})
 	private List<WebElement> mySavedCartListFromAccounts;
 
@@ -158,7 +157,9 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@FindAll(value={@FindBy(xpath="//table[@class='cimm_siteTable cimm_pgTable rwd-table rwd-Tab']/descendant::tbody/tr")})
 	private List<WebElement> verifyItemsPerPage;
-
+	
+	@FindAll(value={@FindBy(xpath="//div[contains(@class,'cimm_tableDescSection')]/descendant::a")})
+	private List<WebElement> productNamesLocator;
 
 	@Step("click on mysavedcart ")
 	public SaveCartPageObjects clickOnMySavedCartCrumb() {
@@ -270,7 +271,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		bulkOptionsCLickLocator.click();
 		switch(bulkOption)
 		{
-		case "Delete Selected Items":
+		case "Delete Selected Items":
 			driver.findElement(By.xpath("//ul[@id='bulkActionClick']/descendant::span[text()='Delete Selected Items']")).click();
 			break;
 		case "Update Selected Items":
@@ -279,7 +280,6 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		case "Add Selected Items to Cart":
 			driver.findElement(By.xpath("//ul[@id='bulkActionClick']/descendant::span[text()='Add Selected Items to Cart']")).click();
 			break;
-		default: throw new Exception("invalid input");
 		}
 		return this;
 	}
@@ -302,9 +302,9 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	public boolean assertAlertText(String expectedAlertText) throws Exception
 	{
+		Waiting.explicitWaitForAlert(6);
 		boolean t = TestUtility.getAlertText().trim().equals(expectedAlertText);
 		TestUtility.alertAccept();
-
 		return t;
 	}
 	@Step("click on select checkbox ")
@@ -321,7 +321,7 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	}
 
-	public SaveCartPageObjects verifyBreadCrumpAfterCreation(String saveCartName, String mySaveCartBreadCrumb,String myAccountBreadcrumb) {
+	public SaveCartPageObjects verifyBreadCrumbAfterCreation(String saveCartName, String mySaveCartBreadCrumb,String myAccountBreadcrumb) {
 		Waiting.explicitWaitVisibilityOfElements(productDetailsPage().breadCrumbs, 10);
 		Assert.assertTrue(homeBreadCrumbLinkLocator.isDisplayed(),"home link is not displayed in the breadcrumb navigation");
 		Assert.assertTrue(productDetailsPage().breadCrumbs.get(productDetailsPage().breadCrumbs.size()-3).getText().replace("/", "").trim().equalsIgnoreCase(myAccountBreadcrumb.trim()),"Breadcrump is not "+myAccountBreadcrumb+". It is :"+saveCartPage().breadCrumbs.get(saveCartPage().breadCrumbs.size()-1).getText().replace("/", "").trim());
@@ -331,7 +331,13 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 	}
 
 	@Step("verify my saved cart page")
-	public SaveCartPageObjects verifyMySavedCartPage() {
+	public SaveCartPageObjects verifyMySavedCartPage() throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(sortByLocator, 4);
+		Assert.assertTrue(sortByLocator.isDisplayed(),"sortBy is not displayed.");
+		Waiting.explicitWaitVisibilityOfElement(collapseViewLocator, 4);
+		Assert.assertTrue(collapseViewLocator.isDisplayed(),"collapseView is not displayed.");
+		Waiting.explicitWaitVisibilityOfElement(itemsPerPageLocator, 4);
+		Assert.assertTrue(itemsPerPageLocator.isDisplayed(),"itemsPerPage is not displayed.");
 		Assert.assertTrue(mySavedCartpageName.isDisplayed(),"My Saved Cart page name is not displayed.");
 		Assert.assertTrue(bulkOptionsCLickLocator.isDisplayed(),"Bulk Options is not displayed.");
 		Assert.assertTrue(searchBoxLocator.isDisplayed(),"Search Box is not displayed.");
@@ -340,13 +346,6 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		Assert.assertTrue(editCartNameLocator.isDisplayed(),"editCartName is not displayed.");
 		Assert.assertTrue(deleteCartLocator.isDisplayed(),"deleteCart is not displayed.");
 		Assert.assertTrue(shareLocator.isDisplayed(),"share is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(sortByLocator, 15);
-		sortByLocator.click();
-		Assert.assertTrue(sortByLocator.isDisplayed(),"sortBy is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(itemsPerPageLocator, 15);
-		Assert.assertTrue(itemsPerPageLocator.isDisplayed(),"itemsPerPage is not displayed.");
-		Waiting.explicitWaitVisibilityOfElement(collapseViewLocator, 15);
-		Assert.assertTrue(collapseViewLocator.isDisplayed(),"collapseView is not displayed.");
 		Assert.assertTrue(itemImageLocator.isDisplayed(),"itemImage is not displayed.");
 		Assert.assertTrue(itemDescriptionLocator.isDisplayed(),"itemDescription is not displayed.");
 		Assert.assertTrue(quantityTextBoxLocator.isDisplayed(),"quantity is not displayed.");
@@ -493,27 +492,24 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 
 	@Step("verifies display of description for expand view ")
 	public SaveCartPageObjects verifyDescriptionDisplayForExpandView() throws Exception {
-		Waiting.explicitWaitVisibilityOfElement(descriptionLocator, 15);
-		Assert.assertTrue(descriptionLocator.isDisplayed());
+		Waiting.explicitWaitVisibilityOfElement(descriptionLocator, 5);
+		Assert.assertTrue(descriptionLocator.isDisplayed(),"description locator is not displayed in expand view");
 		return this;
 	}
 
 	@Step("verifies there is no display of description for collapse view ")
 	public SaveCartPageObjects verifyDescriptionDisplayForCollapseView() throws Exception {
-
+		
 		Assert.assertFalse(descriptionLocator.isDisplayed(),"Description is displayed");
 		return this;
 	}
 
 	@Step("verifies display of sort by dropdown ")
 	public SaveCartPageObjects verifySortByDropdown() throws Exception {
-		Waiting.explicitWaitVisibilityOfElement(partNumberAscLocator, 15);
+		Waiting.explicitWaitVisibilityOfElement(partNumberAscLocator, 5);
 		Assert.assertTrue(partNumberAscLocator.isDisplayed());
-		Waiting.explicitWaitVisibilityOfElement(partNumberDescLocator, 15);
 		Assert.assertTrue(partNumberDescLocator.isDisplayed());
-		Waiting.explicitWaitVisibilityOfElement(manfPartNoAscLocator, 15);
 		Assert.assertTrue(manfPartNoAscLocator.isDisplayed());
-		Waiting.explicitWaitVisibilityOfElement(manfPartNoDescLocator, 15);
 		Assert.assertTrue(manfPartNoDescLocator.isDisplayed());
 		return this;
 	}
@@ -589,6 +585,23 @@ public class SaveCartPageObjects extends PageFactoryInitializer{
 		for(int i = 0 ; i < breadCrumbs.size() ; i++)
 		{
 			Assert.assertEquals(breadCrumbs.get(i).getText().replace("/", "").trim(), str[i]);
+		}
+		return this;
+	}
+
+	public SaveCartPageObjects verifyWhetherProductsAddedAreDisplayedInTheSaveCart(String[] products) {
+		Waiting.explicitWaitVisibilityOfElements(productNamesLocator, 5);
+		for(int i = 0 ; i< products.length ; i++)
+		{
+	Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class,'cimm_tableDescSection')]/descendant::a[text()='"+products[i]+"']")).isDisplayed(),"Product name is not the same as it was while adding.");
+		}
+		return this;
+	}
+
+	public SaveCartPageObjects selectSpecificCheckbox(String[] products) {
+		for(int i = 0 ; i<products.length ; i++)
+		{
+			driver.findElement(By.xpath("//a[text()='"+products[i]+"']/ancestor::td/following-sibling::td[@data-th='select']/label")).click();
 		}
 		return this;
 	}

@@ -234,7 +234,7 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 
 	@Step("click on groups tab")
 	public MyAccountsPageObjects clickOnGroupsTab() throws Exception {
-		Thread.sleep(4000);
+		Waiting.explicitWaitVisibilityOfElement(groupsTab, 8);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",groupsTab);
 		return this;
 	}
@@ -248,8 +248,7 @@ public class MyAccountsPageObjects extends PageFactoryInitializer {
 
 	@Step("click on view more icon")
 	public MyAccountsPageObjects clickOnViewMore() throws Exception {
-		Thread.sleep(4000);
-
+		Waiting.explicitWaitVisibilityOfElement(viewMore, 8);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();",viewMore);
 		return this;
 	}

@@ -62,7 +62,7 @@ public class MyCartModuleTest extends PageFactoryInitializer{
 					.clickOnAddToCartButton()
 				.myCartPage()
 				.clickOnCheckoutInMyCartPopup()
-				.clickOnSaveCart()
+				.clickOnSaveCartButton()
 				.enterNameOfSaveCartAndAddTheProductToSaveCart(saveCartName)
 				.hitEnterForSaveCartCreation();
 				Thread.sleep(1000);

@@ -144,9 +144,9 @@ public class SearchDataPropertyFile extends MainController{
 	
 	private String expectedCartInstructions = PropertyFileReader.propertiesReader(searchData, "expectedCartInstructions");
 	
-	private String saveCartBreadcrump = PropertyFileReader.propertiesReader(searchData, "saveCartBreadcrump");
+	private String saveCartBreadcrumb = PropertyFileReader.propertiesReader(searchData, "saveCartBreadcrumb");
 	
-	private String registrationBreadCrump = PropertyFileReader.propertiesReader(searchData, "registrationBreadCrump");
+	private String registrationBreadCrumb = PropertyFileReader.propertiesReader(searchData, "registrationBreadCrumb");
 	
 	private String editContactInfoTitle = PropertyFileReader.propertiesReader(searchData, "editContactInfoTitle");
 	
@@ -813,14 +813,14 @@ public String getExpectedCartInstructions() {
 	return expectedCartInstructions;
 }
 
-public String getSaveCartBreadcrump() {
+public String getSaveCartBreadcrumb() {
 	
-	return saveCartBreadcrump;
+	return saveCartBreadcrumb;
 }
 
-public String getRegistrationBreadCrump() {
+public String getRegistrationBreadCrumb() {
 
-	return registrationBreadCrump;
+	return registrationBreadCrumb;
 }
 
 

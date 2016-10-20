@@ -58,8 +58,8 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	  homePage()
 	  .clickOnSignUpLink()
 	  .signUpPage()
-	  .verifyBreadCrump(data.getRegistrationBreadCrump())
-	  .verifyRegistrationPageName(data.getRegistrationBreadCrump())
+	  .verifyBreadCrump(data.getRegistrationBreadCrumb())
+	  .verifyRegistrationPageName(data.getRegistrationBreadCrumb())
 	  .verifyWhetherFirstTimeOrderingIsEnabledFirst()
 	  .verifyWhetherNewCommercialCustomerIsEnabledFirstAndNewRetailCustomerIsNotEnabledFirst();
 	  }
@@ -207,8 +207,8 @@ public class RegistrationModuleTest extends PageFactoryInitializer{
 	 .loginPopUp()
 	 .clickOnSignUp()
 	 .signUpPage()
-	 .verifyBreadCrump(data.getRegistrationBreadCrump())
-	 .verifyRegistrationPageName(data.getRegistrationBreadCrump())
+	 .verifyBreadCrump(data.getRegistrationBreadCrumb())
+	 .verifyRegistrationPageName(data.getRegistrationBreadCrumb())
 	 .verifyWhetherNewCommercialCustomerIsEnabledFirstAndNewRetailCustomerIsNotEnabledFirst();
 	  }
 }
