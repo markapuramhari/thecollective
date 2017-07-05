@@ -24,6 +24,10 @@ public class PDPage extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//a[@id='online-size-list']")})
 	private List<WebElement> sizeOptions;
 	
+	@FindBy(xpath="//h1[@itemprop='price']")
+	private WebElement itemPrice;
+	
+	
 	@Step("click on add to bag button")
 	public PDPage addToBageFromDetailsPage() throws InterruptedException {
 		Thread.sleep(2500);
@@ -53,6 +57,10 @@ public class PDPage extends PageFactoryInitializer{
 		sizeOptions.get(2).click();
 
 		return this;
+	}
+	public String getProductPrice() {
+		String itemPriceInPDP=itemPrice.getText().trim();
+		return itemPriceInPDP;
 	}
 
 }

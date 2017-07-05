@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Etna</groupId>
-    <artifactId>implementation.Etna</artifactId>
+    <groupId>TheCollective</groupId>
+    <artifactId>implementation.Collective</artifactId>
    	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
@@ -17,8 +17,8 @@
         <version.selenium>3.0.0</version.selenium>
          <version.slf4j>1.7.7</version.slf4j>
     </properties>
-    <name>Etna</name>
-    <description>Etna is an e commerce company that is mainly known for selling items related to plumbing</description>
+    <name>The Collective</name>
+    <description>The Collective is an e commerce application that is mainly known for selling items related fashions</description>
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->

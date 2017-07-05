@@ -2,14 +2,13 @@ package org.thecollective.pageobjects.checkout;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.thecollective.maincontroller.PageFactoryInitializer;
 import org.thecollective.utils.Waiting;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
@@ -37,6 +36,48 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	
 	@FindBy(xpath="//a[contains(.,'Add products to your cart')]")
 	private WebElement addProductsToCartLink;
+
+	@FindBy(id="cboQuantity")
+	private WebElement qtyDropdown;
+	
+	@FindAll(value={@FindBy(xpath="//select[@id='cboQuantity']/option")})
+	private List<WebElement> qtyDropdownOptions;
+	
+	@FindBy(xpath="//div[@class='discount-price-cont']/span")
+	private WebElement itemPriceAfterDiscount;
+	
+	@FindBy(xpath="//div[@class='total_price']/span")
+	private WebElement totalItemPrice;
+	
+	@FindBy(xpath="//div[@class='checkout_summary_block']//a[contains(text(),'Login to Avail')]")
+	private WebElement loginLinkInCouponsTab;
+	
+	@FindBy(id="sleCustomerMobile")
+	private WebElement usernameFieldCheckout;
+	
+	@FindBy(id="slePasswordData")
+	private WebElement passwordFieldCheckout;
+	
+	@FindBy(id="aForgotPassword")
+	private WebElement forgotPasswordLinkCheckout;
+	
+	@FindBy(name="checkoutsubmit")
+	private WebElement loginAndContinueButtonCheckout;
+	
+	@FindBy(xpath="//a[contains(text(),'SIGNUP')]")
+	private WebElement signUpLinkCheckout;
+	
+	@FindBy(id="btnSubmitGuestAddress")
+	private WebElement continueToPaymentCheckout;
+	
+	@FindBy(xpath="//td[contains(@class,'order_val')]")
+	private WebElement orderSummaryPriceInLoginSection;
+	
+	@FindBy(xpath="//a[contains(text(),'Apply Now')]")
+	private WebElement couponsLinkAfterLogin;
+	
+	
+	//===========================================================================//
 	
 	@Step("verify checkout page")
 	public CheckoutSummaryPageObjects verifyCheckoutPage(String productName) {
@@ -115,6 +156,134 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	public CheckoutSummaryPageObjects verifyEmptyCartText(String emptyCartText) {
 		Waiting.explicitWaitVisibilityOfElement(emptyCartPageText, 30);
 		Assert.assertEquals(emptyCartPageText.getText().trim(), emptyCartText);
+
+		return this;
+	}
+	//13548
+	@Step("verify qty drodown ")
+	public CheckoutSummaryPageObjects updateTheQuantity(String updatedQty) {
+		new Select(qtyDropdown).selectByVisibleText(updatedQty);;
+		
+		return this;
+	}
+	@Step("verify prosuct name {0} in checkout summary page")
+	public CheckoutSummaryPageObjects verifyProductName(String productName) 
+	{
+		Waiting.explicitWaitVisibilityOfElement(ProductTitleInCheckoutPage, 30);
+		Assert.assertEquals(ProductTitleInCheckoutPage.getText().trim().toLowerCase(), productName.trim().toLowerCase());
+		return this;
+	}
+	@Step("verify qty dropdown avaialability")
+	public CheckoutSummaryPageObjects verifyQuantityDropdown() {
+		Waiting.explicitWaitVisibilityOfElement(qtyDropdown, 30);
+		Assert.assertTrue(qtyDropdown.isDisplayed(),"qty dropdown is not displayed");
+		return this;
+	}
+	@Step("verify updated qty ")
+	public CheckoutSummaryPageObjects verifyUpdatedQuanity(String updatedQty) {
+		
+		Assert.assertEquals(new Select(qtyDropdown).getFirstSelectedOption().getText().trim(),updatedQty);
+		
+		return this;		
+	}
+	@Step("verify product price {0} which is displayed in pdp")
+	public CheckoutSummaryPageObjects verifyProductPriceBeforeUpdate(String productPrice) {
+		Assert.assertEquals(totalItemPrice.getText().trim(),productPrice.trim());
+		return this;
+	}
+	@Step("verify product price{0} after update")
+	public CheckoutSummaryPageObjects verifyUpdatedPrice(String updatedQuantity, String productPrice) {
+		//driver.navigate().refresh();
+		Waiting.explicitWaitVisibilityOfElement(totalItemPrice, 30);
+		Float actualTotalPriceAfterUpdate=Float.parseFloat(totalItemPrice.getText().replace(",", "").trim());
+		Float exptotalPriceAfterUpdate=Float.parseFloat(productPrice.replace(",", "").trim());
+		int updatedQty=Integer.parseInt(updatedQuantity.trim());
+		Assert.assertEquals(actualTotalPriceAfterUpdate, exptotalPriceAfterUpdate*updatedQty);
+		
+
+		return this;
+	}
+	@Step("verify coupons tab before login")
+	public CheckoutSummaryPageObjects verifyCouponsTabBeforeLogin() 
+		{
+			Assert.assertTrue(assertVerifyLoginLink(), "Login link is not available in coupons tab");
+			return this;
+		}
+	private boolean assertVerifyLoginLink() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		try{
+			if(loginLinkInCouponsTab.isDisplayed())
+				{
+				return true;
+				}
+			
+			}
+		catch(Exception e)
+			{
+				return false;
+			}
+		return false;
+	}
+	@Step("click on Login link in summary page")
+	public CheckoutSummaryPageObjects clickOnLoginLinkInSummaryPage()
+	{
+		loginLinkInCouponsTab.click();
+		return this;
+	}
+	@Step("verify login page in summary page")
+	public CheckoutSummaryPageObjects verifyLoginPageInCheckoutPage(String loginPageName) throws InterruptedException 
+	{
+		loginPage().verifyLoginPage(loginPageName);
+
+		return this;
+	}
+	@Step("verify Login section by clicking on continue payments link")
+	public CheckoutSummaryPageObjects verifyLoginSectionInCheckoutPage() {
+		Waiting.explicitWaitVisibilityOfElement(usernameFieldCheckout, 30);
+		Assert.assertTrue(usernameFieldCheckout.isDisplayed(), "user name field is not displayed.");
+		Assert.assertTrue(passwordFieldCheckout.isDisplayed(), "password field is not displayed.");
+		Assert.assertTrue(forgotPasswordLinkCheckout.isDisplayed(), "forgot password link is not displayed.");
+		Assert.assertTrue(loginAndContinueButtonCheckout.isDisplayed(), "login and continue Button is not displayed.");
+		Assert.assertTrue(signUpLinkCheckout.isDisplayed(), "signup Link is not displayed.");
+		Assert.assertTrue(continueToPaymentCheckout.isDisplayed(), "continue to payment link is not displayed.");
+		
+		
+		
+		return this;
+	}
+	@Step("verify login functionality from checkout page")
+	public CheckoutSummaryPageObjects loginToSiteFromCheckoutPage(String userName, String password) {
+		Waiting.explicitWaitVisibilityOfElement(usernameFieldCheckout, 30);
+		usernameFieldCheckout.clear();
+		usernameFieldCheckout.sendKeys(userName);
+		passwordFieldCheckout.clear();
+		passwordFieldCheckout.sendKeys(password);
+		loginAndContinueButtonCheckout.click();
+
+		return this;
+	}
+	@Step("verify coupons tab after login")
+	public CheckoutSummaryPageObjects verifyCouponsTabAfterLogin() {
+		Assert.assertTrue(couponsLinkAfterLogin.isEnabled(),"coupons link is not enabled");
+
+		return this;
+	}
+	@Step("verify order summary price in checkout login page")
+	public CheckoutSummaryPageObjects verifyOrdrSummaryPrice(String productPrice) {
+		Assert.assertEquals(orderSummaryPriceInLoginSection.getText().trim(), productPrice.trim());
+		
+		return this;
+	}
+	@Step("click on coupons link in checkout page")
+	public CheckoutSummaryPageObjects clickOnCouponsLink() {
+		Waiting.explicitWaitElementToBeClickable(couponsLinkAfterLogin, 30);
+		couponsLinkAfterLogin.click();
+
+		return this;
+	}
+	@Step("verify coupons page")
+	public CheckoutSummaryPageObjects verifyCouponsSection() {
+
 
 		return this;
 	}

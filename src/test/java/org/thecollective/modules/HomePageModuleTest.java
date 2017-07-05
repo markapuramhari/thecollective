@@ -1,4 +1,5 @@
 package org.thecollective.modules;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -177,7 +178,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 			
 		  }
 	
-	@BeforeTest
+	/*@BeforeTest
 	public void beforetest1(){
 		System.out.println("beforetest1 execution");
 			}
@@ -217,5 +218,10 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	@Test
 	public void test2(){
 		System.out.println("test2 execution");
-			}
+
+			}*/
+	
+
+	
+	
 }

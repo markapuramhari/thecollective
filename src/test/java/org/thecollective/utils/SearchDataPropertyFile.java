@@ -37,6 +37,10 @@ public class SearchDataPropertyFile extends MainController{
 	private String expSearchResultsPageTitle=PropertyFileReader.propertiesReader(searchData, "expSearchResultsPageTitle");
 
 	private String emptyCartText=PropertyFileReader.propertiesReader(searchData, "emptyCartText");
+
+	private String updatedQuantity=PropertyFileReader.propertiesReader(searchData, "updatedQuantity");
+
+	private String loginPageName=PropertyFileReader.propertiesReader(searchData, "loginPageName");
 	
 	
 	
@@ -108,6 +112,14 @@ public class SearchDataPropertyFile extends MainController{
 	public String getEmptyCartText() {
 		
 		return emptyCartText;
+	}
+
+	public String getUpdatedQuantity() {
+		return updatedQuantity;
+	}
+
+	public String getLoginPageNameText() {
+		return loginPageName;
 	}
 
 	

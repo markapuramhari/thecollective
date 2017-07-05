@@ -1,20 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ETNA">
-	<listeners>
-        	<listener class-name="org.etna.maincontroller.MainController"/>
-        	<listener class-name="org.etna.utils.ReportGenerator"/>
-  	</listeners>
-  <test name="Regression Testing">
+<suite name="Suite">
   
-  <groups>
-  		<run>
-  			<include name="regression"/>
-  		</run>
-  	</groups>
-  	
-  	
-    <classes>
-      <class name="org.etna.modules.SaveCartModuleTest"/>
+  <listeners>
+  <listener class-name="org.thecollective.maincontroller.MainController"/>
+      <listener class-name="org.thecollective.utils.ReportGenerator"/>
+  </listeners>
+  <test name="Test">
+    <classes>   
+      <class name="org.thecollective.modules.HomePageModuleTest"/>
+     <class name="org.thecollective.modules.MyAccountModuleTest"/> 
+     <class name="org.thecollective.modules.CheckoutModuleTest"/> 
+      <!--  <methods>
+      <include name="test1"></include>
+      <include name="test2"></include>
+      </methods> -->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

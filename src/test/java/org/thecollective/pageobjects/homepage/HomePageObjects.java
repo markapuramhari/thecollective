@@ -22,6 +22,8 @@ import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.TestUtility;
 import org.thecollective.utils.Waiting;
 
+import com.google.common.base.Verify;
+
 import ru.yandex.qatools.allure.annotations.Step;
 	
 	/*
@@ -58,6 +60,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 
 		 @FindBy(xpath="//a[@title='Login']")
 		 private WebElement loginLink;
+		 
+		 @FindBy(xpath="//span[contains(.,'Logout')]")
+		 private WebElement logoutLink;
 		 
 		@FindBy(xpath="//a[contains(text(),'My Account')]")
 		private WebElement myAccountOption;
@@ -101,6 +106,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 		
 		@FindBy(xpath="//a[@title='My Bag']")
 		private WebElement myBagIcon;
+		
+		@FindAll(value={@FindBy(xpath="//a[contains(@onclick,'L3 click')]")})
+		private List<WebElement> ASMegaLinks;
+		
+		@FindAll(value={@FindBy(xpath="//div[@class='product-views-container']")})
+		private List<WebElement> images;
+		
+		
+		
 		//=============================================================
 	@Step("verify product logo")
 	 public HomePageObjects verifyLogo(){
@@ -386,6 +400,16 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 		return this;
 	}
+	@Step("logout from the site")
+	public HomePageObjects logout() throws InterruptedException 
+	{
+		new Actions(driver).moveToElement(userIcon).moveToElement(logoutLink).click().build().perform();
+		
+		Thread.sleep(2500);
+
+		return this;
+	}
+	
 		
 	
 	}
