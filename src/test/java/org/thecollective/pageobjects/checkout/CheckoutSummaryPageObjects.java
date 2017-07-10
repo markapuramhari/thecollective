@@ -282,10 +282,9 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 	@Step("verify coupons page")
-	public CheckoutSummaryPageObjects verifyCouponsSection() {
+	public CheckoutSummaryPageObjects verifyCouponsSection() throws Exception {
 
-
-		return this;
+		throw new Exception("having issue in coupons tab, needs to write the code");
 	}
 
 }

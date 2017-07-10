@@ -409,6 +409,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 		return this;
 	}
+	@Step("click on my orders link")
+	public HomePageObjects clickOnMyOrders() throws InterruptedException {
+		new Actions(driver).moveToElement(userIcon).moveToElement(myOrdersHeaderLink).click().build().perform();
+		
+		Thread.sleep(2500);
+		return this;
+	}
 	
 		
 	

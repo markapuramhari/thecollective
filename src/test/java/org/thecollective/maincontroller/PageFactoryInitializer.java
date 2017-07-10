@@ -3,6 +3,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.thecollective.pageobjects.checkout.CheckoutPaymentPageObjects;
 import org.thecollective.pageobjects.checkout.CheckoutShippingPageObjects;
 import org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects;
+import org.thecollective.pageobjects.checkout.OrderConfirmationPageObjects;
 import org.thecollective.pageobjects.homepage.HomePageObjects;
 import org.thecollective.pageobjects.homepage.StoresPageObjects;
 import org.thecollective.pageobjects.listpage.ListPageObjects;
@@ -58,5 +59,10 @@ public class PageFactoryInitializer extends MainController{
 		CheckoutPaymentPageObjects payment=PageFactory.initElements(driver, CheckoutPaymentPageObjects.class);
 		
 		return payment;
+	}
+	public OrderConfirmationPageObjects orderConfirmation()
+	{
+		OrderConfirmationPageObjects confirmation=PageFactory.initElements(driver, OrderConfirmationPageObjects.class);
+		return confirmation;
 	}
 }
