@@ -44,6 +44,7 @@ public class CheckoutPaymentPageObjects extends PageFactoryInitializer{
 	}
 	@Step("select {0} payment option from the list")
 	public CheckoutPaymentPageObjects selectPaymentMethod(String expPaymentOption) {
+
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		try{
 		if(payuCardPaymentLocaror.get(0).isDisplayed())
@@ -53,6 +54,7 @@ public class CheckoutPaymentPageObjects extends PageFactoryInitializer{
 		}
 		}catch(Exception e)
 		{
+
 			driver.navigate().refresh();
 			selectPaymentMethod(expPaymentOption);
 			

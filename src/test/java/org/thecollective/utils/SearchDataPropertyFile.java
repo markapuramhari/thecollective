@@ -48,7 +48,9 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String thankingMessage=PropertyFileReader.propertiesReader(searchData, "thankingMessage");
 
+
 	private String expCouponsTabOptions=PropertyFileReader.propertiesReader(searchData, "couponsTabOptions");
+
 	
 	
 	
@@ -150,10 +152,11 @@ public class SearchDataPropertyFile extends MainController{
 		return thankingMessage;
 	}
 
+
 	public String getCouponsTabOptions() {
 		
 		return expCouponsTabOptions;
 	}
 
-	
+
 }
