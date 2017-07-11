@@ -41,6 +41,14 @@ public class SearchDataPropertyFile extends MainController{
 	private String updatedQuantity=PropertyFileReader.propertiesReader(searchData, "updatedQuantity");
 
 	private String loginPageName=PropertyFileReader.propertiesReader(searchData, "loginPageName");
+
+	private String getMaxPriceForCod=PropertyFileReader.propertiesReader(searchData, "maxPriceForCod");
+
+	private String getExpPaymentMethod;
+
+	private String thankingMessage=PropertyFileReader.propertiesReader(searchData, "thankingMessage");
+
+	private String expCouponsTabOptions=PropertyFileReader.propertiesReader(searchData, "couponsTabOptions");
 	
 	
 	
@@ -120,6 +128,31 @@ public class SearchDataPropertyFile extends MainController{
 
 	public String getLoginPageNameText() {
 		return loginPageName;
+	}
+
+	public String getMaxAllowedPriceForCod() {
+		
+		return getMaxPriceForCod;
+	}
+
+	public String getPaymentMethod() {
+		
+		return getExpPaymentMethod;
+	}
+
+	public String setPaymentMethod(String expPaymentMethod) {
+		
+		return this.getExpPaymentMethod=expPaymentMethod;
+	}
+
+	public String getThankingMessage() {
+		
+		return thankingMessage;
+	}
+
+	public String getCouponsTabOptions() {
+		
+		return expCouponsTabOptions;
 	}
 
 	

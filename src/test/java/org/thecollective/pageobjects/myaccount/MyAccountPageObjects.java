@@ -1,5 +1,8 @@
 package org.thecollective.pageobjects.myaccount;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -63,6 +66,14 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 		Waiting.explicitWaitVisibilityOfElement(recentOrdersTabHeader, 20);
 		Assert.assertTrue(recentOrdersTabHeader.getText().contains("Recent"), "Invalid tab name");
 
+		return this;
+	}
+
+	@Step("verify recently placed order number")
+	public MyAccountPageObjects verifyOrderNumber(String orderNumber) 
+	{
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='recent_order']//a[contains(@id,'"+orderNumber+"')]")).isDisplayed(), "order number is not shown on recenty orders page");
 		return this;
 	}
 

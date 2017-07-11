@@ -2,6 +2,8 @@ package org.thecollective.pageobjects.checkout;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -282,10 +284,16 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 	@Step("verify coupons page")
-	public CheckoutSummaryPageObjects verifyCouponsSection() {
-
-
+	public CheckoutSummaryPageObjects verifyCouponsSection(String couponsTabOptions) throws Exception {
+		String options[]=couponsTabOptions.split(",");
+		List<WebElement> e=driver.findElements(By.xpath("//ul[contains(@class,'checkout_cart_tabs')]//a"));
+		for(int i=0;i>options.length;i++){
+			
+			Assert.assertEquals(e.get(i).getText().trim(), options[i].trim());
+		
+		}
+		
 		return this;
 	}
-
+	
 }

@@ -40,6 +40,12 @@
 	<artifactId>monte-repack</artifactId>
 	<version>1.0.1</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.8.9</version>
+</dependency>
 	
     <dependency>
   <groupId>org.testng</groupId>

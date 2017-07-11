@@ -1,6 +1,7 @@
 package org.thecollective.pageobjects.pdp;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,8 @@ public class PDPage extends PageFactoryInitializer{
 	@FindBy(xpath="//h1[@itemprop='price']")
 	private WebElement itemPrice;
 	
+	@FindBy(xpath="//div[contains(@class,'online-size-collective')]/button")
+	private WebElement sizeDropdownLocator;
 	
 	@Step("click on add to bag button")
 	public PDPage addToBageFromDetailsPage() throws InterruptedException {
@@ -51,9 +54,10 @@ public class PDPage extends PageFactoryInitializer{
 	}
 	@Step("select size from listd options")
 	public PDPage selectSize() throws InterruptedException {
-		//Waiting.explicitWaitVisibilityOfElements(sizeOptions, 30);
-		Thread.sleep(2500);
-		driver.findElement(By.xpath("//div[contains(@class,'online-size-collective')]/button")).click();
+		Waiting.explicitWaitVisibilityOfElement(sizeDropdownLocator, 30);
+		Thread.sleep(3500);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		sizeDropdownLocator.click();
 		sizeOptions.get(2).click();
 
 		return this;

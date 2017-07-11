@@ -28,12 +28,21 @@ public class ListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//div[contains(@class,'products_list_item')]")})
 	private List<WebElement> listedItems;
 	
+	@FindAll(value={@FindBy(xpath="//div[contains(@class,'product-price')]/span")})
+	private List<WebElement> listedItemsPrice;
 	
+	@FindBy(xpath="//div[@class='custom_pagination_inner']//a[@class='nextpageupdate']")
+	private WebElement nextPaginationBottom;
+	
+	
+	
+	
+	//===================================================
 	@Step("verify product list page")
-	public ListPageObjects verifyListedProducts() {
-		
+	public ListPageObjects verifyListedProducts() throws Exception {
+			throw new Exception("needs to write the code for verification of listed items");
 
-		return this;
+		
 	}
 
 	public ListPageObjects verifyBreadcrumbs(String brandName)
@@ -86,6 +95,160 @@ public class ListPageObjects extends PageFactoryInitializer{
 		Thread.sleep(3000);
 
 		return this;
+	}
+	@Step("click on a product for cod order")
+	public ListPageObjects clickOnProductForCod(String orderType,String maxPriceForCod) throws Exception {
+		Assert.assertTrue(assertVerifyItemsAvailability(), "items are not displayed in product list page");
+		for(int i=0;i<listedItems.size();i++)
+		{
+			Double expPrice=Double.parseDouble(maxPriceForCod);
+			Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+		if(actPrice<expPrice)
+		{
+			listedItems.get(i).click();
+			break;
+		}else{
+			if(nextPaginationBottom.isDisplayed())
+			{
+			nextPaginationBottom.click();
+			Thread.sleep(4000);
+			clickOnProductForCod(orderType, maxPriceForCod);
+			}else
+			{
+				throw new Exception("Please select other category to place an order for COD option");
+			}
+		}
+		}
+			
+			/*switch(orderType)
+			{
+			case "Cash on Delivery":
+				for(int i=0;i<listedItems.size();i++)
+				{
+					Double expPrice=Double.parseDouble(maxPriceForCod);
+					Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+				if(actPrice<expPrice)
+				{
+					listedItems.get(i).click();
+					break;
+				}else{
+					if(nextPaginationBottom.isDisplayed())
+					{
+					nextPaginationBottom.click();
+					Thread.sleep(4000);
+					clickOnProductForCod(orderType, maxPriceForCod);
+					}else
+					{
+						throw new Exception("Please select other category to place an order for COD option");
+					}
+				}
+				}
+				break;
+			case "Credit Card":
+				for(int i=0;i<listedItems.size();i++)
+				{
+					Double expPrice=Double.parseDouble(maxPriceForCod);
+					Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+				if(actPrice>expPrice)
+				{
+					listedItems.get(i).click();
+					break;
+				}else{
+					if(nextPaginationBottom.isDisplayed())
+					{
+					nextPaginationBottom.click();
+					Thread.sleep(4000);
+					clickOnProductForCod(orderType, maxPriceForCod);
+					}else {
+						throw new Exception("Please select other category to place an order for COD option");
+					}
+				}
+				}
+				break;
+			case "Debit Card":
+				for(int i=0;i<listedItems.size();i++)
+				{
+					Double expPrice=Double.parseDouble(maxPriceForCod);
+					Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+				if(actPrice>expPrice)
+				{
+					listedItems.get(i).click();
+					break;
+				}else{
+					if(nextPaginationBottom.isDisplayed())
+					{
+					nextPaginationBottom.click();
+					Thread.sleep(4000);
+					clickOnProductForCod(orderType, maxPriceForCod);
+					}else {
+						throw new Exception("Please select other category to place an order for COD option");
+					}
+				}
+				}
+				break;
+			case "Net Banking":
+				for(int i=0;i<listedItems.size();i++)
+				{
+					Double expPrice=Double.parseDouble(maxPriceForCod);
+					Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+				
+				if(actPrice>expPrice)
+				{
+					listedItems.get(i).click();
+					break;
+				}else{
+					if(nextPaginationBottom.isDisplayed())
+					{
+					nextPaginationBottom.click();
+					Thread.sleep(4000);
+					clickOnProductForCod(orderType, maxPriceForCod);
+					}else {
+						throw new Exception("Please select other category to place an order for COD option");
+					}
+				}
+				}
+				break;
+			case "Wallet":
+				for(int i=0;i<listedItems.size();i++)
+				{
+					Double expPrice=Double.parseDouble(maxPriceForCod);
+					Double actPrice=Double.parseDouble(listedItemsPrice.get(i).getText().replace(",","").trim());
+				if(actPrice>expPrice)
+				{
+					listedItems.get(i).click();
+					break;
+				}else{
+					if(nextPaginationBottom.isDisplayed())
+					{
+					nextPaginationBottom.click();
+					Thread.sleep(4000);
+					clickOnProductForCod(orderType, maxPriceForCod);
+					}else {
+						throw new Exception("Please select other category to place an order for COD option");
+					}
+				}
+				
+			}
+			
+				break;
+			
+		}
+*/
+		return this;
+	}
+
+	private boolean assertVerifyItemsAvailability() {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		try{
+			if(listedItems.get(0).isDisplayed()){
+				return true;
+			}
+			
+		}catch(Exception e)
+		{
+			return false;
+		}
+		return false;
 	}
 	
 	
