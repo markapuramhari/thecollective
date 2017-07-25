@@ -11,6 +11,8 @@
       <class name="org.thecollective.modules.HomePageModuleTest"/>
      <class name="org.thecollective.modules.MyAccountModuleTest"/> 
      <class name="org.thecollective.modules.CheckoutModuleTest"/> 
+     <class name="org.thecollective.modules.BrandsModuleTest"/> 
+     
       <!--  <methods>
       <include name="test1"></include>
       <include name="test2"></include>

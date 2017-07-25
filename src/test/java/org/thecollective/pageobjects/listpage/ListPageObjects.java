@@ -40,8 +40,16 @@ public class ListPageObjects extends PageFactoryInitializer{
 	//===================================================
 	@Step("verify product list page")
 	public ListPageObjects verifyListedProducts() throws Exception {
-			throw new Exception("needs to write the code for verification of listed items");
-
+			//throw new Exception("needs to write the code for verification of listed items");
+	Assert.assertTrue(listedItems.get(0).isDisplayed(),"products are not available");
+			return this;
+		
+	}
+	@Step("verify product list page")
+	public boolean verifyListedProduct() throws Exception {
+	Waiting.explicitWaitVisibilityOfElements(listedItems, 30);
+	Assert.assertTrue(listedItems.get(0).isDisplayed(),"products are not available");
+			return true;
 		
 	}
 

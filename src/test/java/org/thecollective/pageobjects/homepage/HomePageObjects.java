@@ -22,8 +22,6 @@ import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.TestUtility;
 import org.thecollective.utils.Waiting;
 
-import com.google.common.base.Verify;
-
 import ru.yandex.qatools.allure.annotations.Step;
 	
 	/*
@@ -64,6 +62,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 @FindBy(xpath="//span[contains(.,'Logout')]")
 		 private WebElement logoutLink;
 		 
+		 @FindBy(xpath="//li[@id='mencollection']/a")
+		 private WebElement menHeaderLink;
+		 
+		 @FindBy(xpath="//li[@id='womencollection']/a")
+		 private WebElement womenHeaderLink;
+		 
+		
 		@FindBy(xpath="//a[contains(text(),'My Account')]")
 		private WebElement myAccountOption;
 		
@@ -415,6 +420,57 @@ import ru.yandex.qatools.allure.annotations.Step;
 		
 		Thread.sleep(2500);
 		return this;
+	}
+	@Step("Mouse hover over on Men's link")
+	public HomePageObjects mouseHoverOverOnMenLink() {
+		new Actions(driver).moveToElement(menHeaderLink);
+
+		return this;
+	}
+	@Step("Mouse hover over on women's link")
+	public HomePageObjects mouseHoverOverOnWomenLink() {
+		new Actions(driver).moveToElement(womenHeaderLink);
+
+		return this;
+	}
+	@Step("click on view all brands link")
+	public HomePageObjects clickOnViewAllBrandsLink(String gender) throws InterruptedException {
+		//Assert.assertTrue(assertVerifyViewAllBrandsLink(gender), "view All brands link is not displayed");
+		clickOnGenderViewAllBrandsLink(gender);
+		return this;
+	}
+	@Step("click view all brands link for {0} category")
+	public HomePageObjects clickOnGenderViewAllBrandsLink(String gender) throws InterruptedException {
+		WebElement e=driver.findElement(By.xpath("//a[text()='"+gender+"']/following-sibling::div//a[contains(text(),'View All Brands')]"));
+		switch(gender){
+		
+		case "Women":
+			action.moveToElement(womenHeaderLink).moveToElement(e).click().build().perform();
+			//action.click().build().perform();
+			//((JavascriptExecutor)driver).executeScript("arguments[0].click()", e)).build().perform();
+			Thread.sleep(2500);
+			break;
+		case "Men":
+			action.moveToElement(menHeaderLink).moveToElement(e).click().build().perform();
+			//action.moveToElement(menHeaderLink).moveToElement((WebElement) ((JavascriptExecutor)driver).executeScript("arguments[0].click()", e)).build().perform();
+			Thread.sleep(2500);
+			break;
+		}
+		
+		return this;
+		
+	}
+	private boolean assertVerifyViewAllBrandsLink(String gender) {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		try{
+			if(driver.findElement(By.xpath("//a[text()='"+gender+"']/following-sibling::div//a[contains(text(),'View All Brands')]")).isDisplayed())
+			{
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}
+		return false;
 	}
 	
 		

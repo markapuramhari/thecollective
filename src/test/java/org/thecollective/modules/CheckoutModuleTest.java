@@ -419,6 +419,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyPaymentMethod(expPaymentMethod)
 		.selectPaymentMethod(expPaymentMethod)
 		.clickOnSubmitOrderButton();
+		cardPayment().enterCardDetails(data.cardDetails());
 		String orderNumber=orderConfirmation()
 		.verifyOrderConfirmationPage(data.getThankingMessage())
 		.getOrderNumber();

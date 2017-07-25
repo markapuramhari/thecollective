@@ -1,2 +1,2 @@
-cd E:/Chinna/Project/theCollective
+cd ..
 mvn site

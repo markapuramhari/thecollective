@@ -27,14 +27,29 @@
             <artifactId>joda-time</artifactId>
             <version>2.9.4</version>
         </dependency>
-    
-    
+        
 	 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.7.0</version>
   </dependency>
-  
+  <dependency>
+    <groupId>com.jayway.restassured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>2.3.4</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+<dependency>
+    <groupId>javax.ws.rs</groupId>
+    <artifactId>javax.ws.rs-api</artifactId>
+    <version>2.0</version>
+</dependency>
+
+<dependency>
+	<groupId>org.codehaus.groovy</groupId>
+	<artifactId>groovy-all</artifactId>
+	<version>2.3.5</version>
+</dependency>
     <dependency>
 	<groupId>com.pojosontheweb</groupId>
 	<artifactId>monte-repack</artifactId>
@@ -53,7 +68,12 @@
   <version>6.9.10</version>
   <scope>test</scope>
 </dependency>
-
+<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r05</version>
+		</dependency>
 
     <dependency>
 	<groupId>com.jayway.restassured</groupId>
@@ -90,6 +110,13 @@
 	<artifactId>zt-zip</artifactId>
 	<version>1.7</version>
 	</dependency>
+	
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>16.0.1</version>
+    </dependency>
+
  <!-- java mail -->
     <dependency>
 	<groupId>javax.mail</groupId>
@@ -215,6 +242,12 @@
                	 <suiteXmlFiles>
                 	<suiteXmlFile>testng.xml</suiteXmlFile>
                	 </suiteXmlFiles>
+               	 <systemProperties>
+							<property>
+								<name>baseURL</name>
+								<value>${baseURL}</value>
+							</property>
+						</systemProperties>
                     <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</argLine>
                 </configuration>
                 <dependencies>

@@ -1,2 +1,2 @@
-cd E:/UnilogProjects/template
-mvn clean install
+cd ..
+mvn clean test
