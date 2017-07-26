@@ -55,7 +55,6 @@ public class BrandsModuleTest extends PageFactoryInitializer{
 	@Test
 	public void restCallForBrandDirectory() throws Exception{
 		verifyProductsForMeCategory();
-		
 		verifyProductsForWomenCategory();
 	
 		
