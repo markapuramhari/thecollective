@@ -119,7 +119,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  {
 		homePage()
 		.clickOnSearchIcon()
-		.enterSearchData()
+		.enterSearchData("shirts")
 		.listPage()
 		.verifySearchResultsPage()
 		.verifyPageTitle();
@@ -133,7 +133,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		  {
 			homePage()
 			.clickOnSearchIcon()
-			.enterSearchData()
+			.enterSearchData("shirts")
 			.listPage()
 			.verifyInvalidSearchResultsPage()
 			.verifyPageTitle();

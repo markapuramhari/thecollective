@@ -19,6 +19,9 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 	@FindBy(tagName="h1")
 	private WebElement orderHistoryPageName;
 	
+	@FindBy(xpath="//span[contains(text(),'MY ADDRESSES')]")
+	private WebElement myAddressesTab;
+	
 	@FindBy(xpath="//a[@id='pastorder']")
 	private WebElement pastOrdersTabHeader;
 	
@@ -74,6 +77,39 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 	{
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='recent_order']//a[contains(@id,'"+orderNumber+"')]")).isDisplayed(), "order number is not shown on recenty orders page");
+		return this;
+	}
+
+
+	@Step("click on my addresses tab")
+	public MyAccountPageObjects clickOnMyAddressTab() throws InterruptedException {
+		Assert.assertTrue(assertVerifyMyAddressesTab(),"my addresses tab is not displayed");
+		myAddressesTab.click();
+		Thread.sleep(2000);
+		return this;
+	}
+
+
+	private boolean assertVerifyMyAddressesTab() {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		try{
+			if(myAddressesTab.isDisplayed())
+			{
+				return true;
+			}
+		}catch(Exception e)
+		{
+			return false;
+		}
+
+		
+		return false;
+	}
+
+	@Step("verify my addresses page")
+	public MyAccountPageObjects verifyMyAddressesPage() {
+		
+
 		return this;
 	}
 

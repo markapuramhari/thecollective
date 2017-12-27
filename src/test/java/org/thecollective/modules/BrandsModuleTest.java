@@ -2,6 +2,10 @@ package org.thecollective.modules;
 
 import java.util.List;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.security.UserAndPassword;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.thecollective.maincontroller.PageFactoryInitializer;
 
@@ -11,11 +15,10 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class BrandsModuleTest extends PageFactoryInitializer{
 	
-	
-	
 	@Description("verify view all brands link")
 	@Test
 	public void verifyViewAllBrandsLinkforMen() throws InterruptedException{
+		
 		homePage()
 		.clickOnViewAllBrandsLink("Men")
 		.brandsPage().verifyBrandDirectoryPage();
@@ -43,23 +46,38 @@ public class BrandsModuleTest extends PageFactoryInitializer{
 	}
 	@Description("verify view all brands link for men's category")
 	@Test
-	public void verifyProductsForMeCategory() throws Exception{
+	public void verifyProductsForMenCategory() throws Exception{
 		homePage()
-		.clickOnViewAllBrandsLink("Men")
-		.brandsPage()
+		.clickOnViewAllBrandsLink("Men");
+		driver.get("https://preprod.thecollective.in/brandautomation");
+		brandsPage()		
 		.verifyBrandDirectoryPage();
 		String selectedGenderId=brandsPage().selectGender("Men");
 		List<String> selectedCategoryCode=brandsPage().selectCategory(selectedGenderId,"Men");
 				
 	}
 	@Test
-	public void restCallForBrandDirectory() throws Exception{
-		verifyProductsForMeCategory();
+	public void restCallForBrandDirectory() throws Exception
+	{
+		verifyProductsForMenCategory();
 		verifyProductsForWomenCategory();
 	
 		
 	}
+	@Test
+	public void checkAllStaticBrandsMen() throws InterruptedException
+	{
+	homePage()
+	.clickOnMenBrandLinks();
 	
+	}
+	@Test
+	public void checkAllStaticBrandsWomen() throws InterruptedException
+	{
+	homePage()
+	.clickOnWomenBrandLinks();
+	
+	}
 	
 
 }

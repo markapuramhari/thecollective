@@ -16,7 +16,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 	import org.thecollective.maincontroller.PageFactoryInitializer;
 import org.thecollective.pageobjects.myaccount.MyAccountPageObjects;
-import org.thecollective.pageobjects.pdp.PDPage;
 import org.thecollective.utils.ApplicationSetUpPropertyFile;
 	import org.thecollective.utils.SearchDataPropertyFile;
 import org.thecollective.utils.TestUtility;
@@ -37,7 +36,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 Actions action = new Actions(driver);
 		 
 		 @FindBy(xpath="//img[contains(@src,'tc-logo.jpg')]")
-		private WebElement logo;
+		 private WebElement logo;
 		 
 		 @FindBy(xpath="//li[@class='search-icon']")
 		 private WebElement searchIcon;
@@ -46,8 +45,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 private WebElement searchInputTextField;
 		 
 		 
-		
-		 @FindAll(value={@FindBy(xpath="//nav[contains(@class,'navbar')]/descendant::ul")})
+		@FindAll(value={@FindBy(xpath="//nav[contains(@class,'navbar')]/descendant::ul")})
 		 private List<WebElement> headerLinks;
 		 
 		 @FindAll(value={@FindBy(xpath="//li[contains(@class,'menuonly')]//a")})
@@ -68,6 +66,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 @FindBy(xpath="//li[@id='womencollection']/a")
 		 private WebElement womenHeaderLink;
 		 
+		 @FindBy(xpath="//a[contains(@class,'store-icon')]/span[contains(text(),'Stores')]")
+		 private WebElement storeLocatorLink;
 		
 		@FindBy(xpath="//a[contains(text(),'My Account')]")
 		private WebElement myAccountOption;
@@ -93,6 +93,16 @@ import ru.yandex.qatools.allure.annotations.Step;
 		@FindAll(value={@FindBy(xpath="//li[@class='menu-large menuonly dropdown-toggle accessories-menu-large']//div[@id='custom-menu-bar-men']//a")})
 		private List<WebElement> mensAccesssoriesMegaLinks;
 		
+		@FindAll(value={@FindBy(xpath="//li[@id='mencollection']//h4[text()='BRANDS']/following-sibling::ul//a[ not (contains(text(),'View All Brands'))]")})
+		private List<WebElement> menStaticBrands;
+		
+		
+		
+		
+		@FindAll(value={@FindBy(xpath="//li[@id='womencollection']//h4[text()='BRANDS']/following-sibling::ul//a[ not (contains(text(),'View All Brands'))]")})
+		private List<WebElement> womenStaticBrands;
+		
+		
 		@FindAll(value={@FindBy(xpath="")})
 		private List<WebElement> womensMegaLinks;
 		
@@ -108,6 +118,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 		
 		@FindBy(xpath="//a[@class='wishlist_icon']")
 		private WebElement myWishListIcon;
+		
+		@FindBy(xpath="//a[@class='wishlist_icon']/span")
+		private WebElement myWishListCount;
+		
 		
 		@FindBy(xpath="//a[@title='My Bag']")
 		private WebElement myBagIcon;
@@ -385,11 +399,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("enter search key")
-	public HomePageObjects enterSearchData() throws AWTException {
+	public HomePageObjects enterSearchData(String searchdata) throws AWTException {
 		searchInputTextField.clear();
-		searchInputTextField.sendKeys("shirt");
+		searchInputTextField.sendKeys(searchdata);
 		searchInputTextField.sendKeys(Keys.ENTER);
-
+		
 		return this;
 	}
 	@Step("verify wish list icon in home page")
@@ -423,7 +437,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 	}
 	@Step("Mouse hover over on Men's link")
 	public HomePageObjects mouseHoverOverOnMenLink() {
-		new Actions(driver).moveToElement(menHeaderLink);
+		new Actions(driver).moveToElement(menHeaderLink).build().perform();
 
 		return this;
 	}
@@ -472,8 +486,58 @@ import ru.yandex.qatools.allure.annotations.Step;
 		}
 		return false;
 	}
+	@Step("get my wishList count")
+	public int getSavedItemsCount()
+	{
+	int savedItemsCount=Integer.parseInt(myWishListCount.getText().trim());
 	
+	return savedItemsCount;
+	}
+	public HomePageObjects clickHeaderLogo() {
 		
+		
+		return this;
+		
+	}
+	@Step("click on all the static brands")
+	public HomePageObjects clickOnMenBrandLinks() throws InterruptedException {
+		int n;
+		//Waiting.explicitWaitVisibilityOfElement(menHeaderLink, 20);
+		mouseHoverOverOnMenLink();
+		n=menStaticBrands.size();
+		//System.out.println(n);
+		for(int i=0;i<menStaticBrands.size();i++)
+		{
+			
+			new Actions(driver).moveToElement(menHeaderLink).moveToElement(menStaticBrands.get(i)).click().build().perform();
+			Thread.sleep(3000);
+			listPage()
+			.verifySearchResultsPage();
+			clickLogo();
+		}
+		return this;
+	}
+	@Step("click on all the static brands")
+	public HomePageObjects clickOnWomenBrandLinks() throws InterruptedException {
+		int n;
+		//Waiting.explicitWaitVisibilityOfElement(menHeaderLink, 20);
+		mouseHoverOverOnWomenLink();
+		n=womenStaticBrands.size();
+		//System.out.println(n);
+		for(int i=0;i<womenStaticBrands.size();i++)
+		{
+			
+			new Actions(driver).moveToElement(womenHeaderLink).moveToElement(womenStaticBrands.get(i)).click().build().perform();
+			Thread.sleep(3000);
+			listPage()
+			.verifySearchResultsPage();
+			clickLogo();
+		}
+		return this;
+	}
+	
 	
 	}
-		
+	
+	
+	

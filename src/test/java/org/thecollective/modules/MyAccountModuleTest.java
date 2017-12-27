@@ -28,6 +28,7 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		.homePage()
 		.mouseHoverOverOnMyAccount()
 		.verifyWelcomeMessage();
+		homePage().logout();
 	}
 	@Description("this test case verifies the saved items page details")
 	@TestCaseId("TC_MyAct_002")
@@ -45,6 +46,7 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		.navigateToSavedItemsPage()
 		.myAccountPage()
 		.verifySavedItemsPage();
+		homePage().logout();
 	}
 
 	@Description("this test case verifies order History page details")
@@ -63,7 +65,7 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		.navigateToMyOrdersPage()
 		.myAccountPage()
 		.verifyMyOrdersPage();
-		
+		homePage().logout();
 	}
 	@Description("this test case verifies recent, past order tabs")
 	@TestCaseId("TC_MyAct_004")
@@ -82,6 +84,26 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		.myAccountPage()
 		.verifyMyOrdersPage()
 		.verifyMyOrdersPageTabs();
+		homePage().logout();
+		
+	}
+	@Description("this test case verifies recent, past order tabs")
+	@TestCaseId("TC_MyAct_004")
+	@Features("MyAccountModule")
+	@Test(enabled=true,groups={"MyAccountModule","smoke","regression"})
+	public void verifyUpdateAddress() throws InterruptedException
+	{
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.navigateToMyOrdersPage()
+		.myAccountPage()
+		.clickOnMyAddressTab()
+		.verifyMyAddressesPage();
 		
 	}
 }

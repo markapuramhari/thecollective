@@ -34,6 +34,9 @@ public class ListPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//div[@class='custom_pagination_inner']//a[@class='nextpageupdate']")
 	private WebElement nextPaginationBottom;
 	
+	@FindAll(value={@FindBy(xpath="//span[@itemprop='desc']")})
+	private List<WebElement> listedItemsDescriptionName;
+	
 	
 	
 	
@@ -97,9 +100,9 @@ public class ListPageObjects extends PageFactoryInitializer{
 		 throw new  Exception("needs to write code for invalid search results");
 	}
 	@Step("click on specific product {0} in list page")
-	public ListPageObjects clickOnSpecificProduct() throws InterruptedException {
+	public ListPageObjects clickOnSpecificProduct(int number) throws InterruptedException {
 		Waiting.explicitWaitVisibilityOfElements(listedItems, 30);
-		listedItems.get(0).click();
+		listedItems.get(number).click();
 		Thread.sleep(3000);
 
 		return this;
@@ -257,6 +260,12 @@ public class ListPageObjects extends PageFactoryInitializer{
 			return false;
 		}
 		return false;
+	}
+	@Step("get the product name {0} from list page")
+	public String getProductName(int num) {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		String productName=listedItemsDescriptionName.get(num).getText().trim();
+		return productName;
 	}
 	
 	

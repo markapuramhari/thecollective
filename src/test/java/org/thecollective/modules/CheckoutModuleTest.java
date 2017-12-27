@@ -21,7 +21,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -46,7 +46,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -85,7 +85,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -110,7 +110,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -133,7 +133,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -154,7 +154,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -180,7 +180,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -201,7 +201,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -224,7 +224,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -252,7 +252,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -276,7 +276,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -312,7 +312,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct();
+		.clickOnSpecificProduct(0);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -383,7 +383,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Description("this test case verifies successful order placement by using credit card")
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_015")
-	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
+	@Test(groups={"Checkout Module","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyOrderPlacementByCCO() throws Exception
 	{
 		data.setPaymentMethod("Credit Card");
@@ -432,6 +432,11 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyOrderNumber(orderNumber);
 		
 	}
-	
-	
+	@Description("verify item added to cart from the saved items page")
+	@Features("Checkout Module")
+	@TestCaseId("TC_Checkout_016")
+	@Test(groups={"Checkout Module","Smoke", "Regression"})
+	public void verifySavedItemsToShoppingCartTest(){
+		
+	}
 }

@@ -155,11 +155,13 @@ public class BrandDirectoryPageObjects extends PageFactoryInitializer
 				a[1]=categoryId.get(i);
 				a[2]=BrandToMakeInActive.get(j);
 				a[3]="0";
-				api.apiCallMethod(a);
-				//brandName1.add("{ "+selectedGenderId+", "+categoryId.get(i)+", "+BrandToMakeInActive.get(j)+", "+0+" }");
+				//System.out.println(selectedGenderId+" "+a[1]+"BrandToMakeInActive :"+a[2]);
+				//api.apiCallMethod(a);
+				brandName1.add("{ "+selectedGenderId+", "+categoryId.get(i).toString()+", "+BrandToMakeInActive.get(j).toString()+", "+0+" }");
 				
 			}
 		}
+		System.out.println("BrandToMakeInActive"+brandName1);
 		
 		for(int i=0;i<categoryId.size();i++)
 		{
@@ -169,18 +171,22 @@ public class BrandDirectoryPageObjects extends PageFactoryInitializer
 				b[1]=categoryId.get(i);
 				b[2]=BrandToMakeActive.get(j);
 				b[3]="1";
+				//System.out.println(selectedGenderId+b[1]+"BrandToMakeActive : "+b[2]);
 				api.apiCallMethod(b);
-				//brandName2.add("{ "+selectedGenderId+","+categoryId.get(i)+","+BrandToMakeActive.get(j)+","+1+" }");
+				
+				brandName2.add("{ "+selectedGenderId+","+categoryId.get(i)+","+BrandToMakeActive.get(j)+","+1+" }");
 				
 			}
 		}
-		
+		System.out.println("BrandToMakeActive :"+brandName2);
 		//System.out.println("Brands to make Inactive: "+brandName1);
 		//System.out.println("Brands to make Active: "+brandName2);
 		
 		return brandName1;
 	}
 
-	
+	public  static void main(String args[]){
+		System.out.println("java main");
+	}
 	
 }

@@ -1,5 +1,6 @@
 package org.thecollective.maincontroller;
 import org.openqa.selenium.support.PageFactory;
+import org.thecollective.pageobjects.brands.BDirectoryMasterCall;
 import org.thecollective.pageobjects.brands.BrandDirectoryPageObjects;
 import org.thecollective.pageobjects.checkout.CardDetailsPageObjects;
 import org.thecollective.pageobjects.checkout.CheckoutPaymentPageObjects;
@@ -11,7 +12,7 @@ import org.thecollective.pageobjects.homepage.StoresPageObjects;
 import org.thecollective.pageobjects.listpage.ListPageObjects;
 import org.thecollective.pageobjects.login.LoginPageObjects;
 import org.thecollective.pageobjects.myaccount.MyAccountPageObjects;
-import org.thecollective.pageobjects.pdp.PDPage;
+import org.thecollective.pageobjects.pdp.PDPageObjects;
 
 public class PageFactoryInitializer extends MainController{
 
@@ -39,8 +40,8 @@ public class PageFactoryInitializer extends MainController{
 		ListPageObjects listpaage=PageFactory.initElements(driver, ListPageObjects.class);
 		return listpaage;
 	}
-	public PDPage pdPage(){
-		PDPage pdPage=PageFactory.initElements(driver, PDPage.class);
+	public PDPageObjects pdPage(){
+		PDPageObjects pdPage=PageFactory.initElements(driver, PDPageObjects.class);
 		return pdPage;
 	}
 	
@@ -76,4 +77,10 @@ public class PageFactoryInitializer extends MainController{
 		CardDetailsPageObjects cardDetails=PageFactory.initElements(driver, CardDetailsPageObjects.class);
 		return cardDetails;
 	}
+	public BDirectoryMasterCall masterData(){
+		
+		BDirectoryMasterCall master=PageFactory.initElements(driver, BDirectoryMasterCall.class);
+		return master;
+	}
+	
 }

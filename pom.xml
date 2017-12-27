@@ -9,6 +9,7 @@
    	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
+	
     <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<compiler.version>1.8</compiler.version>
@@ -68,6 +69,7 @@
   <version>6.9.10</version>
   <scope>test</scope>
 </dependency>
+
 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -258,6 +260,19 @@
                     </dependency>
                 </dependencies>
             </plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>jar-services-provided</id>
+            <phase>compile</phase>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 
             <!--Needed only to show reports locally. Run jetty:run and
             open localhost:8080 to show the report-->

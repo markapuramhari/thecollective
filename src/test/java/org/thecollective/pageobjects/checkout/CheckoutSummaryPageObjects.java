@@ -54,7 +54,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//div[@class='checkout_summary_block']//a[contains(text(),'Login to Avail')]")
 	private WebElement loginLinkInCouponsTab;
 	
-	@FindBy(id="sleCustomerMobile")
+	@FindBy(id="slecheckoutCustomerMobile")
 	private WebElement usernameFieldCheckout;
 	
 	@FindBy(id="slePasswordData")
