@@ -133,7 +133,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		  {
 			homePage()
 			.clickOnSearchIcon()
-			.enterSearchData("shirts")
+			.enterSearchData("Jeans")
 			.listPage()
 			.verifyInvalidSearchResultsPage()
 			.verifyPageTitle();
@@ -170,6 +170,21 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 			.verifySavedItemsPage();
 			
 		  }
+	@TestCaseId("TC_HomePage_013")
+	@Features("Homepage Module")
+	@Description("this test case verifies all category links")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllCategories() throws Exception
+	  {
+		homePage()
+		.clickOnCategoryLink();
+		/*.listPage()
+		.verifyListedProducts();
+		driver.navigate().back();
+		*/
+		
+		
+	  }
 	
 	/*@BeforeTest
 	public void beforetest1(){

@@ -21,7 +21,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 	public void verifyProductDetailsPageTest() throws AWTException, InterruptedException{
 		homePage()
 		.clickOnSearchIcon()
-		.enterSearchData("jeans");
+		.enterSearchData("shirt");
 		String productNameListPage=listPage()
 		.getProductName(2);
 		listPage()
@@ -43,7 +43,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		try{
 		homePage()
 		.clickOnSearchIcon()
-		.enterSearchData("jeans");
+		.enterSearchData("shirt");
 		String 	productNameListPage=listPage()
 		.getProductName(0);
 		listPage()
@@ -88,7 +88,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		.clickOnLoginButton();
 		homePage()
 		.clickOnSearchIcon()
-		.enterSearchData("jeans");
+		.enterSearchData("shirt");
 		String 	productNameListPage=listPage()
 		.getProductName(0);
 		listPage()
@@ -119,7 +119,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		
 		homePage()
 		.clickOnSearchIcon()
-		.enterSearchData("jeans");
+		.enterSearchData("shirt");
 		String 	productNameListPage=listPage()
 		.getProductName(0);
 		listPage();

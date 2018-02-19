@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 	import org.thecollective.maincontroller.PageFactoryInitializer;
+import org.thecollective.pageobjects.listpage.ListPageObjects;
 import org.thecollective.pageobjects.myaccount.MyAccountPageObjects;
 import org.thecollective.utils.ApplicationSetUpPropertyFile;
 	import org.thecollective.utils.SearchDataPropertyFile;
@@ -50,6 +51,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 
 		 @FindAll(value={@FindBy(xpath="//li[contains(@class,'menuonly')]//a")})
 		 private List<WebElement> megaMenuLinks;
+		 
+		 @FindAll(value={@FindBy(xpath="//ul[@id='nav-bar']//a")})
+		 private List<WebElement> staticCategoryLinks;
 		 
 		 @FindBy(xpath="//img[@alt='usericon']")
 		 private WebElement userIcon;
@@ -532,6 +536,17 @@ import ru.yandex.qatools.allure.annotations.Step;
 			listPage()
 			.verifySearchResultsPage();
 			clickLogo();
+		}
+		return this;
+	}
+	@Step("click on each and every category link")
+	public HomePageObjects clickOnCategoryLink() throws Exception {
+		
+		for(int i=0;i<staticCategoryLinks.size();i++)
+		{
+		staticCategoryLinks.get(i).click();
+		Thread.sleep(4000);
+		listPage().verifyListedProduct();
 		}
 		return this;
 	}

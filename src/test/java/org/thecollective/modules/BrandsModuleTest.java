@@ -49,7 +49,7 @@ public class BrandsModuleTest extends PageFactoryInitializer{
 	public void verifyProductsForMenCategory() throws Exception{
 		homePage()
 		.clickOnViewAllBrandsLink("Men");
-		driver.get("https://preprod.thecollective.in/brandautomation");
+		//driver.get("https://preprod.thecollective.in/brandautomation");
 		brandsPage()		
 		.verifyBrandDirectoryPage();
 		String selectedGenderId=brandsPage().selectGender("Men");
