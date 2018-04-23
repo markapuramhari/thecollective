@@ -66,7 +66,8 @@ public class PDPageObjects  extends PageFactoryInitializer
 	}
 	@Step("click on my bag icon")
 	public PDPageObjects clickOnMyBag() throws InterruptedException {
-		Thread.sleep(3000);
+		Waiting.explicitWaitVisibilityOfElement(myBagIcon, 40);
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		myBagIcon.click();
 		return this;
 		}
@@ -149,25 +150,28 @@ public class PDPageObjects  extends PageFactoryInitializer
 	}
 	@Step("verify my wish list functionality")
 	public PDPageObjects verifyMyWishListFunctionality(int previousCount) throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Thread.sleep(2500);
-		try
-		{
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(3500);
+		try{
 			if(addedToWishListIcon.isDisplayed())
 			{
+				int updatedCount=Integer.parseInt(myWishListCount.getText().trim());
+				Assert.assertEquals(updatedCount,previousCount-1);
+				}
+			else{
+					
 				myWishListIconInPDP.click();
-				Thread.sleep(2500);
-				int updatedCount=Integer.parseInt(myWishListCount.getText().trim())-1;
-				Assert.assertEquals(updatedCount,previousCount);
+				Thread.sleep(3500);
+				int updatedCount=Integer.parseInt(myWishListCount.getText().trim());
+				Assert.assertEquals(updatedCount,previousCount-1);
 			}
-		}catch(Exception e)
-		{
-			myWishListIconInPDP.click();
-			Thread.sleep(3000);
-			int updatedCount=Integer.parseInt(myWishListCount.getText().trim())+1;
-			Assert.assertEquals(updatedCount,previousCount);
 		}
-
+		catch(Exception e){
+				myWishListIconInPDP.click();
+				Thread.sleep(4500);
+				int updatedCount=Integer.parseInt(myWishListCount.getText().trim());
+				Assert.assertEquals(updatedCount,previousCount+1);
+			}
 		return this;
 	}
 	

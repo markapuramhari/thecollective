@@ -53,6 +53,10 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String getCardDetails=PropertyFileReader.propertiesReader(searchData, "cardDetails");
 
+	private String sortByOptions=PropertyFileReader.propertiesReader(searchData,"sortByOptions");
+
+	private String expNoResultsText=PropertyFileReader.propertiesReader(searchData,"expNoResultsText");;
+
 	
 	
 	
@@ -163,6 +167,16 @@ public class SearchDataPropertyFile extends MainController{
 	public String cardDetails() {
 	
 		return getCardDetails;
+	}
+
+	public String getSortByOptions() {
+		
+		return sortByOptions;
+	}
+
+	public String getNoResultsFoundText() {
+		
+		return expNoResultsText;
 	}
 
 

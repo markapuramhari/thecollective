@@ -93,7 +93,7 @@ public void beforeSuite() throws Exception{
 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		PageFactoryInitializer pageFactoryInitializer = new PageFactoryInitializer();
 		driver.get(setUp.getURL());
-		driver.manage().deleteAllCookies();
+		//driver.manage().deleteAllCookies();
 		try
 		{
 			

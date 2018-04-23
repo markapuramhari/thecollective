@@ -1,4 +1,11 @@
 package org.thecollective.modules;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.time.StopWatch;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.testng.annotations.Test;
 import org.thecollective.dataprovider.DataDrivenTestingFromExcel;
 import org.thecollective.maincontroller.PageFactoryInitializer;
@@ -20,9 +27,41 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	@Test(groups={"HomePageModule","smoke","regression"})
 	  public void verifyHomePageHeadersBeforeLogin() throws Exception
 	  {
+		
 		homePage()
 		.verifyHomePage();
+		/*homePage()
+		.clickOnSearchIcon()
+		.enterSearchData("shirts");
+		ExtractJSLogs();
+		listPage()
+		.clickOnSpecificProduct(2);
+		ExtractJSLogs();
+		 StopWatch pageLoad = new StopWatch();
+	        pageLoad.start();
+	       pdPage().getBrandName();
+	       ExtractJSLogs();
+
+	        pageLoad.stop();
+	        //Get the time
+	        long pageLoadTime_ms = pageLoad.getTime();
+	        long pageLoadTime_Seconds = pageLoadTime_ms / 1000;
+	        System.out.println("Total Page Load Time: " + pageLoadTime_ms + " milliseconds");
+	        System.out.println("Total Page Load Time: " + pageLoadTime_Seconds + " seconds");
+	        
+		*/
+		
+		/*LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
+		for (LogEntry logEntry: logEntries.getAll()) {
+			System.err.println("BrowserConsole: " + logEntry.toString());
+		}*/
 	  } 
+	public void ExtractJSLogs() {
+        LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
+        for (LogEntry entry : logEntries) {
+            System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+        }
+    }
 	@TestCaseId("TC_HomePage_002")
 	@Features("Homepage Module")
 	@Description("this test case verifies all thestore branches")
@@ -40,7 +79,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  } 
 	@TestCaseId("TC_HomePage_003")
 	@Features("Homepage Module")
-	@Description("this test case verifies all the footer links")
+	@Description("this test case verifies all footer links")
 	@Test(groups={"HomePageModule","smoke","regression"})
 	  public void verifyHomePageFooters() throws Exception
 	  {
@@ -79,7 +118,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  } 
 	@TestCaseId("TC_HomePage_006")
 	@Features("Homepage Module")
-	@Description("this test case verifies all the header links after login")
+	@Description("this test case verifies all footer links")
 	@Test(groups={"HomePageModule","smoke","regression"})
 	  public void verifyHomePageFooterLinks() throws Exception
 	  {
@@ -135,7 +174,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 			.clickOnSearchIcon()
 			.enterSearchData("Jeans")
 			.listPage()
-			.verifyInvalidSearchResultsPage()
+			.verifyInvalidSearchResultsPage(data.getNoResultsFoundText())
 			.verifyPageTitle();
 			  }
 	@TestCaseId("TC_HomePage_011")
@@ -178,13 +217,130 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  {
 		homePage()
 		.clickOnCategoryLink();
-		/*.listPage()
-		.verifyListedProducts();
-		driver.navigate().back();
-		*/
-		
+	  }
+	@TestCaseId("TC_HomePage_014")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksInHomepage() throws Exception
+	  {
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	@TestCaseId("TC_HomePage_019")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in login page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksInLoginPage() throws Exception
+	  {
+		homePage()
+		.clickOnLoginLink()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	@TestCaseId("TC_HomePage_020")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in login page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksInSignUpPage() throws Exception
+	  {
+		homePage()
+		.clickOnSignupLink()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	
+	@TestCaseId("TC_HomePage_018")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links for product list page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksListPage() throws Exception
+	  {
+		homePage().clickOnSearchIcon().enterSearchData("shirt").listPage();
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
 		
 	  }
+	@TestCaseId("TC_HomePage_015")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in pdp")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksPDP() throws Exception
+	  {
+		homePage().clickOnSearchIcon().enterSearchData("shirt").listPage();
+		listPage().clickOnSpecificProduct(1);
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	@TestCaseId("TC_HomePage_015")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in checkout page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksCheckout() throws Exception
+	  {
+		homePage().clickOnSearchIcon().enterSearchData("shirt").listPage();
+		listPage().clickOnSpecificProduct(1)
+		.pdPage()
+		.selectSize()
+		.addToBageFromDetailsPage()
+		.clickOnMyBag();
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	@TestCaseId("TC_HomePage_016")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in checkout shipping address page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksCheckoutShippingAddres() throws Exception
+	  {
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.clickOnSearchIcon().enterSearchData("shirt").listPage();
+		listPage().clickOnSpecificProduct(1)
+		.pdPage()
+		.selectSize()
+		.addToBageFromDetailsPage()
+		.clickOnMyBag()
+		.summaryPage()
+		.clickOnContinuePaymentsLink();
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	@TestCaseId("TC_HomePage_017")
+	@Features("Homepage Module")
+	@Description("this test case verifies all image path links in my orders history page")
+	@Test(groups={"HomePageModule","smoke","regression"})
+	  public void verifyAllImagePathLinksInMyOrderPage() throws Exception
+	  {
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.clickOnMyOrders();
+		homePage()
+		.getAllHrefLinks("https://the-collective.imgix.net/");
+	  }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*@BeforeTest
 	public void beforetest1(){

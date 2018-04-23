@@ -26,7 +26,6 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		.getProductName(2);
 		listPage()
 		.clickOnSpecificProduct(2);
-		
 		String productNamePDP =	pdPage().getTheProductName();
 		String brandNamePDP =	pdPage().getBrandName();
 		pdPage()

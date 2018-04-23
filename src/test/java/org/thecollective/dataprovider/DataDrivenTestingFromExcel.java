@@ -16,6 +16,21 @@ public class DataDrivenTestingFromExcel {
 		 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath());
 		return data;
 	}
+	@DataProvider(name="aeContent")
+	public static Object[][] aeContent(Method methodName) throws Exception{
+		File file = new File("resources/ExcelSheetData/aeContent.xlsx");
+		 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath());
+		return data;
+	}
+	
+
+		
+		@DataProvider(name="feedFromExcel")
+		public static Object[][] feedFromExcel(Method methodName) throws Exception{
+			File file = new File("resources/ExcelSheetData/feedFromExcel.xlsx");
+			 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath());
+			return data;
+		}
 	
 	
 	@DataProvider(name="mutipleSheetsSingleWorkbook")

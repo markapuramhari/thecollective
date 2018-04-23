@@ -6,9 +6,10 @@
       <class name="org.thecollective.modules.PDPModuleTest"/>
      <class name="org.thecollective.modules.CheckoutModuleTest"/>
        <class name="org.thecollective.modules.HomePageModuleTest"/>
-		<class name="org.thecollective.pageobjects.brands.BDirectoryMasterCall"/>
-      <class name="org.thecollective.modules.BrandsModuleTest"/>  
+		
       <class name="org.thecollective.modules.MyAccountModuleTest"/>
+      <!-- <class name="org.thecollective.pageobjects.brands.BDirectoryMasterCall"/>
+      <class name="org.thecollective.modules.BrandsModuleTest"/>  -->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

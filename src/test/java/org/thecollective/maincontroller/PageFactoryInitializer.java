@@ -1,5 +1,6 @@
 package org.thecollective.maincontroller;
 import org.openqa.selenium.support.PageFactory;
+import org.thecollective.pageobjects.ae.AePageObjects;
 import org.thecollective.pageobjects.brands.BDirectoryMasterCall;
 import org.thecollective.pageobjects.brands.BrandDirectoryPageObjects;
 import org.thecollective.pageobjects.checkout.CardDetailsPageObjects;
@@ -82,5 +83,10 @@ public class PageFactoryInitializer extends MainController{
 		BDirectoryMasterCall master=PageFactory.initElements(driver, BDirectoryMasterCall.class);
 		return master;
 	}
-	
+	public AePageObjects aeSite(){
+		
+		AePageObjects ae=PageFactory.initElements(driver, AePageObjects.class);
+		return ae;
+}
+		
 }

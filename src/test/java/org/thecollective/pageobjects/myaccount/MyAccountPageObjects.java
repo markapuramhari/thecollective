@@ -1,9 +1,11 @@
 package org.thecollective.pageobjects.myaccount;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.thecollective.maincontroller.PageFactoryInitializer;
@@ -22,11 +24,17 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//span[contains(text(),'MY ADDRESSES')]")
 	private WebElement myAddressesTab;
 	
+	@FindBy(xpath="//h2[contains(text(),'Your Saved Items is empty')]")
+	private WebElement emtyWishListText;
+	
 	@FindBy(xpath="//a[@id='pastorder']")
 	private WebElement pastOrdersTabHeader;
 	
 	@FindBy(xpath="//a[@href='#recent_order']")
 	private WebElement recentOrdersTabHeader;
+	
+	@FindAll(value={@FindBy(xpath="//input[@id='btnAddToBag']")})
+	private List<WebElement> addToBagInWishLIst;
 	
 	@Step("verify saved items page")
 	public MyAccountPageObjects verifySavedItemsPage() {
@@ -111,6 +119,22 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 		
 
 		return this;
+	}
+
+	@Step("get the my wish list product{0} count")
+	public int getMyWishListCount() {
+		int wishlistCount = 0;
+		Waiting.explicitWaitVisibilityOfElement(emtyWishListText, 30);
+		if (emtyWishListText.isDisplayed())
+		{
+			 wishlistCount=0;
+		}
+		else
+		{
+			int a=addToBagInWishLIst.size();
+			wishlistCount=a;
+		}
+		return wishlistCount;
 	}
 
 }

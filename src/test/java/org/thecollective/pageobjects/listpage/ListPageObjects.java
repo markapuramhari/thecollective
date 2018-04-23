@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.thecollective.maincontroller.PageFactoryInitializer;
 import org.thecollective.pageobjects.homepage.StoresPageObjects;
@@ -37,14 +38,25 @@ public class ListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//span[@itemprop='desc']")})
 	private List<WebElement> listedItemsDescriptionName;
 	
+	@FindBy(xpath="//h1[contains(text(),'SORT BY')]")
+	private WebElement sortByText;
 	
+	@FindAll(value={@FindBy(xpath="//ul[@class='dropdown-menu']//a")})
+	private List<WebElement> sortByOptions;
 	
+	@FindBy(xpath="//h1[contains(@class,'dropdown-toggle')]")
+	private WebElement sortByDropdown;
+	
+	@FindBy(xpath="//div[contains(@class,'products_list')]//h1")
+	private WebElement noResultsFoundText;
 	
 	//===================================================
 	@Step("verify product list page")
 	public ListPageObjects verifyListedProducts() throws Exception {
-			//throw new Exception("needs to write the code for verification of listed items");
-	Assert.assertTrue(listedItems.get(0).isDisplayed(),"products are not available");
+			
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Waiting.explicitWaitVisibilityOfElements(listedItems, 30);
+			Assert.assertTrue(listedItems.get(0).isDisplayed(),"products are not available");
 			return this;
 		
 	}
@@ -96,8 +108,10 @@ public class ListPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 	@Step("verify invalid search results")
-	public ListPageObjects verifyInvalidSearchResultsPage() throws Exception {
-		 throw new  Exception("needs to write code for invalid search results");
+	public ListPageObjects verifyInvalidSearchResultsPage(String noresultsText) throws Exception {
+		Waiting.explicitWaitVisibilityOfElement(noResultsFoundText, 30);
+		Assert.assertEquals(noResultsFoundText.getText().trim(),noresultsText);
+		return this;
 	}
 	@Step("click on specific product {0} in list page")
 	public ListPageObjects clickOnSpecificProduct(int number) throws InterruptedException {
@@ -267,6 +281,48 @@ public class ListPageObjects extends PageFactoryInitializer{
 		String productName=listedItemsDescriptionName.get(num).getText().trim();
 		return productName;
 	}
+	@Step("verify product list page with mrp {0}")
+	public ListPageObjects verifyProduct( String productMRP) {
+		Waiting.explicitWaitVisibilityOfElement(listedItemsPrice.get(0), 30);
+		String actualMRP=listedItemsPrice.get(0).getText();
+		Assert.assertEquals(actualMRP, productMRP);
+		
+		return this;
+	}
+	@Step("verify sort by field")
+	public ListPageObjects verifySortByText() {
+		Waiting.explicitWaitVisibilityOfElement(sortByText, 30);
+		Assert.assertTrue(sortByText.isDisplayed(),"Sort by text is not displayed");
+		
+		return this;
+	}
+	@Step("verify sort by options")
+	public ListPageObjects verifySortByOptions(String sortByOptionsExp) throws InterruptedException {
+		String[] expOptions=sortByOptionsExp.split(",");
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		Thread.sleep(3000);
+		sortByDropdown.click();
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		for(int i=0;i<sortByOptions.size();i++)
+		{
+			
+			if(sortByOptions.get(i).isDisplayed())
+				{
+					sortByOptions.get(i).click();
+					Assert.assertEquals(sortByOptions.get(i).getAttribute("innerHTML").toString(), expOptions[i]);
+					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+					Thread.sleep(3500);
+			}else
+				{
+					sortByDropdown.click();
+					sortByOptions.get(i).click();
+					Assert.assertEquals(sortByOptions.get(i).getAttribute("innerHTML").toString(), expOptions[i]);
+					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+					Thread.sleep(3500);
+				}		
+		}
+		return this;
+		}
 	
 	
 

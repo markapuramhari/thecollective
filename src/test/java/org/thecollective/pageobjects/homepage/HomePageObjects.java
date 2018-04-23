@@ -52,10 +52,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 @FindAll(value={@FindBy(xpath="//li[contains(@class,'menuonly')]//a")})
 		 private List<WebElement> megaMenuLinks;
 		 
+		 @FindAll(value={@FindBy(xpath="//img")})
+		 private List<WebElement> imagePaths;
+		 
 		 @FindAll(value={@FindBy(xpath="//ul[@id='nav-bar']//a")})
 		 private List<WebElement> staticCategoryLinks;
 		 
-		 @FindBy(xpath="//img[@alt='usericon']")
+		 @FindBy(xpath="//a[@class='my-account-icon-link']")
 		 private WebElement userIcon;
 		 
 		 @FindBy(xpath="//a[@title='Login']")
@@ -63,6 +66,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 
 		 @FindBy(xpath="//span[contains(.,'Logout')]")
 		 private WebElement logoutLink;
+		 
+		 @FindBy(xpath="//a[@title='Sign Up']")
+		 private WebElement signUpLink;
+		
 		 
 		 @FindBy(xpath="//li[@id='mencollection']/a")
 		 private WebElement menHeaderLink;
@@ -245,7 +252,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		   action.moveToElement(userIcon).moveToElement(myAccountOption).click().build().perform();
 		  // Waiting.explicitWaitVisibilityOfElement(userIcon, 15);
 		  // System.out.println(driver.getTitle());
-	  Assert.assertEquals(driver.getTitle(),expAccountName+" | "+productName, "unable to login to site with the entered credentials");
+	  Assert.assertEquals(driver.getTitle(),expAccountName, "unable to login to site with the entered credentials");
 	
 		return this;
 	}
@@ -262,7 +269,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 	   @Step("verify all footer links")
 	   public HomePageObjects verifyFooterLinks(String footerLink) {
 		  String expFooterLinks[]=footerLink.split(",");
-			Waiting.explicitWaitVisibilityOfElements(footerLinks, 15);
+			Waiting.explicitWaitVisibilityOfElements(footerLinks, 40);
 			for(int i=0;i<footerLinks.size();i++)
 			{
 				
@@ -333,14 +340,14 @@ import ru.yandex.qatools.allure.annotations.Step;
 			return this;
 		}
 	public HomePageObjects megaNestedLinks() throws InterruptedException {
-		Thread.sleep(2500);
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		List< WebElement> links=driver.findElements(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='Men']/following-sibling::div//a"));
-		for(WebElement availableLinks: links)
+		for(int i=0; i>links.size();i++)
 		{ 
 			//Assert.assertTrue(availableLinks.isDisplayed(), "child links are not displayed");
-			String linkName=availableLinks.getText();
+			String linkName=links.get(i).getText().toString();
 			System.out.println(linkName);
-			action.moveToElement(driver.findElement(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='"+linkName+"']"))).moveToElement(driver.findElement(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='"+availableLinks+"']"))).click().build().perform();
+			action.moveToElement(driver.findElement(By.xpath("//li[contains(@class,'menuonly')]//a[text()='"+linkName+"']"))).click().build().perform();
 			//availableLinks.click();
 		Thread.sleep(2500);
 		}
@@ -404,6 +411,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 	}
 	@Step("enter search key")
 	public HomePageObjects enterSearchData(String searchdata) throws AWTException {
+		searchInputTextField.click();
 		searchInputTextField.clear();
 		searchInputTextField.sendKeys(searchdata);
 		searchInputTextField.sendKeys(Keys.ENTER);
@@ -493,9 +501,19 @@ import ru.yandex.qatools.allure.annotations.Step;
 	@Step("get my wishList count")
 	public int getSavedItemsCount()
 	{
+		int count;
+		try{
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Waiting.explicitWaitVisibilityOfElement(myWishListCount, 40);
 	int savedItemsCount=Integer.parseInt(myWishListCount.getText().trim());
-	
 	return savedItemsCount;
+		}
+	catch(Exception e)
+		{
+		homePage().clickOnWishListIcon();
+		count=myAccountPage().getMyWishListCount();
+	}
+	return count;
 	}
 	public HomePageObjects clickHeaderLogo() {
 		
@@ -544,10 +562,38 @@ import ru.yandex.qatools.allure.annotations.Step;
 		
 		for(int i=0;i<staticCategoryLinks.size();i++)
 		{
-		staticCategoryLinks.get(i).click();
+			JavascriptExecutor js=(JavascriptExecutor)driver;
+			js.executeScript("arguments[0].click()", staticCategoryLinks.get(i));
+		//staticCategoryLinks.get(i).click();
 		Thread.sleep(4000);
 		listPage().verifyListedProduct();
 		}
+		return this;
+	}
+	public void getAllHrefLinks(String path) {
+		//Waiting.explicitWaitVisibilityOfElements(imagePaths, 30);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		for(int i=0;i< imagePaths.size();i++){
+			String a=imagePaths.get(i).getAttribute("src").toString();
+			//System.out.println("pass : "+a);
+			
+			if(a.contains(path))
+			{
+				
+				System.out.println("pass : "+a);
+			}
+				
+			else{
+				
+				System.out.println("failed : "+a);
+			}
+		}
+	}
+	@Step("click on signup link")
+	public HomePageObjects clickOnSignupLink() throws InterruptedException {
+		 action.moveToElement(userIcon);
+		   action.moveToElement(signUpLink).click().build().perform();
+		   Thread.sleep(2500);
 		return this;
 	}
 	

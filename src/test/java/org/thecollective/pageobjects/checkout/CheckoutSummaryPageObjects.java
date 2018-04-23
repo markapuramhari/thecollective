@@ -66,7 +66,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	@FindBy(name="checkoutsubmit")
 	private WebElement loginAndContinueButtonCheckout;
 	
-	@FindBy(xpath="//a[contains(text(),'SIGNUP')]")
+	@FindBy(xpath="//a[contains(text(),'SIGN UP')]")
 	private WebElement signUpLinkCheckout;
 	
 	@FindBy(id="btnSubmitGuestAddress")
@@ -101,7 +101,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("remove products from bag")
 	public CheckoutSummaryPageObjects removeProducts(String emptyCartText) throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 		Assert.assertTrue(verifyProductavailability(emptyCartText), "products are not available");
 		for(int i=0;i<deleteLinks.size();i++)
 		{
@@ -109,7 +109,6 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 			Thread.sleep(3500);
 			driver.navigate().refresh();
 		}
-
 		return this;
 	}
 	@Step("verify products in summary page")
@@ -156,6 +155,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("verify empty cart text")
 	public CheckoutSummaryPageObjects verifyEmptyCartText(String emptyCartText) {
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		Waiting.explicitWaitVisibilityOfElement(emptyCartPageText, 30);
 		Assert.assertEquals(emptyCartPageText.getText().trim(), emptyCartText);
 
@@ -164,6 +164,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	//13548
 	@Step("verify qty drodown ")
 	public CheckoutSummaryPageObjects updateTheQuantity(String updatedQty) {
+		Waiting.explicitWaitVisibilityOfElement(qtyDropdown, 40);
 		new Select(qtyDropdown).selectByVisibleText(updatedQty);;
 		
 		return this;
