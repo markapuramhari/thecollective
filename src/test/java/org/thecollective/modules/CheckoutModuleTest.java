@@ -21,9 +21,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test
 	public void veryfyCheckoutPageTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -48,9 +48,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(3);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -71,7 +71,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Description("this test case verifies removing items from the cart.")
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_003")
-	@Test
+	@Test(alwaysRun=true)
 	public void veryfyRemoveProductsTest() throws InterruptedException{
 		homePage()
 		.clickOnLoginLink()
@@ -94,9 +94,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test
 	public void veryfyPaymentTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -120,9 +120,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void updateQuantityTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(1);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -141,9 +141,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyProductPriceBeforeUpdateTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -163,9 +163,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(1);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -186,9 +186,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginLinkInCouponsTabTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -207,9 +207,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginPageFromCouponsTabTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -230,9 +230,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyLoginFunctionalityInCouponsTabTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -258,9 +258,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginByClickOnContinueInSummaryPage() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -282,9 +282,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyLoginFunctionalityInCheckoutPage() throws InterruptedException{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -318,9 +318,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
-		.clickOnSpecificProduct(0);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -333,6 +333,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyProductImage()
 		.verifyCouponsTabAfterLogin()
 		.clickOnCouponsLink()
+		.clickOnCouponsTab()
 		.verifyCouponsSection(data.getCouponsTabOptions());
 		
 		
@@ -353,7 +354,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()
@@ -404,7 +405,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader("Men", "Shirts")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()

@@ -22,11 +22,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  * @author www.codejava.net
  *
  */
-public class ExcelFileUpdateExample {
+public class ExcelFileReadAndWrite {
  
  
     public  void writeData(String StyleCode,String theDetails, String materialsCare, String sizeAndFit) {
-    	  System.out.println("start");
+    	 
         String excelFilePath = "D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/aeContent.xlsx"; 
          //D:\Thiruveedhi\Implementation\thecollective\resources\ExcelsheetData
         try {

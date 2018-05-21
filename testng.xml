@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test name="Test">
+<suite name="TestSuite">
+   <test name="Test">
+ 
     <classes>
+     <class name="org.thecollective.modules.HomePageModuleTest"/>
+      <class name="org.thecollective.modules.MyAccountModuleTest"/>
       <class name="org.thecollective.modules.PDPModuleTest"/>
      <class name="org.thecollective.modules.CheckoutModuleTest"/>
-       <class name="org.thecollective.modules.HomePageModuleTest"/>
-		
-      <class name="org.thecollective.modules.MyAccountModuleTest"/>
+     <class name="org.thecollective.modules.PLPModuleTest"/> 
+     <class name="org.thecollective.modules.LoginModuleTest"/>
       <!-- <class name="org.thecollective.pageobjects.brands.BDirectoryMasterCall"/>
       <class name="org.thecollective.modules.BrandsModuleTest"/>  -->
     </classes>
   </test> <!-- Test -->
+   <!-- <test name="chromeTest">
+ 
+ <parameter name="browser" value="chrome" />
+ 
+ <classes>
+ 
+ <class name="org.thecollective.modules.HomePageModuleTest"/>
+		
+      <class name="org.thecollective.modules.MyAccountModuleTest"/>
+ 
+ </classes>
+ 
+ </test> -->
 </suite> <!-- Suite -->

@@ -98,7 +98,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.clickOnMoreInfoLink()
 		.verifyFooterHeaders(data.getExpFooterHeaders())
 		.verifyFooterLinks(data.getFooterLinks())
-		.clickOnEachLink();
+		.clickOnEachLink(data.getFooterLinks());
 	  } 
 	@TestCaseId("TC_HomePage_005")
 	@Features("Homepage Module")
@@ -123,11 +123,8 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  public void verifyHomePageFooterLinks() throws Exception
 	  {
 		homePage()
-		.megaNestedLinks();
-		homePage()
-		.navigateToEachCategory()
-		.listPage()
-		.verifyListedProducts();
+		.clickOnFooterToggleButton()
+		.clickOnEachLink(data.getFooterLinks());
 	  } 
 	@TestCaseId("TC_HomePage_007")
 	@Features("Homepage Module")
@@ -142,10 +139,10 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  }
 	@TestCaseId("TC_HomePage_008")
 	@Features("Homepage Module")
-	@Test(groups={"HomePageModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
+	@Test(enabled=false,groups={"HomePageModule","regression"},dataProvider="mutipleSheetsSingleWorkbook",dataProviderClass=DataDrivenTestingFromExcel.class)
 	  public void verifyContentsOfHeaderLinks(String testCaseId,String specificHeaderLink,String specifiedNestedLink,String breadCrumb,String contentLocator,String expectedContent) throws Exception{
 		homePage()
-		.clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader(specificHeaderLink,specifiedNestedLink)
+		.clickOnSpecificCategoryFromTopNavigation(specificHeaderLink,specifiedNestedLink)
 		
 		.homePage()
 		.verifyContent(specificHeaderLink,contentLocator,expectedContent);

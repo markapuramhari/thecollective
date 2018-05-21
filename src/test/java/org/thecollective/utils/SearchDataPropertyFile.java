@@ -55,7 +55,9 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String sortByOptions=PropertyFileReader.propertiesReader(searchData,"sortByOptions");
 
-	private String expNoResultsText=PropertyFileReader.propertiesReader(searchData,"expNoResultsText");;
+	private String expNoResultsText=PropertyFileReader.propertiesReader(searchData,"expNoResultsText");
+
+	private String loginLinkName=PropertyFileReader.propertiesReader(searchData,"ExpLoginLinkName");
 
 	
 	
@@ -177,6 +179,11 @@ public class SearchDataPropertyFile extends MainController{
 	public String getNoResultsFoundText() {
 		
 		return expNoResultsText;
+	}
+
+	public String getLoginLinkName() {
+		
+		return loginLinkName;
 	}
 
 

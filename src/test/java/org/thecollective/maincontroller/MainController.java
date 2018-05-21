@@ -43,6 +43,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.SendEmailGmail;
 import org.thecollective.utils.TestUtility;
@@ -63,7 +64,7 @@ public class MainController implements IHookable{
 	
 	
  public static WebDriver driver ;
- 
+ DesiredCapabilities capabilities =new  DesiredCapabilities();
 /*
  * @author Thiruveedhi
  */
@@ -93,7 +94,7 @@ public void beforeSuite() throws Exception{
 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		PageFactoryInitializer pageFactoryInitializer = new PageFactoryInitializer();
 		driver.get(setUp.getURL());
-		//driver.manage().deleteAllCookies();
+		driver.manage().deleteAllCookies();
 		try
 		{
 			
@@ -140,6 +141,7 @@ public void beforeSuite() throws Exception{
 	@BeforeTest(alwaysRun=true)
 	public void beforeTest() throws Exception
 	{
+		
 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
 		
 	if(System.getProperty("os.name").toUpperCase().contains("MAC"))
@@ -150,7 +152,7 @@ public void beforeSuite() throws Exception{
 		{
 			  
 			System.setProperty("webdriver.chrome.driver", "resources/drivers/Mac/chromedriver");
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(capabilities);
 			TestUtility.maximizeScreen(driver);
 			
 			  
@@ -158,7 +160,7 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("IE"))
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Mac/IEDriverServer.exe");
-			driver=new InternetExplorerDriver();
+			driver=new InternetExplorerDriver(capabilities);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			  
 		}
@@ -167,13 +169,13 @@ public void beforeSuite() throws Exception{
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("firefox"))
 		{
 			System.setProperty("webdriver.gecko.driver", "resources/drivers/MAC/geckodriver");
-			driver = new FirefoxDriver();
+			driver = new FirefoxDriver(capabilities);
 
 		}
 		
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("safari"))
 		{
-			driver = new SafariDriver();
+			driver = new SafariDriver(capabilities);
 			TestUtility.maximizeScreen(driver);
 		}
 			
@@ -190,14 +192,14 @@ public void beforeSuite() throws Exception{
 		{
 			  
 			System.setProperty("webdriver.chrome.driver", "resources/drivers/Windows/chromedriver.exe");
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(capabilities);
 			
 			  
 		}
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("IE"))
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Windows/IEDriverServer.exe");
-			driver=new InternetExplorerDriver();
+			driver=new InternetExplorerDriver(capabilities);
 			driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		}
 		
@@ -205,7 +207,7 @@ public void beforeSuite() throws Exception{
 		{
 
 			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
-			driver = new FirefoxDriver();
+			driver = new FirefoxDriver(capabilities);
 		}
 		else
 		{

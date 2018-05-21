@@ -298,5 +298,11 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		return this;
 
 	}
+	@Step("click on coupons tab")
+	public CheckoutSummaryPageObjects clickOnCouponsTab() {
+
+
+		return this;
+	}
 	
 }

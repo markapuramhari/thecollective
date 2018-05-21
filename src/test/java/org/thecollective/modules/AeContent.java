@@ -16,7 +16,7 @@ public class AeContent extends PageFactoryInitializer{
 		aeSite().acceptCoockies();
 		aeSite().enterSearchData(id);
 		aeSite().acceptCoockies();
-		aeSite().clickOnProduct();
+		aeSite().clickOnProduct(id);
 		aeSite().acceptCoockies();
 		String theDeatils=aeSite().getTheDetails();
 		String materialCare=aeSite().getMaterialsAndCare();
@@ -26,7 +26,7 @@ public class AeContent extends PageFactoryInitializer{
 		
 		
 		
-		ExcelFileUpdateExample write =new ExcelFileUpdateExample();
+		ExcelFileReadAndWrite write =new ExcelFileReadAndWrite();
 		write.writeData(id,theDeatils,materialCare,sizeAndFit);
 		
 	}

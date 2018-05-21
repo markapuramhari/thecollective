@@ -3,7 +3,8 @@ package org.thecollective.pageobjects.listpage;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -49,6 +50,16 @@ public class ListPageObjects extends PageFactoryInitializer{
 	
 	@FindBy(xpath="//div[contains(@class,'products_list')]//h1")
 	private WebElement noResultsFoundText;
+	
+	
+	@FindBy(xpath="//div[@id='divLeftNavFilters']/h1")
+	private WebElement leftNavFilterText;
+	
+	@FindAll(value={@FindBy(xpath="//div[@id='divLeftNavFilters']//li")})
+	private List<WebElement> filterAttributeSection;
+	
+	@FindAll(value={@FindBy(xpath="//ul[contains(@class,'fliters-checkbox')]//input/following-sibling::label")})
+	private List<WebElement> FilterCheckBoxes;
 	
 	//===================================================
 	@Step("verify product list page")
@@ -323,6 +334,90 @@ public class ListPageObjects extends PageFactoryInitializer{
 		}
 		return this;
 		}
+	@Step("verify left navigation filter section")
+	public ListPageObjects verifyFilterSection() {
+		Assert.assertTrue(assertVerifyFilter(), "filter section is not available");
+		Assert.assertNotEquals(filterAttributeSection.isEmpty(), "filter attributes are not displyed");
+		return this;
+	}
+	private boolean assertVerifyFilter() {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		if(leftNavFilterText.isDisplayed()){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	@Step("apply multiple filters from listed")
+	public ListPageObjects applyMultipleFilters(int noOfTimes) throws InterruptedException {
+		Assert.assertTrue(assertVerifyFilterCheckBoxes(), "filter attributes are not enabled");
+		Thread.sleep(2500);
+		for(int i=0;i<noOfTimes;i++)
+		{
+			FilterCheckBoxes.get(i).click();
+			Thread.sleep(1500);
+		}
+		return this;
+	}
+	private boolean assertVerifyFilterCheckBoxes() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(FilterCheckBoxes.get(0).isEnabled())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	@Step("verify single checked filter is displayed or not")
+	public ListPageObjects verifySingleCheckedFilter() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		WebElement appliedFilter=driver.findElement(By.xpath("(//ul[contains(@class,'fliters-checkbox')]//input)[1]"));
+		Assert.assertTrue(appliedFilter.getAttribute("checked")!=null,"applied filter not shown");
+		
+
+		return this;
+	}
+	@Step("apply single filter")
+	public ListPageObjects applySingleFilter() throws InterruptedException {
+		Assert.assertTrue(assertVerifyFilterCheckBoxes(), "filter attributes are not enabled");
+		driver.findElement(By.xpath("(//ul[contains(@class,'fliters-checkbox')]//input/following-sibling::label)[1]")).click();
+		Thread.sleep(1000);
+		return this;
+	}
+	@Step("verify multiple applied filters")
+	public ListPageObjects verifyMultipleCheckedFilter(int count) {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		int j=0;
+		List<WebElement> filters=driver.findElements(By.xpath("//ul[contains(@class,'fliters-checkbox')]//input"));
+		
+		for(int i=0;i<filters.size();i++)
+		{
+		if(filters.get(i).getAttribute("checked") != null)
+			{
+			//Assert.assertEquals(filters.get(i).getAttribute("checked"),"true");
+			j++;
+			}else
+			{
+				
+			}
+		
+		}
+		Assert.assertEquals(j, count,"applied:"+count+", actual: "+j);
+		return this;
+	}
+	@Step("chamge sort by option based on index")
+	public ListPageObjects changeSortByOptionBasedOnIndex(int index) throws InterruptedException {
+		Assert.assertTrue(sortByDropdown.isDisplayed(),"sort by dropdown is not displayed");
+		sortByDropdown.click();
+		Thread.sleep(1000);
+		sortByOptions.get(index).click();
+		Thread.sleep(1000);
+		return this;
+	}
 	
 	
 

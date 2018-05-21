@@ -57,7 +57,7 @@ public class CheckoutShippingPageObjects extends PageFactoryInitializer{
 	@Step("verify saved shipping addresses")
 	public CheckoutShippingPageObjects VerifySavedAddresses() {
 		Assert.assertTrue(assertVerifySavedAddresses(), "saved addresses are not available, Please create a new shipping address");
-		savedShippingAddressList.get(0).click();
+		//savedShippingAddressList.get(0).click();
 		return this;
 	}
 
@@ -76,8 +76,9 @@ public class CheckoutShippingPageObjects extends PageFactoryInitializer{
 		return false;
 	}
 	@Step("select saved shipping address from the saved list")
-	public CheckoutShippingPageObjects chooseSavedShippingAddressFromTheList() {
+	public CheckoutShippingPageObjects chooseSavedShippingAddressFromTheList() throws InterruptedException {
 		savedShippingAddressList.get(0).click();
+		Thread.sleep(1500);
 
 		return this;
 	}

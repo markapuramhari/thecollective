@@ -6,6 +6,8 @@ import java.security.Key;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.bcel.verifier.VerificationResult;
+import org.apache.bcel.verifier.exc.VerificationException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -89,7 +91,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		@FindAll(value={@FindBy(xpath="//div[contains(@class,'footer__menu')]//span")})
 		private List<WebElement> footerHeaders;
 		
-		@FindAll(value={@FindBy(xpath="//div[contains(@class,'footer__menu')]//a")})
+		@FindAll(value={@FindBy(xpath="//div[contains(@class,'footer__menu')]//a")}) 
 		private List<WebElement> footerLinks;
 	   
 		@FindBy(xpath="//div[contains(.,'More Information')]//i")
@@ -132,7 +134,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 		
 		@FindBy(xpath="//a[@class='wishlist_icon']/span")
 		private WebElement myWishListCount;
-		
+
+		@FindBy(xpath="//div[@class='more-info footerslide']//i")
+		private WebElement moreInformationLink;
+
 		
 		@FindBy(xpath="//a[@title='My Bag']")
 		private WebElement myBagIcon;
@@ -273,7 +278,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 			for(int i=0;i<footerLinks.size();i++)
 			{
 				
-				Assert.assertEquals(footerLinks.get(i).getText(),expFooterLinks[i]);
+				Assert.assertEquals(footerHeaders.get(i).getText(),expFooterLinks[i]);
 			}
 		   
 		   return this;
@@ -286,31 +291,25 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	   @Step("click on each footer link(s)")
-	public HomePageObjects clickOnEachLink() 
+	public HomePageObjects clickOnEachLink(String expFooterLinkText) 
 	   {
-		   String previousURL="";
-		   String currentURL="";
-		   Waiting.explicitWaitVisibilityOfElements(footerLinks, 15);
-			for(int i=0;i<footerLinks.size();i++)
-			{
-				try{
-					previousURL=driver.getCurrentUrl();
-				footerLinks.get(i).click();
-				currentURL=driver.getCurrentUrl();
-				if(!currentURL.toLowerCase().contains(footerLinks.get(i).getText().toLowerCase()))
-					{
-					System.out.println(footerLinks.get(i).getText());
-					}
-				}
-				catch(Exception e)
-				{
-					
-				}
-				System.out.println(i);
-				if(!previousURL.equals(currentURL)){
-				logo.click();
-				}
-			} 
+		String expFooter[]=  expFooterLinkText.split(",");
+		  for(int i=0;i<footerLinks.size();i++)
+		  {
+			  try
+			  {
+				  footerLinks.get(i).click();
+				  System.out.println(footerLinks.get(i).getAttribute("innerText"));
+				 // Assert.assertEquals(footerHeaders.get(i).getAttribute("innerText"), expFooter[i]);
+				  
+			  }
+			  catch(Exception e)
+			  {
+				  e.printStackTrace();
+				  System.out.println(footerHeaders.get(i).getAttribute("innerText"));
+			  }
+		  }
+			
 
 		return this;
 	   }
@@ -321,7 +320,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 		return this;
 	}
-	   public HomePageObjects clickOnSpecificSubDivisionLinkUnderDivisionsSectionInHeader(String specificHeaderLink,String specifiedListLink) throws InterruptedException 
+	   public HomePageObjects clickOnSpecificCategoryFromTopNavigation(String specificHeaderLink,String specifiedListLink) throws InterruptedException 
 	   {
 		  List< WebElement> l=driver.findElements(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='Men']/following-sibling::div//a"));
 		  for(int i=0;i<l.size()-1;i++)
@@ -595,6 +594,45 @@ import ru.yandex.qatools.allure.annotations.Step;
 		   action.moveToElement(signUpLink).click().build().perform();
 		   Thread.sleep(2500);
 		return this;
+	}
+	@Step("click on footer link toggle button")
+	public HomePageObjects clickOnFooterToggleButton() {
+		Assert.assertTrue(assertVerifyMoreInfoLink(), "");
+		moreInformationLink.click();
+
+		return this;
+	}
+	private boolean assertVerifyMoreInfoLink() {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		if(moreInfoLink.isDisplayed())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	@Step("mouse hover over on user profile before login")
+	public HomePageObjects mouseHoverOverUserProfileBeforeLogin() {
+		Waiting.explicitWaitVisibilityOfElement(userIcon, 30);
+		action.moveToElement(userIcon).click().build().perform();
+		return this;
+	}
+	@Step("verify {0} link")
+	public HomePageObjects verifyLoginLink(String expLoginLinkName) {
+		Assert.assertTrue(assertVerifyLoginLink(), "login link not displayed");
+
+		return this;
+	}
+	private boolean assertVerifyLoginLink() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(loginLink.isDisplayed())
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	

@@ -13,6 +13,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import org.thecollective.maincontroller.PageFactoryInitializer;
 import org.thecollective.utils.Waiting;
 
@@ -31,6 +32,10 @@ public class AePageObjects extends PageFactoryInitializer
 	@FindAll(value={@FindBy(xpath="//div[@role='presentation']/following-sibling::div[@class='pdp-about-details-txt pdp-about-details-equit']")
 	,@FindBy(xpath="//div[@role='presentation']/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]")})
 	private List<WebElement> theDatailsData;
+	
+	
+	@FindBy(xpath="//span[@class='search-count']")
+	private WebElement searchResultsCount;
 	
 	public boolean acceptCoockies(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -52,21 +57,39 @@ public class AePageObjects extends PageFactoryInitializer
 		
 	}
 	public AePageObjects enterSearchData(String searchData) throws AWTException, InterruptedException{
-		
 		driver.navigate().refresh();
-		Thread.sleep(2500);
-		Waiting.explicitWaitVisibilityOfElement(searchInputField, 15);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		Thread.sleep(1000);
+		//Waiting.explicitWaitVisibilityOfElement(searchInputField, 15);
+		searchInputField.click();
 		searchInputField.clear();
 		searchInputField.sendKeys(searchData);
 		searchInputField.sendKeys(Keys.ENTER);
 		Thread.sleep(1500);
 		return this;
 	}
-	public AePageObjects clickOnProduct() throws InterruptedException {
-		Waiting.explicitWaitVisibilityOfElement(listedProducts, 20);
+	public AePageObjects clickOnProduct(String id) throws InterruptedException {
+		try{
+		Waiting.explicitWaitVisibilityOfElement(listedProducts, 10);
 		listedProducts.click();
 		Thread.sleep(1200);
+		}
+		catch(Exception e)
+		{
+			Assert.assertTrue(assertVerifyZeroResults(),"products are available for "+id+"");
+		}
 		return this;
+	}
+	private boolean assertVerifyZeroResults() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(searchResultsCount.getText().equals("0"))
+		{
+			return true;
+		}else
+		{
+			return false;	
+		}
+		
 	}
 	public String getTheDetails() {
 		//List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@role='presentation']/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]"));
