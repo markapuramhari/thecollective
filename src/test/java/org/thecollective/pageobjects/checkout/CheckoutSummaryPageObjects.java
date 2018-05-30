@@ -106,7 +106,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		for(int i=0;i<deleteLinks.size();i++)
 		{
 			deleteLinks.get(i).click();
-			Thread.sleep(3500);
+			Thread.sleep(2500);
 			driver.navigate().refresh();
 		}
 		return this;
@@ -135,7 +135,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("verify add products to cart link")
 	public CheckoutSummaryPageObjects verifyAddProductsToCartLink() {
-		Waiting.explicitWaitVisibilityOfElement(addProductsToCartLink, 30);
+		Waiting.explicitWaitVisibilityOfElement(addProductsToCartLink, 15);
 		Assert.assertTrue(assertVerifyAddProductsToCart(), "add products to cart link is not enabled.");
 
 		return this;

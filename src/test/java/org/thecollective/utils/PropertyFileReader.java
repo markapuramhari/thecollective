@@ -1,8 +1,14 @@
+
+
 package org.thecollective.utils;
 
 import java.io.FileReader;
 import java.util.Properties;
-
+/*
+ * 
+ * @author thiruveedhi.chinna
+ *
+ */
 
 public class PropertyFileReader {
 

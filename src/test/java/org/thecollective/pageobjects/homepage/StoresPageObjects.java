@@ -37,8 +37,8 @@ public class StoresPageObjects extends PageFactoryInitializer{
 		for(int i=0;i<storeBranchesNames.size();i++)
 		{
 			
-			System.out.println(storeBranchesNames.get(i).getText().trim());
-		//Assert.assertEquals(storeBranchesNames.get(i).getText().trim(), expStoreBranch[i].trim());
+			//System.out.println(storeBranchesNames.get(i).getText().trim());
+		Assert.assertEquals(storeBranchesNames.get(i).getText().trim(), expStoreBranch[i].trim());
 		}
 		return this;
 	}

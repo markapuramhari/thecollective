@@ -86,7 +86,7 @@ public class PDPageObjects  extends PageFactoryInitializer
 		Thread.sleep(3500);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		sizeDropdownLocator.click();
-		sizeOptions.get(2).click();
+		sizeOptions.get(0).click();
 
 		return this;
 	}

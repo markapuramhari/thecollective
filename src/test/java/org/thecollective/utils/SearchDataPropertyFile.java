@@ -59,6 +59,8 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String loginLinkName=PropertyFileReader.propertiesReader(searchData,"ExpLoginLinkName");
 
+	private String expFooterLInkFun=PropertyFileReader.propertiesReader(searchData,"expFooterLInkFun");
+
 	
 	
 	
@@ -184,6 +186,11 @@ public class SearchDataPropertyFile extends MainController{
 	public String getLoginLinkName() {
 		
 		return loginLinkName;
+	}
+
+	public String getexpFooterLInkFun() {
+		
+		return expFooterLInkFun;
 	}
 
 

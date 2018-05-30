@@ -10,7 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-
+/*
+ * 
+ * @author thiruveedhi.chinna
+ *
+ */
 public class RandomGenerator {
 
     public static String random(Integer length, PermittedCharacters permittedCharacters) {

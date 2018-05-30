@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.bcel.verifier.VerificationResult;
 import org.apache.bcel.verifier.exc.VerificationException;
+import org.apache.poi.hssf.record.PrintSetupRecord;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -24,6 +25,7 @@ import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.TestUtility;
 import org.thecollective.utils.Waiting;
 
+import net.sourceforge.htmlunit.corejs.javascript.ast.ThrowStatement;
 import ru.yandex.qatools.allure.annotations.Step;
 	
 	/*
@@ -274,11 +276,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 	   @Step("verify all footer links")
 	   public HomePageObjects verifyFooterLinks(String footerLink) {
 		  String expFooterLinks[]=footerLink.split(",");
-			Waiting.explicitWaitVisibilityOfElements(footerLinks, 40);
-			for(int i=0;i<footerLinks.size();i++)
+			//Waiting.explicitWaitVisibilityOfElements(footerLinks, 20);
+			for(int i=0;i<expFooterLinks.length;i++)
 			{
 				
-				Assert.assertEquals(footerHeaders.get(i).getText(),expFooterLinks[i]);
+				WebElement ele=driver.findElement(By.xpath("//div[contains(@class,'footer__menu')]//a[text()='"+expFooterLinks[i]+"']"));
+				Assert.assertEquals(ele.getText().trim(),expFooterLinks[i]);
 			}
 		   
 		   return this;
@@ -291,27 +294,64 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	   @Step("click on each footer link(s)")
-	public HomePageObjects clickOnEachLink(String expFooterLinkText) 
+	public HomePageObjects clickOnEachFooterLink(String expFooterLinkText) throws Exception 
 	   {
-		String expFooter[]=  expFooterLinkText.split(",");
-		  for(int i=0;i<footerLinks.size();i++)
+		   throw new Exception("needs to write footer links functionality, sice page titles needs to be update from dev team");
+		/*String expFooter[]=  expFooterLinkText.split(",");
+		for(int i=0;i<expFooter.length;i++)
+			
 		  {
+			 WebElement ele=driver.findElement(By.xpath("//div[contains(@class,'footer__menu')]//a[text()='"+expFooter[i]+"']"));
 			  try
-			  {
-				  footerLinks.get(i).click();
-				  System.out.println(footerLinks.get(i).getAttribute("innerText"));
-				 // Assert.assertEquals(footerHeaders.get(i).getAttribute("innerText"), expFooter[i]);
-				  
+			  {				 
+				  switch (ele.getText()) {
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "Careers":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "FAQs":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+					case "The Collective":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						break;
+
+					default:
+						break;
+					} 
+					
+					
+					
 			  }
 			  catch(Exception e)
 			  {
 				  e.printStackTrace();
 				  System.out.println(footerHeaders.get(i).getAttribute("innerText"));
 			  }
-		  }
+		  }*/
 			
-
-		return this;
 	   }
 	   @Step("click on stores page")
 	public HomePageObjects clickOnStoreLink() {
@@ -433,10 +473,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 	@Step("logout from the site")
 	public HomePageObjects logout() throws InterruptedException 
 	{
-		new Actions(driver).moveToElement(userIcon).moveToElement(logoutLink).click().build().perform();
 		
+			
+		new Actions(driver).moveToElement(userIcon).moveToElement(logoutLink).click().build().perform();
 		Thread.sleep(2500);
-
+		
+		
 		return this;
 	}
 	@Step("click on my orders link")
@@ -563,9 +605,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 		{
 			JavascriptExecutor js=(JavascriptExecutor)driver;
 			js.executeScript("arguments[0].click()", staticCategoryLinks.get(i));
-		//staticCategoryLinks.get(i).click();
-		Thread.sleep(4000);
-		listPage().verifyListedProduct();
+			Thread.sleep(1500);
+			listPage().verifyListedProduct();
 		}
 		return this;
 	}

@@ -1,7 +1,9 @@
 package org.thecollective.utils;
 
-/**
- * Created by hemanthsridhar on 10/17/16.
+/*
+ * 
+ * @author thiruveedhi.chinna
+ *
  */
 public enum PermittedCharacters {
 

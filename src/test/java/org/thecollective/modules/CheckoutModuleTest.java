@@ -120,7 +120,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void updateQuantityTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Shoes")
 		.listPage()
 		.clickOnSpecificProduct(1);
 		String productName=pdPage()
@@ -163,7 +163,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Shoes")
 		.listPage()
 		.clickOnSpecificProduct(1);
 		String productName=pdPage()

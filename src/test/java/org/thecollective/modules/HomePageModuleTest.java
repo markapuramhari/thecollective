@@ -30,31 +30,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		
 		homePage()
 		.verifyHomePage();
-		/*homePage()
-		.clickOnSearchIcon()
-		.enterSearchData("shirts");
-		ExtractJSLogs();
-		listPage()
-		.clickOnSpecificProduct(2);
-		ExtractJSLogs();
-		 StopWatch pageLoad = new StopWatch();
-	        pageLoad.start();
-	       pdPage().getBrandName();
-	       ExtractJSLogs();
-
-	        pageLoad.stop();
-	        //Get the time
-	        long pageLoadTime_ms = pageLoad.getTime();
-	        long pageLoadTime_Seconds = pageLoadTime_ms / 1000;
-	        System.out.println("Total Page Load Time: " + pageLoadTime_ms + " milliseconds");
-	        System.out.println("Total Page Load Time: " + pageLoadTime_Seconds + " seconds");
-	        
-		*/
 		
-		/*LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
-		for (LogEntry logEntry: logEntries.getAll()) {
-			System.err.println("BrowserConsole: " + logEntry.toString());
-		}*/
 	  } 
 	public void ExtractJSLogs() {
         LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
@@ -98,7 +74,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.clickOnMoreInfoLink()
 		.verifyFooterHeaders(data.getExpFooterHeaders())
 		.verifyFooterLinks(data.getFooterLinks())
-		.clickOnEachLink(data.getFooterLinks());
+		.clickOnEachFooterLink(data.getFooterLinks());
 	  } 
 	@TestCaseId("TC_HomePage_005")
 	@Features("Homepage Module")
@@ -124,7 +100,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  {
 		homePage()
 		.clickOnFooterToggleButton()
-		.clickOnEachLink(data.getFooterLinks());
+		.clickOnEachFooterLink(data.getexpFooterLInkFun());
 	  } 
 	@TestCaseId("TC_HomePage_007")
 	@Features("Homepage Module")
@@ -169,7 +145,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		  {
 			homePage()
 			.clickOnSearchIcon()
-			.enterSearchData("Jeans")
+			.enterSearchData("abkjsjd")
 			.listPage()
 			.verifyInvalidSearchResultsPage(data.getNoResultsFoundText())
 			.verifyPageTitle();
@@ -274,7 +250,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	  public void verifyAllImagePathLinksCheckout() throws Exception
 	  {
 		homePage().clickOnSearchIcon().enterSearchData("shirt").listPage();
-		listPage().clickOnSpecificProduct(1)
+		listPage().clickOnSpecificProduct(2)
 		.pdPage()
 		.selectSize()
 		.addToBageFromDetailsPage()
@@ -296,7 +272,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.clickOnLoginButton()
 		.homePage()
 		.clickOnSearchIcon().enterSearchData("shirt").listPage();
-		listPage().clickOnSpecificProduct(1)
+		listPage().clickOnSpecificProduct(3)
 		.pdPage()
 		.selectSize()
 		.addToBageFromDetailsPage()
@@ -322,6 +298,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.clickOnMyOrders();
 		homePage()
 		.getAllHrefLinks("https://the-collective.imgix.net/");
+		homePage().logout();
 	  }
 	
 	

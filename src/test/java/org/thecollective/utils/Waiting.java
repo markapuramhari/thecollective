@@ -9,7 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.thecollective.maincontroller.MainController;
 
 /*
- * @author Hemanth.Sridhar
+ * 
+ * @author thiruveedhi.chinna-v
+ *
  */
 public class Waiting extends MainController{
 

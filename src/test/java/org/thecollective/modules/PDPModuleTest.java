@@ -89,9 +89,9 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		.clickOnSearchIcon()
 		.enterSearchData("shirt");
 		String 	productNameListPage=listPage()
-		.getProductName(0);
+		.getProductName(1);
 		listPage()
-		.clickOnSpecificProduct(0)
+		.clickOnSpecificProduct(1)
 		.pdPage()
 		.verifyMyWishListIcon();
 		pdPage().verifyProductName(productNameListPage);
