@@ -95,7 +95,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 	@TestCaseId("TC_HomePage_006")
 	@Features("Homepage Module")
 	@Description("this test case verifies all footer links")
-	@Test(groups={"HomePageModule","smoke","regression"})
+	@Test(enabled=false,groups={"HomePageModule","smoke","regression"})
 	  public void verifyHomePageFooterLinks() throws Exception
 	  {
 		homePage()

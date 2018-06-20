@@ -16,7 +16,7 @@ public class LoginModuleTest extends PageFactoryInitializer{
 	@Features("Login Module")
 	@Description("verify login link in landing page")
 	@Test
-	public void verifyLoginLinkInLandingPage()
+	public void verifyLoginLinkInLandingPage() throws InterruptedException
 	{
 		homePage()
 		.mouseHoverOverUserProfileBeforeLogin()

@@ -3,6 +3,7 @@ package org.thecollective.pageobjects.myaccount;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -35,6 +36,36 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 	
 	@FindAll(value={@FindBy(xpath="//input[@id='btnAddToBag']")})
 	private List<WebElement> addToBagInWishLIst;
+	
+	
+	
+	
+	@FindBy(xpath="//a[@rel='myaccountpassword']")
+	private WebElement changePasswordTab;
+	
+	@FindBy(xpath="//input[@id='oldPwd']")
+	private WebElement oldPasswordFiled;
+	
+	@FindBy(xpath="//input[@id='newPwd']")
+	private WebElement NewPasswordFiled;
+	
+	@FindBy(xpath="//input[@id='confirmPwd']")
+	private WebElement ConfirmPasswordFiled;
+	
+	@FindBy(xpath="//button[contains(.,'Submit')]")
+	private WebElement changePasswordSubmitButton;
+	
+	
+	@FindBy(xpath="//div[@class='msg_display']/*[not(self::a)]")
+	private WebElement pswChangeSuccessMsg;
+	
+	@FindBy(xpath="//span[(.='LOGOUT')]")
+	private WebElement logutLinkInMyAccountPage;
+	
+	@FindBy(xpath="//a[@rel='myaccountwishlist']")
+	private WebElement savedItemsTabLinkInMyAccountPage;
+	
+	
 	
 	@Step("verify saved items page")
 	public MyAccountPageObjects verifySavedItemsPage() {
@@ -136,5 +167,84 @@ public class MyAccountPageObjects extends PageFactoryInitializer{
 		}
 		return wishlistCount;
 	}
+
+
+	@Step("click on change password tab")
+	public MyAccountPageObjects clickOnChangePasswordTab() {
+		Assert.assertTrue(assertVerifyChangePAsswordTab(),"change password tab is not shown");
+		//Waiting.explicitWaitVisibilityOfElement(changePasswordTab, 20);
+		changePasswordTab.click();
+
+		return this;
+	}
+
+
+	private boolean assertVerifyChangePAsswordTab() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(changePasswordTab.isDisplayed())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Step("update current password {0} to {1}")
+	public MyAccountPageObjects updateCurrentPassword(String oldPassword, String newPassword) throws InterruptedException {
+		Waiting.explicitWaitElementToBeClickable(oldPasswordFiled, 15);
+		oldPasswordFiled.clear();
+		oldPasswordFiled.sendKeys(oldPassword);
+		NewPasswordFiled.clear();
+		NewPasswordFiled.sendKeys(newPassword);
+		ConfirmPasswordFiled.clear();
+		ConfirmPasswordFiled.sendKeys(newPassword);
+		changePasswordSubmitButton.click();
+		Thread.sleep(1500);
+		return this;
+	}
+
+	@Step("verify change password success message as {0}")
+	public MyAccountPageObjects verifyPasswordUpdateSuccessMessage(String expSuccessMsg) {
+		Assert.assertTrue(assertVerifyPwdChangeSucMsg(),"change password success message is not displayed");
+		String a=pswChangeSuccessMsg.getText().trim().replaceAll("[\r\n]+", " ");
+		String clean = StringEscapeUtils.unescapeHtml4(a).replaceAll("[^\\x20-\\x7e]", "");
+		Assert.assertEquals(clean.replace("Ã—", " ").trim(), expSuccessMsg);
+		return this;
+	}
+
+
+	private boolean assertVerifyPwdChangeSucMsg() {
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		if(pswChangeSuccessMsg.isDisplayed())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Step("click on logout link in my account page")
+	public MyAccountPageObjects clickOnLogoutLinkInMyAccountPage() {
+		Assert.assertTrue(assertVerifyLogoutLink(),"logout link not shown in my account page");
+		logutLinkInMyAccountPage.click();
+		return this;
+	}
+
+
+	private boolean assertVerifyLogoutLink() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(logutLinkInMyAccountPage.isDisplayed())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Step("click on saved items tab")
+	public MyAccountPageObjects clickOnSavedItemsTab() throws InterruptedException {
+		Assert.assertTrue(savedItemsTabLinkInMyAccountPage.isDisplayed(), "Saved items tab is not available");
+		savedItemsTabLinkInMyAccountPage.click();
+		Thread.sleep(1500);
+		return this;
+	}
+
 
 }

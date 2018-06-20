@@ -87,8 +87,8 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		homePage().logout();
 		
 	}
-	@Description("this test case verifies recent, past order tabs")
-	@TestCaseId("TC_MyAct_004")
+	@Description("this test case verifies update shipping address")
+	@TestCaseId("TC_MyAct_005")
 	@Features("MyAccountModule")
 	@Test(enabled=true,groups={"MyAccountModule","smoke","regression"})
 	public void verifyUpdateAddress() throws InterruptedException
@@ -104,6 +104,49 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 		.myAccountPage()
 		.clickOnMyAddressTab()
 		.verifyMyAddressesPage();
+		
+	}
+	@Description("verification of change password functionality")
+	@TestCaseId("TC_MyAct_006")
+	@Features("MyAccountModule")
+	@Test(enabled=true,groups={"MyAccountModule","smoke","regression"})
+	public void verifyChangePassword() throws InterruptedException
+	{
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.navigateToMyOrdersPage()
+		.myAccountPage()
+		.clickOnChangePasswordTab()
+		.updateCurrentPassword(data.getPassword(),data.getNewPassword())
+		.verifyPasswordUpdateSuccessMessage(data.getPasswordUpdateSuccessMessage())
+		.updateCurrentPassword(data.getNewPassword(),data.getPassword())
+		.verifyPasswordUpdateSuccessMessage(data.getPasswordUpdateSuccessMessage());
+		homePage().logout();
+	}
+	@Description("verification of logout functionality in my account page")
+	@TestCaseId("TC_MyAct_007")
+	@Features("MyAccountModule")
+	@Test(enabled=true,groups={"MyAccountModule","smoke","regression"})
+	public void verifyLogoutFunInMyAccountPage() throws InterruptedException
+	{
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.navigateToMyOrdersPage()
+		.myAccountPage()
+		.clickOnLogoutLinkInMyAccountPage()
+		.homePage()
+		.verifyLoginLink(data.getLoginLinkName());
+		
 		
 	}
 }

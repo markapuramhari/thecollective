@@ -1,5 +1,6 @@
 package org.thecollective.modules;
 
+import java.awt.AWTException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -48,7 +49,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(3);
 		String productName=pdPage()
@@ -120,7 +121,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void updateQuantityTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Shoes")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(1);
 		String productName=pdPage()
@@ -163,9 +164,9 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Shoes")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
-		.clickOnSpecificProduct(1);
+		.clickOnSpecificProduct(2);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -451,7 +452,23 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_016")
 	@Test(groups={"Checkout Module","Smoke", "Regression"})
-	public void verifySavedItemsToShoppingCartTest(){
-		
+	public void verifySavedItemsToShoppingCartTest() throws InterruptedException, AWTException{
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton()
+		.homePage()
+		.clickOnSearchIcon()
+		.enterSearchData("Bags");
+		String productName=listPage().getProductName(0);
+		listPage().clickOnSpecificProduct(0);
+		pdPage()
+		.clickOnMyWishListIcon();
+		homePage()
+		.clickOnWishListIcon()
+		.myAccountPage()
+		.clickOnSavedItemsTab();
 	}
 }

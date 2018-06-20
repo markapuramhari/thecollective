@@ -73,8 +73,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 
 		 @FindBy(xpath="//a[@title='Sign Up']")
 		 private WebElement signUpLink;
-		
-		 
+				 
 		 @FindBy(xpath="//li[@id='mencollection']/a")
 		 private WebElement menHeaderLink;
 		 
@@ -296,8 +295,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 	   @Step("click on each footer link(s)")
 	public HomePageObjects clickOnEachFooterLink(String expFooterLinkText) throws Exception 
 	   {
-		   throw new Exception("needs to write footer links functionality, sice page titles needs to be update from dev team");
-		/*String expFooter[]=  expFooterLinkText.split(",");
+		  // throw new Exception("needs to write footer links functionality, sice page titles needs to be update from dev team");
+		String expFooter[]=  expFooterLinkText.split(",");
 		for(int i=0;i<expFooter.length;i++)
 			
 		  {
@@ -307,39 +306,53 @@ import ru.yandex.qatools.allure.annotations.Step;
 				  switch (ele.getText()) {
 					case "The Collective":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "About Us | The Collective");
+					//	driver.navigate().back();
 						break;
 					case "Careers":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Careers | The Collective");
+						driver.navigate().back();
 						break;
 					case "FAQs":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "FAQs | The Collective");
+						driver.navigate().back();
 						break;
-					case "The Collective":
+					case "Shipping Policy":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Shipping Policy | The Collective");
+						driver.navigate().back();
 						break;
-					case "The Collective":
+					case "Return Policy":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Return Policy | The Collective");
+						driver.navigate().back();
 						break;
-					case "The Collective":
+					case "Made To Measure":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Made to Measure | The Collective");
+						driver.navigate().back();
 						break;
-					case "The Collective":
+					case "Privacy Policy":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Privacy Policy | The Collective");
+						driver.navigate().back();
 						break;
-					case "The Collective":
+					case "Store Locator":
 						ele.click();
-						Assert.assertEquals(driver.getTitle().trim(), "The Collective");
+						Assert.assertEquals(driver.getTitle().trim(), "Store Locator | The Collective");
+						driver.navigate().back();
 						break;
 
-					default:
+					case "Brand Directory":
+						ele.click();
+						Assert.assertEquals(driver.getTitle().trim(), "Brand Directory | The Collective");
+						driver.navigate().back();
 						break;
+
+					default: throw new Exception("Link is not displayed");
+						
 					} 
 					
 					
@@ -348,9 +361,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 			  catch(Exception e)
 			  {
 				  e.printStackTrace();
-				  System.out.println(footerHeaders.get(i).getAttribute("innerText"));
+				//  System.out.println(footerHeaders.get(i).getAttribute("innerText"));
 			  }
-		  }*/
+		  }
+		return this;
 			
 	   }
 	   @Step("click on stores page")
@@ -662,18 +676,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("verify {0} link")
-	public HomePageObjects verifyLoginLink(String expLoginLinkName) {
-		Assert.assertTrue(assertVerifyLoginLink(), "login link not displayed");
-
-		return this;
-	}
-	private boolean assertVerifyLoginLink() {
+	public HomePageObjects verifyLoginLink(String expLoginLinkName) throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		if(loginLink.isDisplayed())
-		{
-			return true;
-		}
-		return false;
+		Thread.sleep(1000);
+		action.moveToElement(userIcon).click().moveToElement(loginLink).build().perform();
+		
+		Assert.assertTrue(loginLink.isDisplayed());
+		return this;
 	}
 	
 	

@@ -73,6 +73,7 @@ public class ListPageObjects extends PageFactoryInitializer{
 	}
 	@Step("verify product list page")
 	public boolean verifyListedProduct() throws Exception {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertTrue(assertVerifyProductListPage(), "products are not available");
 		return true;
 		

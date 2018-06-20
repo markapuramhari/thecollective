@@ -61,7 +61,10 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String expFooterLInkFun=PropertyFileReader.propertiesReader(searchData,"expFooterLInkFun");
 
-	
+	private String newPassword=PropertyFileReader.propertiesReader(searchData, "newPassword");
+
+	private String expChangePasswordSuccessMsg=PropertyFileReader.propertiesReader(searchData, "expChangePasswordSuccessMsg");
+
 	
 	
 	public int getNumberOfCheckboxesToBeClicked() {
@@ -191,6 +194,16 @@ public class SearchDataPropertyFile extends MainController{
 	public String getexpFooterLInkFun() {
 		
 		return expFooterLInkFun;
+	}
+
+public String getNewPassword() {
+		
+		return newPassword;
+	}
+
+	public String getPasswordUpdateSuccessMessage() {
+		
+		return expChangePasswordSuccessMsg;
 	}
 
 
