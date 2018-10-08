@@ -3,17 +3,27 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.thecollective.modules.AeContent">
+      <class name="org.thecollective.modules.PLPModuleTest">
         <methods>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
+          <include name="verifyMultiFiltersForCatNavigation"/>
+          <include name="verifySingleFilterForCatNavigation"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
+          <include name="verifySingleFilterPageRefreshForCatNavigation"/>
+          <include name="verifySingleFilterByChangingSortByOption"/>
+          <include name="verifyBrandsSubFilterFun"/>
+          <include name="verifyLeftNavFilters"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="verifyMultiFiltersRefreshForCatNavigation"/>
+          <include name="stopRecording"/>
+          <include name="verifyMultipleFilterByChnagingSortByOption"/>
+          <include name="verifyLeftNavFiltersForCatNavigation"/>
           <include name="startRecording"/>
-          <include name="aeWriteContent" invocation-numbers="1 9 10 11 12"/>
+          <include name="verifyProductListByCatNavigation"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
         </methods>
-      </class> <!-- org.thecollective.modules.AeContent -->
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

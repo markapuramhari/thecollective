@@ -42,9 +42,9 @@ public class DataDrivenTestingFromExcel {
 	}
 
 
-	@DataProvider(name="SearchV2")
+	@DataProvider(name="SignUpNeg")
 	public static Object[][] SearchV2KeywordExactMatching(Method methodName) throws Exception{
-		File file = new File("resources/ExcelSheetData/SearchV2.xlsx");
+		File file = new File("resources/ExcelSheetData/SignUpNeg.xlsx");
 		 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath(),methodName.getName());
 		return data;
 	}

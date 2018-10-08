@@ -15,6 +15,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.thecollective.maincontroller.PageFactoryInitializer;
+import org.thecollective.modules.ExcelFileReadAndWrite;
 import org.thecollective.utils.Waiting;
 
 public class AePageObjects extends PageFactoryInitializer
@@ -26,7 +27,7 @@ public class AePageObjects extends PageFactoryInitializer
 	private WebElement searchInputField;
 	
 	
-	@FindBy(xpath="//div[contains(@class,'product-images ')]")
+	@FindBy(xpath="//div[@class='product-list']//div[contains(@class,'product-images ')]")
 	private WebElement listedProducts;
 	
 	@FindAll(value={@FindBy(xpath="//div[@role='presentation']/following-sibling::div[@class='pdp-about-details-txt pdp-about-details-equit']")
@@ -38,14 +39,15 @@ public class AePageObjects extends PageFactoryInitializer
 	private WebElement searchResultsCount;
 	
 	public boolean acceptCoockies(){
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try{
 			
-			if(coockePopUp.isDisplayed()){
+			if(coockePopUp.isDisplayed())
+			{
 				coockePopUp.click();
 /*			JavascriptExecutor js=(JavascriptExecutor)driver;
 			js.executeScript("arguments[0].click();", coockePopUp);*/
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			return true;
 			
 		}
@@ -53,47 +55,59 @@ public class AePageObjects extends PageFactoryInitializer
 		{
 			return true;
 		}
-		return false;
+		return true;
 		
 	}
 	public AePageObjects enterSearchData(String searchData) throws AWTException, InterruptedException{
-		driver.navigate().refresh();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		//driver.navigate().refresh();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Thread.sleep(1000);
 		//Waiting.explicitWaitVisibilityOfElement(searchInputField, 15);
 		searchInputField.click();
 		searchInputField.clear();
 		searchInputField.sendKeys(searchData);
 		searchInputField.sendKeys(Keys.ENTER);
-		Thread.sleep(1500);
+		/* // Create object of Robot class
+		  Robot r=new Robot();
+		 
+		   // Press Enter
+		   r.keyPress(KeyEvent.VK_ENTER);
+		 
+		   // Release Enter
+		   r.keyRelease(KeyEvent.VK_ENTER);*/
+		Thread.sleep(1000);
 		return this;
 	}
 	public AePageObjects clickOnProduct(String id) throws InterruptedException {
 		try{
 		Waiting.explicitWaitVisibilityOfElement(listedProducts, 10);
 		listedProducts.click();
-		Thread.sleep(1200);
+		Thread.sleep(2000);
 		}
 		catch(Exception e)
 		{
-			Assert.assertTrue(assertVerifyZeroResults(),"products are available for "+id+"");
+			Assert.assertTrue(assertVerifyZeroResults(id),"products are available for "+id+"");
 		}
 		return this;
 	}
-	private boolean assertVerifyZeroResults() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	private boolean assertVerifyZeroResults(String id) {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		if(searchResultsCount.getText().equals("0"))
 		{
-			return true;
+
+			ExcelFileReadAndWrite write =new ExcelFileReadAndWrite();
+			write.writeData(id,"No Results found","No Results found","No Results found","No Results found","No Results found");
+			return false;
 		}else
 		{
-			return false;	
+			return true;	
 		}
 		
 	}
 	public String getTheDetails() {
 		//List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@role='presentation']/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]"));
-		 List<String> all_elements_text=new ArrayList<>();
+		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		List<String> all_elements_text=new ArrayList<>();
 		 for(int i=0; i<theDatailsData.size(); i++)
 		 {
 			 all_elements_text.add(theDatailsData.get(i).getAttribute("innerText").toString()+"\n");
@@ -123,5 +137,15 @@ public class AePageObjects extends PageFactoryInitializer
 		 String listString = String.join("", all_elements_text);
 		 System.out.println(listString);
 		return listString;
+	}
+	public String getColor() {
+		String color=driver.findElement(By.xpath("//span[@itemprop='color']")).getText().trim();
+		System.out.println(color);
+		return color;
+	}
+	public String getProductName() {
+		String productName=driver.findElement(By.xpath("//div[@id='pdp-sticky-menu']//h1")).getText();
+		System.out.println(productName);
+		return productName;
 	}
 }

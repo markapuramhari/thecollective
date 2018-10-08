@@ -25,7 +25,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class ExcelFileReadAndWrite {
  
  
-    public  void writeData(String StyleCode,String theDetails, String materialsCare, String sizeAndFit) {
+    public  void writeData(String StyleCode,String productName,String color,String theDetails, String materialsCare, String sizeAndFit) {
     	 
         String excelFilePath = "D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/aeContent.xlsx"; 
          //D:\Thiruveedhi\Implementation\thecollective\resources\ExcelsheetData
@@ -35,31 +35,28 @@ public class ExcelFileReadAndWrite {
  
             Sheet sheet = workbook.getSheetAt(1);
  
-            Object[][] bookData = {
-                    {StyleCode,theDetails,materialsCare,sizeAndFit}
-            };
+            Object[][] productsData = {{StyleCode,productName,color,theDetails,materialsCare,sizeAndFit} };
  
             int rowCount = sheet.getLastRowNum();
- 
-            for (Object[] aBook : bookData) {
+            for (Object[] productsDetails : productsData) 
+            {
                 Row row = sheet.createRow(++rowCount);
- 
                 int columnCount = 0;
-                 
                 Cell cell = row.createCell(columnCount);
                 cell.setCellValue(rowCount);
-                 
-                for (Object field : aBook) {
-                    cell = row.createCell(++columnCount);
-                    if (field instanceof String) {
-                        cell.setCellValue((String) field);
-                    } else if (field instanceof Integer) {
-                        cell.setCellValue((Integer) field);
-                    }
-                }
+                for (Object field : productsDetails) 
+	                {
+	                    cell = row.createCell(++columnCount);
+	                    if (field instanceof String) 
+		                    {
+		                    	cell.setCellValue((String) field);
+		                    }else if (field instanceof Integer) 
+			                    {
+			                        cell.setCellValue((Integer) field);
+			                    }
+	                }
  
             }
- 
             inputStream.close();
             File file= new File("D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/aeContent.xlsx");
             FileOutputStream outputStream = new FileOutputStream(file.getAbsolutePath());
@@ -68,8 +65,8 @@ public class ExcelFileReadAndWrite {
             outputStream.close();
            
              
-        } catch (IOException | EncryptedDocumentException
-                | InvalidFormatException ex) {
+        } catch (IOException | EncryptedDocumentException | InvalidFormatException ex)
+        {
             ex.printStackTrace();
         }
     }

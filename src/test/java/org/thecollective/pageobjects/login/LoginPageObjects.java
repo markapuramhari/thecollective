@@ -1,5 +1,6 @@
 package org.thecollective.pageobjects.login;
 
+import org.thecollective.pageobjects.login.LoginPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -10,6 +11,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class LoginPageObjects extends PageFactoryInitializer{
 
+	
+	@FindBy(xpath="//input[@id='sleCustomerMobNo']/following-sibling::span[@class='err_msg']")
+	private WebElement phoneOrEmaiErrorMessageText;
+	
+	@FindBy(xpath="//input[@id='sleCustomerPassword']/following-sibling::span[@class='err_msg']")
+	private WebElement passwordErrorMessage;
+	
 	@FindBy(xpath="//input[@id='sleCustomerMobNo']")
 	private WebElement loginUserNameField;
 	
@@ -54,8 +62,7 @@ public class LoginPageObjects extends PageFactoryInitializer{
 		Waiting.explicitWaitVisibilityOfElement(loginButton, 15);
 		//((JavascriptExecutor) driver).executeScript("arguments[0].click();",loginButton);
 		loginButton.click();
-		
-		Thread.sleep(2500);
+		Thread.sleep(1500);
 
 		return this;
 	}
@@ -70,6 +77,16 @@ public class LoginPageObjects extends PageFactoryInitializer{
 		Assert.assertTrue(forgotPasswordLink.isDisplayed(), "forgot Password Link is not displayed");
 		Assert.assertTrue(signupLink.isDisplayed(), "signupLink is not displayed");
 		
+		return this;
+	}
+	@Step("verify error message for invalid/empty mobile/email field")
+	public LoginPageObjects verifyLoginErrorMessage(String userNameErrorMessage, String expErrorMessageForPassword) {
+		//loginUserNameField.clear();
+		//loginUserNameField.sendKeys(userName);
+		Assert.assertEquals(phoneOrEmaiErrorMessageText.getText().trim(), userNameErrorMessage);
+		Assert.assertEquals(passwordErrorMessage.getText().trim(), expErrorMessageForPassword);
+		
+
 		return this;
 	}
 

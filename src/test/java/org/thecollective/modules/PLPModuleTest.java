@@ -4,7 +4,6 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 import org.thecollective.maincontroller.PageFactoryInitializer;
-import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.SearchDataPropertyFile;
 
 import ru.yandex.qatools.allure.annotations.Description;
@@ -76,7 +75,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	@Features("Product List Page")
 	@Test()
 	@Description("verification of apply single filter functionality by using search")
-	public void verifySinleFilterFunWithPageRefresh() throws AWTException, InterruptedException, Exception
+	public void verifySingleFilterFunWithPageRefresh() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
 		.clickOnSearchIcon()
@@ -128,7 +127,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	@Features("Product List Page")
 	@Test()
 	@Description("verification of apply single filter functionality by changing sortby option")
-	public void verifySinleFilterByChangingSortByOption() throws AWTException, InterruptedException, Exception
+	public void verifySingleFilterByChangingSortByOption() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
 		.clickOnSearchIcon()
@@ -251,5 +250,35 @@ public class PLPModuleTest extends PageFactoryInitializer{
 		driver.navigate().refresh();
 		listPage()
 		.verifyMultipleCheckedFilter(2);
+	}
+	@TestCaseId("TC_PLP_016")
+	@Features("Product List Page")
+	@Test()
+	@Description("verifies brand search within option")
+	public void verifyBrandsSubFilterSection() throws AWTException, InterruptedException, Exception
+	{
+		homePage()
+		.clickOnSearchIcon()
+		.enterSearchData("shirt")
+		.listPage()
+		.verifyFilterSection()
+		.verifyBrandSubFilter();
+		
+	
+	}
+	@TestCaseId("TC_PLP_017")
+	@Features("Product List Page")
+	@Test()
+	@Description("verifies brand search within option functionality")
+	public void verifyBrandsSubFilterFun() throws AWTException, InterruptedException, Exception
+	{
+		homePage()
+		.clickOnSpecificCategoryFromTopNavigation("Men", "T-Shirts")
+		.listPage()
+		.verifyBrandSubFilter()
+		.enterSearchKeyWord("a")
+		.verifySearchWithinFun('3');
+		
+		
 	}
 }

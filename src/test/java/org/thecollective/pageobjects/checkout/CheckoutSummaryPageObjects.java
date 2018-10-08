@@ -78,6 +78,9 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//a[contains(text(),'Apply Now')]")
 	private WebElement couponsLinkAfterLogin;
 	
+	@FindBy(xpath="//a[text()='Coupons']")
+	private WebElement couponsTabLink;
+	
 	
 	//===========================================================================//
 	
@@ -106,7 +109,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		for(int i=0;i<deleteLinks.size();i++)
 		{
 			deleteLinks.get(i).click();
-			Thread.sleep(2500);
+			Thread.sleep(1500);
 			driver.navigate().refresh();
 		}
 		return this;
@@ -155,8 +158,8 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("verify empty cart text")
 	public CheckoutSummaryPageObjects verifyEmptyCartText(String emptyCartText) {
-		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-		Waiting.explicitWaitVisibilityOfElement(emptyCartPageText, 30);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Waiting.explicitWaitVisibilityOfElement(emptyCartPageText, 10);
 		Assert.assertEquals(emptyCartPageText.getText().trim(), emptyCartText);
 
 		return this;
@@ -164,9 +167,8 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	//13548
 	@Step("verify qty drodown ")
 	public CheckoutSummaryPageObjects updateTheQuantity(String updatedQty) {
-		Waiting.explicitWaitVisibilityOfElement(qtyDropdown, 40);
-		new Select(qtyDropdown).selectByVisibleText(updatedQty);;
-		
+		Waiting.explicitWaitVisibilityOfElement(qtyDropdown, 10);
+		new Select(qtyDropdown).selectByVisibleText(updatedQty);
 		return this;
 	}
 	@Step("verify prosuct name {0} in checkout summary page")
@@ -300,8 +302,8 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("click on coupons tab")
 	public CheckoutSummaryPageObjects clickOnCouponsTab() {
-
-
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		couponsTabLink.click();
 		return this;
 	}
 	

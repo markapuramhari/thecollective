@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]">
+  <test thread-count="5" name="Test(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="org.thecollective.modules.LoginModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="loginValid"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <methods>
+          <include name="verifyCouponsSectionCheckoutPage"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyUpdatePriceTest"/>
+          <include name="veryfyRemoveProductsTest"/>
+          <include name="veryfyShippingAddresTest"/>
+          <include name="startRecording"/>
+          <include name="verifyOrderPlacementByCCO"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+    </classes>
+  </test> <!-- Test(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]] -->

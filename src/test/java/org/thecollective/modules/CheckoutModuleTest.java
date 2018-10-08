@@ -62,10 +62,16 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.clickOnContinuePaymentsLink()
 		.shippingPage()
 		.verifyShippingPage();
-	}finally{
+	}finally
+	{
+		try{
 		homePage()
 		.clickLogo()
 		.logout();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 		
 	}
@@ -94,6 +100,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@TestCaseId("TC_Checkout_004")
 	@Test
 	public void veryfyPaymentTest() throws InterruptedException{
+	try{
 		homePage()
 		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
@@ -111,7 +118,16 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyShippingPage()
 		.paymentPage()
 		.verifyPaymentPage();
-		
+	}
+	finally
+	{
+		try{
+		homePage().logout();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	}
 	
 	@Description("this test case verifies update quantity in checkout summary page")
@@ -186,6 +202,8 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@TestCaseId("TC_Checkout_008")
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginLinkInCouponsTabTest() throws InterruptedException{
+		try
+		{
 		homePage()
 		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
@@ -200,7 +218,16 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyProductName(productName)
 		.verifyProductPriceBeforeUpdate(productPrice)
 		.verifyCouponsTabBeforeLogin();
-		
+		}
+		finally
+		{
+			try{
+			homePage().logout();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 	@Description("this test case verifies login page from coupons tab")
 	@Features("Checkout Module")
@@ -334,7 +361,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.verifyProductImage()
 		.verifyCouponsTabAfterLogin()
 		.clickOnCouponsLink()
-		.clickOnCouponsTab()
+		//.clickOnCouponsTab()
 		.verifyCouponsSection(data.getCouponsTabOptions());
 		
 		
@@ -346,8 +373,8 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyOrderPlacementByCod() throws Exception
 	{
 		
-		data.setPaymentMethod("Cash on Delivery");
-		String expPaymentMethod=data.getPaymentMethod();
+		data.setPaymentMethod("Cash on Delivery (COD)");
+		String expPaymentMethod=data.getPaymentMethod().trim();
 		homePage()
 		.clickOnLoginLink()
 		.loginPage()
@@ -355,7 +382,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()
@@ -406,7 +433,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()

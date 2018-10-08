@@ -80,7 +80,7 @@ public class CheckoutPaymentPageObjects extends PageFactoryInitializer{
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		try
 		{
-		if( driver.findElement(By.xpath("//div[@class='payment_option_block']//span[contains(text(),'"+expPaymentOption+"')]")).isDisplayed())
+		if( driver.findElement(By.xpath("//div[@class='payment_option_block']//span[normalize-space(text())='"+expPaymentOption+"']")).isDisplayed())
 		{
 			return true;
 			

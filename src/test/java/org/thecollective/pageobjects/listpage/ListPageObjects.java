@@ -1,6 +1,9 @@
 package org.thecollective.pageobjects.listpage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -45,6 +48,9 @@ public class ListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//ul[@class='dropdown-menu']//a")})
 	private List<WebElement> sortByOptions;
 	
+	@FindBy(xpath="//h2[text()='Brand Directory']")
+	private WebElement brandDirectoryPageName;
+	
 	@FindBy(xpath="//h1[contains(@class,'dropdown-toggle')]")
 	private WebElement sortByDropdown;
 	
@@ -60,6 +66,12 @@ public class ListPageObjects extends PageFactoryInitializer{
 	
 	@FindAll(value={@FindBy(xpath="//ul[contains(@class,'fliters-checkbox')]//input/following-sibling::label")})
 	private List<WebElement> FilterCheckBoxes;
+	
+	@FindBy(xpath="//input[@class='brandFilterSearch']")
+	private WebElement brandSearchWithIn;
+	
+	@FindAll(value={@FindBy(xpath="//li[@class='filteritem active brandFilterItem']//li//span")})
+	private List<WebElement> brandFilterAttributes;
 	
 	//===================================================
 	@Step("verify product list page")
@@ -87,12 +99,13 @@ public class ListPageObjects extends PageFactoryInitializer{
 			{
 				return true;
 			}
+			
 		}catch(Exception e)
 		{
 			Thread.sleep(1500);
 			String pageTitle=driver.getTitle().trim();
 			//System.out.println(driver.getTitle().trim());
-			if(pageTitle.equalsIgnoreCase("Brand Directory"))
+			if(pageTitle.equalsIgnoreCase("Brand Directory | The Collective"))
 			{
 				return true;
 			}
@@ -142,7 +155,7 @@ public class ListPageObjects extends PageFactoryInitializer{
 	public ListPageObjects verifyPageTitle() 
 	{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Assert.assertEquals(driver.getTitle(), data.getSearchResultsPageTitle()+" | "+data.getProductName().trim());
+		Assert.assertEquals(driver.getTitle(), data.getSearchResultsPageTitle());
 
 		return this;
 	}
@@ -417,7 +430,8 @@ public class ListPageObjects extends PageFactoryInitializer{
 		return this;
 	}
 	@Step("verify multiple applied filters")
-	public ListPageObjects verifyMultipleCheckedFilter(int count) {
+	public ListPageObjects verifyMultipleCheckedFilter(int count) throws InterruptedException {
+		Thread.sleep(1500);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		int j=0;
 		List<WebElement> filters=driver.findElements(By.xpath("//ul[contains(@class,'fliters-checkbox')]//input"));
@@ -444,5 +458,68 @@ public class ListPageObjects extends PageFactoryInitializer{
 		sortByOptions.get(index).click();
 		Thread.sleep(1000);
 		return this;
+	}
+	@Step("verify brand sub filter")
+	public ListPageObjects verifyBrandSubFilter() {
+
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		Assert.assertTrue(brandSearchWithIn.isEnabled(), "brand search within is not displayed");
+		return this;
+	}
+	@Step("enter search keyword {0}")
+	public ListPageObjects enterSearchKeyWord(String searchKeyword) {
+		Waiting.explicitWaitVisibilityOfElement(brandSearchWithIn, 10);
+		brandSearchWithIn.clear();
+		brandSearchWithIn.sendKeys(searchKeyword);
+		return this;
+	}
+	@Step("verify search within functionality for brand filters")
+	public ListPageObjects verifySearchWithinFun(Character searchKeyWord) {
+		
+		    for(WebElement results: brandFilterAttributes)
+		    {		 
+		    	char[] strArray = results.getText().toCharArray();
+		    	for (char c : strArray)
+		    	{
+	        	
+		    		if(c==searchKeyWord)
+			    			{
+		                //If char is present in charCountMap, incrementing it's count by 1
+		    			//return true;
+		            	Assert.assertTrue(true, "search keyword doent have matches");
+		            	System.out.println(c);
+		            	}else
+		            	{
+		            		//return false;
+		            	}
+	        }
+		    	//System.out.println(brandFilterAttributes.get(i).getText().toString());
+		    	//	Assert.assertTrue(assertVerifyBrandFilters(i,searchKeyWord), "results not found for searchKeyword :"+searchKeyWord+"");
+			
+		    }
+		return this;
+
+	
+	}
+	private boolean assertVerifyBrandFilters(int i,String searchKeyWord) {
+		boolean flag=false;
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		String filter=brandFilterAttributes.get(i).getText().trim().toLowerCase();
+		for(int j=0;j<filter.length();j++)
+		{
+			try{
+			 if(filter.charAt(j)==searchKeyWord.charAt(0))
+				{
+				 flag= true;
+					break;
+				}
+			}catch(Exception e)
+			{
+				continue;
+			}
+			
+			}
+		return flag;
+		
 	}
 }

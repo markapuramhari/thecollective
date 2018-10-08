@@ -65,6 +65,10 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String expChangePasswordSuccessMsg=PropertyFileReader.propertiesReader(searchData, "expChangePasswordSuccessMsg");
 
+	private String signupPageTitle=PropertyFileReader.propertiesReader(searchData, "expSignUpPageTitle");
+
+	private String signUpPageName=PropertyFileReader.propertiesReader(searchData, "expSignUpPageName");
+
 	
 	
 	public int getNumberOfCheckboxesToBeClicked() {
@@ -204,6 +208,16 @@ public String getNewPassword() {
 	public String getPasswordUpdateSuccessMessage() {
 		
 		return expChangePasswordSuccessMsg;
+	}
+
+	public String getSignupPageTitle() {
+		
+		return signupPageTitle;
+	}
+
+	public String getSignUpPageName() {
+		// TODO Auto-generated method stub
+		return signUpPageName;
 	}
 
 

@@ -1,0 +1,1228 @@
+<html>
+<head>
+<title>TestNG:  FirefoxTest</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>FirefoxTest</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>33/11/7</td>
+</tr><tr>
+<td>Started on:</td><td>Mon May 07 11:21:54 IST 2018</td>
+</tr>
+<tr><td>Total time:</td><td>1383 seconds (1383783 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllCategories()'><b>verifyAllCategories</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [] (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyListedProduct(ListPageObjects.java:76)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnCategoryLink(HomePageObjects.java:568)
+	at org.thecollective.modules.HomePageModuleTest.verifyAllCategories(HomePageModuleTest.java:216)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2130682398", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2130682398'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [] (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyListedProduct(ListPageObjects.java:76)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnCategoryLink(HomePageObjects.java:568)
+	at org.thecollective.modules.HomePageModuleTest.verifyAllCategories(HomePageModuleTest.java:216)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>311</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInSignUpPage()'><b>verifyAllImagePathLinksInSignUpPage</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@title=&apos;Sign Up&apos;]&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=xpath, value=//a[@title=&apos;Sign Up&apos;]}
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.getCoordinates(Unknown Source)
+	at org.openqa.selenium.interactions.internal.MouseAction.getActionLocation(MouseAction.java:51)
+	at org.openqa.selenium.interactions.MoveMouseAction.perform(MoveMouseAction.java:39)
+	at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:50)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnSignupLink(HomePageObjects.java:594)
+	at org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInSignUpPage(HomePageModuleTest.java:244)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace827206475", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace827206475'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@title=&apos;Sign Up&apos;]&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=xpath, value=//a[@title=&apos;Sign Up&apos;]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.getCoordinates(Unknown Source)
+	at org.openqa.selenium.interactions.internal.MouseAction.getActionLocation(MouseAction.java:51)
+	at org.openqa.selenium.interactions.MoveMouseAction.perform(MoveMouseAction.java:39)
+	at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:50)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnSignupLink(HomePageObjects.java:594)
+	at org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInSignUpPage(HomePageModuleTest.java:244)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>32</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.PLPModuleTest.verifyFilterFunctionalityForSearch()'><b>verifyFilterFunctionalityForSearch</b><br>Test class: org.thecollective.modules.PLPModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: asynchronous script timeout: result was not received in 30 seconds
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.08 seconds
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeAsyncScript(RemoteWebDriver.java:598)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.applyFilters(ListPageObjects.java:359)
+	at org.thecollective.modules.PLPModuleTest.verifyFilterFunctionalityForSearch(PLPModuleTest.java:79)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1733791946", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1733791946'><pre>org.openqa.selenium.TimeoutException: asynchronous script timeout: result was not received in 30 seconds
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.08 seconds
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeAsyncScript(RemoteWebDriver.java:598)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.applyFilters(ListPageObjects.java:359)
+	at org.thecollective.modules.PLPModuleTest.verifyFilterFunctionalityForSearch(PLPModuleTest.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>40</td>
+<td>org.thecollective.modules.PLPModuleTest@74ee97cb</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyFooterLinksFunctionality()'><b>verifyFooterLinksFunctionality</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [[[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a]] (tried for 40 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyFooterLinks(HomePageObjects.java:277)
+	at org.thecollective.modules.HomePageModuleTest.verifyFooterLinksFunctionality(HomePageModuleTest.java:100)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2038827813", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2038827813'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [[[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a]] (tried for 40 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyFooterLinks(HomePageObjects.java:277)
+	at org.thecollective.modules.HomePageModuleTest.verifyFooterLinksFunctionality(HomePageModuleTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>44</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyHomePageFooterLinks()'><b>verifyHomePageFooterLinks</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index: 6, Size: 0
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:39)
+	at com.sun.proxy.$Proxy20.get(Unknown Source)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnEachLink(HomePageObjects.java:309)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageFooterLinks(HomePageModuleTest.java:127)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1590502119", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1590502119'><pre>java.lang.IndexOutOfBoundsException: Index: 6, Size: 0
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:39)
+	at com.sun.proxy.$Proxy20.get(Unknown Source)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnEachLink(HomePageObjects.java:309)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageFooterLinks(HomePageModuleTest.java:127)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>34</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyHomePageFooters()'><b>verifyHomePageFooters</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [[[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a]] (tried for 40 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyFooterLinks(HomePageObjects.java:277)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageFooters(HomePageModuleTest.java:89)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace388198023", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace388198023'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all [[[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a], [[ChromeDriver: chrome on WIN8_1 (dfcde3ec60f2b33f2604b7897202ef0c)] -&gt; xpath: //div[contains(@class,&apos;footer__menu&apos;)]//a]] (tried for 40 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElements(Waiting.java:78)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyFooterLinks(HomePageObjects.java:277)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageFooters(HomePageModuleTest.java:89)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>44</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyHomePageHeadersBeforeLogin()'><b>verifyHomePageHeadersBeforeLogin</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>java.lang.AssertionError: expected [https://assets.abfrlcdn.com/img/app/thecollective/tc-logo.jpg] but found [https://the-collective.imgix.net/img/app/thecollective/tc-logo.jpg]
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyLogo(HomePageObjects.java:156)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyHomePage(HomePageObjects.java:223)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageHeadersBeforeLogin(HomePageModuleTest.java:32)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 33 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1673397192", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1673397192'><pre>java.lang.AssertionError: expected [https://assets.abfrlcdn.com/img/app/thecollective/tc-logo.jpg] but found [https://the-collective.imgix.net/img/app/thecollective/tc-logo.jpg]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+	at org.testng.Assert.assertEquals(Assert.java:118)
+	at org.testng.Assert.assertEquals(Assert.java:453)
+	at org.testng.Assert.assertEquals(Assert.java:463)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyLogo(HomePageObjects.java:156)
+	at org.thecollective.pageobjects.homepage.HomePageObjects.verifyHomePage(HomePageObjects.java:223)
+	at org.thecollective.modules.HomePageModuleTest.verifyHomePageHeadersBeforeLogin(HomePageModuleTest.java:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>1</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyInvalidSearchFunctionality()'><b>verifyInvalidSearchFunctionality</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[contains(@class,&apos;products_list&apos;)]//h1&apos; (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElement(Waiting.java:56)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyInvalidSearchResultsPage(ListPageObjects.java:123)
+	at org.thecollective.modules.HomePageModuleTest.verifyInvalidSearchFunctionality(HomePageModuleTest.java:174)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[contains(@class,&apos;products_list&apos;)]//h1&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=xpath, value=//div[contains(@class,&apos;products_list&apos;)]//h1}
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:302)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$100(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:288)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:285)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 31 more
+... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1226286913", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1226286913'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[contains(@class,&apos;products_list&apos;)]//h1&apos; (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElement(Waiting.java:56)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyInvalidSearchResultsPage(ListPageObjects.java:123)
+	at org.thecollective.modules.HomePageModuleTest.verifyInvalidSearchFunctionality(HomePageModuleTest.java:174)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[contains(@class,&apos;products_list&apos;)]//h1&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=xpath, value=//div[contains(@class,&apos;products_list&apos;)]//h1}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:302)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$100(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:288)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:285)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 31 more
+</pre></div></td>
+<td>66</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.PDPModuleTest.verifyMyWishListFunctionality()'><b>verifyMyWishListFunctionality</b><br>Test class: org.thecollective.modules.PDPModuleTest</td>
+<td><div><pre>java.lang.AssertionError: expected [Welcome back! Login for seamless shopping.] but found [Hugo]
+	at org.thecollective.pageobjects.login.LoginPageObjects.verifyLoginPage(LoginPageObjects.java:65)
+	at org.thecollective.modules.PDPModuleTest.verifyMyWishListFunctionality(PDPModuleTest.java:54)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 33 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1867097592", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1867097592'><pre>java.lang.AssertionError: expected [Welcome back! Login for seamless shopping.] but found [Hugo]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+	at org.testng.Assert.assertEquals(Assert.java:118)
+	at org.testng.Assert.assertEquals(Assert.java:453)
+	at org.testng.Assert.assertEquals(Assert.java:463)
+	at org.thecollective.pageobjects.login.LoginPageObjects.verifyLoginPage(LoginPageObjects.java:65)
+	at org.thecollective.modules.PDPModuleTest.verifyMyWishListFunctionality(PDPModuleTest.java:54)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>24</td>
+<td>org.thecollective.modules.PDPModuleTest@3ab70d34</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifySearchFunctionality()'><b>verifySearchFunctionality</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>java.lang.AssertionError: expected [Search Results | The Collective] but found [Search Results]
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyPageTitle(ListPageObjects.java:117)
+	at org.thecollective.modules.HomePageModuleTest.verifySearchFunctionality(HomePageModuleTest.java:161)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+... Removed 33 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1957804428", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1957804428'><pre>java.lang.AssertionError: expected [Search Results | The Collective] but found [Search Results]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+	at org.testng.Assert.assertEquals(Assert.java:118)
+	at org.testng.Assert.assertEquals(Assert.java:453)
+	at org.testng.Assert.assertEquals(Assert.java:463)
+	at org.thecollective.pageobjects.listpage.ListPageObjects.verifyPageTitle(ListPageObjects.java:117)
+	at org.thecollective.modules.HomePageModuleTest.verifySearchFunctionality(HomePageModuleTest.java:161)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>7</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest()'><b>veryfyRemoveProductsTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.tagName: h1&apos; (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElement(Waiting.java:56)
+	at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyEmptyCartText(CheckoutSummaryPageObjects.java:159)
+	at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyEmptyCartPage(CheckoutSummaryPageObjects.java:131)
+	at org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest(CheckoutModuleTest.java:86)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;tag name&quot;,&quot;selector&quot;:&quot;h1&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 40.02 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=tag name, value=h1}
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByTagName(RemoteWebDriver.java:445)
+	at org.openqa.selenium.By$ByTagName.findElement(By.java:334)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:302)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$100(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:288)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:285)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 32 more
+... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace866710503", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace866710503'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.tagName: h1&apos; (tried for 30 second(s) with 500 MILLISECONDS interval)
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:265)
+	at org.thecollective.utils.Waiting.explicitWaitVisibilityOfElement(Waiting.java:56)
+	at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyEmptyCartText(CheckoutSummaryPageObjects.java:159)
+	at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyEmptyCartPage(CheckoutSummaryPageObjects.java:131)
+	at org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest(CheckoutModuleTest.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+	at org.thecollective.maincontroller.MainController.run(MainController.java:226)
+	at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;tag name&quot;,&quot;selector&quot;:&quot;h1&quot;}
+  (Session info: chrome=66.0.3359.139)
+  (Driver info: chromedriver=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 40.02 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;MGLT-CND6046GGC&apos;, ip: &apos;172.21.14.218&apos;, os.name: &apos;Windows 8.1&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.3&apos;, java.version: &apos;1.8.0_131&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir9344_20046}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=66.0.3359.139, platform=WIN8_1, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+Session ID: dfcde3ec60f2b33f2604b7897202ef0c
+*** Element info: {Using=tag name, value=h1}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByTagName(RemoteWebDriver.java:445)
+	at org.openqa.selenium.By$ByTagName.findElement(By.java:334)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy18.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:302)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$100(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:288)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:285)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 32 more
+</pre></div></td>
+<td>104</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.updateQuantityTest()'><b>updateQuantityTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>29</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksCheckout()'><b>verifyAllImagePathLinksCheckout</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>39</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksCheckoutShippingAddres()'><b>verifyAllImagePathLinksCheckoutShippingAddres</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>41</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInHomepage()'><b>verifyAllImagePathLinksInHomepage</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>0</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInLoginPage()'><b>verifyAllImagePathLinksInLoginPage</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>4</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksInMyOrderPage()'><b>verifyAllImagePathLinksInMyOrderPage</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>19</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksListPage()'><b>verifyAllImagePathLinksListPage</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>7</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyAllImagePathLinksPDP()'><b>verifyAllImagePathLinksPDP</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>13</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyHomePageAfterLogin()'><b>verifyHomePageAfterLogin</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>11</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.PLPModuleTest.verifyLeftNavFilters()'><b>verifyLeftNavFilters</b><br>Test class: org.thecollective.modules.PLPModuleTest</td>
+<td></td>
+<td>3</td>
+<td>org.thecollective.modules.PLPModuleTest@74ee97cb</td></tr>
+<tr>
+<td title='org.thecollective.modules.PLPModuleTest.verifyLeftNavFiltersForSearch()'><b>verifyLeftNavFiltersForSearch</b><br>Test class: org.thecollective.modules.PLPModuleTest</td>
+<td></td>
+<td>6</td>
+<td>org.thecollective.modules.PLPModuleTest@74ee97cb</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyLoginByClickOnContinueInSummaryPage()'><b>verifyLoginByClickOnContinueInSummaryPage</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>24</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyLoginLinkInCouponsTabTest()'><b>verifyLoginLinkInCouponsTabTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>22</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyLoginPageFromCouponsTabTest()'><b>verifyLoginPageFromCouponsTabTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>25</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyMensAccessoriesLinks()'><b>verifyMensAccessoriesLinks</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>30</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.MyAccountModuleTest.verifyMyAccountPage()'><b>verifyMyAccountPage</b><br>Test class: org.thecollective.modules.MyAccountModuleTest</td>
+<td></td>
+<td>12</td>
+<td>org.thecollective.modules.MyAccountModuleTest@40416321</td></tr>
+<tr>
+<td title='org.thecollective.modules.MyAccountModuleTest.verifyMyOrdersPage()'><b>verifyMyOrdersPage</b><br>Test class: org.thecollective.modules.MyAccountModuleTest</td>
+<td></td>
+<td>14</td>
+<td>org.thecollective.modules.MyAccountModuleTest@40416321</td></tr>
+<tr>
+<td title='org.thecollective.modules.MyAccountModuleTest.verifyMyOrdersPageTabs()'><b>verifyMyOrdersPageTabs</b><br>Test class: org.thecollective.modules.MyAccountModuleTest</td>
+<td></td>
+<td>14</td>
+<td>org.thecollective.modules.MyAccountModuleTest@40416321</td></tr>
+<tr>
+<td title='org.thecollective.modules.PDPModuleTest.verifyMyWishListFunctionalityAfterLogin()'><b>verifyMyWishListFunctionalityAfterLogin</b><br>Test class: org.thecollective.modules.PDPModuleTest</td>
+<td></td>
+<td>31</td>
+<td>org.thecollective.modules.PDPModuleTest@3ab70d34</td></tr>
+<tr>
+<td title='org.thecollective.modules.PDPModuleTest.verifyProductDetailsPageTest()'><b>verifyProductDetailsPageTest</b><br>Test class: org.thecollective.modules.PDPModuleTest</td>
+<td></td>
+<td>14</td>
+<td>org.thecollective.modules.PDPModuleTest@3ab70d34</td></tr>
+<tr>
+<td title='org.thecollective.modules.PDPModuleTest.verifyProductId()'><b>verifyProductId</b><br>Test class: org.thecollective.modules.PDPModuleTest</td>
+<td></td>
+<td>6</td>
+<td>org.thecollective.modules.PDPModuleTest@3ab70d34</td></tr>
+<tr>
+<td title='org.thecollective.modules.PLPModuleTest.verifyProductListByCatNavigation()'><b>verifyProductListByCatNavigation</b><br>Test class: org.thecollective.modules.PLPModuleTest</td>
+<td></td>
+<td>22</td>
+<td>org.thecollective.modules.PLPModuleTest@74ee97cb</td></tr>
+<tr>
+<td title='org.thecollective.modules.PLPModuleTest.verifyProductListPageBySearch()'><b>verifyProductListPageBySearch</b><br>Test class: org.thecollective.modules.PLPModuleTest</td>
+<td></td>
+<td>23</td>
+<td>org.thecollective.modules.PLPModuleTest@74ee97cb</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyProductPriceBeforeUpdateTest()'><b>verifyProductPriceBeforeUpdateTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>22</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.MyAccountModuleTest.verifySavedItems()'><b>verifySavedItems</b><br>Test class: org.thecollective.modules.MyAccountModuleTest</td>
+<td></td>
+<td>13</td>
+<td>org.thecollective.modules.MyAccountModuleTest@40416321</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifySavedItemsToShoppingCartTest()'><b>verifySavedItemsToShoppingCartTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>0</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyTheCollectiveStores()'><b>verifyTheCollectiveStores</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>4</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.MyAccountModuleTest.verifyUpdateAddress()'><b>verifyUpdateAddress</b><br>Test class: org.thecollective.modules.MyAccountModuleTest</td>
+<td></td>
+<td>15</td>
+<td>org.thecollective.modules.MyAccountModuleTest@40416321</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyUpdatePriceTest()'><b>verifyUpdatePriceTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>27</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyWishListFunctionality()'><b>verifyWishListFunctionality</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>14</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyWishListIcon()'><b>verifyWishListIcon</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td></td>
+<td>0</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.veryfyCheckoutPageTest()'><b>veryfyCheckoutPageTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>20</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.veryfyPaymentTest()'><b>veryfyPaymentTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td></td>
+<td>24</td>
+<td>org.thecollective.modules.CheckoutModuleTest@289cf7db</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.thecollective.modules.HomePageModuleTest.verifyContentsOfHeaderLinks()'><b>verifyContentsOfHeaderLinks</b><br>Test class: org.thecollective.modules.HomePageModuleTest</td>
+<td><div><pre>java.lang.RuntimeException: java.io.FileNotFoundException: D:\Thiruveedhi\Implementation\thecollective\resources\ExcelSheetData\e-CommerceTestData.xlsx (The system cannot find the file specified)
+Caused by: java.io.FileNotFoundException: D:\Thiruveedhi\Implementation\thecollective\resources\ExcelSheetData\e-CommerceTestData.xlsx (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.&lt;init&gt;(Unknown Source)
+	at org.thecollective.utils.ExcelLibrary.readFromExcelDataForTestNGDataProvider(ExcelLibrary.java:287)
+	at org.thecollective.dataprovider.DataDrivenTestingFromExcel.mutipleSheetsSingleWorkbook(DataDrivenTestingFromExcel.java:40)
+	... 22 more
+... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1318732098", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1318732098'><pre>java.lang.RuntimeException: java.io.FileNotFoundException: D:\Thiruveedhi\Implementation\thecollective\resources\ExcelSheetData\e-CommerceTestData.xlsx (The system cannot find the file specified)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
+	at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:131)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:706)
+	at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:49)
+	at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:37)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:923)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.io.FileNotFoundException: D:\Thiruveedhi\Implementation\thecollective\resources\ExcelSheetData\e-CommerceTestData.xlsx (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.&lt;init&gt;(Unknown Source)
+	at org.thecollective.utils.ExcelLibrary.readFromExcelDataForTestNGDataProvider(ExcelLibrary.java:287)
+	at org.thecollective.dataprovider.DataDrivenTestingFromExcel.mutipleSheetsSingleWorkbook(DataDrivenTestingFromExcel.java:40)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:74)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
+	... 22 more
+</pre></div></td>
+<td>0</td>
+<td>org.thecollective.modules.HomePageModuleTest@2259d54f</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyCouponsSectionCheckoutPage()'><b>verifyCouponsSectionCheckoutPage</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1866608332", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1866608332'><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()'><b>verifyLoginFunctionalityInCheckoutPage</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace118175968", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace118175968'><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()'><b>verifyLoginFunctionalityInCouponsTabTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2146834724", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2146834724'><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCCO()'><b>verifyOrderPlacementByCCO</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1220144707", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1220144707'><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCod()'><b>verifyOrderPlacementByCod</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1148435393", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1148435393'><pre>java.lang.Throwable: Method CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='org.thecollective.modules.CheckoutModuleTest.veryfyShippingAddresTest()'><b>veryfyShippingAddresTest</b><br>Test class: org.thecollective.modules.CheckoutModuleTest</td>
+<td><div><pre>java.lang.Throwable: Method CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1441504044", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1441504044'><pre>java.lang.Throwable: Method CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@289cf7db] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:887)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+</table><p>
+</body>
+</html>

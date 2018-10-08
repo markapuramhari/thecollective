@@ -22,8 +22,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.monte.screenrecorder.ScreenRecorder;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -32,9 +30,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.security.UserAndPassword;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
 import org.testng.ITestResult;
@@ -43,7 +38,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.SendEmailGmail;
 import org.thecollective.utils.TestUtility;
@@ -63,7 +57,7 @@ import org.monte.media.math.Rational;
 public class MainController implements IHookable{
 	
 	
- public static WebDriver driver ;
+ public static  WebDriver driver ;
  DesiredCapabilities capabilities =new  DesiredCapabilities();
 /*
  * @author Thiruveedhi
@@ -92,7 +86,7 @@ public void beforeSuite() throws Exception{
 	public boolean setUp() throws Exception {
 	
 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-		PageFactoryInitializer pageFactoryInitializer = new PageFactoryInitializer();
+		//PageFactoryInitializer pageFactoryInitializer = new PageFactoryInitializer();
 		driver.get(setUp.getURL());
 		driver.manage().deleteAllCookies();
 		try
@@ -207,6 +201,7 @@ public void beforeSuite() throws Exception{
 		{
 
 			System.setProperty("webdriver.gecko.driver", "resources/drivers/Windows/geckodriver.exe");
+			capabilities.setCapability("marionette", true);
 			driver = new FirefoxDriver(capabilities);
 		}
 		else

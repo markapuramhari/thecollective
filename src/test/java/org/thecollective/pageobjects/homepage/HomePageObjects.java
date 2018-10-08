@@ -1,14 +1,8 @@
 	package org.thecollective.pageobjects.homepage;
 	import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.security.Key;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.bcel.verifier.VerificationResult;
-import org.apache.bcel.verifier.exc.VerificationException;
-import org.apache.poi.hssf.record.PrintSetupRecord;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -18,14 +12,11 @@ import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 	import org.thecollective.maincontroller.PageFactoryInitializer;
-import org.thecollective.pageobjects.listpage.ListPageObjects;
 import org.thecollective.pageobjects.myaccount.MyAccountPageObjects;
 import org.thecollective.utils.ApplicationSetUpPropertyFile;
 	import org.thecollective.utils.SearchDataPropertyFile;
-import org.thecollective.utils.TestUtility;
 import org.thecollective.utils.Waiting;
 
-import net.sourceforge.htmlunit.corejs.javascript.ast.ThrowStatement;
 import ru.yandex.qatools.allure.annotations.Step;
 	
 	/*
@@ -149,7 +140,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 		@FindAll(value={@FindBy(xpath="//div[@class='product-views-container']")})
 		private List<WebElement> images;
 		
-		
+		@FindBy(xpath="//h3")
+		private WebElement signupPageName;
 		
 		//=============================================================
 	@Step("verify product logo")
@@ -202,7 +194,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		 
 		 {
 			e.printStackTrace();
-				 System.out.println(w.getText());
+			System.out.println(w.getText());
 				
 				 //Verify.verifyNotNull(driver.getPageSource());
 						
@@ -230,55 +222,47 @@ import ru.yandex.qatools.allure.annotations.Step;
 	
 		return this;
 	}
-	 @Step("verify all the mega menu's {0}")
+	   @Step("verify all the mega menu's {0}")
 	   public HomePageObjects verifyMegamenus() {
 		 String[] s=data.getMegaMenusHeaderLinks().split(",");
 		 for(int i=0;i<megaMenusHeaderLinks.size();i++)
 		 {
-			 
 			 Assert.assertTrue(megaMenusHeaderLinks.get(i).isDisplayed(),"Mega menu's are not displayed :"+megaMenusHeaderLinks.get(i).getText()+"");
 			 megaMenusHeaderLinks.get(i).click();
 			 
-			 }
-
-		 
+		 }
 		   return this;
 	}
 	@Step("click on login link")
 	public HomePageObjects clickOnLoginLink() throws InterruptedException {
-		   action.moveToElement(userIcon);
-		   action.moveToElement(loginLink).click().build().perform();
+		  	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			action.moveToElement(userIcon).moveToElement(loginLink).click().build().perform();
 		   Thread.sleep(2500);
 		
 		return this;
 	}
 	   @Step("verify user profile dropdown in home page")
-	public HomePageObjects verifyUserProfile(String expAccountName, String productName) {
-		  driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
-		   action.moveToElement(userIcon).moveToElement(myAccountOption).click().build().perform();
-		  // Waiting.explicitWaitVisibilityOfElement(userIcon, 15);
-		  // System.out.println(driver.getTitle());
-	  Assert.assertEquals(driver.getTitle(),expAccountName, "unable to login to site with the entered credentials");
-	
-		return this;
+	public HomePageObjects verifyUserProfile(String expAccountName,String productName ) {
+		    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		    action.moveToElement(userIcon).moveToElement(myAccountOption).click().build().perform();
+		   	Assert.assertEquals(driver.getTitle(),expAccountName, "unable to login to site with the entered credentials");
+			return this;
 	}
 	   @Step("verify footer headers")
 	   public HomePageObjects verifyFooterHeaders(String foorerHeaders) {
 		  String expFooterHeader[]=foorerHeaders.split(",");
-		Waiting.explicitWaitVisibilityOfElements(footerHeaders, 15);
-		for(int i=0;i<footerHeaders.size();i++)
-		{
-			Assert.assertEquals(footerHeaders.get(i).getText(),expFooterHeader[i]);
-		}
+		  Waiting.explicitWaitVisibilityOfElements(footerHeaders, 15);
+		  for(int i=0;i<footerHeaders.size();i++)
+				{
+					Assert.assertEquals(footerHeaders.get(i).getText(),expFooterHeader[i]);
+				}
 		return this;
 	}
 	   @Step("verify all footer links")
 	   public HomePageObjects verifyFooterLinks(String footerLink) {
 		  String expFooterLinks[]=footerLink.split(",");
-			//Waiting.explicitWaitVisibilityOfElements(footerLinks, 20);
-			for(int i=0;i<expFooterLinks.length;i++)
+		  for(int i=0;i<expFooterLinks.length;i++)
 			{
-				
 				WebElement ele=driver.findElement(By.xpath("//div[contains(@class,'footer__menu')]//a[text()='"+expFooterLinks[i]+"']"));
 				Assert.assertEquals(ele.getText().trim(),expFooterLinks[i]);
 			}
@@ -293,9 +277,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	   @Step("click on each footer link(s)")
-	public HomePageObjects clickOnEachFooterLink(String expFooterLinkText) throws Exception 
+	public HomePageObjects clickOnEachFooterLink(String expFooterLinkText)
 	   {
-		  // throw new Exception("needs to write footer links functionality, sice page titles needs to be update from dev team");
 		String expFooter[]=  expFooterLinkText.split(",");
 		for(int i=0;i<expFooter.length;i++)
 			
@@ -359,10 +342,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 					
 			  }
 			  catch(Exception e)
-			  {
-				  e.printStackTrace();
-				//  System.out.println(footerHeaders.get(i).getAttribute("innerText"));
-			  }
+				  {
+					  e.printStackTrace();
+				  }
 		  }
 		return this;
 			
@@ -382,27 +364,25 @@ import ru.yandex.qatools.allure.annotations.Step;
 			  System.out.println(l.get(i).getText());
 		  }
 		   action.moveToElement(driver.findElement(By.xpath("//div[@class='container']//a[text()='"+specificHeaderLink+"' and contains(@onclick,'L1 click')]"))).moveToElement(driver.findElement(By.xpath("//div[@class='container']//a[text()='"+specificHeaderLink+"' and contains(@onclick,'L1 click')]/following-sibling::div//li/a[text()='"+specifiedListLink+"' and contains(@onclick,'L3 click')]"))).click().build().perform();
-			//((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='"+specifiedListLink+"']")));
-			Thread.sleep(2000);
+		   Thread.sleep(2000);
 		   return this;
 		}
-	   public HomePageObjects verifyContent(String specificFooterLink,String contentLocator,String expectedContent) throws Exception {
-			
+	   @Step("verify footer content {0} {1} {2}")
+	   public HomePageObjects verifyContent(String specificFooterLink,String contentLocator,String expectedContent) throws Exception 
+	   {
 			Assert.assertEquals(driver.findElement(By.xpath(contentLocator)).getText().replace("\n", "").trim(),expectedContent);
-		
-			return this;
+		return this;
 		}
-	public HomePageObjects megaNestedLinks() throws InterruptedException {
+	public HomePageObjects megaNestedLinks() throws InterruptedException 
+	{
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		List< WebElement> links=driver.findElements(By.xpath("//li[contains(@class,'menuonly ')]/a[text()='Men']/following-sibling::div//a"));
 		for(int i=0; i>links.size();i++)
 		{ 
-			//Assert.assertTrue(availableLinks.isDisplayed(), "child links are not displayed");
 			String linkName=links.get(i).getText().toString();
-			System.out.println(linkName);
+			//System.out.println(linkName);
 			action.moveToElement(driver.findElement(By.xpath("//li[contains(@class,'menuonly')]//a[text()='"+linkName+"']"))).click().build().perform();
-			//availableLinks.click();
-		Thread.sleep(2500);
+			Thread.sleep(2500);
 		}
 		return this;
 	}
@@ -426,13 +406,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 	public HomePageObjects mouseHoverOverOnMyAccount() {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		new Actions(driver).moveToElement(userIcon).moveToElement(myAccountOption).click().build().perform();
-
 		return this;
 	}
 	@Step("verify welcome message")
 	public HomePageObjects verifyWelcomeMessage() {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		//Waiting.explicitWaitVisibilityOfElement(myAccountOption, 25);
 		action.moveToElement(userIcon).moveToElement(myAccountOption).build().perform();
 		Assert.assertTrue(myAccountOption.isDisplayed(),"unable to login to site");
 		return this;
@@ -444,26 +422,26 @@ import ru.yandex.qatools.allure.annotations.Step;
 	}
 	@Step("click on saved items link")
 	public MyAccountPageObjects navigateToSavedItemsPage() {
-		//Waiting.explicitWaitElementToBeClickable(savedItemsHeaderLink, 20);
-		 new Actions(driver).moveToElement(userIcon).moveToElement(savedItemsHeaderLink).click().build().perform();
-
+		new Actions(driver).moveToElement(userIcon).moveToElement(savedItemsHeaderLink).click().build().perform();
 		return new MyAccountPageObjects();
 	}
 	@Step("navigate to my orders page")
-	public MyAccountPageObjects navigateToMyOrdersPage() {
+	public MyAccountPageObjects navigateToMyOrdersPage()
+	{
 		 new Actions(driver).moveToElement(userIcon).moveToElement(myOrdersHeaderLink).click().build().perform();
-
 		return new MyAccountPageObjects();
 	}
 	@Step("click on search icon")
-	public HomePageObjects clickOnSearchIcon() throws InterruptedException {
+	public HomePageObjects clickOnSearchIcon() throws InterruptedException 
+	{
 		Waiting.explicitWaitElementToBeClickable(searchIcon, 15);
 		searchIcon.click();
 		Thread.sleep(2500);
 		return this;
 	}
 	@Step("enter search key")
-	public HomePageObjects enterSearchData(String searchdata) throws AWTException {
+	public HomePageObjects enterSearchData(String searchdata) throws AWTException 
+	{
 		searchInputTextField.click();
 		searchInputTextField.clear();
 		searchInputTextField.sendKeys(searchdata);
@@ -472,68 +450,63 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("verify wish list icon in home page")
-	public HomePageObjects verifyWishListIcon() {
+	public HomePageObjects verifyWishListIcon() 
+	{
 		Waiting.explicitWaitVisibilityOfElement(myWishListIcon, 15);
 		Assert.assertTrue(myWishListIcon.isDisplayed(),"my wish list icon is not displayed");
 		return this;
 	}
 	@Step("click on my wish list icon")
-	public HomePageObjects clickOnWishListIcon() {
+	public HomePageObjects clickOnWishListIcon()
+	{
 		Waiting.explicitWaitElementToBeClickable(myWishListIcon, 15);
 		myWishListIcon.click();
-
 		return this;
 	}
 	@Step("logout from the site")
 	public HomePageObjects logout() throws InterruptedException 
 	{
-		
-			
 		new Actions(driver).moveToElement(userIcon).moveToElement(logoutLink).click().build().perform();
 		Thread.sleep(2500);
-		
-		
 		return this;
 	}
 	@Step("click on my orders link")
-	public HomePageObjects clickOnMyOrders() throws InterruptedException {
+	public HomePageObjects clickOnMyOrders() throws InterruptedException 
+	{
 		new Actions(driver).moveToElement(userIcon).moveToElement(myOrdersHeaderLink).click().build().perform();
-		
 		Thread.sleep(2500);
 		return this;
 	}
 	@Step("Mouse hover over on Men's link")
-	public HomePageObjects mouseHoverOverOnMenLink() {
+	public HomePageObjects mouseHoverOverOnMenLink() 
+	{
 		new Actions(driver).moveToElement(menHeaderLink).build().perform();
-
 		return this;
 	}
 	@Step("Mouse hover over on women's link")
-	public HomePageObjects mouseHoverOverOnWomenLink() {
+	public HomePageObjects mouseHoverOverOnWomenLink() 
+	{
 		new Actions(driver).moveToElement(womenHeaderLink);
-
 		return this;
 	}
 	@Step("click on view all brands link")
-	public HomePageObjects clickOnViewAllBrandsLink(String gender) throws InterruptedException {
-		//Assert.assertTrue(assertVerifyViewAllBrandsLink(gender), "view All brands link is not displayed");
+	public HomePageObjects clickOnViewAllBrandsLink(String gender) throws InterruptedException 
+	{
 		clickOnGenderViewAllBrandsLink(gender);
 		return this;
 	}
 	@Step("click view all brands link for {0} category")
-	public HomePageObjects clickOnGenderViewAllBrandsLink(String gender) throws InterruptedException {
+	public HomePageObjects clickOnGenderViewAllBrandsLink(String gender) throws InterruptedException 
+	{
 		WebElement e=driver.findElement(By.xpath("//a[text()='"+gender+"']/following-sibling::div//a[contains(text(),'View All Brands')]"));
 		switch(gender){
 		
 		case "Women":
 			action.moveToElement(womenHeaderLink).moveToElement(e).click().build().perform();
-			//action.click().build().perform();
-			//((JavascriptExecutor)driver).executeScript("arguments[0].click()", e)).build().perform();
 			Thread.sleep(2500);
 			break;
 		case "Men":
 			action.moveToElement(menHeaderLink).moveToElement(e).click().build().perform();
-			//action.moveToElement(menHeaderLink).moveToElement((WebElement) ((JavascriptExecutor)driver).executeScript("arguments[0].click()", e)).build().perform();
 			Thread.sleep(2500);
 			break;
 		}
@@ -541,7 +514,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 		
 	}
-	private boolean assertVerifyViewAllBrandsLink(String gender) {
+	private boolean assertVerifyViewAllBrandsLink(String gender) 
+	{
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		try{
 			if(driver.findElement(By.xpath("//a[text()='"+gender+"']/following-sibling::div//a[contains(text(),'View All Brands')]")).isDisplayed())
@@ -557,50 +531,50 @@ import ru.yandex.qatools.allure.annotations.Step;
 	public int getSavedItemsCount()
 	{
 		int count;
-		try{
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		Waiting.explicitWaitVisibilityOfElement(myWishListCount, 40);
-	int savedItemsCount=Integer.parseInt(myWishListCount.getText().trim());
-	return savedItemsCount;
-		}
+			try
+			{
+				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				Waiting.explicitWaitVisibilityOfElement(myWishListCount, 15);
+				int savedItemsCount=Integer.parseInt(myWishListCount.getText().trim());
+				return savedItemsCount;
+			}
 	catch(Exception e)
-		{
-		homePage().clickOnWishListIcon();
-		count=myAccountPage().getMyWishListCount();
-	}
+			{
+			homePage().clickOnWishListIcon();
+			count=myAccountPage().getMyWishListCount();
+			}
 	return count;
 	}
-	public HomePageObjects clickHeaderLogo() {
-		
-		
+	public HomePageObjects clickHeaderLogo() throws InterruptedException 
+	{
+		logo.click();
+		Thread.sleep(2000);	
 		return this;
 		
 	}
 	@Step("click on all the static brands")
-	public HomePageObjects clickOnMenBrandLinks() throws InterruptedException {
+	public HomePageObjects clickOnMenBrandLinks() throws InterruptedException 
+	{
 		int n;
-		//Waiting.explicitWaitVisibilityOfElement(menHeaderLink, 20);
 		mouseHoverOverOnMenLink();
 		n=menStaticBrands.size();
-		//System.out.println(n);
 		for(int i=0;i<menStaticBrands.size();i++)
-		{
-			
-			new Actions(driver).moveToElement(menHeaderLink).moveToElement(menStaticBrands.get(i)).click().build().perform();
-			Thread.sleep(3000);
-			listPage()
-			.verifySearchResultsPage();
-			clickLogo();
-		}
+			{
+				
+				new Actions(driver).moveToElement(menHeaderLink).moveToElement(menStaticBrands.get(i)).click().build().perform();
+				Thread.sleep(3000);
+				listPage()
+				.verifySearchResultsPage();
+				clickLogo();
+			}
 		return this;
 	}
 	@Step("click on all the static brands")
-	public HomePageObjects clickOnWomenBrandLinks() throws InterruptedException {
+	public HomePageObjects clickOnWomenBrandLinks() throws InterruptedException 
+	{
 		int n;
-		//Waiting.explicitWaitVisibilityOfElement(menHeaderLink, 20);
 		mouseHoverOverOnWomenLink();
 		n=womenStaticBrands.size();
-		//System.out.println(n);
 		for(int i=0;i<womenStaticBrands.size();i++)
 		{
 			
@@ -613,25 +587,25 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("click on each and every category link")
-	public HomePageObjects clickOnCategoryLink() throws Exception {
-		
+	public HomePageObjects clickOnCategoryLink() throws Exception
+	{
 		for(int i=0;i<staticCategoryLinks.size();i++)
 		{
 			JavascriptExecutor js=(JavascriptExecutor)driver;
 			js.executeScript("arguments[0].click()", staticCategoryLinks.get(i));
 			Thread.sleep(1500);
+			//System.out.println(staticCategoryLinks.get(i).getText().toString());
 			listPage().verifyListedProduct();
 		}
 		return this;
 	}
-	public void getAllHrefLinks(String path) {
-		//Waiting.explicitWaitVisibilityOfElements(imagePaths, 30);
+	@Step("get all header links")
+	public HomePageObjects getAllHrefLinks(String path) 
+	{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		for(int i=0;i< imagePaths.size();i++){
-			String a=imagePaths.get(i).getAttribute("src").toString();
-			//System.out.println("pass : "+a);
-			
-			if(a.contains(path))
+		String a=imagePaths.get(i).getAttribute("src").toString();
+		if(a.contains(path))
 			{
 				
 				System.out.println("pass : "+a);
@@ -642,19 +616,20 @@ import ru.yandex.qatools.allure.annotations.Step;
 				System.out.println("failed : "+a);
 			}
 		}
+		return this;
 	}
 	@Step("click on signup link")
-	public HomePageObjects clickOnSignupLink() throws InterruptedException {
-		 action.moveToElement(userIcon);
-		   action.moveToElement(signUpLink).click().build().perform();
-		   Thread.sleep(2500);
-		return this;
+	public HomePageObjects clickOnSignupLink() throws InterruptedException
+	{
+		 	action.moveToElement(userIcon);
+		 	action.moveToElement(signUpLink).click().build().perform();
+		 	Thread.sleep(2500);
+		 	return this;
 	}
 	@Step("click on footer link toggle button")
 	public HomePageObjects clickOnFooterToggleButton() {
-		Assert.assertTrue(assertVerifyMoreInfoLink(), "");
+		Assert.assertTrue(assertVerifyMoreInfoLink(), "footer taggle button is not available");
 		moreInformationLink.click();
-
 		return this;
 	}
 	private boolean assertVerifyMoreInfoLink() {
@@ -680,12 +655,38 @@ import ru.yandex.qatools.allure.annotations.Step;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Thread.sleep(1000);
 		action.moveToElement(userIcon).click().moveToElement(loginLink).build().perform();
-		
 		Assert.assertTrue(loginLink.isDisplayed());
 		return this;
 	}
-	
-	
+	@Step("verification of signup link")
+	public HomePageObjects verifySignupLink() {
+		Assert.assertTrue(assertVerifySignupLink(), "signup link is not displayed");
+		Waiting.explicitWaitVisibilityOfElement(signUpLink, 10);
+
+		return this;
+	}
+	private boolean assertVerifySignupLink() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if(signUpLink.isDisplayed())
+		{
+			return true;
+		}
+		return false;
+	}
+	@Step("verify signup page title")
+	public HomePageObjects verifySignupPageTitle(String signuPageTitle) {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), signuPageTitle);
+
+		return this;
+	}
+	@Step("verification of signup page name")
+	public HomePageObjects verifySignUpPageName(String signUpPageName) 
+	{
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(signupPageName.getText().trim(), signUpPageName);
+		return this;
+	}
 	}
 	
 	

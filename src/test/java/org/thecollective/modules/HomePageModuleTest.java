@@ -1,11 +1,20 @@
 package org.thecollective.modules;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.lang3.time.StopWatch;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.thecollective.dataprovider.DataDrivenTestingFromExcel;
 import org.thecollective.maincontroller.PageFactoryInitializer;
@@ -15,6 +24,10 @@ import org.thecollective.utils.SearchDataPropertyFile;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.comparison.ImageDiff;
+import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
 public class HomePageModuleTest extends PageFactoryInitializer{
 
@@ -301,65 +314,59 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		homePage().logout();
 	  }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*@BeforeTest
-	public void beforetest1(){
-		System.out.println("beforetest1 execution");
-			}
-	@BeforeTest
-	public void beforetest2(){
-		System.out.println("beforetest2 execution");
-			}
-	@AfterTest
-	public void aftertest(){
-		System.out.println("aftertest execution");
-			}
-	@BeforeMethod
-	public void BeforeMethod(){
-		System.out.println("BeforeMethod execution");
-			}
-	@AfterMethod
-	public void AfterMethod(){
-		System.out.println("AfterMethod execution");
-			}
-	@BeforeClass
-	public void BeforeClass1(){
-		System.out.println("BeforeClass1 execution");
-			}
-	@BeforeClass
-	public void BeforeClass2(){
-		System.out.println("BeforeClass2 execution");
-			}
-	@AfterClass
-	public void AfterClass(){
-		System.out.println("AfterClass execution");
-			}
-	
-	@Test
-	public void test1(){
-		System.out.println("test1 execution");
-			}
-	@Test
-	public void test2(){
-		System.out.println("test2 execution");
+	@Test(enabled =false)
+	public void logoComparision() throws IOException, InterruptedException
+	{
+		
+		List<WebElement> images=driver.findElements(By.xpath("//img"));
+		WebElement logoImage = driver.findElement(By.cssSelector("img[alt='logo']"));
+		WebElement image1 = driver.findElement(By.xpath("//section[@data-index='1']//img"));
+		WebElement image2 = driver.findElement(By.xpath("//section[@data-index='2']//img"));
+		
+		for(int i=0;i<images.size();i++){
+		Screenshot screenshot = new AShot().takeScreenshot(driver,images.get(i));
+	       ImageIO.write(screenshot.getImage(),"PNG",new File("D:\\Thiruveedhi\\Implementation\\thecollective\\resources\\tc-logo"+System.currentTimeMillis()+".jpg"));
+	       Thread.sleep(3000);
+		}
+        BufferedImage expectedImage = ImageIO.read(new File("D:\\Thiruveedhi\\Implementation\\thecollective\\resources\\tc-logo.jpg"));
+        /*Screenshot logoImageScreenshot = new AShot().takeScreenshot(driver, logoImage);
+        BufferedImage actualImage = logoImageScreenshot.getImage();
+                 
+        ImageDiffer imgDiff = new ImageDiffer();
+        ImageDiff diff = imgDiff.makeDiff(actualImage, expectedImage);
+        Assert.assertTrue(diff.hasDiff(),"Images are not Same");*/
+        
+        Screenshot logoImageScreenshot = new AShot().takeScreenshot(driver, image1);
+        BufferedImage actualImage = logoImageScreenshot.getImage();
+                 
+        ImageDiffer imgDiff = new ImageDiffer();
+        ImageDiff diff = imgDiff.makeDiff(actualImage, expectedImage);
+        Assert.assertTrue(diff.hasDiff(),"Images not are Same");
+        
+       // getImagePercentage(expectedImage, actualImage) { // start of the function getImagePercentage
 
-			}*/
-	
+            int percentage = 0;
+           // BufferedImage biA = ImageIO.read(actualImage); // reads fileA into bufferedImage
+            DataBuffer dbA = expectedImage.getData().getDataBuffer();
+            int sizeA = dbA.getSize();
+          //  BufferedImage biB = ImageIO.read(expectedImage); // reads fileA into bufferedImage
+            DataBuffer dbB = expectedImage.getData().getDataBuffer();
+            int sizeB = dbB.getSize();
+            int count = 0;
+            // compare data-buffer objects //
+            if (sizeA == sizeB) { // checks the size of the both the bufferedImage
 
-	
-	
+                for (int i = 0; i < sizeA; i++) {
+
+                    if (dbA.getElem(i) == dbB.getElem(i)) { // checks bufferedImage array is same in both the image
+                        count = count + 1;
+                    }
+                }
+                percentage = (count * 100) / sizeA; // calculates matching percentage
+            } else {
+                System.out.println("Both the images are not of same size");
+            }
+            System.out.println( percentage); // returns the matching percentage value
+        }
+		
 }

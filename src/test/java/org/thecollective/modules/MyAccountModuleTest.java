@@ -109,7 +109,7 @@ public class MyAccountModuleTest extends PageFactoryInitializer{
 	@Description("verification of change password functionality")
 	@TestCaseId("TC_MyAct_006")
 	@Features("MyAccountModule")
-	@Test(enabled=true,groups={"MyAccountModule","smoke","regression"})
+	@Test(enabled=false,groups={"MyAccountModule","smoke","regression"})
 	public void verifyChangePassword() throws InterruptedException
 	{
 		homePage()

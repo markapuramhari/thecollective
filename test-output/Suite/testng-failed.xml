@@ -5,6 +5,7 @@
     <classes>
       <class name="org.thecollective.modules.CheckoutModuleTest">
         <methods>
+          <include name="updateQuantityTest"/>
           <include name="verifyLoginFunctionalityInCouponsTabTest"/>
           <include name="verifyCouponsSectionCheckoutPage"/>
           <include name="verifyProductPriceBeforeUpdateTest"/>
@@ -22,58 +23,57 @@
           <include name="veryfyPaymentTest"/>
           <include name="stopRecording"/>
           <include name="verifyLoginPageFromCouponsTabTest"/>
+          <include name="verifyLoginLinkInCouponsTabTest"/>
           <include name="startRecording"/>
           <include name="verifyOrderPlacementByCCO"/>
         </methods>
       </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
-      <class name="org.thecollective.modules.MyAccountModuleTest">
-        <methods>
-          <include name="verifyMyOrdersPageTabs"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="verifyMyAccountPage"/>
-          <include name="stopRecording"/>
-          <include name="verifyUpdateAddress"/>
-          <include name="tearDown"/>
-          <include name="verifySavedItems"/>
-          <include name="beforeSuite"/>
-          <include name="verifyMyOrdersPage"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.MyAccountModuleTest -->
-      <class name="org.thecollective.modules.PDPModuleTest">
-        <methods>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="verifyMyWishListFunctionality"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.PDPModuleTest -->
       <class name="org.thecollective.modules.HomePageModuleTest">
         <methods>
-          <include name="verifyWishListFunctionality"/>
-          <include name="verifyHomePageAfterLogin"/>
-          <include name="verifyHomePageFooterLinks"/>
-          <include name="verifySearchFunctionality"/>
-          <include name="verifyAllCategories"/>
-          <include name="verifyHomePageFooters"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="verifyAllImagePathLinksInLoginPage"/>
-          <include name="verifyFooterLinksFunctionality"/>
+          <include name="verifyHomePageHeadersBeforeLogin"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
+          <include name="verifyAllCategories"/>
           <include name="stopRecording"/>
-          <include name="verifyAllImagePathLinksInSignUpPage"/>
-          <include name="verifyInvalidSearchFunctionality"/>
-          <include name="verifyContentsOfHeaderLinks"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
           <include name="startRecording"/>
-          <include name="verifyAllImagePathLinksInMyOrderPage"/>
         </methods>
       </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="verifyMultiFiltersForCatNavigation"/>
+          <include name="verifySingleFilterForCatNavigation"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifySingleFilterPageRefreshForCatNavigation"/>
+          <include name="verifyBrandsSubFilterFun"/>
+          <include name="verifyLeftNavFilters"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="verifyMultiFiltersRefreshForCatNavigation"/>
+          <include name="stopRecording"/>
+          <include name="verifyMultipleFilterByChnagingSortByOption"/>
+          <include name="verifyMultipleFilterWithPageRefresh"/>
+          <include name="verifyLeftNavFiltersForCatNavigation"/>
+          <include name="startRecording"/>
+          <include name="verifyProductListByCatNavigation"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
+      <class name="org.thecollective.modules.LoginModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="verifyLoginLinkInPListPage"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="loginValid"/>
+          <include name="verifyLoginLinkInLandingPage"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.LoginModuleTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

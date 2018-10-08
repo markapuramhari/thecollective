@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Failed suite [Failed suite [TestSuite]]]]">
+  <test thread-count="5" name="Test(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="beforeTest"/>
+          <include name="verifyOrderPlacementByCod"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="veryfyRemoveProductsTest"/>
+          <include name="startRecording"/>
+          <include name="verifyOrderPlacementByCCO"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+      <class name="org.thecollective.modules.HomePageModuleTest">
+        <methods>
+          <include name="verifyWishListFunctionality"/>
+          <include name="verifySearchFunctionality"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyInvalidSearchFunctionality"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="verifyBrandsSubFilterFun"/>
+          <include name="setUp"/>
+          <include name="beforeTest"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
+      <class name="org.thecollective.modules.LoginModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="loginValid"/>
+          <include name="verifyLoginLinkInLandingPage"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.MyAccountModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+          <include name="verifyLogoutFunInMyAccountPage"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.MyAccountModuleTest -->
+    </classes>
+  </test> <!-- Test(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [TestSuite]]]] -->

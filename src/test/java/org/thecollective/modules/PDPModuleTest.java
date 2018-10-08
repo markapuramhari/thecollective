@@ -66,7 +66,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 		homePage().logout();
 		}catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 		
@@ -105,7 +105,7 @@ public class PDPModuleTest extends PageFactoryInitializer{
 			homePage().logout();
 			}catch(Exception e)
 			{
-				
+			e.printStackTrace();	
 			}
 		}
 	}
