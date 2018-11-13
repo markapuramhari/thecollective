@@ -22,6 +22,12 @@ public class DataDrivenTestingFromExcel {
 		 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath());
 		return data;
 	}
+	@DataProvider(name="getDataFromGoogle")
+	public static Object[][] getDataFromGoogle(Method methodName) throws Exception{
+		File file = new File("resources/ExcelSheetData/getDataFromGoogle.xlsx");
+		 Object data[][] =	ExcelLibrary.readFromExcelDataForTestNGDataProvider(file.getAbsolutePath());
+		return data;
+	}
 	
 
 		

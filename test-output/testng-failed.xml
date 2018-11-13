@@ -45,18 +45,6 @@
           <include name="verifySingleFilterFunWithPageRefresh"/>
         </methods>
       </class> <!-- org.thecollective.modules.PLPModuleTest -->
-      <class name="org.thecollective.modules.HomePageModuleTest">
-        <methods>
-          <include name="verifyHomePageHeadersBeforeLogin"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="verifyAllCategories"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
       <class name="org.thecollective.modules.LoginModuleTest">
         <methods>
           <include name="beforeTest"/>
@@ -70,6 +58,18 @@
           <include name="startRecording"/>
         </methods>
       </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.HomePageModuleTest">
+        <methods>
+          <include name="verifyHomePageHeadersBeforeLogin"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="verifyAllCategories"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
     </classes>
   </test> <!-- Test(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Suite]] -->

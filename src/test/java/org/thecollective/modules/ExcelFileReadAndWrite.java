@@ -70,5 +70,52 @@ public class ExcelFileReadAndWrite {
             ex.printStackTrace();
         }
     }
+    public  void writeData(String input,String lat,String longi) {
+    	/*//String[] data=inputData.split(",");
+        
+        String longitude= data[0];
+        String latitude= data[1];*/
+        String excelFilePath = "D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/getDataFromGoogle.xlsx"; 
+         //D:\Thiruveedhi\Implementation\thecollective\resources\ExcelsheetData
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(excelFilePath).getAbsolutePath());
+            Workbook workbook = WorkbookFactory.create(inputStream);
+            
+          Sheet sheet = workbook.getSheetAt(1);
+            Object[][] productsData = {{input,lat+"° N",longi+"° E" } };
+ 
+            int rowCount = sheet.getLastRowNum();
+            for (Object[] productsDetails : productsData) 
+            {
+                Row row = sheet.createRow(++rowCount);
+                int columnCount = 0;
+                Cell cell = row.createCell(columnCount);
+                cell.setCellValue(rowCount);
+                for (Object field : productsDetails) 
+	                {
+	                    cell = row.createCell(++columnCount);
+	                    if (field instanceof String) 
+		                    {
+		                    	cell.setCellValue((String) field);
+		                    }else if (field instanceof Integer) 
+			                    {
+			                        cell.setCellValue((Integer) field);
+			                    }
+	                }
+ 
+            }
+            inputStream.close();
+            File file= new File("D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/getDataFromGoogle.xlsx");
+            FileOutputStream outputStream = new FileOutputStream(file.getAbsolutePath());
+            workbook.write(outputStream);
+            workbook.close();
+            outputStream.close();
+           
+             
+        } catch (IOException | EncryptedDocumentException | InvalidFormatException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
  
 }

@@ -49,12 +49,10 @@
           <include name="verifySingleFilterPageRefreshForCatNavigation"/>
           <include name="verifyBrandsSubFilterFun"/>
           <include name="verifyLeftNavFilters"/>
-          <include name="beforeTest"/>
           <include name="setUp"/>
+          <include name="beforeTest"/>
           <include name="verifyMultiFiltersRefreshForCatNavigation"/>
           <include name="stopRecording"/>
-          <include name="verifyMultipleFilterByChnagingSortByOption"/>
-          <include name="verifyMultipleFilterWithPageRefresh"/>
           <include name="verifyLeftNavFiltersForCatNavigation"/>
           <include name="startRecording"/>
           <include name="verifyProductListByCatNavigation"/>
@@ -74,6 +72,18 @@
           <include name="startRecording"/>
         </methods>
       </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.PDPModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyMyWishListFunctionalityAfterLogin"/>
+          <include name="verifyMyWishListFunctionality"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PDPModuleTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

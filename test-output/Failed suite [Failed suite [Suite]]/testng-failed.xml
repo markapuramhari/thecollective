@@ -5,10 +5,9 @@
     <classes>
       <class name="org.thecollective.modules.CheckoutModuleTest">
         <methods>
-          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
+          <include name="updateQuantityTest"/>
           <include name="verifyCouponsSectionCheckoutPage"/>
           <include name="verifyOrderPlacementByCod"/>
-          <include name="verifyLoginFunctionalityInCheckoutPage"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
           <include name="verifyUpdatePriceTest"/>
@@ -32,6 +31,17 @@
           <include name="startRecording"/>
         </methods>
       </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Test(failed)(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Failed suite [Suite]]] -->
