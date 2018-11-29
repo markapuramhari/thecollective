@@ -1,5 +1,6 @@
 package org.thecollective.modules;
 
+import java.awt.AWTException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -13,10 +14,42 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.thecollective.dataprovider.DataDrivenTestingFromExcel;
 import org.thecollective.maincontroller.MainController;
+import org.thecollective.maincontroller.PageFactoryInitializer;
 
-class AeContent extends MainController
+class AeContent extends PageFactoryInitializer
 {
 	private int invalidImageCount;
+	
+	@Test(dataProvider="aeContent",dataProviderClass=DataDrivenTestingFromExcel.class)
+	public void aeWriteContent(String id) throws AWTException, InterruptedException
+	{	
+		driver.get("https://www.aeo.in/search?page=1&orderby=popular&orderway=asc&search_query="+id);
+		//driver.navigate().refresh();
+		Thread.sleep(500);
+		//aeSite().acceptCoockies();
+		//aeSite().enterSearchData(id);
+		//aeSite().acceptCoockies();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		aeSite().clickOnProduct(id);
+		//aeSite().acceptCoockies();
+		
+		String theDeatils=aeSite().getTheDetails();
+		String materialCare=aeSite().getMaterialsAndCare();
+		String sizeAndFit=aeSite().getSizeAndFit();
+		String productName=driver.findElement(By.xpath("//h1[@class='product__details--title black-color']")).getText();
+		String color=driver.findElement(By.xpath("//div[@class='color-label']/label")).getText();
+		String pdpUrl=driver.getCurrentUrl();
+		
+		System.out.println(pdpUrl);
+		System.out.println("the detailails"+theDeatils);
+		System.out.println("materiasl:   "+materialCare);
+		System.out.println("size and fit"+sizeAndFit);
+		ExcelFileReadAndWrite write =new ExcelFileReadAndWrite();
+		//needs to update string values
+		write.writeData(id,productName,color,pdpUrl,theDeatils,materialCare,sizeAndFit);
+		
+	}
+
 	
 	@Test(dataProvider="getDataFromGoogle", dataProviderClass=DataDrivenTestingFromExcel.class)
 	public void getDataFromGoogle(String inputData, String city) throws InterruptedException {

@@ -25,7 +25,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class ExcelFileReadAndWrite {
  
  
-    public  void writeData(String StyleCode,String productName,String color,String theDetails, String materialsCare, String sizeAndFit) {
+    public  void writeData(String StyleCode,String productName,String color,String pdpUrl,String theDetails, String materialsCare, String sizeAndFit) {
     	 
         String excelFilePath = "D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/aeContent.xlsx"; 
          //D:\Thiruveedhi\Implementation\thecollective\resources\ExcelsheetData
@@ -35,7 +35,7 @@ public class ExcelFileReadAndWrite {
  
             Sheet sheet = workbook.getSheetAt(1);
  
-            Object[][] productsData = {{StyleCode,productName,color,theDetails,materialsCare,sizeAndFit} };
+            Object[][] productsData = {{StyleCode,productName,color,pdpUrl,theDetails,materialsCare,sizeAndFit} };
  
             int rowCount = sheet.getLastRowNum();
             for (Object[] productsDetails : productsData) 

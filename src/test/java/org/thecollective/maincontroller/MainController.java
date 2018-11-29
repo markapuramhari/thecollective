@@ -22,6 +22,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.monte.screenrecorder.ScreenRecorder;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +32,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.security.UserAndPassword;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
 import org.testng.ITestResult;
@@ -42,6 +49,9 @@ import org.thecollective.utils.ApplicationSetUpPropertyFile;
 import org.thecollective.utils.SendEmailGmail;
 import org.thecollective.utils.TestUtility;
 import org.thecollective.utils.Video;
+
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.specification.RequestSpecification;
 
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
@@ -86,8 +96,28 @@ public void beforeSuite() throws Exception{
 	public boolean setUp() throws Exception {
 	
 		ApplicationSetUpPropertyFile setUp = new ApplicationSetUpPropertyFile();
-		//PageFactoryInitializer pageFactoryInitializer = new PageFactoryInitializer();
+		//driver.get(setUp.getURL());
+		
 		driver.get(setUp.getURL());
+		//Runtime.getRutestbranduser	P@ntime().exec("resources/TestData/autoIT_AUthentication.exe");
+		 Thread.sleep(2000);
+		 /*String username = "testbranduser";
+	     String password = "P@ssword123";
+	      
+	     $context = stream_context_create(array(
+	      "http" => array(
+	       'header'  => "Authorization: Basic " . base64_encode("$username:$password");*/
+		/*
+		 $username = 'testbranduser';
+     $password = 'P@ssword123';
+      
+     $context = stream_context_create(array(
+      'http' => array(
+       'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+      )
+     ));
+			alert.authenticateUsing(new UserAndPassword("testbranduser", "P@ssword123"));
+		*/
 		driver.manage().deleteAllCookies();
 		try
 		{
@@ -211,6 +241,15 @@ public void beforeSuite() throws Exception{
 	}
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 	driver.manage().window().maximize();
+	try {
+		if(setUp.instanceType().equals("test"))
+		{
+		Runtime.getRuntime().exec("resources/TestData/autoIT_AUthentication.exe");
+		}
+		}catch(Exception e)
+		{
+			
+		}
 		
 	}
 

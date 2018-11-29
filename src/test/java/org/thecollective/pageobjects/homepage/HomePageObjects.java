@@ -440,8 +440,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("enter search key")
-	public HomePageObjects enterSearchData(String searchdata) throws AWTException 
+	public HomePageObjects enterSearchData(String searchdata) throws AWTException, InterruptedException 
 	{
+		Thread.sleep(1500);
 		searchInputTextField.click();
 		searchInputTextField.clear();
 		searchInputTextField.sendKeys(searchdata);

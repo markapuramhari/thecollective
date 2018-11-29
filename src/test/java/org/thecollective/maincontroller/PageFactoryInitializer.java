@@ -28,6 +28,8 @@ public class PageFactoryInitializer extends MainController{
 		BrandDirectoryPageObjects brands=PageFactory.initElements(driver, BrandDirectoryPageObjects.class);
 		return brands;
 	}
+
+
 	
 	public LoginPageObjects loginPage(){
 		LoginPageObjects login=PageFactory.initElements(driver, LoginPageObjects.class);

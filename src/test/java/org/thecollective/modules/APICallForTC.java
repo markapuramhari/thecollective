@@ -1,11 +1,9 @@
 package org.thecollective.modules;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import org.testng.annotations.Test;
-import org.thecollective.dataprovider.DataDrivenTestingFromExcel;
 import org.thecollective.maincontroller.PageFactoryInitializer;
 
 import org.json.simple.JSONArray;
@@ -55,5 +53,6 @@ public class APICallForTC extends PageFactoryInitializer{
 		System.out.println("ends");
 		
 	}
+	
 
 }

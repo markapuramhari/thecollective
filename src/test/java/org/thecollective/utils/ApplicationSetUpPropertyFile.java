@@ -5,6 +5,9 @@ import org.thecollective.maincontroller.MainController;
 public class ApplicationSetUpPropertyFile extends MainController{
 
 	
+	private String instance=PropertyFileReader.propertiesReader(applicationSetUp, "instance");
+
+
 	public String getURL() throws Exception{
 		String url = PropertyFileReader.propertiesReader(applicationSetUp, "url");
 		return url;
@@ -67,6 +70,12 @@ public class ApplicationSetUpPropertyFile extends MainController{
 	public String getSendEmailPermisson() throws Exception{
 		String sendEmailPermission = PropertyFileReader.propertiesReader(applicationSetUp, "sendEmailPermission");
 		return sendEmailPermission;
+	}
+
+
+	public String instanceType() {
+		
+		return instance;
 	}
 	
 }

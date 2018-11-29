@@ -27,15 +27,15 @@ public class AePageObjects extends PageFactoryInitializer
 	private WebElement searchInputField;
 	
 	
-	@FindBy(xpath="//div[@class='product-list']//div[contains(@class,'product-images ')]")
+	@FindBy(xpath="//div[@class='products__list']//img[1]")
 	private WebElement listedProducts;
 	
-	@FindAll(value={@FindBy(xpath="//div[@role='presentation']/following-sibling::div[@class='pdp-about-details-txt pdp-about-details-equit']")
-	,@FindBy(xpath="//div[@role='presentation']/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]")})
+	@FindAll(value={@FindBy(xpath="//h4[text()='The Details']/following-sibling::div")
+	})
 	private List<WebElement> theDatailsData;
+	//,@FindBy(xpath="//h4[text()='The Details']/following-sibling::div/ul/li")
 	
-	
-	@FindBy(xpath="//span[@class='search-count']")
+	@FindBy(xpath="//p/span[@id='searchprodcnt']")
 	private WebElement searchResultsCount;
 	
 	public boolean acceptCoockies(){
@@ -80,6 +80,8 @@ public class AePageObjects extends PageFactoryInitializer
 	}
 	public AePageObjects clickOnProduct(String id) throws InterruptedException {
 		try{
+			Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		Waiting.explicitWaitVisibilityOfElement(listedProducts, 10);
 		listedProducts.click();
 		Thread.sleep(2000);
@@ -96,7 +98,7 @@ public class AePageObjects extends PageFactoryInitializer
 		{
 
 			ExcelFileReadAndWrite write =new ExcelFileReadAndWrite();
-			write.writeData(id,"No Results found","No Results found","No Results found","No Results found","No Results found");
+			write.writeData(id,"No Results found","No Results found","No Results found","No Results found","No Results found","No Results found");
 			return false;
 		}else
 		{
@@ -113,39 +115,41 @@ public class AePageObjects extends PageFactoryInitializer
 			 all_elements_text.add(theDatailsData.get(i).getAttribute("innerText").toString()+"\n");
 		 }
 		 String listString = String.join("", all_elements_text);
-		 System.out.println(listString);
+		// System.out.println(listString);
 		return listString;
 	}
 	public String getMaterialsAndCare() {
-		List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@role='presentation']/h2/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]"));
-		 List<String> all_elements_text=new ArrayList<>();
+		List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@class='product__desc--block']/h4[text()='Materials & Care']/following-sibling::ul/li"));
+		//div[@role='presentation']/h2/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')] 
+		List<String> all_elements_text=new ArrayList<>();
 		 for(int i=0; i<theDatailsData.size(); i++)
 		 {
 			 all_elements_text.add(theDatailsData.get(i).getAttribute("innerText").toString()+"\n");
 		 }
 		 String listString = String.join("", all_elements_text);
-		 System.out.println(listString);
+		// System.out.println(listString);
 		return listString;
 	}
 	public String getSizeAndFit() {
-		List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@class='pdp-about-fit pdp-about-section']/h2/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')]"));
-		 List<String> all_elements_text=new ArrayList<>();
+		List<WebElement> theDatailsData=driver.findElements(By.xpath("//div[@class='product__desc--block']/h4[text()='Size & Fit']/following-sibling::ul/li"));
+		//div[@class='pdp-about-fit pdp-about-section']/h2/following-sibling::ul/li[contains(@class,'pdp-about-list-item pdp-about-bullet')] 
+		List<String> all_elements_text=new ArrayList<>();
 		 for(int i=0; i<theDatailsData.size(); i++)
 		 {
 			 all_elements_text.add(theDatailsData.get(i).getAttribute("innerText").toString()+"\n");
 		 }
 		 String listString = String.join("", all_elements_text);
-		 System.out.println(listString);
+		// System.out.println(listString);
 		return listString;
 	}
 	public String getColor() {
 		String color=driver.findElement(By.xpath("//span[@itemprop='color']")).getText().trim();
-		System.out.println(color);
+		//System.out.println(color);
 		return color;
 	}
 	public String getProductName() {
 		String productName=driver.findElement(By.xpath("//div[@id='pdp-sticky-menu']//h1")).getText();
-		System.out.println(productName);
+		//System.out.println(productName);
 		return productName;
 	}
 }

@@ -139,7 +139,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
-		.clickOnSpecificProduct(1);
+		.clickOnSpecificProduct(3);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()

@@ -109,13 +109,15 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		for(int i=0;i<deleteLinks.size();i++)
 		{
 			deleteLinks.get(i).click();
-			Thread.sleep(1500);
+			Thread.sleep(2500);
 			driver.navigate().refresh();
+			driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+			Thread.sleep(1500);
 		}
 		return this;
 	}
 	@Step("verify products in summary page")
-	private boolean verifyProductavailability(String emptyCartText) {
+	private boolean verifyProductavailability(String emptyCartText) throws InterruptedException {
 		try{
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			if(deleteLinks.get(0).isDisplayed()){
@@ -130,7 +132,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		return false;
 	}
 	@Step("verify empty cart page")
-	public CheckoutSummaryPageObjects verifyEmptyCartPage(String emptyCartText) {
+	public CheckoutSummaryPageObjects verifyEmptyCartPage(String emptyCartText) throws InterruptedException {
 		verifyEmptyCartText(emptyCartText);
 		verifyAddProductsToCartLink();
 
@@ -157,8 +159,9 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 		return false;
 	}
 	@Step("verify empty cart text")
-	public CheckoutSummaryPageObjects verifyEmptyCartText(String emptyCartText) {
+	public CheckoutSummaryPageObjects verifyEmptyCartText(String emptyCartText) throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(2500);
 		Waiting.explicitWaitVisibilityOfElement(emptyCartPageText, 10);
 		Assert.assertEquals(emptyCartPageText.getText().trim(), emptyCartText);
 
