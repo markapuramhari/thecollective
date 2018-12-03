@@ -77,7 +77,7 @@ public class Sparrow extends MainController
      }
 
  }
-	private boolean assertVerifySuccess(String lastRecord) {
+	private boolean assertVerifySuccess(final String lastRecord) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 			    .withTimeout(1500, TimeUnit.SECONDS)
 			    .pollingEvery(5, TimeUnit.SECONDS)
