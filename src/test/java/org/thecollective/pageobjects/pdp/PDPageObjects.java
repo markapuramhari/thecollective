@@ -68,6 +68,7 @@ public class PDPageObjects  extends PageFactoryInitializer
 	public PDPageObjects clickOnMyBag() throws InterruptedException {
 		Waiting.explicitWaitVisibilityOfElement(myBagIcon, 40);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		Thread.sleep(1500);
 		myBagIcon.click();
 		return this;
 		}

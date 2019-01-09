@@ -51,7 +51,7 @@ public void loginValid() throws Exception{
 	.enterPassword(data.getPassword())
 	.clickOnLoginButton()
 	.homePage()
-	.verifyUserProfile(data.getProductName(), "My Information"); 
+	.verifyUserProfile("The Collective My Information"); 
 	
 }@TestCaseId("TC_LOGIN_004")
 @Features({"Login","TheCollective"})

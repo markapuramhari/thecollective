@@ -18,6 +18,7 @@ import org.thecollective.pageobjects.homepage.StoresPageObjects;
 import org.thecollective.utils.SearchDataPropertyFile;
 import org.thecollective.utils.Waiting;
 
+import net.sourceforge.htmlunit.corejs.javascript.JavaScriptException;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class ListPageObjects extends PageFactoryInitializer{
@@ -364,9 +365,12 @@ public class ListPageObjects extends PageFactoryInitializer{
 					Assert.assertEquals(sortByOptions.get(i).getAttribute("innerHTML").toString(), expOptions[i]);
 					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 					Thread.sleep(3500);
-			}else
+			}
+			else
 				{
-					sortByDropdown.click();
+					JavascriptExecutor js=(JavascriptExecutor)driver;
+					js.executeScript("arguments[0].click();", sortByDropdown);
+					//sortByDropdown.click();
 					sortByOptions.get(i).click();
 					Assert.assertEquals(sortByOptions.get(i).getAttribute("innerHTML").toString(), expOptions[i]);
 					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

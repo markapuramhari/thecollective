@@ -242,7 +242,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	   @Step("verify user profile dropdown in home page")
-	public HomePageObjects verifyUserProfile(String expAccountName,String productName ) {
+	public HomePageObjects verifyUserProfile(String expAccountName) {
 		    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		    action.moveToElement(userIcon).moveToElement(myAccountOption).click().build().perform();
 		   	Assert.assertEquals(driver.getTitle(),expAccountName, "unable to login to site with the entered credentials");

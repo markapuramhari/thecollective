@@ -114,9 +114,7 @@ class AeContent extends PageFactoryInitializer
 			System.out.println(e.getMessage());
 		}
 	}
-
 	
-
 	public void verifyimageActive(WebElement imgElement) {
 		try {
 			HttpClient client = HttpClientBuilder.create().build();
@@ -132,4 +130,11 @@ class AeContent extends PageFactoryInitializer
 		}
 	
 	}
+	@Test
+	public void test12()
+	{
+		
+		verifyimageActive(driver.findElement(By.xpath("//img")));
+		
+		}
 }

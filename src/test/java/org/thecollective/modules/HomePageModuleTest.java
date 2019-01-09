@@ -102,7 +102,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton()
 		.homePage()
-		.verifyUserProfile(data.getMyAccountPageTitle(),data.getProductName());
+		.verifyUserProfile(data.getMyAccountPageTitle());
 		
 	  } 
 	@TestCaseId("TC_HomePage_006")

@@ -180,7 +180,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -382,7 +382,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()

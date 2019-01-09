@@ -196,7 +196,7 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	}
 	@Step("verify product price {0} which is displayed in pdp")
 	public CheckoutSummaryPageObjects verifyProductPriceBeforeUpdate(String productPrice) {
-		Assert.assertEquals(totalItemPrice.getText().trim(),productPrice.trim());
+		Assert.assertEquals(totalItemPrice.getText().trim().replace(".00", ""),productPrice.trim().replace(".00", ""));
 		return this;
 	}
 	@Step("verify product price{0} after update")

@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,25 +25,25 @@ import com.google.common.base.Function;
 public class Sparrow extends MainController
 {
 	 private  int minValue=0;
-	 private int maxValue=149;
+	 private int maxValue=499;
 	@Test()
 	public void reIndexProductIds() throws InterruptedException {
-	 String csvFile = "C:\\Users\\thiruveedhi.chinna-v\\Downloads\\Testing Product Shop Details.csv";
+	 String csvFile = "D:\\Thiruveedhi\\Sparrow\\t_product.csv";
      String line = "";
      String cvsSplitBy=",";
     
      ArrayList<String> ar = new ArrayList<String>();
      driver.findElement(By.xpath("//input[@name='sleUsername']")).clear();
-     driver.findElement(By.xpath("//input[@name='sleUsername']")).sendKeys("kramesh1");
+     driver.findElement(By.xpath("//input[@name='sleUsername']")).sendKeys("ashwinkumar");
      driver.findElement(By.xpath("//input[@name='slePassword']")).clear();
-     driver.findElement(By.xpath("//input[@name='slePassword']")).sendKeys("Boss%123");
+     driver.findElement(By.xpath("//input[@name='slePassword']")).sendKeys("ashwin@123");
      driver.findElement(By.xpath("//button[text()='Sign me in']")).click();
      Thread.sleep(2500);
-     driver.get("http://testsparrow.trendin.com/es/regenerate");
+     driver.get("http://sparrow.trendin.com/es/regenerate");
      Thread.sleep(2500);
      driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
      driver.findElement(By.xpath("//li[@class='dropdown']")).click();
-     driver.findElement(By.xpath("//a[text()='testing_products']")).click();
+     driver.findElement(By.xpath("//a[text()='production_products']")).click();
      driver.findElement(By.id("DocIDs")).clear();
      try (BufferedReader br = new BufferedReader(new FileReader(csvFile)))
      {
@@ -61,15 +62,20 @@ public class Sparrow extends MainController
          for(int k=minValue;k<maxValue;k++)
          {
         	 driver.findElement(By.id("DocIDs")).clear();
-         for(int j=minValue;j<maxValue || j<ar.size();j++) 
+         for(int j=minValue;j<=maxValue ;j++) 
          {
          driver.findElement(By.id("DocIDs")).sendKeys(ar.get(j)+",");
+         
          }
-    	 driver.findElement(By.xpath("//button[@onclick='generateCSV()']")).click();
+         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+         Thread.sleep(1500);
+         JavascriptExecutor js=(JavascriptExecutor)driver;
+         js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@onclick='generateCSV()']")));
+//    	 driver.findElement(By.xpath("//button[@onclick='generateCSV()']")).click();
     	 System.out.println(ar.get(maxValue-1));
     	 Assert.assertTrue(assertVerifySuccess(ar.get(maxValue-1)),"products were not generated successfully");
-    	 minValue=minValue+149;
-    	 maxValue=maxValue+150;
+    	 minValue=minValue+499;
+    	 maxValue=maxValue+500;
          }
 
      } catch (IOException e) {
@@ -79,7 +85,7 @@ public class Sparrow extends MainController
  }
 	private boolean assertVerifySuccess(final String lastRecord) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-			    .withTimeout(1500, TimeUnit.SECONDS)
+			    .withTimeout(300, TimeUnit.SECONDS)
 			    .pollingEvery(5, TimeUnit.SECONDS)
 			    .ignoring(NoSuchElementException.class);
 
