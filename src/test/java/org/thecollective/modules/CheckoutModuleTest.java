@@ -334,7 +334,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		
 		
 	}
-	@Description("this test case verifies coupos section in checkout page")
+	@Description("this test case verifies coupons section in checkout page")
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_013")
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
@@ -364,6 +364,41 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		//.clickOnCouponsTab()
 		.verifyCouponsSection(data.getCouponsTabOptions());
 		
+		
+	}
+	@Description("this test case verifies coupon functionality")
+	@Features("Checkout Module")
+	@TestCaseId("TC_Checkout_017")
+	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
+	public void verifyCouponsFunctionality() throws Exception{
+		homePage()
+		.clickOnLoginLink()
+		.loginPage()
+		.enterUserName(data.getUserName())
+		.enterPassword(data.getPassword())
+		.clickOnLoginButton();
+		homePage()
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.listPage()
+		.clickOnSpecificProduct(2);
+		String productName=pdPage()
+		.selectSize()		
+		.addToBageFromDetailsPage()
+		.getTheProductName();
+		String productPrice=pdPage().getProductPrice();
+		pdPage().clickOnMyBag()
+		.summaryPage()
+		.verifyProductName(productName)
+		.verifyProductPriceBeforeUpdate(productPrice)
+		.verifyProductImage()
+		.verifyCouponsTabAfterLogin()
+		.clickOnCouponsLink()
+		//.clickOnCouponsTab()
+		.verifyCouponsSection(data.getCouponsTabOptions())
+		.clickOnCouponsHeader()
+		.enterCouponCode(data.getcouponCode());
+		
+		 throw new  Exception("needs to be implement");
 		
 	}
 	@Description("this test case verifies successful order placement by using cod")

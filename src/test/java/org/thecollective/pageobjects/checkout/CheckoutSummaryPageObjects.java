@@ -81,6 +81,9 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	@FindBy(xpath="//a[text()='Coupons']")
 	private WebElement couponsTabLink;
 	
+	@FindBy(xpath="//ul//a[text()='Coupons']")
+	private WebElement couponHeaderLink;
+	
 	
 	//===========================================================================//
 	
@@ -307,6 +310,21 @@ public class CheckoutSummaryPageObjects extends PageFactoryInitializer{
 	public CheckoutSummaryPageObjects clickOnCouponsTab() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		couponsTabLink.click();
+		return this;
+	}
+	@Step("click on coupon header in coupons tab")
+	public CheckoutSummaryPageObjects clickOnCouponsHeader() 
+	{
+		Waiting.explicitWaitElementToBeClickable(couponHeaderLink, 15);
+		couponHeaderLink.click();
+
+		return this;
+	}
+	@Step("enter coupon code{0}")
+	public CheckoutSummaryPageObjects enterCouponCode(String couponCode) 
+	{
+
+
 		return this;
 	}
 	

@@ -69,6 +69,8 @@ public class SearchDataPropertyFile extends MainController{
 
 	private String signUpPageName=PropertyFileReader.propertiesReader(searchData, "expSignUpPageName");
 
+	private String couponCode=PropertyFileReader.propertiesReader(searchData, "couponCode");
+
 	
 	
 	public int getNumberOfCheckboxesToBeClicked() {
@@ -216,8 +218,13 @@ public String getNewPassword() {
 	}
 
 	public String getSignUpPageName() {
-		// TODO Auto-generated method stub
+		
 		return signUpPageName;
+	}
+
+	public String getcouponCode() {
+		
+		return couponCode;
 	}
 
 
