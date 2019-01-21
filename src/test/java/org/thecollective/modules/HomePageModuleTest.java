@@ -353,7 +353,7 @@ public class HomePageModuleTest extends PageFactoryInitializer{
             DataBuffer dbB = expectedImage.getData().getDataBuffer();
             int sizeB = dbB.getSize();
             int count = 0;
-            // compare data-buffer objects //
+            // compare data-buffer objects 
             if (sizeA == sizeB) { // checks the size of the both the bufferedImage
 
                 for (int i = 0; i < sizeA; i++) {
