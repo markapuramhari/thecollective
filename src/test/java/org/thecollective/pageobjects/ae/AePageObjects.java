@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -78,7 +80,7 @@ public class AePageObjects extends PageFactoryInitializer
 		Thread.sleep(1000);
 		return this;
 	}
-	public AePageObjects clickOnProduct(String id) throws InterruptedException {
+	public AePageObjects clickOnProduct(String id) throws InterruptedException, EncryptedDocumentException, InvalidFormatException {
 		try{
 			Thread.sleep(1000);
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -92,7 +94,7 @@ public class AePageObjects extends PageFactoryInitializer
 		}
 		return this;
 	}
-	private boolean assertVerifyZeroResults(String id) {
+	private boolean assertVerifyZeroResults(String id) throws EncryptedDocumentException, InvalidFormatException {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		if(searchResultsCount.getText().equals("0"))
 		{

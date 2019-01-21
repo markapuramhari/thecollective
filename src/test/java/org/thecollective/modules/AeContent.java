@@ -8,6 +8,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ class AeContent extends PageFactoryInitializer
 	private int invalidImageCount;
 	
 	@Test(dataProvider="aeContent",dataProviderClass=DataDrivenTestingFromExcel.class)
-	public void aeWriteContent(String id) throws AWTException, InterruptedException
+	public void aeWriteContent(String id) throws AWTException, InterruptedException, EncryptedDocumentException, InvalidFormatException
 	{	
 		driver.get("https://www.aeo.in/search?page=1&orderby=popular&orderway=asc&search_query="+id);
 		//driver.navigate().refresh();

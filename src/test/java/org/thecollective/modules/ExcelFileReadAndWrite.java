@@ -25,7 +25,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class ExcelFileReadAndWrite {
  
  
-    public  void writeData(String StyleCode,String productName,String color,String pdpUrl,String theDetails, String materialsCare, String sizeAndFit) {
+    public  void writeData(String StyleCode,String productName,String color,String pdpUrl,String theDetails, String materialsCare, String sizeAndFit) throws EncryptedDocumentException, InvalidFormatException {
     	 
         String excelFilePath = "D:/Thiruveedhi/Implementation/thecollective/resources/ExcelSheetData/aeContent.xlsx"; 
          //D:\Thiruveedhi\Implementation\thecollective\resources\ExcelsheetData
@@ -65,7 +65,7 @@ public class ExcelFileReadAndWrite {
             outputStream.close();
            
              
-        } catch (IOException | EncryptedDocumentException | InvalidFormatException ex)
+        } catch (IOException  ex)
         {
             ex.printStackTrace();
         }
