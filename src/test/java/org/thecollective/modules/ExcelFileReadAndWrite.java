@@ -70,7 +70,7 @@ public class ExcelFileReadAndWrite {
             ex.printStackTrace();
         }
     }
-    public  void writeData(String input,String lat,String longi) {
+    public  void writeData(String input,String lat,String longi) throws EncryptedDocumentException, InvalidFormatException {
     	/*//String[] data=inputData.split(",");
         
         String longitude= data[0];
@@ -112,7 +112,7 @@ public class ExcelFileReadAndWrite {
             outputStream.close();
            
              
-        } catch (IOException | EncryptedDocumentException | InvalidFormatException ex)
+        } catch (IOException ex)
         {
             ex.printStackTrace();
         }

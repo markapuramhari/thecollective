@@ -165,7 +165,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifySingleFilterForCatNavigation() throws InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifyFilterSection()
@@ -181,7 +181,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifySingleFilterPageRefreshForCatNavigation() throws InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifyFilterSection()
@@ -241,7 +241,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifyMultiFiltersRefreshForCatNavigation() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifySortByText()

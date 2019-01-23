@@ -54,7 +54,7 @@ class AeContent extends PageFactoryInitializer
 
 	
 	@Test(dataProvider="getDataFromGoogle", dataProviderClass=DataDrivenTestingFromExcel.class)
-	public void getDataFromGoogle(String inputData, String city) throws InterruptedException {
+	public void getDataFromGoogle(String inputData, String city) throws InterruptedException, EncryptedDocumentException, InvalidFormatException {
 		String data=inputData.replace(".0", "");
 		driver.findElement(By.xpath("//input[@id='Source']")).clear();
 		driver.findElement(By.xpath("//input[@id='Source']")).sendKeys(data+", "+city+", India");

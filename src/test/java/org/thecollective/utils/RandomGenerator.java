@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -54,7 +55,7 @@ public class RandomGenerator {
         return email.toLowerCase();
     }
     public static String randomGenderShortText() {
-        List<String> gender = new LinkedList<>();
+        List<String> gender = new ArrayList<>();
         gender.add("M");
         gender.add("F");
         gender.add("U");
