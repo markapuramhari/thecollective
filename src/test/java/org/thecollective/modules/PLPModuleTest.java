@@ -48,7 +48,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifyLeftNavFilters() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men","Sports")
+		.clickOnSpecificCategoryFromTopNavigation("Men","Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifySortByText()
@@ -212,7 +212,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifyLeftNavFiltersForCatNavigation() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifySortByText()
@@ -225,7 +225,7 @@ public class PLPModuleTest extends PageFactoryInitializer{
 	public void verifyMultiFiltersForCatNavigation() throws AWTException, InterruptedException, Exception
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.verifyListedProducts()
 		.verifySortByText()

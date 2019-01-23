@@ -1,64 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]">
-  <test thread-count="5" name="Test(failed)(failed)(failed)(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.thecollective.modules.PLPModuleTest">
+      <class name="org.thecollective.modules.Sparrow">
         <methods>
-          <include name="verifySingleFilterByChangingSortByOption"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
-          <include name="verifyProductListPageBySearch"/>
-          <include name="startRecording"/>
-          <include name="verifySingleFilterFunWithPageRefresh"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.PLPModuleTest -->
-      <class name="org.thecollective.modules.CheckoutModuleTest">
-        <methods>
-          <include name="verifyCouponsSectionCheckoutPage"/>
-          <include name="verifyCouponsFunctionality"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="verifySavedItemsToShoppingCartTest"/>
-          <include name="verifyLoginFunctionalityInCheckoutPage"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="veryfyRemoveProductsTest"/>
-          <include name="startRecording"/>
-          <include name="verifyOrderPlacementByCCO"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
-      <class name="org.thecollective.modules.PDPModuleTest">
-        <methods>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="verifyProductDetailsPageTest"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="verifyMyWishListFunctionalityAfterLogin"/>
-          <include name="verifyMyWishListFunctionality"/>
+          <include name="reIndexProductIds"/>
           <include name="startRecording"/>
         </methods>
-      </class> <!-- org.thecollective.modules.PDPModuleTest -->
-      <class name="org.thecollective.modules.HomePageModuleTest">
-        <methods>
-          <include name="verifyTheCollectiveStores"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="verifyAllCategories"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="verifyAllImagePathLinksCheckoutShippingAddres"/>
-          <include name="beforeSuite"/>
-          <include name="startRecording"/>
-          <include name="verifyAllImagePathLinksCheckout"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      </class> <!-- org.thecollective.modules.Sparrow -->
     </classes>
-  </test> <!-- Test(failed)(failed)(failed)(failed) -->
-</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

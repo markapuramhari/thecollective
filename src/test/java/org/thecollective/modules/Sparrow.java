@@ -62,7 +62,7 @@ public class Sparrow extends MainController
          for(int k=minValue;k<maxValue;k++)
          {
         	 driver.findElement(By.id("DocIDs")).clear();
-         for(int j=minValue;j<=maxValue ;j++) 
+         for(int j=minValue;j<maxValue ;j++) 
          {
          driver.findElement(By.id("DocIDs")).sendKeys(ar.get(j)+",");
          
