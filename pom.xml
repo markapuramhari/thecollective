@@ -20,24 +20,36 @@
     </properties>
     <name>The Collective</name>
     <description>The Collective is an e commerce application that is mainly known for selling items related fashions</description>
-    <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
-        <dependencies>
+    <dependencies>
+		<dependency> 
+    <groupId>com.opencsv</groupId> 
+    <artifactId>opencsv</artifactId> 
+    <version>4.1</version> 
+	</dependency> 
+        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.9.4</version>
         </dependency>
+        <dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+        <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
+<dependency>
+    <groupId>ru.yandex.qatools.ashot</groupId>
+    <artifactId>ashot</artifactId>
+    <version>1.5.3</version>
+</dependency>
         
 	 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.7.0</version>
   </dependency>
-  <dependency>
-    <groupId>com.jayway.restassured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <version>2.3.4</version>
-</dependency>
+  
 <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
 <dependency>
     <groupId>javax.ws.rs</groupId>
@@ -69,13 +81,13 @@
   <scope>test</scope>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+<!-- https://mvnrepository.com/artifact/com.google.guava/guava
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>r05</version>
+			<version>25.1-jre</version>
 		</dependency>
-
+ -->
     <dependency>
 	<groupId>com.jayway.restassured</groupId>
 	<artifactId>rest-assured</artifactId>
@@ -89,22 +101,25 @@
 </dependency>
 
  <!-- custom excelread library using apachePOI -->
-    <dependency>
-	<groupId>org.apache.poi</groupId>
-	<artifactId>poi</artifactId>
-	<version>3.13</version>
+   <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.15</version>
 </dependency>
+
 
     <dependency>
     <groupId>org.apache.poi</groupId>
     <artifactId>poi-ooxml</artifactId>
-    <version>3.13</version>
+    <version>3.15</version>
 </dependency>
 <dependency>
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi-ooxml-schemas</artifactId>
-	<version>3.13</version>
+	<version>3.15</version>
 </dependency>
+
 <!-- zipturnaround -->
 	<dependency>
 	<groupId>org.zeroturnaround</groupId>
@@ -189,7 +204,8 @@
             <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
-
+		
+		
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -214,7 +230,7 @@
 	 <plugins>
 
 
-        	<plugin>
+        	<!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -223,7 +239,7 @@
                     <target>${compiler.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
-            </plugin>
+            </plugin> -->
 
 
             <plugin>
@@ -234,12 +250,15 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
-            <plugin>
+			<plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
             
+        </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.22.0</version>
                 <configuration>
                	 <suiteXmlFiles>
                 	<suiteXmlFile>testng.xml</suiteXmlFile>
@@ -258,9 +277,42 @@
                         <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
                     </dependency>
-                  
                 </dependencies>
             </plugin>
+            <plugin>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.0.1</version>
+    <executions>
+      <execution>
+        <id>copy-resources</id>
+        <!-- here the phase you need -->
+        <phase>validate</phase>
+        <goals>
+          <goal>copy-resources</goal>
+        </goals>
+        <configuration>
+          <outputDirectory>${basedir}/target/failed-testng.xml</outputDirectory>
+          <resources>          
+            <resource>
+              <directory>src/</directory>
+              <filtering>true</filtering>
+            </resource>
+          </resources>              
+        </configuration>            
+      </execution>
+    </executions>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.19.1</version>
+    <configuration>
+      <forkCount>0</forkCount>
+      <suiteXmlFiles>
+        <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
+      </suiteXmlFiles>
+    </configuration>
+  </plugin>
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-jar-plugin</artifactId>
@@ -305,4 +357,3 @@
         </plugins>
     </reporting>
 </project>
-    
