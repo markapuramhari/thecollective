@@ -10,6 +10,7 @@
       <class name="org.thecollective.modules.PDPModuleTest"/>
      <class name="org.thecollective.modules.CheckoutModuleTest"/>
      <class name="org.thecollective.modules.LoginModuleTest"/>
+     
     <!--  <class name="org.thecollective.pageobjects.brands.BDirectoryMasterCall"/>
       <class name="org.thecollective.modules.BrandsModuleTest"/>  -->
     </classes>
