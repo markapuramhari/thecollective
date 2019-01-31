@@ -1,62 +1,249 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="7" ignored="53" total="69" passed="9">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="108376" started-at="2019-01-23T08:56:54Z" finished-at="2019-01-23T08:58:42Z">
+  <suite name="Failed suite [Suite]" duration-ms="751403" started-at="2019-01-30T11:06:27Z" finished-at="2019-01-30T11:18:58Z">
     <groups>
+      <group name="HomePageModule">
+        <method signature="CheckoutModuleTest.verifyCouponsFunctionality()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsFunctionality" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsSectionCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCod" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyShippingAddresTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="HomePageModuleTest.verifyTheCollectiveStores()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="verifyTheCollectiveStores" class="org.thecollective.modules.HomePageModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginLinkInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginLinkInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="LoginModuleTest.loginInvalid(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="loginInvalid" class="org.thecollective.modules.LoginModuleTest"/>
+      </group> <!-- HomePageModule -->
+      <group name="regression">
+        <method signature="CheckoutModuleTest.verifyCouponsFunctionality()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsFunctionality" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsSectionCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCCO" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCod" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyShippingAddresTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="HomePageModuleTest.verifyTheCollectiveStores()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="verifyTheCollectiveStores" class="org.thecollective.modules.HomePageModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginLinkInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginLinkInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="LoginModuleTest.loginInvalid(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="loginInvalid" class="org.thecollective.modules.LoginModuleTest"/>
+      </group> <!-- regression -->
+      <group name="Checkout Module">
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCCO" class="org.thecollective.modules.CheckoutModuleTest"/>
+      </group> <!-- Checkout Module -->
+      <group name="smoke">
+        <method signature="CheckoutModuleTest.verifyCouponsFunctionality()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsFunctionality" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsSectionCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCheckoutPage" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCCO" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCod" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyShippingAddresTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="HomePageModuleTest.verifyTheCollectiveStores()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="verifyTheCollectiveStores" class="org.thecollective.modules.HomePageModuleTest"/>
+        <method signature="CheckoutModuleTest.verifyLoginLinkInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginLinkInCouponsTabTest" class="org.thecollective.modules.CheckoutModuleTest"/>
+        <method signature="LoginModuleTest.loginInvalid(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="loginInvalid" class="org.thecollective.modules.LoginModuleTest"/>
+      </group> <!-- smoke -->
     </groups>
-    <test name="Default test" duration-ms="108376" started-at="2019-01-23T08:56:54Z" finished-at="2019-01-23T08:58:42Z">
-      <class name="org.thecollective.modules.Sparrow">
-        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="beforeSuite" is-config="true" duration-ms="133" started-at="2019-01-23T08:56:54Z" finished-at="2019-01-23T08:56:54Z">
+    <test name="Test(failed)" duration-ms="751403" started-at="2019-01-30T11:06:27Z" finished-at="2019-01-30T11:18:58Z">
+      <class name="org.thecollective.modules.LoginModuleTest">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="beforeSuite" is-config="true" duration-ms="97" started-at="2019-01-30T11:06:27Z" finished-at="2019-01-30T11:06:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="beforeTest" is-config="true" duration-ms="7521" started-at="2019-01-23T08:56:54Z" finished-at="2019-01-23T08:57:01Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="beforeTest" is-config="true" duration-ms="6430" started-at="2019-01-30T11:06:27Z" finished-at="2019-01-30T11:06:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="setUp" is-config="true" duration-ms="6898" started-at="2019-01-23T08:57:02Z" finished-at="2019-01-23T08:57:08Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="setUp" is-config="true" duration-ms="19247" started-at="2019-01-30T11:06:36Z" finished-at="2019-01-30T11:06:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="startRecording" is-config="true" duration-ms="6" started-at="2019-01-23T08:57:08Z" finished-at="2019-01-23T08:57:08Z">
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="startRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:06:55Z" finished-at="2019-01-30T11:06:55Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void org.thecollective.modules.Sparrow.reIndexProductIds() throws java.lang.InterruptedException]]>
+                <![CDATA[public void org.thecollective.modules.LoginModuleTest.loginInvalid(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startRecording -->
-        <test-method status="FAIL" signature="reIndexProductIds()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="reIndexProductIds" duration-ms="93784" started-at="2019-01-23T08:57:08Z" finished-at="2019-01-23T08:58:42Z">
-          <exception class="org.openqa.selenium.NoSuchWindowException">
+        <test-method status="PASS" signature="loginInvalid(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="loginInvalid" duration-ms="10616" started-at="2019-01-30T11:06:55Z" data-provider="mutipleSheetsSingleWorkbook" finished-at="2019-01-30T11:07:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_LOGIN_002]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Please enter valid 10 digit mobile number or email.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Please enter password.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginInvalid -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:07:05Z" finished-at="2019-01-30T11:07:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginInvalid status=SUCCESS method=LoginModuleTest.loginInvalid(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="setUp" is-config="true" duration-ms="6930" started-at="2019-01-30T11:07:05Z" finished-at="2019-01-30T11:07:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:07:12Z" finished-at="2019-01-30T11:07:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.LoginModuleTest.verifyLoginLinkInLandingPage() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="verifyLoginLinkInLandingPage()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="verifyLoginLinkInLandingPage" duration-ms="1299" started-at="2019-01-30T11:07:12Z" finished-at="2019-01-30T11:07:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginLinkInLandingPage -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:07:14Z" finished-at="2019-01-30T11:07:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginLinkInLandingPage status=SUCCESS method=LoginModuleTest.verifyLoginLinkInLandingPage()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:org.thecollective.modules.LoginModuleTest@5003c114]" name="tearDown" is-config="true" duration-ms="1605" started-at="2019-01-30T11:18:58Z" finished-at="2019-01-30T11:19:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="setUp" is-config="true" duration-ms="6342" started-at="2019-01-30T11:17:40Z" finished-at="2019-01-30T11:17:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:17:46Z" finished-at="2019-01-30T11:17:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.PLPModuleTest.verifySingleFilterByChangingSortByOption() throws java.awt.AWTException,java.lang.InterruptedException,java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="verifySingleFilterByChangingSortByOption()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="verifySingleFilterByChangingSortByOption" duration-ms="13307" started-at="2019-01-30T11:17:46Z" finished-at="2019-01-30T11:17:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySingleFilterByChangingSortByOption -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:17:59Z" finished-at="2019-01-30T11:18:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifySingleFilterByChangingSortByOption status=SUCCESS method=PLPModuleTest.verifySingleFilterByChangingSortByOption()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="setUp" is-config="true" duration-ms="4780" started-at="2019-01-30T11:18:00Z" finished-at="2019-01-30T11:18:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="verifyMultipleFilterByChnagingSortByOption()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="verifyMultipleFilterByChnagingSortByOption" duration-ms="19389" started-at="2019-01-30T11:18:04Z" finished-at="2019-01-30T11:18:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyMultipleFilterByChnagingSortByOption -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="startRecording" is-config="true" duration-ms="0" started-at="2019-01-30T11:18:04Z" finished-at="2019-01-30T11:18:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.PLPModuleTest.verifyMultipleFilterByChnagingSortByOption() throws java.awt.AWTException,java.lang.InterruptedException,java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="stopRecording" is-config="true" duration-ms="0" started-at="2019-01-30T11:18:24Z" finished-at="2019-01-30T11:18:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyMultipleFilterByChnagingSortByOption status=SUCCESS method=PLPModuleTest.verifyMultipleFilterByChnagingSortByOption()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="setUp" is-config="true" duration-ms="4798" started-at="2019-01-30T11:18:24Z" finished-at="2019-01-30T11:18:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:18:28Z" finished-at="2019-01-30T11:18:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.PLPModuleTest.verifyProductListPageBySearch() throws java.awt.AWTException,java.lang.InterruptedException,java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="verifyProductListPageBySearch()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="verifyProductListPageBySearch" duration-ms="19675" started-at="2019-01-30T11:18:28Z" finished-at="2019-01-30T11:18:48Z">
+          <exception class="org.openqa.selenium.WebDriverException">
             <message>
-              <![CDATA[no such window: target window already closed
-from unknown error: web view not found
+              <![CDATA[unknown error: Element <a href="javascript:void(0);" sort="price:desc">...</a> is not clickable at point (529, 311). Other element would receive the click: <img src="https://assets.abfrlcdn.com/resources/img/thecollective/landingBannerD.jpg" class="img-responsive b-loaded">
   (Session info: chrome=71.0.3578.98)
   (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 5 milliseconds
+Command duration or timeout: 58 milliseconds
 Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
-System info: host: 'MGLT-CND6046GGC', ip: '172.21.14.241', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:49452}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir11612_28953}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 124ec97768c49f7d665a77c4094d50ec
-*** Element info: {Using=id, value=DocIDs}]]>
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
+              <![CDATA[org.openqa.selenium.WebDriverException: unknown error: Element <a href="javascript:void(0);" sort="price:desc">...</a> is not clickable at point (529, 311). Other element would receive the click: <img src="https://assets.abfrlcdn.com/resources/img/thecollective/landingBannerD.jpg" class="img-responsive b-loaded">
   (Session info: chrome=71.0.3578.98)
   (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 5 milliseconds
+Command duration or timeout: 58 milliseconds
 Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
-System info: host: 'MGLT-CND6046GGC', ip: '172.21.14.241', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:49452}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir11612_28953}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 124ec97768c49f7d665a77c4094d50ec
-*** Element info: {Using=id, value=DocIDs}
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -64,18 +251,17 @@ at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
 at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
 at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:413)
-at org.openqa.selenium.By$ById.findElement(By.java:218)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
-at org.thecollective.modules.Sparrow.reIndexProductIds(Sparrow.java:67)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:327)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:85)
+at org.thecollective.pageobjects.listpage.ListPageObjects.verifySortByOptions(ListPageObjects.java:375)
+at org.thecollective.modules.PLPModuleTest.verifyProductListPageBySearch(PLPModuleTest.java:28)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.lang.reflect.Method.invoke(Method.java:498)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
 at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
-at org.thecollective.maincontroller.MainController.run(MainController.java:260)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
 at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
 at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
 at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
@@ -99,26 +285,716 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reIndexProductIds -->
-        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="stopRecording" is-config="true" duration-ms="2" started-at="2019-01-23T08:58:42Z" finished-at="2019-01-23T08:58:42Z">
+        </test-method> <!-- verifyProductListPageBySearch -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221]" name="stopRecording" is-config="true" duration-ms="0" started-at="2019-01-30T11:18:48Z" finished-at="2019-01-30T11:18:48Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=reIndexProductIds status=FAILURE method=Sparrow.reIndexProductIds()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025] output={null}]]]>
+                <![CDATA[[TestResult name=verifyProductListPageBySearch status=FAILURE method=PLPModuleTest.verifyProductListPageBySearch()[pri:0, instance:org.thecollective.modules.PLPModuleTest@5af1b221] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopRecording -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:org.thecollective.modules.Sparrow@27a9f025]" name="tearDown" is-config="true" duration-ms="1419" started-at="2019-01-23T08:58:43Z" finished-at="2019-01-23T08:58:44Z">
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5826" started-at="2019-01-30T11:07:14Z" finished-at="2019-01-30T11:07:19Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- org.thecollective.modules.Sparrow -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:07:19Z" finished-at="2019-01-30T11:07:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="veryfyRemoveProductsTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyRemoveProductsTest" duration-ms="59903" started-at="2019-01-30T11:07:19Z" finished-at="2019-01-30T11:08:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- veryfyRemoveProductsTest -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:08:19Z" finished-at="2019-01-30T11:08:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=veryfyRemoveProductsTest status=SUCCESS method=CheckoutModuleTest.veryfyRemoveProductsTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="4460" started-at="2019-01-30T11:08:19Z" finished-at="2019-01-30T11:08:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:08:24Z" finished-at="2019-01-30T11:08:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyLoginLinkInCouponsTabTest() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="verifyLoginLinkInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginLinkInCouponsTabTest" duration-ms="46348" started-at="2019-01-30T11:08:24Z" finished-at="2019-01-30T11:09:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginLinkInCouponsTabTest -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:09:10Z" finished-at="2019-01-30T11:09:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginLinkInCouponsTabTest status=SUCCESS method=CheckoutModuleTest.verifyLoginLinkInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5393" started-at="2019-01-30T11:09:10Z" finished-at="2019-01-30T11:09:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:09:16Z" finished-at="2019-01-30T11:09:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCouponsTabTest" duration-ms="28613" started-at="2019-01-30T11:09:16Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:09:44Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [15,000] but found [30,000]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [15,000] but found [30,000]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at org.testng.Assert.assertEquals(Assert.java:453)
+at org.testng.Assert.assertEquals(Assert.java:463)
+at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyProductPriceBeforeUpdate(CheckoutSummaryPageObjects.java:202)
+at org.thecollective.modules.CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest(CheckoutModuleTest.java:272)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginFunctionalityInCouponsTabTest -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:09:44Z" finished-at="2019-01-30T11:09:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginFunctionalityInCouponsTabTest status=FAILURE method=CheckoutModuleTest.verifyLoginFunctionalityInCouponsTabTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5023" started-at="2019-01-30T11:09:44Z" finished-at="2019-01-30T11:09:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:09:49Z" finished-at="2019-01-30T11:09:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyCouponsSectionCheckoutPage() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsSectionCheckoutPage" duration-ms="78470" started-at="2019-01-30T11:09:49Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:11:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCouponsSectionCheckoutPage -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:11:08Z" finished-at="2019-01-30T11:11:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyCouponsSectionCheckoutPage status=SUCCESS method=CheckoutModuleTest.verifyCouponsSectionCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5061" started-at="2019-01-30T11:11:08Z" finished-at="2019-01-30T11:11:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:11:13Z" finished-at="2019-01-30T11:11:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCod() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCod" duration-ms="11552" started-at="2019-01-30T11:11:13Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:11:24Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//a[@title='Login']"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.05 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//a[@title='Login']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//a[@title='Login']"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.05 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//a[@title='Login']}
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy19.getCoordinates(Unknown Source)
+at org.openqa.selenium.interactions.internal.MouseAction.getActionLocation(MouseAction.java:51)
+at org.openqa.selenium.interactions.MoveMouseAction.perform(MoveMouseAction.java:39)
+at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:50)
+at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnLoginLink(HomePageObjects.java:239)
+at org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCod(CheckoutModuleTest.java:414)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyOrderPlacementByCod -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:11:24Z" finished-at="2019-01-30T11:11:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyOrderPlacementByCod status=FAILURE method=CheckoutModuleTest.verifyOrderPlacementByCod()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5115" started-at="2019-01-30T11:11:24Z" finished-at="2019-01-30T11:11:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:11:29Z" finished-at="2019-01-30T11:11:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyLoginFunctionalityInCheckoutPage" duration-ms="38240" started-at="2019-01-30T11:11:29Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:12:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginFunctionalityInCheckoutPage -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:12:08Z" finished-at="2019-01-30T11:12:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginFunctionalityInCheckoutPage status=SUCCESS method=CheckoutModuleTest.verifyLoginFunctionalityInCheckoutPage()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="4737" started-at="2019-01-30T11:12:08Z" finished-at="2019-01-30T11:12:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:12:12Z" finished-at="2019-01-30T11:12:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.veryfyShippingAddresTest() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyShippingAddresTest" duration-ms="24312" started-at="2019-01-30T11:12:12Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:12:37Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//a[@title='Login']"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//a[@title='Login']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//a[@title='Login']"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//a[@title='Login']}
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy19.getCoordinates(Unknown Source)
+at org.openqa.selenium.interactions.internal.MouseAction.getActionLocation(MouseAction.java:51)
+at org.openqa.selenium.interactions.MoveMouseAction.perform(MoveMouseAction.java:39)
+at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:50)
+at org.thecollective.pageobjects.homepage.HomePageObjects.clickOnLoginLink(HomePageObjects.java:239)
+at org.thecollective.modules.CheckoutModuleTest.veryfyShippingAddresTest(CheckoutModuleTest.java:46)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- veryfyShippingAddresTest -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:12:37Z" finished-at="2019-01-30T11:12:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=veryfyShippingAddresTest status=FAILURE method=CheckoutModuleTest.veryfyShippingAddresTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="4938" started-at="2019-01-30T11:12:37Z" finished-at="2019-01-30T11:12:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="FAIL" signature="verifyCouponsFunctionality()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyCouponsFunctionality" duration-ms="74250" started-at="2019-01-30T11:12:42Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:13:56Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [15,000] but found [30,000]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [15,000] but found [30,000]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at org.testng.Assert.assertEquals(Assert.java:453)
+at org.testng.Assert.assertEquals(Assert.java:463)
+at org.thecollective.pageobjects.checkout.CheckoutSummaryPageObjects.verifyProductPriceBeforeUpdate(CheckoutSummaryPageObjects.java:202)
+at org.thecollective.modules.CheckoutModuleTest.verifyCouponsFunctionality(CheckoutModuleTest.java:392)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCouponsFunctionality -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="0" started-at="2019-01-30T11:12:42Z" finished-at="2019-01-30T11:12:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyCouponsFunctionality() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:13:56Z" finished-at="2019-01-30T11:13:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyCouponsFunctionality status=FAILURE method=CheckoutModuleTest.verifyCouponsFunctionality()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5006" started-at="2019-01-30T11:13:56Z" finished-at="2019-01-30T11:14:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:14:01Z" finished-at="2019-01-30T11:14:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.veryfyPaymentTest() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="PASS" signature="veryfyPaymentTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="veryfyPaymentTest" duration-ms="70308" started-at="2019-01-30T11:14:01Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:15:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- veryfyPaymentTest -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:15:11Z" finished-at="2019-01-30T11:15:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=veryfyPaymentTest status=SUCCESS method=CheckoutModuleTest.veryfyPaymentTest()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="setUp" is-config="true" duration-ms="5391" started-at="2019-01-30T11:15:11Z" finished-at="2019-01-30T11:15:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:15:17Z" finished-at="2019-01-30T11:15:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCCO() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="verifyOrderPlacementByCCO" duration-ms="143183" started-at="2019-01-30T11:15:17Z" depends-on-methods="org.thecollective.modules.CheckoutModuleTest.veryfyRemoveProductsTest" finished-at="2019-01-30T11:17:40Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//img[contains(@src,'tc-logo.jpg')]"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 15.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//img[contains(@src,'tc-logo.jpg')]}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//img[contains(@src,'tc-logo.jpg')]"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 15.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'MGLT-CND6046GGC', ip: '172.21.15.45', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=WIN8_1, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a), userDataDir=C:\Users\THIRUV~1.CHI\AppData\Local\Temp\scoped_dir6108_6226}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, version=71.0.3578.98, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 53ba93bd7601f5bdd60bcd70d85bd48d
+*** Element info: {Using=xpath, value=//img[contains(@src,'tc-logo.jpg')]}
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy19.click(Unknown Source)
+at org.thecollective.pageobjects.homepage.HomePageObjects.clickLogo(HomePageObjects.java:420)
+at org.thecollective.modules.CheckoutModuleTest.verifyOrderPlacementByCCO(CheckoutModuleTest.java:508)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyOrderPlacementByCCO -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e]" name="stopRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:17:40Z" finished-at="2019-01-30T11:17:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyOrderPlacementByCCO status=FAILURE method=CheckoutModuleTest.verifyOrderPlacementByCCO()[pri:0, instance:org.thecollective.modules.CheckoutModuleTest@414d466e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+      <class name="org.thecollective.modules.HomePageModuleTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="setUp" is-config="true" duration-ms="4785" started-at="2019-01-30T11:18:48Z" finished-at="2019-01-30T11:18:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="startRecording(java.lang.reflect.Method)[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="startRecording" is-config="true" duration-ms="1" started-at="2019-01-30T11:18:53Z" finished-at="2019-01-30T11:18:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.thecollective.modules.HomePageModuleTest.verifyTheCollectiveStores() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startRecording -->
+        <test-method status="FAIL" signature="verifyTheCollectiveStores()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="verifyTheCollectiveStores" duration-ms="5081" started-at="2019-01-30T11:18:53Z" finished-at="2019-01-30T11:18:58Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [PUNE] but found []]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [PUNE] but found []
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at org.testng.Assert.assertEquals(Assert.java:453)
+at org.testng.Assert.assertEquals(Assert.java:463)
+at org.thecollective.pageobjects.homepage.StoresPageObjects.verifyAvailableStores(StoresPageObjects.java:42)
+at org.thecollective.modules.HomePageModuleTest.verifyTheCollectiveStores(HomePageModuleTest.java:65)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.MethodInvocationHelper$1.runTestMethod(MethodInvocationHelper.java:230)
+at org.thecollective.maincontroller.MainController.run(MainController.java:266)
+at org.testng.internal.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:242)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:576)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyTheCollectiveStores -->
+        <test-method status="PASS" signature="stopRecording(org.testng.ITestResult)[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5]" name="stopRecording" is-config="true" duration-ms="2" started-at="2019-01-30T11:18:58Z" finished-at="2019-01-30T11:18:58Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyTheCollectiveStores status=FAILURE method=HomePageModuleTest.verifyTheCollectiveStores()[pri:0, instance:org.thecollective.modules.HomePageModuleTest@40b958c5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopRecording -->
+      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+    </test> <!-- Test(failed) -->
+  </suite> <!-- Failed suite [Suite] -->
 </testng-results>

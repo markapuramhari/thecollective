@@ -3,17 +3,17 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.thecollective.modules.Sparrow">
+      <class name="org.thecollective.modules.CheckoutModuleTest">
         <methods>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
-          <include name="reIndexProductIds"/>
+          <include name="verifyUpdatePriceTest"/>
           <include name="startRecording"/>
         </methods>
-      </class> <!-- org.thecollective.modules.Sparrow -->
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

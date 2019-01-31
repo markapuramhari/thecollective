@@ -19,6 +19,7 @@ public class APITesting
 
 		Response response = request.get();
 		System.out.println("Response Body -> " + response.body().asString());
+		
 
 		// We can convert the Json Response directly into a Java Array by using
 		// JsonPath.getObject method. Here we have to specify that we want to

@@ -22,7 +22,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test
 	public void veryfyCheckoutPageTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -98,11 +98,11 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Description("this test case verifies payment page")
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_004")
-	@Test
+	@Test(dependsOnMethods="veryfyRemoveProductsTest")
 	public void veryfyPaymentTest() throws InterruptedException{
 	try{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -158,7 +158,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyProductPriceBeforeUpdateTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -180,7 +180,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -205,7 +205,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		try
 		{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -235,7 +235,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginPageFromCouponsTabTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -258,7 +258,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyLoginFunctionalityInCouponsTabTest() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -286,7 +286,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"})
 	public void verifyLoginByClickOnContinueInSummaryPage() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -310,7 +310,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyLoginFunctionalityInCheckoutPage() throws InterruptedException{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -346,7 +346,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -378,7 +378,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -417,7 +417,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		.enterPassword(data.getPassword())
 		.clickOnLoginButton();
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
 		.clickOnProductForCod(expPaymentMethod,data.getMaxAllowedPriceForCod());
 		String productName=pdPage()

@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Suite]]">
+  <test thread-count="5" name="Test(failed)(failed)">
     <classes>
-      <class name="org.thecollective.modules.Sparrow">
+      <class name="org.thecollective.modules.HomePageModuleTest">
+        <methods>
+          <include name="verifyTheCollectiveStores"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
         <methods>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
-          <include name="reIndexProductIds"/>
+          <include name="verifyProductListPageBySearch"/>
           <include name="startRecording"/>
         </methods>
-      </class> <!-- org.thecollective.modules.Sparrow -->
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <methods>
+          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
+          <include name="verifyCouponsFunctionality"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="verifyOrderPlacementByCod"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="veryfyRemoveProductsTest"/>
+          <include name="veryfyShippingAddresTest"/>
+          <include name="startRecording"/>
+          <include name="verifyOrderPlacementByCCO"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Suite]] -->

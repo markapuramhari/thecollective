@@ -39,11 +39,11 @@ public class Sparrow extends MainController
      driver.findElement(By.xpath("//input[@name='slePassword']")).sendKeys("ashwin@123");
      driver.findElement(By.xpath("//button[text()='Sign me in']")).click();
      Thread.sleep(2500);
-     driver.get("http://sparrow.trendin.com/es/regenerate");
+     driver.get("http://testsparrow.trendin.com/es/regenerate");
      Thread.sleep(2500);
      driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
      driver.findElement(By.xpath("//li[@class='dropdown']")).click();
-     driver.findElement(By.xpath("//a[text()='production_products']")).click();
+     driver.findElement(By.xpath("//a[text()='testing_products']")).click();
      driver.findElement(By.id("DocIDs")).clear();
      try (BufferedReader br = new BufferedReader(new FileReader(csvFile)))
      {

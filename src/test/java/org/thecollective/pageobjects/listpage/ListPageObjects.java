@@ -119,6 +119,7 @@ public class ListPageObjects extends PageFactoryInitializer{
 			}
 			
 		}
+		System.out.println(driver.getCurrentUrl());
 		return false;
 	}
 	public ListPageObjects verifyBreadcrumbs(String brandName)
@@ -458,9 +459,9 @@ public class ListPageObjects extends PageFactoryInitializer{
 	public ListPageObjects changeSortByOptionBasedOnIndex(int index) throws InterruptedException {
 		Assert.assertTrue(sortByDropdown.isDisplayed(),"sort by dropdown is not displayed");
 		sortByDropdown.click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		sortByOptions.get(index).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		return this;
 	}
 	@Step("verify brand sub filter")

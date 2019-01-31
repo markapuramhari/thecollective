@@ -3,30 +3,41 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]]">
   <test thread-count="5" name="Test(failed)(failed)(failed)(failed)(failed)">
     <classes>
-      <class name="org.thecollective.modules.CheckoutModuleTest">
+      <class name="org.thecollective.modules.HomePageModuleTest">
         <methods>
+          <include name="verifyTheCollectiveStores"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyAllImagePathLinksInSignUpPage"/>
+          <include name="verifyAllImagePathLinksInLoginPage"/>
+          <include name="startRecording"/>
+          <include name="verifyAllImagePathLinksInMyOrderPage"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <methods>
+          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
+          <include name="verifyCouponsSectionCheckoutPage"/>
+          <include name="verifyOrderPlacementByCod"/>
+          <include name="verifyLoginFunctionalityInCheckoutPage"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
           <include name="veryfyRemoveProductsTest"/>
           <include name="veryfyShippingAddresTest"/>
+          <include name="verifyLoginByClickOnContinueInSummaryPage"/>
+          <include name="verifyCouponsFunctionality"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="verifyLoginPageFromCouponsTabTest"/>
+          <include name="verifyLoginLinkInCouponsTabTest"/>
           <include name="startRecording"/>
           <include name="verifyOrderPlacementByCCO"/>
         </methods>
       </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
-      <class name="org.thecollective.modules.PLPModuleTest">
-        <methods>
-          <include name="verifyBrandsSubFilterFun"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Test(failed)(failed)(failed)(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]] -->

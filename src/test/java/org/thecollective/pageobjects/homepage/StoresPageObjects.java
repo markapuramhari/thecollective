@@ -33,7 +33,8 @@ public class StoresPageObjects extends PageFactoryInitializer{
 	@Step("verify available store branches")
 	public StoresPageObjects verifyAvailableStores(String storeBanches) {
 		String expStoreBranch[]=storeBanches.split(",");
-		Waiting.explicitWaitVisibilityOfElements(storeBranchesNames, 15);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		//Waiting.explicitWaitVisibilityOfElements(storeBranchesNames, 15);
 		for(int i=0;i<storeBranchesNames.size();i++)
 		{
 			

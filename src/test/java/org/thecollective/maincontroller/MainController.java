@@ -220,6 +220,12 @@ public void beforeSuite() throws Exception{
 			
 			  
 		}
+		else if(setUp.getBrowser().trim().equalsIgnoreCase("safari"))
+		{
+			System.setProperty("webdriver.safari.driver","resources/drivers/Windows/selenium-safari-driver-2.29.1.jar");
+			driver = new SafariDriver(capabilities);
+			TestUtility.maximizeScreen(driver);
+		}
 		else if(setUp.getBrowser().trim().equalsIgnoreCase("IE"))
 		{
 			System.setProperty("webdriver.ie.driver","resources/drivers/Windows/IEDriverServer.exe");
