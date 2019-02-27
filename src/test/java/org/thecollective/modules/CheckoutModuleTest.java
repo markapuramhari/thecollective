@@ -139,7 +139,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		homePage()
 		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
 		.listPage()
-		.clickOnSpecificProduct(3);
+		.clickOnSpecificProduct(1);
 		String productName=pdPage()
 		.selectSize()		
 		.addToBageFromDetailsPage()
@@ -180,7 +180,7 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	public void verifyUpdatePriceTest() throws InterruptedException
 	{
 		homePage()
-		.clickOnSpecificCategoryFromTopNavigation("Men", "Polos")
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
 		.listPage()
 		.clickOnSpecificProduct(2);
 		String productName=pdPage()
@@ -371,6 +371,8 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 	@TestCaseId("TC_Checkout_017")
 	@Test(groups={"HomePageModule","smoke","regression"},dependsOnMethods="veryfyRemoveProductsTest")
 	public void verifyCouponsFunctionality() throws Exception{
+		try
+		{
 		homePage()
 		.clickOnLoginLink()
 		.loginPage()
@@ -400,7 +402,11 @@ public class CheckoutModuleTest extends PageFactoryInitializer
 		
 		 throw new  Exception("needs to be implement");
 		
-	}
+	}finally{
+			homePage()
+			.clickLogo()
+			.logout();
+		}}
 	@Description("this test case verifies successful order placement by using cod")
 	@Features("Checkout Module")
 	@TestCaseId("TC_Checkout_014")

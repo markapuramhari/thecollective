@@ -24,11 +24,11 @@ import com.google.common.base.Function;
 
 public class Sparrow extends MainController
 {
-	 private  int minValue=0;
-	 private int maxValue=499;
+	 private  int minValue=1;
+	 private int maxValue=1000;
 	@Test()
 	public void reIndexProductIds() throws InterruptedException {
-	 String csvFile = "D:\\Thiruveedhi\\Sparrow\\t_product.csv";
+	 String csvFile = "D:\\Thiruveedhi\\Implementation\\thecollective\\resources\\ExcelsheetData\\t_product.csv";
      String line = "";
      String cvsSplitBy=",";
     
@@ -59,10 +59,10 @@ public class Sparrow extends MainController
 	            }
          }
          System.out.println(ar.size());
-         for(int k=minValue;k<maxValue;k++)
+         for(int k=minValue;k<=maxValue;k++)
          {
         	 driver.findElement(By.id("DocIDs")).clear();
-         for(int j=minValue;j<maxValue ;j++) 
+         for(int j=minValue;j<=maxValue;j++) 
          {
          driver.findElement(By.id("DocIDs")).sendKeys(ar.get(j)+",");
          
@@ -73,9 +73,10 @@ public class Sparrow extends MainController
          js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@onclick='generateCSV()']")));
 //    	 driver.findElement(By.xpath("//button[@onclick='generateCSV()']")).click();
     	 System.out.println(ar.get(maxValue-1));
-    	 Assert.assertTrue(assertVerifySuccess(ar.get(maxValue-1)),"products were not generated successfully");
-    	 minValue=minValue+499;
-    	 maxValue=maxValue+500;
+    	// Assert.assertTrue(assertVerifySuccess(ar.get(maxValue-1)),"products were not generated successfully");
+    	 Thread.sleep(40000);
+    	 minValue=minValue+1001;
+    	 maxValue=maxValue+1001;
          }
 
      } catch (IOException e) {
@@ -101,7 +102,7 @@ public class Sparrow extends MainController
 				}
 			else 
 				{
-					return false;
+					return true;
 				}
 		
 	}

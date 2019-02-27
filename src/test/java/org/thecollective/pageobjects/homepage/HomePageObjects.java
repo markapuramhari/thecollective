@@ -416,7 +416,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 		return this;
 	}
 	@Step("click on logo")
-	public HomePageObjects clickLogo() {
+	public HomePageObjects clickLogo() throws InterruptedException 
+	{
+		Thread.sleep(2500);
 		logo.click();
 		return this;
 	}

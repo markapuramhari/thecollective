@@ -34,7 +34,11 @@ public class ListPageObjects extends PageFactoryInitializer{
 	@FindAll(value={@FindBy(xpath="//div[contains(@class,'products_list_item')]")})
 	private List<WebElement> listedItems;
 	
-	@FindAll(value={@FindBy(xpath="//div[contains(@class,'product-price')]/span")})
+	/*@FindAll(value={@FindBy(xpath="//div[contains(@class,'products_list_item')]//i")})
+	private List<WebElement> listedItemsPrice;*/
+	
+	
+	@FindAll(value={@FindBy(xpath="//div[contains(@class,'products_list_item')]//i")})
 	private List<WebElement> listedItemsPrice;
 	
 	@FindBy(xpath="//div[@class='custom_pagination_inner']//a[@class='nextpageupdate']")
@@ -73,6 +77,15 @@ public class ListPageObjects extends PageFactoryInitializer{
 	
 	@FindAll(value={@FindBy(xpath="//li[@class='filteritem active brandFilterItem']//li//span")})
 	private List<WebElement> brandFilterAttributes;
+	
+	@FindBy(xpath="//div[contains(text(),'PRICE')]")
+	private WebElement priceFilterName;
+	
+	
+	@FindAll(value= {@FindBy(xpath="//div[contains(text(),'PRICE')]/following-sibling::ul//li")})
+	private List<WebElement> priceFilters;
+	
+	
 	
 	//===================================================
 	@Step("verify product list page")
@@ -526,5 +539,30 @@ public class ListPageObjects extends PageFactoryInitializer{
 			}
 		return flag;
 		
+	}
+	@Step("verify price filter section at left navigation")
+	public ListPageObjects verifyPriceFilters() {
+		Waiting.explicitWaitVisibilityOfElement(priceFilterName, 20);
+		Assert.assertTrue(priceFilterName.isDisplayed(), "price filter is not displayed");
+		return this;
+	}
+	@Step("apply price {0} filter from left navigation")
+	public String applyPriceFilters() 
+	{
+		priceFilters.get(0).click();
+		String filterRange=priceFilters.get(0).getAttribute("id");
+		
+		
+		return filterRange;
+	}
+	@Step("verify listed products according to selected price {0}range ")
+	public ListPageObjects verifyListPageAfterApplyPriceFilter(String priceRange) {
+		String price=priceRange.replace("filter_", "");
+		System.out.println(price);
+		int firstItemPrice= Integer.parseInt( listedItemsPrice.get(0).getText());
+		
+		int lastItemPrice= Integer.parseInt(listedItemsPrice.get(listedItemsPrice.size()-1).getText());
+		System.out.println(firstItemPrice+lastItemPrice);
+		return this;
 	}
 }

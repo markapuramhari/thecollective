@@ -27,20 +27,14 @@ public class BDirectoryMasterCall extends PageFactoryInitializer{
 		driver.close();
 	}
 	@Test
-	public void bDirectory()
+	public void bDirectory() throws InterruptedException
 	
 	{
 		String parentWindowHandler = driver.getWindowHandle();
-		System.out.println("calling method");
-		
+		System.out.println("calling method");	
 		bDirectoryMasterSetup();
-		
 		driver.switchTo().window(parentWindowHandler);
-		
-		
-		
 		homePage().clickLogo();
 		System.out.println("success");
 	}
-
 }

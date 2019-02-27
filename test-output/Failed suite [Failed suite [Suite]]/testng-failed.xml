@@ -6,21 +6,16 @@
       <class name="org.thecollective.modules.HomePageModuleTest">
         <methods>
           <include name="verifyTheCollectiveStores"/>
-          <include name="verifyHomePageAfterLogin"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
           <include name="tearDown"/>
           <include name="beforeSuite"/>
-          <include name="verifyAllImagePathLinksInSignUpPage"/>
-          <include name="verifyAllImagePathLinksInLoginPage"/>
           <include name="startRecording"/>
-          <include name="verifyAllImagePathLinksInMyOrderPage"/>
         </methods>
       </class> <!-- org.thecollective.modules.HomePageModuleTest -->
       <class name="org.thecollective.modules.CheckoutModuleTest">
         <methods>
-          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
           <include name="verifyCouponsSectionCheckoutPage"/>
           <include name="verifyOrderPlacementByCod"/>
           <include name="verifyLoginFunctionalityInCheckoutPage"/>
@@ -28,16 +23,26 @@
           <include name="beforeSuite"/>
           <include name="verifyUpdatePriceTest"/>
           <include name="veryfyRemoveProductsTest"/>
-          <include name="veryfyShippingAddresTest"/>
           <include name="verifyCouponsFunctionality"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
-          <include name="verifyLoginLinkInCouponsTabTest"/>
           <include name="startRecording"/>
           <include name="verifyOrderPlacementByCCO"/>
         </methods>
       </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyPriceFilter"/>
+          <include name="startRecording"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Test(failed)(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Failed suite [Suite]]] -->

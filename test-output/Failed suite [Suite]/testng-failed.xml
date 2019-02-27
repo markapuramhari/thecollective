@@ -14,33 +14,37 @@
           <include name="startRecording"/>
         </methods>
       </class> <!-- org.thecollective.modules.HomePageModuleTest -->
-      <class name="org.thecollective.modules.PLPModuleTest">
-        <methods>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="verifyProductListPageBySearch"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.PLPModuleTest -->
       <class name="org.thecollective.modules.CheckoutModuleTest">
         <methods>
-          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
+          <include name="verifyCouponsSectionCheckoutPage"/>
+          <include name="verifyOrderPlacementByCod"/>
+          <include name="verifyLoginFunctionalityInCheckoutPage"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyUpdatePriceTest"/>
+          <include name="veryfyRemoveProductsTest"/>
+          <include name="verifyLoginByClickOnContinueInSummaryPage"/>
           <include name="verifyCouponsFunctionality"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
-          <include name="verifyOrderPlacementByCod"/>
+          <include name="veryfyPaymentTest"/>
           <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="veryfyRemoveProductsTest"/>
-          <include name="veryfyShippingAddresTest"/>
           <include name="startRecording"/>
           <include name="verifyOrderPlacementByCCO"/>
         </methods>
       </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="verifySingleFilterByChangingSortByOption"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyPriceFilter"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Test(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Suite]] -->

@@ -3,54 +3,10 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="org.thecollective.modules.LoginModuleTest">
-        <methods>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="loginInvalid" invocation-numbers="0"/>
-          <include name="verifyLoginLinkInLandingPage"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.LoginModuleTest -->
-      <class name="org.thecollective.modules.CheckoutModuleTest">
-        <methods>
-          <include name="verifyLoginFunctionalityInCouponsTabTest"/>
-          <include name="verifyCouponsSectionCheckoutPage"/>
-          <include name="verifyOrderPlacementByCod"/>
-          <include name="verifyLoginFunctionalityInCheckoutPage"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="veryfyRemoveProductsTest"/>
-          <include name="veryfyShippingAddresTest"/>
-          <include name="verifyCouponsFunctionality"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="veryfyPaymentTest"/>
-          <include name="stopRecording"/>
-          <include name="verifyLoginLinkInCouponsTabTest"/>
-          <include name="startRecording"/>
-          <include name="verifyOrderPlacementByCCO"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
-      <class name="org.thecollective.modules.PLPModuleTest">
-        <methods>
-          <include name="verifySingleFilterByChangingSortByOption"/>
-          <include name="beforeTest"/>
-          <include name="setUp"/>
-          <include name="stopRecording"/>
-          <include name="verifyMultipleFilterByChnagingSortByOption"/>
-          <include name="tearDown"/>
-          <include name="beforeSuite"/>
-          <include name="verifyProductListPageBySearch"/>
-          <include name="startRecording"/>
-        </methods>
-      </class> <!-- org.thecollective.modules.PLPModuleTest -->
       <class name="org.thecollective.modules.HomePageModuleTest">
         <methods>
           <include name="verifyTheCollectiveStores"/>
+          <include name="verifyFooterLinksFunctionality"/>
           <include name="beforeTest"/>
           <include name="setUp"/>
           <include name="stopRecording"/>
@@ -59,6 +15,73 @@
           <include name="startRecording"/>
         </methods>
       </class> <!-- org.thecollective.modules.HomePageModuleTest -->
+      <class name="org.thecollective.modules.CheckoutModuleTest">
+        <methods>
+          <include name="verifyCouponsSectionCheckoutPage"/>
+          <include name="verifyOrderPlacementByCod"/>
+          <include name="verifyLoginFunctionalityInCheckoutPage"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyUpdatePriceTest"/>
+          <include name="veryfyRemoveProductsTest"/>
+          <include name="veryfyShippingAddresTest"/>
+          <include name="verifyLoginByClickOnContinueInSummaryPage"/>
+          <include name="verifyCouponsFunctionality"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="veryfyPaymentTest"/>
+          <include name="stopRecording"/>
+          <include name="startRecording"/>
+          <include name="verifyOrderPlacementByCCO"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.CheckoutModuleTest -->
+      <class name="org.thecollective.modules.LoginModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyLoginLinkInLandingPage"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.LoginModuleTest -->
+      <class name="org.thecollective.modules.MyAccountModuleTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="startRecording"/>
+          <include name="verifyLogoutFunInMyAccountPage"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.MyAccountModuleTest -->
+      <class name="org.thecollective.modules.PDPModuleTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="beforeTest"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyMyWishListFunctionalityAfterLogin"/>
+          <include name="verifyMyWishListFunctionality"/>
+          <include name="startRecording"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PDPModuleTest -->
+      <class name="org.thecollective.modules.PLPModuleTest">
+        <methods>
+          <include name="verifySingleFilterByChangingSortByOption"/>
+          <include name="beforeTest"/>
+          <include name="setUp"/>
+          <include name="stopRecording"/>
+          <include name="tearDown"/>
+          <include name="beforeSuite"/>
+          <include name="verifyPriceFilter"/>
+          <include name="startRecording"/>
+          <include name="verifySingleFilterFunWithPageRefresh"/>
+        </methods>
+      </class> <!-- org.thecollective.modules.PLPModuleTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

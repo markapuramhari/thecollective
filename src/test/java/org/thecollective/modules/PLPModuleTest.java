@@ -281,4 +281,19 @@ public class PLPModuleTest extends PageFactoryInitializer{
 		
 		
 	}
+	@TestCaseId("TC_PLP_018")
+	@Features("Product List Page")
+	@Test()
+	@Description("verifies price filter functionality by using category navigation")
+	public void verifyPriceFilter() throws AWTException, InterruptedException, Exception
+	{
+		homePage()
+		.clickOnSpecificCategoryFromTopNavigation("Men", "Jeans")
+		.listPage()
+		.verifyPriceFilters();
+		String priceRange=listPage().applyPriceFilters();
+		listPage().verifyListPageAfterApplyPriceFilter(priceRange);
+		
+		throw new Exception("needs to implement");
+	}
 }
